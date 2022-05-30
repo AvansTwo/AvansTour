@@ -54,13 +54,15 @@
 </main>
 <footer>
     <div class="container">
-        <div class="col-12 text-center">
-            <a href="#"><i class="fa-brands fa-facebook footer-icon"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter footer-icon"></i></a>
-            <a href="#"><i class="fa-solid fa-envelope footer-icon"></i></a>
-        </div>
-        <div class="col-12 text-center">
-            <p id="footer-copyright">&copyAvansTour</p>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="#" target="_blank"><i id="facebook" class="fa-brands fa-facebook footer-icon"></i></a>
+                <a href="#" target="_blank"><i id="twitter" class="fa-brands fa-twitter footer-icon"></i></a>
+                <a href="#" target="_blank"><i id="mail" class="fa-solid fa-envelope footer-icon"></i></a>
+            </div>
+            <div class="col-12 text-center">
+                <p id="footer-copyright">&copyAvansTour</p>
+            </div>
         </div>
     </div>
 </footer>

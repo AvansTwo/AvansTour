@@ -16,6 +16,29 @@
     font-style: normal;
 
 }
+/*overrule*/
+h1{
+    color: #C6002A;
+    font-size: 60px;
+    font-weight: bold;
+}
+p{
+   font-size: 18px;
+    font-family: Verdana, serif;
+}
+/*buttons*/
+.primary-btn{
+    padding: 12px 40px !important;
+    color: white !important;
+    background-color: #C6002A !important;
+    font-family: Verdana, serif;
+    font-size: 16px;
+    border-radius: 50px !important;
+    min-width: 200px;
+}
+.primary-btn:hover{
+    background-color: #f31d49 !important;
+}
 /*Nav*/
 .custom-link{
     font-family: frutigerbold, serif !important;
@@ -42,10 +65,45 @@
     color: #FFFFFF;
     font-family: frutigerbold, serif;
     font-size: 18px;
-    padding-bottom: 40px;
+    margin-bottom: 40px;
     opacity: 0.5;
+}
+
+#mail:hover{
+    color: #fec127;
+}
+
+#twitter:hover{
+    color: #009DED;
+}
+
+#facebook:hover{
+    color: #4064AC;
 }
 
 footer{
     background-color: #051120;
+}
+
+/*landing*/
+.landing{
+    background-color: #F9F9F9;
+    border-radius: 10px;
+}
+
+#landing-title{
+    color: black;
+}
+
+.red-dot{
+    width: 15px;
+    height: 15px;
+    background-color: #C6002A;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.landing-phrase{
+    margin-bottom: 5px;
 }
