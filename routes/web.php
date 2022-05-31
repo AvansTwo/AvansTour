@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TourController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,11 @@ Route::get('/speurtochten', function () {
 Route::get('/tour/create', function () {
     return view('tour.create');
 });
+
+Route::get(
+    '/speurtochten/{id}',
+    [TourController::class, 'show']
+);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
