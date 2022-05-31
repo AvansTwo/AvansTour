@@ -24,10 +24,10 @@ class Question extends Model
 
     public function tour(): BelongsTo
     {
-        return $this->BelongsTo(tour::class);
+        return $this->hasOne(tour::class);
     }
     public function answer(): hasMany
     {
-        return $this->hasMany(answer::class);
+        return $this->hasMany(answer::class, 'question_id');
     }
 }
