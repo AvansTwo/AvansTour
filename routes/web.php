@@ -21,6 +21,11 @@ Route::get('/speurtochten', function () {
     return view('tour.index');
 });
 
+Route::get('/tour/create', function () {
+    return view('tour.create');
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
