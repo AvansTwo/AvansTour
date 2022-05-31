@@ -21,11 +21,11 @@ class Team extends Model
 
     public function tour(): BelongsTo
     {
-        return $this->belongsTo(Tour::class, 'tour_id');
+        return $this->belongsTo(Tour::class);
     }
 
     public function participants(): HasMany
     {
-        return $this->hasMany(Participants::class);
+        return $this->hasMany(Participants::class, 'team_id');
     }
 }

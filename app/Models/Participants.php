@@ -17,6 +17,6 @@ class Participants extends Model
 
     public function team(): BelongsTo
     {
-        return $this->belongsTo(Team::class, 'team_id');
+        return $this->belongsTo(Team::class);
     }
 }

@@ -21,26 +21,21 @@ class Tour extends Model
 
     public function team(): HasMany
     {
-        return $this->hasMany(Team::class);
+        return $this->hasMany(Team::class, 'tour_id');
     }
 
-    public function category(): HasOne
+    public function category(): BelongsTo
     {
-        return $this->hasOne(Category::class);
-    }
-
-    public function user(): HasOne
-    {
-        return $this->hasOne(User::class);
-    }
-
-    public function tour(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function question(): HasMany
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class, 'user_id');
     }
 }
