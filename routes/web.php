@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/speurtochten', function () {
+    return view('tour.index');
+});
+
 Route::get('/tour/create', function () {
     return view('tour.create');
 });
