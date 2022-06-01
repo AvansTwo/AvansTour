@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
-                            <button type="button" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>Aanmaken</button>
+                            <button type="button" onclick="location.href='/speurtochten/aanmaken';" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>Aanmaken</button>
                         </div>
                     </div>
                 </div>
