@@ -12,19 +12,11 @@
                 @endif
             </div>
             <div class="col-12 col-lg-6 mb-5">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/vragen/aanmaken" method="post" enctype="multipart/form-data">
+                <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <input type="hidden" name="tourID" value="{{ $tour->id }}" />
                     <div class="form-row">
-                        <div class="col-10 mx-auto mb-3">
-                            <label for="tourID" class="mb-1 fw-bold">Tour</label>
-                            <select class="form-select" id="tourID" name="tourID" required>
-                                <option value="" disabled selected hidden>Selecteer een tour</option>
-                                @foreach($tours as $tour)
-                                    <option @if($tour->id == Session::get('currentTourID')) selected @endif value="{{ $tour->id }}">{{ $tour->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionTitle" class="mb-1 fw-bold">Titel vraag</label>
                             <input type="text" name="questionTitle" class="form-control" id="questionTitle" placeholder="Klaslokalen" required>
@@ -78,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-                        <button onclick="location.href='/speurtochten';" class="btn primary-btn mt-3" type="reset"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+                        <button onclick="location.href='/speurtochten/{{$tour->id}}';" class="btn primary-btn mt-3" type="reset"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>

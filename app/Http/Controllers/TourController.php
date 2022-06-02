@@ -68,8 +68,7 @@ class TourController extends Controller
         $file-> move(public_path('tourimg'), $filename);
 
         Session::flash('SuccessMessage','Tour is succesvol aangemaakt, voeg nu vragen toe!');
-        Session::flash('currentTourID',$tour->id);
-        return Redirect::to('vragen/aanmaken');
+        return Redirect::to('/speurtochten/'. $tour->id .'/vragen/aanmaken');
     }
 
     /**

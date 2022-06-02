@@ -6,7 +6,6 @@ use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class QuestionController extends Controller
@@ -24,12 +23,12 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create($id)
     {
-        $tours = Tour::all();
-        return view('question.create')->with('tours', $tours);
+        $tour = Tour::find($id);
+        return view('question.create')->with('tour', $tour);
     }
 
     /**
@@ -41,6 +40,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = new Question();
+        $tourID = $request->tourID;
 
         $file = $request->file('questionImg');
         $filename= date('YmdHi').$file->getClientOriginalName();
@@ -51,7 +51,7 @@ class QuestionController extends Controller
         $question->video_url = $request->questionVideo;
         $question->gps_location = $request->questionLocation;
         $question->points = $request->questionPoints;
-        $question->tour_id = $request->tourID;
+        $question->tour_id = $tourID;
 
         $question->save();
 
@@ -70,9 +70,8 @@ class QuestionController extends Controller
             $answer->question_id = $questionID;
             $answer->save();
         }
-        Session::flash('SuccessMessage','Vraag is succesvol aangemaakt');
-        Session::flash('currentTourID',$request->tourID);
-        return Redirect::to('vragen/aanmaken');
+        Session::flash('SuccessMessage','Vraag is succesvol toegevoegd');
+        return back();
     }
 
     /**
