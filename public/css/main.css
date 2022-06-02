@@ -49,7 +49,6 @@ textarea{
     color: white !important;
     background-color: #c6002a !important;
     border-radius: 50px !important;
-    min-width: 200px;
 }
 
 .primary-btn:hover {
@@ -71,8 +70,17 @@ textarea{
 .create-btn:hover {
     background-color: #5c6524 !important;
 }
-.create-btn i {
+
+.edit-btn{
+    background-color: #FAC213 !important;
+}
+
+#create-tour-btn-icon{
     margin-right: 10px;
+}
+
+.edit-btn:hover{
+    background-color: #d2a31b !important;
 }
 
 /*Nav*/
