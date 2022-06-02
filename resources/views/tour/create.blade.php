@@ -7,7 +7,7 @@
                 <h1 class="my-5">Een nieuwe <span class="title-colored">tour</span> aanmaken</h1>
             </div>
             <div class="col-12 col-lg-6 mb-5">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanmaken" method="post">
+                <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-row">
