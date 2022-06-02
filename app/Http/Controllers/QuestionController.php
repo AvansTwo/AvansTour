@@ -48,7 +48,7 @@ class QuestionController extends Controller
     public function store(StoreQuestionRequest $request)
     {
         //
-        return "hoi";
+        return $request;
     }
 
     /**

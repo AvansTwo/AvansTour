@@ -94,7 +94,7 @@ function getAnswers() {
                     let Response = {
                         question,
                         ...correctAnswer,
-                        ...wrongAnswer,
+                        ...wrongAnswers,
                     };
                 }
             }

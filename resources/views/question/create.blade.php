@@ -17,8 +17,8 @@
         </select>
 
 
-        <form class="row g-3 needs-validation form-style" id="theform" novalidate>
-            <!-- <form class="row g-3 needs-validation form-style" enctype="multipart/form-data" method="POST" action="opslaan" id="theform" novalidate> -->
+        <form class="row g-3 needs-validation form-style" id="theform" novalidate action="/vraag/aanmaken" method="post" enctype="multipart/form-data>
+            <!-- <form class=" row g-3 needs-validation form-style" enctype="multipart/form-data" method="POST" action="opslaan" id="theform" novalidate> -->
             @csrf
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
