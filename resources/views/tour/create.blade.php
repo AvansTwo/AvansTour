@@ -33,8 +33,9 @@
                             <input class="form-control" name="tourImage" type="file" id="formFile">
                         </div>
                     </div>
-                    <div class="col-10 mx-auto mb-3 text-center">
-                        <button class="btn primary-btn secondary-btn mt-3 mx-auto" type="submit">Aanmaken</button>
+                    <div class="col-10 mx-auto mb-3">
+                        <button onclick="location.href='/speurtochten';" class="btn primary-btn mt-3 mx-auto float-left" type="reset">Ga terug</button>
+                        <button class="btn primary-btn secondary-btn mt-3 mx-auto float-end" type="submit">Aanmaken</button>
                     </div>
                 </form>
             </div>
