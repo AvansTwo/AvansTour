@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Cassandra\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +18,7 @@ class Tour extends Model
         'name',
         'description',
         'image_url',
+        'location',
         'category_id',
         'user_id'
     ];
@@ -40,6 +40,6 @@ class Tour extends Model
 
     public function user(): HasOne
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->hasOne(User::class, 'id');
     }
 }

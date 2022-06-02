@@ -14,6 +14,8 @@ class Category extends Model
         'category_name'
     ];
 
+    protected $table="category";
+
     public function tour(): HasMany
     {
         return $this->hasMany(tour::class, 'category_id');

@@ -45,6 +45,7 @@ class TourController extends Controller
         $tour->name = $request->tourName;
         $tour->description = $request->tourDesc;
         $tour->image_url = $filename;
+        $tour->location = $request->tourLocation;
         $tour->category_id = 1;
         $tour->user_id = 1;
 
