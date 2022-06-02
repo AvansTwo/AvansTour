@@ -1,59 +1,84 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
+@section('title', 'Speurtocht detail')
+@section('content')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <div class="row">
 
-    <title>Tour create</title>
 
-</head>
+        <form class="row g-3 needs-validation form-style" id="theform" novalidate>
 
-<body>
+            <div class="col-12 col-lg-6">
 
-    <form class="row g-3 needs-validation" novalidate>
-        <div class="col-md-12">
-            <label for="tilteInputField" class="form-label">Titel</label>
-            <input type="text" class="form-control" id="tilteInputField" placeholder="Informatica tour" required>
-        </div>
 
-        <div class="col-md-12">
-            <label for="omschrijvingTextarea" class="form-label">Omschrijving</label>
-            <textarea class="form-control" id="omschrijvingTextarea1" placeholder="Introductie tour voor de aankomend studenten van de Avans Hogeschool in Breda" rows="3" required></textarea>
-        </div>
+                <div class="col-md-6">
+                    <!-- <label for="tilteInputField" class="form-label"></label> -->
+                    <input type="text" class="form-control placeholder-style" id="tilteInputField" placeholder="Naam tocht" required>
+                </div>
 
-        <div class="col-12">
-            <button class="btn btn-primary" type="submit">Aanmaken</button>
-        </div>
-    </form>
+                <div class="col-md-8 mt-3">
+                    <!-- <label for="omschrijvingTextarea" class="form-label"></label> -->
+                    <textarea class="form-control" id="omschrijvingInputTextarea" placeholder="Beschrijving van de tocht" rows="3" required></textarea>
+                </div>
 
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict'
+            </div>
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.querySelectorAll('.needs-validation')
+            <div class="col-12 col-lg-6">
 
-            // Loop over them and prevent submission
-            Array.prototype.slice.call(forms)
-                .forEach(function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
+                <div class="col-md-12">
 
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
+                    <label for="imageUpload">Speurtocht foto</label>
+                    <input type="file" class="form-control" id="imageUpload" />
+                </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            </div>
 
-</body>
+            <hr>
+            <div id="questions">
+                <table class="t1" id="question1">
+                    <tr>
+                        <td><input type="text" class="form-control placeholder-style" id="Q1" placeholder="Vraag 1">
+                        </td>
 
-</html>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" id="Q1A1" name="question1" value="answer1">
+                            <input type="text" placeholder="Antwoord 1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" id="Q1A2" name="question1" value="answer2">
+                            <input type="text" placeholder="Antwoord 2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" id="Q1A3" name="question1" value="answer3">
+                            <input type="text" placeholder="Antwoord 3">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="radio" id="Q1A4" name="question1" value="answer4">
+                            <input type="text" placeholder="Antwoord 4">
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+            <tr><i class="fa-solid fa-circle-plus" id="newQuestionButton" onclick="addQuestion()"></i></tr>
+
+
+
+            <div class="col-12">
+                <button class="btn primary-btn mb-4" id="tourSubmitButton" type="submit" onclick="FormRequiredFields()">Aanmaken</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@endsection

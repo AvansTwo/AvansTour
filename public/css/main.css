@@ -47,6 +47,7 @@ p {
     border-radius: 50px !important;
     min-width: 200px;
 }
+
 .primary-btn:hover {
     background-color: #f31d49 !important;
 }
@@ -219,5 +220,52 @@ footer {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #41464c;
+    background-color: #93bbed;
+}
+
+/* speurtoch aanmaken */
+.form-style label {
+    font-size: 16px;
+    font-family: Verdana, serif;
+    /* margin: 0; */
+}
+
+.form-style input {
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    border: none;
+}
+
+.form-style textarea {
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    border: none;
+}
+
+#tilteInputField::placeholder {
+    color: black;
+    font-family: "frutigerbold";
+    opacity: 1; /* Firefox */
+}
+
+#omschrijvingInputTextarea::placeholder {
+    color: black;
+    font-family: "frutigerbold";
+    opacity: 1; /* Firefox */
+}
+
+table.t1 tr td {
+    padding: 5px 20px 5px 5px;
+}
+
+table.t1 tr td:nth-of-type(1),
+table.t1 tr td:nth-of-type(2) {
+    padding-right: 5px !important;
+}
+
+#newQuestionButton {
+    position: relative;
+    text-align: right;
+    font-size: 50px;
+    color: #c6002a;
 }

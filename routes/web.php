@@ -28,6 +28,11 @@ Route::get('/tour/create', function () {
 });
 
 Route::get(
+    '/speurtochten/aanmaken',
+    [TourController::class, 'create']
+);
+
+Route::get(
     '/speurtochten/{id}',
     [TourController::class, 'show']
 );
