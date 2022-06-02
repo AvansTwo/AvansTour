@@ -19,13 +19,13 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('category')->insert([
-            'category_name' => 'Batieboys',
+            'category_name' => 'Informatica',
         ]);
         DB::table('category')->insert([
-            'category_name' => 'Klaas en de boys',
+            'category_name' => 'Mechatronica',
         ]);
         DB::table('category')->insert([
-            'category_name' => 'Drerries',
+            'category_name' => 'Werktuigbouwkunde',
         ]);
     }
 }

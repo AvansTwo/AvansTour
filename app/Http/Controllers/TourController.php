@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -23,7 +24,9 @@ class TourController extends Controller
      */
     public function index()
     {
-        return view('tour.index');
+        $tours = Tour::paginate(6);
+        $categories = Category::all();
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories);    
     }
 
     /**

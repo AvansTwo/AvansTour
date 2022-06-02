@@ -35,7 +35,7 @@
                 <div class="col-12 col-lg-6 order-6 order-lg-1">
                     <div class="row">
                         <div class="col-12">
-                            <img class="img-fluid tour-img mb-5 mb-lg-0" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-detail-img">
+                            <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-detail-img">
                         </div>
                         <div class="col-12 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
 
