@@ -22,6 +22,8 @@
                     </div>
                     <div class="col-12">
                         <button type="button" onclick="location.href='#';" class="btn primary-btn mt-5">Start<i class="fa-solid fa-chevron-right"></i></button>
+                        <a href="{{ url('/questionShow/1') }}">NEED FOR SPEEEED</a>
+                        <button type="button" href="{{ url('/questionShow/1') }}" class=" btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>Vragen toevoegen</button>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 order-6 order-lg-1">

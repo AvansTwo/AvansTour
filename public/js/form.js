@@ -60,11 +60,14 @@ function addQuestion() {
     document.getElementById("questions").appendChild(questionClone);
 }
 
+let Questions = [];
+
 function getAnswers() {
     for (let j = 1; j <= qCounter; j++) {
         const question = document.getElementById(`question${j}`);
-        let correctanswer;
         let tbody = question.childNodes[1];
+        let wrongAnswers = [];
+
         for (var i = 0; i < tbody.childNodes.length; i = i + 2) {
             if (
                 tbody.childNodes[
@@ -72,23 +75,33 @@ function getAnswers() {
                 ].childNodes[1].childNodes[0].nodeName.toLowerCase() == "input"
             ) {
                 let input = tbody.childNodes[i].childNodes[1].childNodes[0];
-
                 if (input.name) {
                     let answer =
                         tbody.childNodes[i].childNodes[1].childNodes[2].value;
                     if (input.checked) {
                         //Correct antwoord
-                        alert("Correct: " + answer);
+                        let correctAnswer = answer;
                     } else {
                         // foute antwoorden
-                        alert("Wrong: " + answer);
+                        wrongAnswers.push(answer);
                     }
                 } else {
                     let question = input.value;
-                    alert("Question: " + question);
+                    // alert("Question: " + question);
                     //Question
+                }
+                if (i == tbody.childNodes.length) {
+                    let Response = {
+                        question,
+                        ...correctAnswer,
+                        ...wrongAnswer,
+                    };
                 }
             }
         }
+        Questions.push(Response);
     }
+
+    return Questions;
+    Questions = [];
 }

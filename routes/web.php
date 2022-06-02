@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\QuestionController;
 
 
 /*
@@ -31,14 +32,13 @@ Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
 //Tour edit
 Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
 
+//Tour question create
+Route::get('/vragen/{id}', [QuestionController::class, 'show']);
+Route::post('/vragen/opslaan', [QuestionController::class, 'store']);
+
 Route::post('/speurtochten/aanpassen', [TourController::class, 'update']);
 
 //Tour show
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
 
 //Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__ . '/auth.php';

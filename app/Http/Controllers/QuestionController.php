@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Tour;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 use Illuminate\Contracts\Foundation\Application;
@@ -36,7 +37,6 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -48,6 +48,7 @@ class QuestionController extends Controller
     public function store(StoreQuestionRequest $request)
     {
         //
+        return "hoi";
     }
 
     /**
@@ -56,9 +57,11 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show($id)
     {
-        //
+        $tour = Tour::find($id);
+
+        return view('question.create')->with('tour', $tour);
     }
 
     /**

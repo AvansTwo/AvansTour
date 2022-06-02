@@ -12,6 +12,8 @@ class Tour extends Model
 {
     use HasFactory;
 
+    protected $table = "tour";
+
     protected $fillable = [
         'name',
         'description',
