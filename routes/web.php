@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\QuestionController;
 
 
 /*
@@ -35,6 +36,10 @@ Route::post('/speurtochten/aanpassen', [TourController::class, 'update']);
 
 //Tour show
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
+
+//Question
+Route::post('/vragen/aanmaken', [QuestionController::class, 'store']);
+Route::get('/vragen/aanmaken', [QuestionController::class, 'create']);
 
 //Dashboard
 Route::get('/dashboard', function () {

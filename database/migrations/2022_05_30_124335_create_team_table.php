@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('end_time')->nullable();
             $table->integer('total_points')->default(0);
             $table->foreignId('tour_id')->constrained('tour')->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

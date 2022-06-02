@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('gps_location')->nullable();
             $table->integer('points')->default(0);
             $table->foreignId('tour_id')->constrained('tour')->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

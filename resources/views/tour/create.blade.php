@@ -9,7 +9,7 @@
             <div class="col-12 col-lg-6 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
-{{--                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />--}}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourName" class="mb-1 fw-bold">Naam tocht</label>
@@ -30,12 +30,12 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourimg" class="mb-1 fw-bold">Tour foto</label>
-                            <input class="form-control" name="image_url" type="file" id="formFile">
+                            <input class="form-control" name="image_url" type="file" id="formFile" required>
                         </div>
                         <div class="col-10 mx-auto mb-3">
-                            <label for="tourCategory" class="mb-1 fw-bold">Category</label>
-                            <select class="form-select" id="tourCategory" name="category_id">
-                                <option selected>Open this select menu</option>
+                            <label for="tourCategory" class="mb-1 fw-bold">Categorie</label>
+                            <select class="form-select" id="tourCategory" name="category_id" required>
+                                <option value="" disabled selected hidden>Selecteer opleidings categorie</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
@@ -43,8 +43,8 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-                        <button onclick="location.href='/speurtochten';" class="btn primary-btn mt-3" type="reset">Ga terug</button>
-                        <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken</button>
+                        <button onclick="location.href='/speurtochten';" class="btn primary-btn mt-3" type="reset"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+                        <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
             </div>

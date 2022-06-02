@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-12">
+            <button type="button" onclick="location.href='/speurtochten';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+        </div>
         <div class="col-12 grey-bg p-5 my-5">
             <div class="row">
                 <div class="col-12 col-lg-6 order-1 order-lg-6">
