@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TourController extends Controller
 {
@@ -13,7 +16,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        //
+        return view('tour.index');
     }
 
     /**
@@ -23,29 +26,49 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
+        return view('tour.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $file= $request->file('tourImage');
+        $filename= date('YmdHi').$file->getClientOriginalName();
+
+        $tour = new Tour();
+
+        $tour->name = $request->tourName;
+        $tour->description = $request->tourDesc;
+        $tour->image_url = $filename;
+        $tour->location = $request->tourLocation;
+        $tour->category_id = 1;
+        $tour->user_id = 1;
+
+        $tour->save();
+
+        $file-> move(public_path('tourimg'), $filename);
+
+        Session::flash('tourSuccessful','Tour is succesvol aangemaakt!');
+        return Redirect::to('speurtochten');
+
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        return view('tour.detail');
+        $tour = Tour::find($id);
+
+        return view('tour.detail')->with('tour', $tour);
     }
 
     /**
@@ -56,7 +79,7 @@ class TourController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('tour.edit');
     }
 
     /**
@@ -68,7 +91,7 @@ class TourController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

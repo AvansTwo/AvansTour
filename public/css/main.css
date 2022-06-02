@@ -2,7 +2,7 @@
 @font-face {
     font-family: "frutigerregular";
     src: url("../fonts/frutiger-webfont.woff2") format("woff2"),
-        url("../fonts/frutiger-webfont.woff") format("woff");
+    url("../fonts/frutiger-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -10,7 +10,7 @@
 @font-face {
     font-family: "frutigerbold";
     src: url("../fonts/frutiger_bold-webfont.woff2") format("woff2"),
-        url("../fonts/frutiger_bold-webfont.woff") format("woff");
+    url("../fonts/frutiger_bold-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -30,6 +30,10 @@ p {
     font-family: Verdana, serif;
 }
 
+textarea{
+    resize: none !important;
+}
+
 .grey-bg {
     background-color: #f9f9f9;
     border-radius: 10px;
@@ -45,8 +49,8 @@ p {
     color: white !important;
     background-color: #c6002a !important;
     border-radius: 50px !important;
-    min-width: 200px;
 }
+
 .primary-btn:hover {
     background-color: #f31d49 !important;
 }
@@ -62,8 +66,21 @@ p {
     color: white !important;
     background-color: #8f9d39 !important;
 }
-.create-btn i {
+
+.create-btn:hover {
+    background-color: #5c6524 !important;
+}
+
+.edit-btn{
+    background-color: #FAC213 !important;
+}
+
+#create-tour-btn-icon{
     margin-right: 10px;
+}
+
+.edit-btn:hover{
+    background-color: #d2a31b !important;
 }
 
 /*Nav*/
@@ -176,7 +193,7 @@ footer {
 
 /*dropdown*/
 .dropbtn {
-    background-color: #5a6268;
+    background-color: #6c7b82;
     color: white;
     padding: 10px 15px;
     font-size: 16px;
@@ -219,5 +236,10 @@ footer {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #41464c;
+    background-color: #454549;
+}
+
+/* speurtoch aanmaken */
+#inputGroupPrepend{
+    font-size: 24px;
 }

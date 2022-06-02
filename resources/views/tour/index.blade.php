@@ -7,10 +7,15 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <h1>Kies een <span class="title-colored">speurtocht</span> !</h1>
+                        @if(Session::has('tourSuccessful'))
+                            <div class="alert alert-success" role="alert">
+                                {{Session::get('tourSuccessful') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
-                            <button type="button" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>Aanmaken</button>
+                            <button type="button" onclick="location.href='/speurtochten/aanmaken';" class="btn create-btn mt-2"><i id="create-tour-btn-icon" class="fa-solid fa-square-plus"></i>Aanmaken</button>
                         </div>
                     </div>
                 </div>
