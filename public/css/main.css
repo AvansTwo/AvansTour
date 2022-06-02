@@ -2,7 +2,7 @@
 @font-face {
     font-family: "frutigerregular";
     src: url("../fonts/frutiger-webfont.woff2") format("woff2"),
-        url("../fonts/frutiger-webfont.woff") format("woff");
+    url("../fonts/frutiger-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -10,7 +10,7 @@
 @font-face {
     font-family: "frutigerbold";
     src: url("../fonts/frutiger_bold-webfont.woff2") format("woff2"),
-        url("../fonts/frutiger_bold-webfont.woff") format("woff");
+    url("../fonts/frutiger_bold-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -33,6 +33,10 @@ p {
 .grey-bg {
     background-color: #f9f9f9;
     border-radius: 10px;
+}
+
+textarea{
+    resize: none !important;
 }
 
 /*buttons*/
@@ -224,6 +228,10 @@ footer {
 }
 
 /* speurtoch aanmaken */
+#inputGroupPrepend{
+    font-size: 24px;
+}
+
 .form-style label {
     font-size: 16px;
     font-family: Verdana, serif;

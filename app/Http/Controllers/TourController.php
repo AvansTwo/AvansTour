@@ -13,7 +13,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        //
+        return view('tour.index');
     }
 
     /**
@@ -23,7 +23,6 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
         return view('tour.create');
     }
 
@@ -57,7 +56,7 @@ class TourController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('tour.edit');
     }
 
     /**
@@ -69,7 +68,7 @@ class TourController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
