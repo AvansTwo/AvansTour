@@ -38,8 +38,8 @@ class Tour extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class, 'id');
+        return $this->belongsTo(User::class);
     }
 }
