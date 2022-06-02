@@ -15,23 +15,28 @@ use App\Http\Controllers\TourController;
 |
 */
 
+//Index
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/speurtochten', function () {
-    return view('tour.index');
-});
+//Tour index
+Route::get('/speurtochten', [TourController::class, 'index']);
 
-Route::get('/tour/create', function () {
-    return view('tour.create');
-});
+//Tour create
+Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
 
-Route::get(
-    '/speurtochten/{id}',
-    [TourController::class, 'show']
-);
+Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
 
+//Tour edit
+Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
+
+Route::post('/speurtochten/aanpassen', [TourController::class, 'update']);
+
+//Tour show
+Route::get('/speurtochten/{id}', [TourController::class, 'show']);
+
+//Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
