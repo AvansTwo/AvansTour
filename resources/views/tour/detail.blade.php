@@ -3,6 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-12">
+            <button type="button" onclick="location.href='/speurtochten';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+        </div>
         <div class="col-12 grey-bg p-5 my-5">
             <div class="row">
                 <div class="col-12 col-lg-6 order-1 order-lg-6">
@@ -27,7 +30,7 @@
                             </div>
                             <div class="col-12 col-lg-6 mt-4 mt-lg-0">
                                 <button onclick="location.href='#';" class="btn create-btn edit-btn mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
-                                <button type="button" onclick="location.href='#';" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i></button>
+                                <button type="button" onclick="location.href='/speurtochten/{{$tour->id}}/vragen/aanmaken';" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i></button>
                             </div>
                         </div>
                     </div>
@@ -35,12 +38,43 @@
                 <div class="col-12 col-lg-6 order-6 order-lg-1">
                     <div class="row">
                         <div class="col-12">
-                            <img class="img-fluid tour-img mb-5 mb-lg-0" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-detail-img">
+                            <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-detail-img">
                         </div>
                         <div class="col-12 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
 
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 grey-bg p-5 mt-3 mb-5 d-none d-md-inline">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mb-3">Tour vragen</h2>
+                </div>
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titel</th>
+                            <th scope="col">Omschrijving</th>
+                            <th scope="col">Aanpassen</th>
+                            <th scope="col">Verwijderen</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($tour->question as $question)
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{{$question->title}}</td>
+                            <td>{{$question->description}}</td>
+                            <td><button onclick="location.href='#';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                            <td><button onclick="location.href='#';" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button></td>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

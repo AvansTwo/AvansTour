@@ -7,11 +7,6 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <h1>Kies een <span class="title-colored">speurtocht</span> !</h1>
-                        @if(Session::has('tourSuccessful'))
-                            <div class="alert alert-success" role="alert">
-                                {{Session::get('tourSuccessful') }}
-                            </div>
-                        @endif
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
@@ -30,30 +25,31 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Filter <i class="fa-solid fa-sort-down"></i></button>
                                 <div class="dropdown-content">
-                                    <a href="#">Informatica</a>
-                                    <a href="#">Werktuigbouw</a>
-                                    <a href="#">Tech. Informatica</a>
+                                    @foreach($categories as $category)
+                                    <a href="#">{{$category->category_name}}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 mt-5">
                         <div class="row">
-                            @for($i = 0; $i<6; $i++)
+                            @foreach($tours as $tour)
                                 <div class="col-12 col-lg-4">
                                     <div class="tour-card mb-5">
-                                        <a href="#"><img class="img-fluid tour-img" src="{{ asset('img/tour_card.jpg') }}" alt="tour_card"></a>
-                                        <div class="tour-desc">
-                                            <p class="tour-text">Breda op de water snapje, deze titel is lang</p>
-                                            <p id="tour-year" class="tour-text ml-5">2022</p>
-                                        </div>
+                                        <a class="text-decoration-none" href="/speurtochten/{{$tour->id}}"><img class="img-fluid tour-img" src="{{ asset('tourimg/' . $tour->image_url) }}" alt="tour_card">
+                                            <div class="tour-desc text-dark">
+                                                <p class="tour-text">{{$tour->name}}</p>
+                                                <p id="tour-year" class="tour-text ml-5">{{date('Y', strtotime($tour->created_at))}} </p>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-                            @endfor
+                            @endforeach
                         </div>
                     </div>
-                    <div class="col-12 text-center">
-                        <button type="button" onclick="location.href='/speurtochten';" class="btn primary-btn secondary-btn mt-3 mx-auto">Bekijk meer <i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="d-flex justify-content-center">
+                        {{$tours->links()}}
                     </div>
                 </div>
             </div>

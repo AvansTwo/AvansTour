@@ -75,12 +75,20 @@ textarea{
     background-color: #FAC213 !important;
 }
 
+.delete-btn{
+    background-color: #dc3545 !important;
+}
+
 #create-tour-btn-icon{
     margin-right: 10px;
 }
 
 .edit-btn:hover{
     background-color: #d2a31b !important;
+}
+
+.delete-btn:hover{
+    background-color: #a3202c !important;
 }
 
 /*Nav*/
@@ -159,13 +167,10 @@ footer {
 }
 
 .tour-text {
+    text-decoration: none !important;
     font-size: 16px;
     font-family: Verdana, serif;
     margin: 0;
-}
-
-.tour-img {
-    border-radius: 4px 4px 0px 0px;
 }
 
 .tour-card {
@@ -188,7 +193,9 @@ footer {
 }
 
 .tour-img {
-    border-radius: 4px;
+    border-radius: 4px 4px 0px 0px;
+    max-height: 245px;
+    width: 100%;
 }
 
 /*dropdown*/
@@ -242,4 +249,22 @@ footer {
 /* speurtoch aanmaken */
 #inputGroupPrepend{
     font-size: 24px;
+}
+
+/*Vraag aanmaken*/
+.questionCheckbox{
+    height: 40px !important;
+    margin: 0 !important;
+    width: 40px !important;
+}
+
+/*pagination*/
+.page-item.active .page-link{
+    background-color: #c6002a !important;
+    border-color: #5a0116 !important;
+    color: white !important;
+}
+
+.page-link{
+    color: #c6002a !important;
 }
