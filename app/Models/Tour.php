@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cassandra\Table;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Tour extends Model
 {
     use HasFactory;
+
+    protected $table="tour";
 
     protected $fillable = [
         'name',

@@ -7,6 +7,11 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <h1>Kies een <span class="title-colored">speurtocht</span> !</h1>
+                        @if(Session::has('tourSuccessful'))
+                            <div class="alert alert-success" role="alert">
+                                {{Session::get('tourSuccessful') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
