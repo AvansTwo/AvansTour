@@ -242,3 +242,11 @@ footer {
 #inputGroupPrepend{
     font-size: 24px;
 }
+
+/*Vraag aanmaken*/
+
+.questionCheckbox{
+    height: 40px !important;
+    margin: 0 !important;
+    width: 40px !important;
+}

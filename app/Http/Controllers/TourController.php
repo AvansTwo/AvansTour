@@ -26,7 +26,7 @@ class TourController extends Controller
     {
         $tours = Tour::paginate(6);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);    
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
     }
 
     /**
@@ -51,33 +51,25 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        $validated = $request->validated();
-
-        if ($validated->fails()) {
-            return Redirect::to('tour.insert')
-                ->withInput()
-                ->withErrors($validated);
-        }
-
-        $file = $validated->file('image_url');
+        $file = $request->file('image_url');
         $filename= date('YmdHi').$file->getClientOriginalName();
 
         $tour = new Tour();
 
-        $tour->name = $validated->name;
-        $tour->description = $validated->description;
+        $tour->name = $request->name;
+        $tour->description = $request->description;
         $tour->image_url = $filename;
-        $tour->location = $validated->location;
-        $tour->category_id = $validated->category_id;
+        $tour->location = $request->location;
+        $tour->category_id = $request->category_id;
         $tour->user_id = 1;
 
         $tour->save();
 
         $file-> move(public_path('tourimg'), $filename);
 
-        Session::flash('tourSuccessful','Tour is succesvol aangemaakt!');
-        return Redirect::to('speurtochten');
-
+        Session::flash('SuccessMessage','Tour is succesvol aangemaakt, voeg nu vragen toe!');
+        Session::flash('currentTourID',$tour->id);
+        return Redirect::to('vragen/aanmaken');
     }
 
     /**
