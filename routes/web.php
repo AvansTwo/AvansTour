@@ -38,8 +38,8 @@ Route::post('/speurtochten/aanpassen', [TourController::class, 'update']);
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
 
 //Question
-Route::post('/vragen/aanmaken', [QuestionController::class, 'store']);
-Route::get('/vragen/aanmaken', [QuestionController::class, 'create']);
+Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
+Route::get('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'create']);
 
 //Dashboard
 Route::get('/dashboard', function () {

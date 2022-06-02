@@ -75,12 +75,20 @@ textarea{
     background-color: #FAC213 !important;
 }
 
+.delete-btn{
+    background-color: #dc3545 !important;
+}
+
 #create-tour-btn-icon{
     margin-right: 10px;
 }
 
 .edit-btn:hover{
     background-color: #d2a31b !important;
+}
+
+.delete-btn:hover{
+    background-color: #a3202c !important;
 }
 
 /*Nav*/
@@ -244,9 +252,19 @@ footer {
 }
 
 /*Vraag aanmaken*/
-
 .questionCheckbox{
     height: 40px !important;
     margin: 0 !important;
     width: 40px !important;
+}
+
+/*pagination*/
+.page-item.active .page-link{
+    background-color: #c6002a !important;
+    border-color: #5a0116 !important;
+    color: white !important;
+}
+
+.page-link{
+    color: #c6002a !important;
 }
