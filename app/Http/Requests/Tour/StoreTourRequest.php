@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Tour;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +24,12 @@ class StoreTourRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string|required|max:255',
+            'description' => 'string|required|max:255',
+            'image_url' => 'file|nullable',
+            'location' => 'nullable',
+            'category_id' => '',
+            'user_id' => ''
         ];
     }
 }
