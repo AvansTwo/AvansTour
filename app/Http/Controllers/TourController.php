@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Tour\StoreTourRequest;
 use App\Models\Tour;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class TourController extends Controller
@@ -12,7 +19,7 @@ class TourController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -22,31 +29,43 @@ class TourController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        return view('tour.create');
+        $categories = DB::table('category')->get();
+
+        return view('tour.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreTourRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreTourRequest $request)
     {
-        $file= $request->file('tourImage');
+        $validated = $request->validated();
+
+        if ($validated->fails()) {
+            return Redirect::to('tour.insert')
+                ->withInput()
+                ->withErrors($validated);
+        }
+
+        $file = $validated->file('image_url');
         $filename= date('YmdHi').$file->getClientOriginalName();
 
         $tour = new Tour();
 
-        $tour->name = $request->tourName;
-        $tour->description = $request->tourDesc;
+        $tour->name = $validated->name;
+        $tour->description = $validated->description;
         $tour->image_url = $filename;
-        $tour->location = $request->tourLocation;
-        $tour->category_id = 1;
+        $tour->location = $validated->location;
+        $tour->category_id = $validated->category_id;
         $tour->user_id = 1;
 
         $tour->save();
@@ -62,7 +81,7 @@ class TourController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show($id)
     {
@@ -75,7 +94,7 @@ class TourController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -85,9 +104,9 @@ class TourController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -98,7 +117,7 @@ class TourController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
