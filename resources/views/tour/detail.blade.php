@@ -29,7 +29,7 @@
                                 <button type="button" onclick="location.href='#';" class="btn primary-btn d-block d-lg-inline">Start nu <i class="fa-solid fa-chevron-right"></i></button>
                             </div>
                             <div class="col-12 col-lg-6 mt-4 mt-lg-0">
-                                <button onclick="location.href='#';" class="btn create-btn edit-btn mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
+                                <button onclick="location.href='/speurtochten/aanpassen/{{$tour->id}}';" class="btn create-btn edit-btn mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
                                 <button type="button" onclick="location.href='/speurtochten/{{$tour->id}}/vragen/aanmaken';" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i></button>
                             </div>
                         </div>

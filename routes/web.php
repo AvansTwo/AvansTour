@@ -30,9 +30,8 @@ Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
 Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
 
 //Tour edit
+Route::post('/speurtochten/aanpassen/{id}', [TourController::class, 'update']);
 Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
-
-Route::post('/speurtochten/aanpassen', [TourController::class, 'update']);
 
 //Tour show
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
