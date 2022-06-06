@@ -26,7 +26,7 @@
                                 <button class="dropbtn">Filter <i class="fa-solid fa-sort-down"></i></button>
                                 <div class="dropdown-content">
                                     @foreach($categories as $category)
-                                    <a href="#">{{$category->category_name}}</a>
+                                    <a href="/speurtochten/categorie/{{ $category->id }}">{{$category->category_name}}</a>
                                     @endforeach
                                 </div>
                             </div>

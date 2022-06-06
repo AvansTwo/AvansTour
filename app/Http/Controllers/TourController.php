@@ -29,6 +29,13 @@ class TourController extends Controller
         return view('tour.index')->with('tours', $tours)->with('categories', $categories);
     }
 
+    public function categoryFilter($id)
+    {
+        $tours = Tour::where("category_id", $id)->paginate(6);
+        $categories = Category::all();
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

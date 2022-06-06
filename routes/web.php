@@ -21,8 +21,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Category Filter
+Route::get('/speurtochten/categorie/{id}', [TourController::class, 'categoryFilter']);
+
 //Tour index
 Route::get('/speurtochten', [TourController::class, 'index']);
+
 
 //Tour create
 Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
