@@ -53,14 +53,14 @@
                     <h2 class="mb-3">Tour vragen</h2>
                 </div>
                 <div class="col-12">
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Titel</th>
                             <th scope="col">Omschrijving</th>
-                            <th scope="col">Aanpassen</th>
-                            <th scope="col">Verwijderen</th>
+                            <th scope="col">Punten</th>
+                            <th scope="col">Bekijken</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -69,8 +69,8 @@
                             <th scope="row">1</th>
                             <td>{{$question->title}}</td>
                             <td>{{$question->description}}</td>
-                            <td><button onclick="location.href='#';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                            <td><button onclick="location.href='#';" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button></td>
+                            <td>{{$question->points}}</td>
+                            <td><button onclick="location.href='/vragen/{{$question->id}}';" class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button></td>
                         </tr>
                         @endforeach
                         </tbody>

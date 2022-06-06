@@ -26,7 +26,7 @@ class Question extends Model
 
     public function tour(): BelongsTo
     {
-        return $this->hasOne(tour::class);
+        return $this->belongsTo(tour::class);
     }
     public function answer(): hasMany
     {

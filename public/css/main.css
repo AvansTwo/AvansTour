@@ -52,6 +52,10 @@ textarea{
     height: auto;
 }
 
+.btn i{
+    color: white !important;
+}
+
 .primary-btn {
     padding: 12px 40px !important;
     color: white !important;
@@ -81,6 +85,7 @@ textarea{
 
 .edit-btn{
     background-color: #FAC213 !important;
+    color: white !important;
 }
 
 .delete-btn{
