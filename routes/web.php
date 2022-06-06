@@ -36,9 +36,16 @@ Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
 //Tour show
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
 
-//Question
+//Question create
 Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
 Route::get('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'create']);
+
+//Question show
+Route::get('/vragen/{id}', [QuestionController::class, 'show']);
+
+//Question edit
+Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update']);
+Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit']);
 
 //Dashboard
 Route::get('/dashboard', function () {
