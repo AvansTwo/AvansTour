@@ -90,11 +90,12 @@ class QuestionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('question.edit')->with('question', $question);
     }
 
     /**
@@ -113,10 +114,17 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function destroy($id)
     {
-        //
+        $question = Question::find($id);
+
+        $question->delete();
+
+        $tour = Tour::find($question->tour_id);
+
+        Session::flash('SuccessMessage','Vraag is succesvol verwijderd');
+        return view('tour.detail')->with('tour', $tour);
     }
 }
