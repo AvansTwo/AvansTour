@@ -59,7 +59,7 @@ class TourController extends Controller
     public function store(StoreTourRequest $request)
     {
         $file = $request->file('image_url');
-        $filename= date('YmdHi').$file->getClientOriginalName();
+        $filename= date('YmdHis').$file->getClientOriginalName();
 
         $tour = new Tour();
 
@@ -122,7 +122,7 @@ class TourController extends Controller
             if(\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            $filename = date('YmdHis').$file->getClientOriginalName();
         }
 
         $tour->update([
@@ -149,6 +149,10 @@ class TourController extends Controller
     public function destroy($id)
     {
         $tour = Tour::find($id);
+
+        if(\File::exists(public_path('tourimg/' . $tour->image_url))) {
+            \File::delete(public_path('tourimg/' . $tour->image_url));
+        }
 
         $tour->delete();
 

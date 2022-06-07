@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5 text-center">Vraag <span class="title-colored">aanpassen</span></h1>
+                <h1 class="my-5 text-center">Tour vraag <span class="title-colored">aanpassen</span></h1>
             </div>
             <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/vragen/aanpassen/{{$question->id}}" method="post" enctype="multipart/form-data">
@@ -52,7 +52,7 @@
                             <input class="form-control d-none" @if(!empty($question->image_url)) disabled  @endif name="image_url" type="file" id="questionImg">
                             @if(!empty($question->image_url))
                             <div id="tour-img-wrapper" class="wrapper">
-                                <img class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-img">
+                                <img id="questionPhoto" class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-img">
                                 <button onclick="removeTourImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
                             </div>
                             @endif
@@ -106,7 +106,9 @@
         }
 
         function showImageInput() {
-            document.getElementById("questionImg").classList.remove("d-none");
+            if(!document.getElementById("questionPhoto")){
+                document.getElementById("questionImg").classList.remove("d-none");
+            }
             document.getElementById("questionImgWrapper").classList.remove("d-none");
             document.getElementById("questionImg").disabled = false;
             document.getElementById("questionImg").required = true;
