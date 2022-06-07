@@ -30,13 +30,13 @@ p {
     font-family: Verdana, serif;
 }
 
+textarea{
+    resize: none !important;
+}
+
 .grey-bg {
     background-color: #f9f9f9;
     border-radius: 10px;
-}
-
-textarea{
-    resize: none !important;
 }
 
 /*buttons*/
@@ -44,12 +44,23 @@ textarea{
     font-family: Verdana, serif !important;
     font-size: 16px !important;
 }
+
+.btn a{
+    color: white !important;
+    text-decoration: none !important;
+    width: 100%;
+    height: auto;
+}
+
+.btn i{
+    color: white !important;
+}
+
 .primary-btn {
     padding: 12px 40px !important;
     color: white !important;
     background-color: #c6002a !important;
     border-radius: 50px !important;
-    min-width: 200px;
 }
 
 .primary-btn:hover {
@@ -67,8 +78,30 @@ textarea{
     color: white !important;
     background-color: #8f9d39 !important;
 }
-.create-btn i {
+
+.create-btn:hover {
+    background-color: #5c6524 !important;
+}
+
+.edit-btn{
+    background-color: #FAC213 !important;
+    color: white !important;
+}
+
+.delete-btn{
+    background-color: #dc3545 !important;
+}
+
+#create-tour-btn-icon{
     margin-right: 10px;
+}
+
+.edit-btn:hover{
+    background-color: #d2a31b !important;
+}
+
+.delete-btn:hover{
+    background-color: #a3202c !important;
 }
 
 /*Nav*/
@@ -147,13 +180,10 @@ footer {
 }
 
 .tour-text {
+    text-decoration: none !important;
     font-size: 16px;
     font-family: Verdana, serif;
     margin: 0;
-}
-
-.tour-img {
-    border-radius: 4px 4px 0px 0px;
 }
 
 .tour-card {
@@ -176,12 +206,14 @@ footer {
 }
 
 .tour-img {
-    border-radius: 4px;
+    border-radius: 4px 4px 0px 0px;
+    max-height: 245px;
+    width: 100%;
 }
 
 /*dropdown*/
 .dropbtn {
-    background-color: #5a6268;
+    background-color: #6c7b82;
     color: white;
     padding: 10px 15px;
     font-size: 16px;
@@ -224,7 +256,7 @@ footer {
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #93bbed;
+    background-color: #454549;
 }
 
 /* speurtoch aanmaken */
@@ -232,48 +264,34 @@ footer {
     font-size: 24px;
 }
 
-.form-style label {
-    font-size: 16px;
-    font-family: Verdana, serif;
-    /* margin: 0; */
+/*Vraag aanmaken*/
+.questionCheckbox{
+    height: 40px !important;
+    margin: 0 !important;
+    width: 40px !important;
 }
 
-.form-style input {
-    background-color: #f1f1f1;
-    border-radius: 15px;
-    border: none;
+/*pagination*/
+.page-item.active .page-link{
+    background-color: #c6002a !important;
+    border-color: #5a0116 !important;
+    color: white !important;
 }
 
-.form-style textarea {
-    background-color: #f1f1f1;
-    border-radius: 15px;
-    border: none;
+.page-link{
+    color: #c6002a !important;
 }
 
-#tilteInputField::placeholder {
-    color: black;
-    font-family: "frutigerbold";
-    opacity: 1; /* Firefox */
+/*edit tour*/
+#tour-img-btn{
+    position: absolute !important;
+    bottom: 0%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
-#omschrijvingInputTextarea::placeholder {
-    color: black;
-    font-family: "frutigerbold";
-    opacity: 1; /* Firefox */
-}
-
-table.t1 tr td {
-    padding: 5px 20px 5px 5px;
-}
-
-table.t1 tr td:nth-of-type(1),
-table.t1 tr td:nth-of-type(2) {
-    padding-right: 5px !important;
-}
-
-#newQuestionButton {
+#tour-img-wrapper{
     position: relative;
-    text-align: right;
-    font-size: 50px;
-    color: #c6002a;
+
 }

@@ -12,6 +12,8 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $table="question";
+
     protected $fillable = [
         'title',
         'description',
@@ -24,7 +26,7 @@ class Question extends Model
 
     public function tour(): BelongsTo
     {
-        return $this->hasOne(tour::class);
+        return $this->belongsTo(tour::class);
     }
     public function answer(): hasMany
     {

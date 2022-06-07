@@ -12,12 +12,13 @@ class Tour extends Model
 {
     use HasFactory;
 
-    protected $table = "tour";
+    protected $table="tour";
 
     protected $fillable = [
         'name',
         'description',
         'image_url',
+        'location',
         'category_id',
         'user_id'
     ];
@@ -37,8 +38,8 @@ class Tour extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

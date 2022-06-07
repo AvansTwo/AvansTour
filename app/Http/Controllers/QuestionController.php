@@ -2,75 +2,97 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\UpdateQuestionRequest;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Application|Factory|View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $questions = DB::table('question')
-            ->leftJoin('answer', 'question.id', '=', 'answer.question_id')
-            ->select('question.id', 'question.title', 'question.description', 'answer.answer', 'answer.correct_answer', 'answer.question_id')
-            ->get();
-
-        return view('question.index', [
-            'questions' => $questions
-        ]);
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create($id)
     {
+        $tour = Tour::find($id);
+        return view('question.create')->with('tour', $tour);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreQuestionRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreQuestionRequest $request)
+    public function store(Request $request)
     {
-        //
-        return $request;
+        $question = new Question();
+        $tourID = $request->tourID;
+
+        $file = $request->file('questionImg');
+        $filename= date('YmdHi').$file->getClientOriginalName();
+
+        $question->title = $request->questionTitle;
+        $question->description = $request->questionDesc;
+        $question->image_url = $filename;
+        $question->video_url = $request->questionVideo;
+        $question->gps_location = $request->questionLocation;
+        $question->points = $request->questionPoints;
+        $question->tour_id = $tourID;
+
+        $question->save();
+
+        $file-> move(public_path('tourimg'), $filename);
+
+        $questionID = $question->id;
+
+        for($i = 1; $i <= 4; $i++){
+            $answer = new Answer();
+            $answer->answer = $request->$i;
+            if($request->questionCorrectAnswer == $i){
+                $answer->correct_answer = 1;
+            } else{
+                $answer->correct_answer = 0;
+            }
+            $answer->question_id = $questionID;
+            $answer->save();
+        }
+        Session::flash('SuccessMessage','Vraag is succesvol toegevoegd');
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        $tour = Tour::find($id);
-
-        return view('question.create')->with('tour', $tour);
+        $question = Question::find($id);
+        return view('question.detail')->with('question', $question);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Question  $question
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
         //
     }
@@ -78,11 +100,11 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateQuestionRequest  $request
-     * @param  \App\Models\Question  $question
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateQuestionRequest $request, Question $question)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,10 +112,10 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Question  $question
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($id)
     {
         //
     }

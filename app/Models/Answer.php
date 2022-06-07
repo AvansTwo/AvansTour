@@ -12,6 +12,8 @@ class Answer extends Model
 {
     use HasFactory;
 
+    protected $table="answer";
+
     protected $fillable = [
         'answer',
         'correct_answer',
