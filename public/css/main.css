@@ -1,24 +1,27 @@
 /*Fonts*/
+
 @font-face {
     font-family: "frutigerregular";
-    src: url("../fonts/frutiger-webfont.woff2") format("woff2"),
-    url("../fonts/frutiger-webfont.woff") format("woff");
+    src: url("../fonts/frutiger-webfont.woff2") format("woff2"), url("../fonts/frutiger-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "frutigerbold";
-    src: url("../fonts/frutiger_bold-webfont.woff2") format("woff2"),
-    url("../fonts/frutiger_bold-webfont.woff") format("woff");
+    src: url("../fonts/frutiger_bold-webfont.woff2") format("woff2"), url("../fonts/frutiger_bold-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
+
+
 /*overrule*/
+
 h1 {
     font-size: 60px !important;
     font-weight: bold !important;
 }
+
 h2 {
     font-size: 130px;
     font-weight: normal !important;
@@ -30,7 +33,7 @@ p {
     font-family: Verdana, serif;
 }
 
-textarea{
+textarea {
     resize: none !important;
 }
 
@@ -39,20 +42,22 @@ textarea{
     border-radius: 10px;
 }
 
+
 /*buttons*/
+
 .btn {
     font-family: Verdana, serif !important;
     font-size: 16px !important;
 }
 
-.btn a{
+.btn a {
     color: white !important;
     text-decoration: none !important;
     width: 100%;
     height: auto;
 }
 
-.btn i{
+.btn i {
     color: white !important;
 }
 
@@ -74,6 +79,7 @@ textarea{
 .secondary-btn:hover {
     background-color: #287097 !important;
 }
+
 .create-btn {
     color: white !important;
     background-color: #8f9d39 !important;
@@ -83,28 +89,30 @@ textarea{
     background-color: #5c6524 !important;
 }
 
-.edit-btn{
+.edit-btn {
     background-color: #FAC213 !important;
     color: white !important;
 }
 
-.delete-btn{
+.delete-btn {
     background-color: #dc3545 !important;
 }
 
-#create-tour-btn-icon{
+#create-tour-btn-icon {
     margin-right: 10px;
 }
 
-.edit-btn:hover{
+.edit-btn:hover {
     background-color: #d2a31b !important;
 }
 
-.delete-btn:hover{
+.delete-btn:hover {
     background-color: #a3202c !important;
 }
 
+
 /*Nav*/
+
 .custom-link {
     font-family: frutigerbold, serif !important;
     font-weight: bold !important;
@@ -116,7 +124,9 @@ textarea{
     color: #c6002a !important;
 }
 
+
 /*Footer*/
+
 .footer-icon {
     background-color: white;
     color: black;
@@ -150,7 +160,9 @@ footer {
     background-color: #051120;
 }
 
+
 /*landing*/
+
 .title-colored {
     color: #c6002a;
 }
@@ -168,7 +180,9 @@ footer {
     margin-bottom: 5px;
 }
 
+
 /*speurtocht*/
+
 .tour-desc {
     background-color: white;
     padding: 10px 15px;
@@ -199,7 +213,9 @@ footer {
     margin-left: 10px;
 }
 
+
 /*tour-detail*/
+
 .tour-icon {
     margin-right: 20px;
     font-size: 40px;
@@ -211,7 +227,9 @@ footer {
     width: 100%;
 }
 
+
 /*dropdown*/
+
 .dropbtn {
     background-color: #6c7b82;
     color: white;
@@ -259,31 +277,43 @@ footer {
     background-color: #454549;
 }
 
+
 /* speurtoch aanmaken */
-#inputGroupPrepend{
+
+#inputGroupPrepend {
     font-size: 24px;
 }
 
+
 /*Vraag aanmaken*/
-.questionCheckbox{
+
+.questionCheckbox {
     height: 40px !important;
     margin: 0 !important;
     width: 40px !important;
 }
 
+.img-thumbnail {
+    width: 100% !important;
+}
+
+
 /*pagination*/
-.page-item.active .page-link{
+
+.page-item.active .page-link {
     background-color: #c6002a !important;
     border-color: #5a0116 !important;
     color: white !important;
 }
 
-.page-link{
+.page-link {
     color: #c6002a !important;
 }
 
+
 /*edit tour*/
-#tour-img-btn{
+
+#tour-img-btn {
     position: absolute !important;
     bottom: 0%;
     right: 0%;
@@ -291,7 +321,6 @@ footer {
     -ms-transform: translate(-50%, -50%);
 }
 
-#tour-img-wrapper{
+#tour-img-wrapper {
     position: relative;
-
 }

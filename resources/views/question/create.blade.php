@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>
+                <h1 class="my-5 text-center">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>
                 @if(Session::has('SuccessMessage'))
                     <div class="alert alert-success" role="alert">
                         {{Session::get('SuccessMessage') }}
                     </div>
                 @endif
             </div>
-            <div class="col-12 col-lg-6 mb-5">
+            <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -38,13 +38,27 @@
                                 <input type="text" class="form-control" name="questionLocation" id="questionLocation" placeholder="51.58604484973112, 4.7923486528026755" aria-describedby="inputGroupPrepend" required>
                             </div>
                         </div>
-                        <div class="col-10 mx-auto mb-3">
+                        <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" onclick="showImageInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Foto vraag
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" onclick="showVideoInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Video vraag
+                                </label>
+                            </div>
+                        </div>
+                        <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
                             <label for="questionImg" class="mb-1 fw-bold">Foto vraag</label>
                             <input class="form-control" name="questionImg" type="file" id="questionImg" required>
                         </div>
-                        <div class="col-10 mx-auto mb-5">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag (optioneel)</label>
-                            <input type="text" name="questionVideo" class="form-control" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 d-none">
+                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag</label>
+                            <input type="text" name="questionVideo" disabled class="form-control" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord 1</label>
@@ -75,9 +89,6 @@
                     </div>
                 </form>
             </div>
-            <div class="col-6 d-none d-lg-flex align-items-center justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/tour_create_img.png') }}" alt="">
-            </div>
         </div>
     </div>
     <script>
@@ -99,5 +110,25 @@
                 });
             }, false);
         })();
+
+        function showImageInput() {
+            document.getElementById("questionImgWrapper").classList.remove("d-none");
+            document.getElementById("questionImg").disabled = false;
+            document.getElementById("questionImg").required = true;
+
+            document.getElementById("questionVideoWrapper").classList.add("d-none")
+            document.getElementById("questionVideo").disabled = true;
+            document.getElementById("questionVideo").required = false;
+        }
+
+        function showVideoInput() {
+            document.getElementById("questionVideoWrapper").classList.remove("d-none")
+            document.getElementById("questionVideo").disabled = false;
+            document.getElementById("questionVideo").required = true;
+
+            document.getElementById("questionImgWrapper").classList.add("d-none");
+            document.getElementById("questionImg").disabled = true;
+            document.getElementById("questionImg").required = false;
+        }
     </script>
 @endsection

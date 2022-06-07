@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5">Een <span class="title-colored">team</span> aanmaken</h1>
+                <h1 class="my-5 text-center">Een <span class="title-colored">team</span> aanmaken</h1>
             </div>
-            <div class="col-12 col-lg-6 mb-5">
+            <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/quiz/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="tour_id" value="{{$tour->id}}">
@@ -41,9 +41,6 @@
                     </div>
                 </form>
             </div>
-            <div class="col-6 d-none d-lg-flex align-items-start justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/tour_create_img.png') }}" alt="">
-            </div>
         </div>
     </div>
     <script>
@@ -65,7 +62,7 @@
                 });
             }, false);
         })();
-        
+
         let count = 1;
         function showMemberInputField() {
             if(count === 8){
@@ -75,11 +72,11 @@
              },5000);
 
             } else{
-                count++; 
+                count++;
                 document.getElementById("team_player_label_"+count).classList.remove("d-none");
                 document.getElementById("team_player_input_"+count).classList.remove("d-none");
                 document.getElementById("team_player_input_"+count).disabled = false;
-                document.getElementById("amount_players").value = count;  
+                document.getElementById("amount_players").value = count;
             }
         }
 
@@ -89,18 +86,13 @@
                 document.getElementById("team_player_input_"+count).classList.add("d-none");
                 document.getElementById("team_player_input_"+count).disabled = true;
                 count--;
-                document.getElementById("amount_players").value = count; 
+                document.getElementById("amount_players").value = count;
             } else{
                 document.getElementById("min_players_reached").classList.remove("d-none");
                 setTimeout(function(){
                     document.getElementById("min_players_reached").classList.add("d-none");
              },5000);
             }
-            
-
         }
-
-
-
     </script>
 @endsection
