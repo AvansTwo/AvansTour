@@ -30,8 +30,6 @@ Route::get('/speurtochten', [TourController::class, 'index']);
 
 //Tour create
 Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
-Route::post('/vraag/aanmaken', [QuestionController::class, 'store']);
-
 Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
 
 //Tour edit
@@ -40,6 +38,9 @@ Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
 
 //Tour show
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
+
+//Tour delete
+Route::get('/speurtochten/verwijderen/{id}', [TourController::class, 'destroy']);
 
 //Question create
 Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
@@ -51,5 +52,8 @@ Route::get('/vragen/{id}', [QuestionController::class, 'show']);
 //Question edit
 Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update']);
 Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit']);
+
+//Question delete
+Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
 
 //Dashboard
