@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5">Een nieuwe <span class="title-colored">tour</span> aanmaken</h1>
+                <h1 class="my-5">Een <span class="title-colored">t</span> aanmaken</h1>
             </div>
             <div class="col-12 col-lg-6 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanmaken" method="post" enctype="multipart/form-data">

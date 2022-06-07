@@ -11,6 +11,8 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $table="team";
+
     protected $fillable = [
         'team_name',
         'start_time',
