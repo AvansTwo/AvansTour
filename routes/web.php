@@ -60,6 +60,9 @@ Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
 Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
 
+//Quiz play
+Route::get('/quiz/play/{id}', [QuizController::class, 'play']);
+
 //Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');

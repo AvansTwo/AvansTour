@@ -7,6 +7,10 @@ use App\Models\Tour;
 use App\Models\Team;
 use App\Models\Participants;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
+
 
 class QuizController extends Controller
 {
@@ -44,6 +48,7 @@ class QuizController extends Controller
         $team->team_name = $request->team_name;
         $team->start_time = Carbon::now();
         $team->end_time = null;
+        $team->team_identifier = $randomString = Str::random(30);
         $team->tour_id = $request->tour_id;
 
         $team->save();
@@ -57,7 +62,7 @@ class QuizController extends Controller
             $participant->save();
         }
 
-        return"Alles is goedgegaan";
+        return Redirect::to('/quiz/play/'.$team->team_identifier);
     }
 
     /**
@@ -66,9 +71,10 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function play($id)
     {
-        //
+        $team = DB::table('team')->where('team_identifier', $id)->first();
+        $tour = Tour::find($team->tour_id);
     }
 
     /**
