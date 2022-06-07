@@ -82,31 +82,35 @@
                         <h2 class="mb-3">Tour vragen</h2>
                     </div>
                     <div class="col-12">
-                        <table class="table text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Titel</th>
-                                <th scope="col">Omschrijving</th>
-                                <th scope="col">Punten</th>
-                                <th scope="col">Bekijken</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($tour->question as $question)
+                        @if(Auth::check())
+                            <table class="table text-center">
+                                <thead>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>{{$question->title}}</td>
-                                    <td>{{$question->description}}</td>
-                                    <td>{{$question->points}}</td>
-                                    <td>
-                                        <button onclick="location.href='/vragen/{{$question->id}}';"
-                                                class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titel</th>
+                                    <th scope="col">Omschrijving</th>
+                                    <th scope="col">Punten</th>
+                                    <th scope="col">Bekijken</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($tour->question as $question)
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>{{$question->title}}</td>
+                                        <td>{{$question->description}}</td>
+                                        <td>{{$question->points}}</td>
+                                        <td>
+                                            <button onclick="location.href='/vragen/{{$question->id}}';"
+                                                    class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            //Hier code voor mensen die niet ingelogd zijn en dus geen 'admin' rechten hebben
+                        @endif
                     </div>
                 </div>
             </div>
