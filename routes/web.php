@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 
 
 /*
@@ -26,7 +27,6 @@ Route::get('/speurtochten/categorie/{id}', [TourController::class, 'categoryFilt
 
 //Tour index
 Route::get('/speurtochten', [TourController::class, 'index']);
-
 
 //Tour create
 Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
@@ -55,6 +55,10 @@ Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit']);
 
 //Question delete
 Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
+
+//Quiz create
+Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
+Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
 
 //Dashboard
 Route::get('/dashboard', function () {

@@ -26,7 +26,7 @@
                     <div class="col-12 mt-5">
                         <div class="row">
                             <div class="col-12 col-lg-6">
-                                <button type="button" onclick="location.href='#';" class="btn primary-btn d-block d-lg-inline">Start nu <i class="fa-solid fa-chevron-right"></i></button>
+                                <button type="button" onclick="location.href='/speurtochten/{{$tour->id}}/quiz';" class="btn primary-btn d-block d-lg-inline">Start nu <i class="fa-solid fa-chevron-right"></i></button>
                             </div>
                             <div class="col-12 col-lg-6 mt-4 mt-lg-0">
                                 <button onclick="location.href='/speurtochten/aanpassen/{{$tour->id}}';" class="btn create-btn edit-btn mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
