@@ -51,7 +51,7 @@ class QuestionController extends Controller
             if(\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            $filename = date('YmdHis').$file->getClientOriginalName();
         }
 
         $question->title = $request->questionTitle;
@@ -126,10 +126,13 @@ class QuestionController extends Controller
             if(\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            $filename = date('YmdHis').$file->getClientOriginalName();
         }
 
         if(!empty($request->questionVideo)){
+            if(\File::exists(public_path('tourimg/' . $question->image_url))) {
+                \File::delete(public_path('tourimg/' . $question->image_url));
+            }
             $filename = null;
         }
 
@@ -176,6 +179,10 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $question = Question::find($id);
+
+        if(\File::exists(public_path('tourimg/' . $question->image_url))) {
+            \File::delete(public_path('tourimg/' . $question->image_url));
+        }
 
         $question->delete();
 
