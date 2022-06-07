@@ -122,7 +122,7 @@
                         ?>
 
                         @endforeach
-                    <div class="row">
+
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-question question-icon-mark"></i>
                             <p class="my-auto">Vragen: {{$questions}}</p>
@@ -131,7 +131,7 @@
                             <i class="fa-solid fa-star tour-icon"></i>
                             <p class="my-auto">Punten: {{$max}}</p>
                         </div>
-                    </div>
+
                         @endif
                     </div>
                 </div>
