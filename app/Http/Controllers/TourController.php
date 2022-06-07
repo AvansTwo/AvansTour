@@ -88,7 +88,19 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
 
-        return view('tour.detail')->with('tour', $tour);
+        $coords = explode(',', $tour->location);
+
+        if (count($coords) >= 2) {
+            return view('tour.detail', [
+                'tour' => $tour,
+                'lat' => trim($coords[0]),
+                'long' => trim($coords[1])
+            ]);
+        } else {
+            return view('tour.detail', [
+                'tour' => $tour
+            ]);
+        }
     }
 
     /**
