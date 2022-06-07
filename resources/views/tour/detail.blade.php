@@ -108,8 +108,30 @@
                                 @endforeach
                                 </tbody>
                             </table>
+
                         @else
-                            //Hier code voor mensen die niet ingelogd zijn en dus geen 'admin' rechten hebben
+                        <?php
+                        $questions = 0;
+                        $max = 0;
+                        ?>
+
+                        @foreach($tour->question as $question)
+                        <?php
+                        $max += $question->points;
+                        $questions += 1;
+                        ?>
+
+                        @endforeach
+                    <div class="row">
+                        <div class="col-12 d-flex mt-4">
+                            <i class="fa-solid fa-question question-icon-mark"></i>
+                            <p class="my-auto">Vragen: {{$questions}}</p>
+                        </div>
+                        <div class="col-12 d-flex mt-4">
+                            <i class="fa-solid fa-star tour-icon"></i>
+                            <p class="my-auto">Punten: {{$max}}</p>
+                        </div>
+                    </div>
                         @endif
                     </div>
                 </div>
