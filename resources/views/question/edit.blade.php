@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-{{--                        <a class="btn primary-btn mt-3" href="/speurtochten/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>--}}
+                        <a class="btn primary-btn mt-3" href="/vragen/{{$question->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
