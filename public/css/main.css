@@ -44,6 +44,18 @@ textarea{
     font-family: Verdana, serif !important;
     font-size: 16px !important;
 }
+
+.btn a{
+    color: white !important;
+    text-decoration: none !important;
+    width: 100%;
+    height: auto;
+}
+
+.btn i{
+    color: white !important;
+}
+
 .primary-btn {
     padding: 12px 40px !important;
     color: white !important;
@@ -73,6 +85,11 @@ textarea{
 
 .edit-btn{
     background-color: #FAC213 !important;
+    color: white !important;
+}
+
+.delete-btn{
+    background-color: #dc3545 !important;
 }
 
 #create-tour-btn-icon{
@@ -81,6 +98,10 @@ textarea{
 
 .edit-btn:hover{
     background-color: #d2a31b !important;
+}
+
+.delete-btn:hover{
+    background-color: #a3202c !important;
 }
 
 /*Nav*/
@@ -241,4 +262,36 @@ footer {
 /* speurtoch aanmaken */
 #inputGroupPrepend{
     font-size: 24px;
+}
+
+/*Vraag aanmaken*/
+.questionCheckbox{
+    height: 40px !important;
+    margin: 0 !important;
+    width: 40px !important;
+}
+
+/*pagination*/
+.page-item.active .page-link{
+    background-color: #c6002a !important;
+    border-color: #5a0116 !important;
+    color: white !important;
+}
+
+.page-link{
+    color: #c6002a !important;
+}
+
+/*edit tour*/
+#tour-img-btn{
+    position: absolute !important;
+    bottom: 0%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#tour-img-wrapper{
+    position: relative;
+
 }
