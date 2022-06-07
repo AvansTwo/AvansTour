@@ -31,6 +31,7 @@
                             <div class="col-12 col-lg-6 mt-4 mt-lg-0">
                                 <button onclick="location.href='/speurtochten/aanpassen/{{$tour->id}}';" class="btn create-btn edit-btn mt-2"><i class="fa-solid fa-pen-to-square"></i></button>
                                 <button type="button" onclick="location.href='/speurtochten/{{$tour->id}}/vragen/aanmaken';" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i></button>
+                                <button onclick="location.href='/speurtochten/verwijderen/{{$tour->id}}';" class="btn create-btn delete-btn mt-2"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                     </div>

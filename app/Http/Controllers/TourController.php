@@ -144,10 +144,15 @@ class TourController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return Application|Factory|View
      */
     public function destroy($id)
     {
-        //
+        $tour = Tour::find($id);
+
+        $tour->delete();
+
+        Session::flash('SuccessMessage','Tour is succesvol verwijderd');
+        return redirect('/speurtochten');
     }
 }
