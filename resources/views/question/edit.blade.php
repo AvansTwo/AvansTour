@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5"><span class="title-colored">{{$question->title}}</span> aanpassen</h1>
+                <h1 class="my-5 text-center">Tour vraag <span class="title-colored">aanpassen</span></h1>
             </div>
-            <div class="col-12 col-lg-6 mb-5">
+            <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/vragen/aanpassen/{{$question->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -32,20 +32,36 @@
                                 <input type="text" class="form-control" name="questionLocation" value="{{$question->gps_location}}" id="questionLocation" placeholder="51.58604484973112, 4.7923486528026755" aria-describedby="inputGroupPrepend" required>
                             </div>
                         </div>
-                        <div class="col-10 mx-auto mb-3">
-                            <label for="tourimg" class="mb-1 fw-bold">Foto vraag</label>
-                            <input class="form-control @if(!empty($question->image_url)) d-none @endif" name="image_url" disabled type="file" id="tour-img-input">
-                            <div id="tour-img-wrapper" class="wrapper @if(empty($question->image_url)) d-none @endif">
-                                <img class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-img">
-                                <button onclick="removeTourImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
+
+                        <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" onclick="showImageInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault1" @if(!empty($question->image_url)) checked @endif>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Foto vraag
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" onclick="showVideoInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault2" @if(!empty($question->video_url)) checked @endif>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Video vraag
+                                </label>
                             </div>
                         </div>
-                        <div class="col-10 mx-auto mb-5">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag (optioneel)</label>
+                        <div id="questionImgWrapper" class="col-10 mx-auto mb-5 @if(empty($question->image_url)) d-none @endif">
+                            <label for="questionImg" class="mb-1 fw-bold">Foto vraag</label>
+                            <input class="form-control d-none" @if(!empty($question->image_url)) disabled  @endif name="image_url" type="file" id="questionImg">
+                            @if(!empty($question->image_url))
+                            <div id="tour-img-wrapper" class="wrapper">
+                                <img id="questionPhoto" class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-img">
+                                <button onclick="removeTourImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            @endif
+                        </div>
+                        <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 @if(empty($question->video_url)) d-none @endif">
+                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag</label>
                             <input type="text" name="questionVideo" class="form-control" value="{{$question->video_url}}" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                         </div>
                         <div class="col-10 mx-auto mb-3">
-
                             @foreach($question->answer as $answer)
                                 <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord {{ $loop->index+1 }}</label>
                                 <div class="input-group mb-3">
@@ -57,12 +73,9 @@
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
                         <a class="btn primary-btn mt-3" href="/vragen/{{$question->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
-                        <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="btn primary-btn secondary-btn mt-3" type="submit">Opslaan <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
-            </div>
-            <div class="col-6 d-none d-lg-flex align-items-center justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/tour_create_img.png') }}" alt="">
             </div>
         </div>
     </div>
@@ -87,9 +100,32 @@
         })();
 
         function removeTourImage() {
-            document.getElementById("tour-img-input").classList.remove("d-none");
-            document.getElementById("tour-img-input").disabled = false;
+            document.getElementById("questionImg").classList.remove("d-none");
+            document.getElementById("questionImg").disabled = false;
             document.getElementById("tour-img-wrapper").classList.add("d-none");
+        }
+
+        function showImageInput() {
+            if(!document.getElementById("questionPhoto")){
+                document.getElementById("questionImg").classList.remove("d-none");
+            }
+            document.getElementById("questionImgWrapper").classList.remove("d-none");
+            document.getElementById("questionImg").disabled = false;
+            document.getElementById("questionImg").required = true;
+
+            document.getElementById("questionVideoWrapper").classList.add("d-none")
+            document.getElementById("questionVideo").disabled = true;
+            document.getElementById("questionVideo").required = false;
+        }
+
+        function showVideoInput() {
+            document.getElementById("questionVideoWrapper").classList.remove("d-none")
+            document.getElementById("questionVideo").disabled = false;
+            document.getElementById("questionVideo").required = true;
+
+            document.getElementById("questionImgWrapper").classList.add("d-none");
+            document.getElementById("questionImg").disabled = true;
+            document.getElementById("questionImg").required = false;
         }
     </script>
 @endsection

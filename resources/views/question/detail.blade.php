@@ -20,8 +20,10 @@
                             <p class="my-auto">Punten: {{$question->points}}</p>
                         </div>
                         <div class="col-12 d-flex mt-4">
-                            <i class="fa-brands fa-youtube-square tour-icon"></i>
-                            <p class="my-auto">Youtube: <a target="_blank" href="{{$question->video_url}}">Link</a></p>
+                            @if(!empty($question->video_url))
+                                <i class="fa-brands fa-youtube-square tour-icon"></i>
+                                <p class="my-auto">Youtube: <a target="_blank" href="{{$question->video_url}}">Link</a></p>
+                            @endif
                         </div>
                         <div class="col-12 mt-5">
                             <div class="row">
@@ -35,7 +37,7 @@
                     <div class="col-12 col-lg-6 order-6 order-lg-1">
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-detail-img">
+                                <img class="img-fluid rounded mb-5 mb-lg-0" @if(empty($question->image_url)) src="{{ asset('img/landing_img.png') }}" @else src="{{ asset('tourimg/'. $question->image_url) }}" @endif alt="tour-detail-img">
                             </div>
                         </div>
                     </div>
