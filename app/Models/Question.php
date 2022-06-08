@@ -32,4 +32,8 @@ class Question extends Model
     {
         return $this->hasMany(answer::class, 'question_id');
     }
+    public function teamProgress(): HasMany
+    {
+        return $this->hasMany(teamProgress::class, 'question_id');
+    }
 }
