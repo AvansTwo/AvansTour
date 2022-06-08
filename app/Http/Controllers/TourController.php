@@ -26,14 +26,15 @@ class TourController extends Controller
     {
         $tours = Tour::paginate(6);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filtered', FALSE);
     }
 
     public function categoryFilter($id)
     {
         $tours = Tour::where("category_id", $id)->paginate(6);
+        $filteredCategory = Category::find($id);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filteredCategory', $filteredCategory);
     }
 
     /**
