@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\Team;
+use App\Models\Answer;
+use App\Models\TeamProgress;
+use App\Models\Question;
 use App\Models\Participants;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -62,7 +65,26 @@ class QuizController extends Controller
             $participant->save();
         }
 
-        return Redirect::to('/quiz/play/'.$team->team_identifier);
+        return Redirect::to('/quiz/spelen/'.$team->team_identifier);
+    }
+    public function storeTeamProgress(Request $request, $teamHash, $questionId)
+    {
+        $team = DB::table('team')->where('team_identifier', $teamHash)->first();
+
+        $team_progress = new TeamProgress();
+        $points = 0;
+        $answer = Answer::where('question_id', $questionId)->where('correct_answer', 1 )->first();
+        if($answer->id == $request->teamAnswer){
+            $question = Question::find($questionId);
+            $points = $question->points;
+        }
+        $team_progress->team_id         = $team->id;
+        $team_progress->question_id     = $questionId;
+        $team_progress->answer_id       = $request->teamAnswer;
+        $team_progress->points          = $points;
+        $team_progress->save();
+
+        return Redirect::to('/quiz/spelen/'. $team->team_identifier);
     }
 
     /**
@@ -71,10 +93,28 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function play($id)
+    public function getQuestion($teamHash, $questionId)
     {
-        $team = DB::table('team')->where('team_identifier', $id)->first();
+        $question = Question::where('id', $questionId)->first();
+        return view('quiz.answer')->with('question', $question)->with('teamHash', $teamHash);
+    }
+
+    public function getRemainingQuestions($teamHash) {
+        $team = DB::table('team')->where('team_identifier', $teamHash)->first();
         $tour = Tour::find($team->tour_id);
+
+        $tour_id = $tour->id;
+        $team_id = $team->id;
+
+        $tour = Tour::find($tour_id);
+        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash FROM question AS q WHERE tour_id = :tourid AND q.id NOT IN ( SELECT question_id FROM team_progress AS tp INNER JOIN question ON tp.question_id = question.id WHERE question.tour_id = :tour_id AND team_id = :team_id)'), array(
+            'team_hash' => $teamHash,
+            'tourid' => $tour_id,
+            'tour_id' => $tour_id,
+            'team_id' => $team_id
+        ));
+
+        return view('question.pick')->with('tour', $tour)->with('remainingQuestions', $questions);
     }
 
     /**
