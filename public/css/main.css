@@ -226,10 +226,9 @@ footer {
 
 .tour-img {
     border-radius: 4px 4px 0px 0px;
-    max-height: 245px;
+    height: 245px !important;
     width: 100%;
 }
-
 
 /*dropdown*/
 
@@ -257,6 +256,7 @@ footer {
     z-index: 1;
     right: 0;
     border-radius: 4px 0px 4px 4px;
+    width: 300px;
 }
 
 .dropdown-content a {
@@ -298,6 +298,12 @@ footer {
 
 .img-thumbnail {
     width: 100% !important;
+}
+
+.question-img{
+    border-radius: 4px 4px 0px 0px;
+    height: 345px !important;
+    width: 100%;
 }
 
 
