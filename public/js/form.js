@@ -59,3 +59,36 @@ function addQuestion() {
     }
     document.getElementById("questions").appendChild(questionClone);
 }
+
+function getAnswers() {
+    for (let j = 1; j <= qCounter; j++) {
+        const question = document.getElementById(`question${j}`);
+        let correctanswer;
+        let tbody = question.childNodes[1];
+        for (var i = 0; i < tbody.childNodes.length; i = i + 2) {
+            if (
+                tbody.childNodes[
+                    i
+                ].childNodes[1].childNodes[0].nodeName.toLowerCase() == "input"
+            ) {
+                let input = tbody.childNodes[i].childNodes[1].childNodes[0];
+
+                if (input.name) {
+                    let answer =
+                        tbody.childNodes[i].childNodes[1].childNodes[2].value;
+                    if (input.checked) {
+                        //Correct antwoord
+                        alert("Correct: " + answer);
+                    } else {
+                        // foute antwoorden
+                        alert("Wrong: " + answer);
+                    }
+                } else {
+                    let question = input.value;
+                    alert("Question: " + question);
+                    //Question
+                }
+            }
+        }
+    }
+}
