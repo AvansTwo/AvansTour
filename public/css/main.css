@@ -194,13 +194,14 @@ footer {
     justify-content: space-between;
     border-radius: 0px 0px 4px 4px;
     border: 4px solid #d2d1d1;
+    height: 70px;
 }
 
 .tour-text {
     text-decoration: none !important;
     font-size: 16px;
     font-family: Verdana, serif;
-    margin: 0;
+    margin: auto 0;
 }
 
 .tour-card {
@@ -231,10 +232,10 @@ footer {
 
 .tour-img {
     border-radius: 4px 4px 0px 0px;
-    max-height: 245px;
+    height: 245px !important;
+    max-height: 245px !important;
     width: 100%;
 }
-
 
 /*dropdown*/
 
@@ -262,6 +263,7 @@ footer {
     z-index: 1;
     right: 0;
     border-radius: 4px 0px 4px 4px;
+    width: 300px;
 }
 
 .dropdown-content a {
@@ -305,6 +307,12 @@ footer {
     width: 100% !important;
 }
 
+.question-img{
+    border-radius: 4px 4px 0px 0px;
+    height: 345px !important;
+    width: 100%;
+}
+
 
 /*pagination*/
 
@@ -331,4 +339,9 @@ footer {
 
 #tour-img-wrapper {
     position: relative;
+}
+
+/*Quiz*/
+#amount-question-left{
+    font-weight: bold;
 }

@@ -26,4 +26,8 @@ class Answer extends Model
     {
         return $this->BelongsTo(question::class);
     }
+    public function teamProgress(): HasMany
+    {
+        return $this->hasMany(teamProgress::class, 'answer_id');
+    }
 }
