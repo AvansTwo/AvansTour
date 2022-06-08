@@ -22,12 +22,12 @@
                 </div>
                 <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
                     <a class="btn primary-btn mt-3" href="/quiz/spelen/{{$teamHash}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
-                    <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="btn primary-btn secondary-btn mt-3" type="submit">Versturen <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </form>
         </div>
         <div class="col-12 col-lg-6 order-6 order-lg-1 p-5">
-            <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ $question->image_url }}" alt="tour-detail-img">
+            <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-detail-img">
         </div>
     </div>
 </div>
