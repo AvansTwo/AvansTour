@@ -62,7 +62,6 @@
                             <th scope="col">Omschrijving</th>
                             <th scope="col">Punten</th>
                             <th scope="col">Bekijken</th>
-                            <th scope="col">Beantwoorden</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -73,7 +72,6 @@
                             <td>{{$question->description}}</td>
                             <td>{{$question->points}}</td>
                             <td><button onclick="location.href='/vragen/{{$question->id}}';" class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button></td>
-                            <td><button onclick="location.href='/speurtocht/{{$tour->id}}/vraag/{{$question->id}}';" class="btn create-btn"><i class="fa-solid fa-pen-to-square"></i></button></td>
                         </tr>
                         @endforeach
                         </tbody>
