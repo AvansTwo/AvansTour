@@ -28,47 +28,47 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="/"><img src="{{ asset('img/logo_avans.png') }}" alt=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item custom-link">
-                        <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
-                    </li>
-                    <li class="nav-item custom-link">
-                        <a class="nav-link {{ request()->is('speurtochten*') ? 'active' : '' }}" href="/speurtochten">Speurtochten</a>
-                    </li>
-                    <li class="nav-item custom-link">
-                        <a class="nav-link" href="#">Scoreboard</a>
-                    </li>
-                    <li class="nav-item custom-link">
-                        <a class="nav-link" href="#">Over ons</a>
-                    </li>
-                </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/"><img src="{{ asset('img/logo_avans.png') }}" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item custom-link">
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+                </li>
+                <li class="nav-item custom-link">
+                    <a class="nav-link {{ request()->is('speurtochten*') ? 'active' : '' }}" href="/speurtochten">Speurtochten</a>
+                </li>
+                <li class="nav-item custom-link">
+                    <a class="nav-link" href="#">Scoreboard</a>
+                </li>
+                <li class="nav-item custom-link">
+                    <a class="nav-link" href="#">Over ons</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main>
+    @yield('content')
+</main>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="https://www.facebook.com/avans/" target="_blank"><i id="facebook" class="fa-brands fa-facebook footer-icon"></i></a>
+                <a href="https://twitter.com/avanshogeschool" target="_blank"><i id="twitter" class="fa-brands fa-twitter footer-icon"></i></a>
+                <a href="mailto:mail.avans.nl/" target="_blank"><i id="mail" class="fa-solid fa-envelope footer-icon"></i></a>
+            </div>
+            <div class="col-12 text-center">
+                <p id="footer-copyright">&copyAvansTour</p>
             </div>
         </div>
-    </nav>
-    <main>
-        @yield('content')
-    </main>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <a href="https://www.facebook.com/avans/" target="_blank"><i id="facebook" class="fa-brands fa-facebook footer-icon"></i></a>
-                    <a href="https://twitter.com/avanshogeschool" target="_blank"><i id="twitter" class="fa-brands fa-twitter footer-icon"></i></a>
-                    <a href="mailto:mail.avans.nl/" target="_blank"><i id="mail" class="fa-solid fa-envelope footer-icon"></i></a>
-                </div>
-                <div class="col-12 text-center">
-                    <p id="footer-copyright">&copyAvansTour</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    </div>
+</footer>
 </body>
 
 </html>
