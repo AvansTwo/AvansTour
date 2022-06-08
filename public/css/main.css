@@ -224,6 +224,11 @@ footer {
     margin-right: 20px;
     font-size: 40px;
 }
+.question-icon-mark {
+    margin-right: 28px;
+    padding-left: 10px;
+    font-size: 40px;
+}
 
 .tour-img {
     border-radius: 4px 4px 0px 0px;

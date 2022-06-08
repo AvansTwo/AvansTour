@@ -89,7 +89,27 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
 
-        return view('tour.detail')->with('tour', $tour);
+        $totalPoints = 0;
+
+        foreach ($tour->question as $question) {
+            $totalPoints += $question->points;
+        }
+
+        $coords = explode(',', $tour->location);
+
+        if (count($coords) >= 2) {
+            return view('tour.detail', [
+                'tour' => $tour,
+                'lat' => trim($coords[0]),
+                'long' => trim($coords[1]),
+                'totalPoints' => $totalPoints
+            ]);
+        } else {
+            return view('tour.detail', [
+                'tour' => $tour,
+                'totalPoints' => $totalPoints
+            ]);
+        }
     }
 
     /**
