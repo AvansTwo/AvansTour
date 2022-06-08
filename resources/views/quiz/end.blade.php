@@ -10,19 +10,19 @@
         <div class="row quiz-title">
             <div class="d-flex mt-3">
                 <i class="fa-solid fa-star quiz-icon col-3"></i>
-                <h1 class="my-5 text-center col-4">Team <span class="title-colored">Name</span></h1>
+                <h1 class="my-5 text-center col-4">Team <span class="title-colored">{{$team->team_name}}</span></h1>
                 <i class="fa-solid fa-star quiz-icon col-3"></i>
             </div>
         </div>
         <hr>
-        <h2 class="quiz-info"> Punten: <span class="quiz-colored">Points</span>!</h2>
-        <h2 class="quiz-info"> Begin tijd: <span class="quiz-colored">Points</span>!</h2>
-        <h2 class="quiz-info"> Eind tijd: <span class="quiz-colored">Points</span>!</h2>
+        <h2 class="quiz-info"> Punten: <span class="quiz-colored">{{$total_points}}</span>!</h2>
+        <h2 class="quiz-info"> Begin tijd: <span class="quiz-colored">{{$team->start_time}}</span>!</h2>
+        <h2 class="quiz-info"> Eind tijd: <span class="quiz-colored">{{$team->end_time}}</span>!</h2>
         <hr>
         <div class="row quiz-title">
             <div class="d-flex mt-3">
                 <i class="fa-solid fa-star quiz-icon col-3"></i>
-                <h1 class="my-5 text-center col-4">Team <span class="title-colored">Name</span></h1>
+                <h1 class="my-5 text-center col-4">Team <span class="title-colored">{{$team->team_name}}</span></h1>
                 <i class="fa-solid fa-star quiz-icon col-3"></i>
 
             </div>
