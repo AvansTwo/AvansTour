@@ -76,31 +76,45 @@
                         <h2 class="mb-3">Tour vragen</h2>
                     </div>
                     <div class="col-12">
-                        <table class="table text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Titel</th>
-                                <th scope="col">Omschrijving</th>
-                                <th scope="col">Punten</th>
-                                <th scope="col">Bekijken</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($tour->question as $question)
+                        @if(Auth::check())
+                            <table class="table text-center">
+                                <thead>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>{{$question->title}}</td>
-                                    <td>{{$question->description}}</td>
-                                    <td>{{$question->points}}</td>
-                                    <td>
-                                        <button onclick="location.href='/vragen/{{$question->id}}';"
-                                                class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Titel</th>
+                                    <th scope="col">Omschrijving</th>
+                                    <th scope="col">Punten</th>
+                                    <th scope="col">Bekijken</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($tour->question as $question)
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>{{$question->title}}</td>
+                                        <td>{{$question->description}}</td>
+                                        <td>{{$question->points}}</td>
+                                        <td>
+                                            <button onclick="location.href='/vragen/{{$question->id}}';"
+                                                    class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="row">
+                                <div class="col-12 d-flex mt-4">
+                                    <i class="fa-solid fa-question question-icon-mark"></i>
+                                    <p class="my-auto">Vragen: {{count($tour->question)}}</p>
+                                </div>
+                                <div class="col-12 d-flex mt-4">
+                                    <i class="fa-solid fa-star tour-icon"></i>
+                                    <p class="my-auto">Punten: {{$totalPoints}}</p>
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -109,7 +123,7 @@
     <script>
         // initialize the map on the "map" div with a given center and zoom
         let mapOptions = {
-            center: [ {{$tour->location}} ],
+            center: [{{$tour->location}}],
             zoom: 14
         };
 
@@ -125,7 +139,7 @@
             draggable: false,
         };
 
-        let marker = new L.marker([ {{$tour->location}} ]);
+        let marker = new L.marker([{{$tour->location}}]);
         marker.addTo(map);
         marker.bindPopup("Start locatie").openPopup();
     </script>
