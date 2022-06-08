@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5">Een <span class="title-colored">team</span> aanmaken</h1>
+                <h1 class="my-5 text-center">Een <span class="title-colored">team</span> aanmaken</h1>
             </div>
-            <div class="col-12 col-lg-6 mb-5">
+            <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/quiz/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="tour_id" value="{{$tour->id}}">
@@ -24,11 +24,11 @@
                         @endfor
                         <div class="col-10 mx-auto mb-3">
                             <div class="row">
-                                <div class="col-9">
-                                    <div id="max_players_reached" class="alert alert-danger d-none mb-0 py-1" role="alert">Maximaal aantal spelers is 8</div>
-                                    {{-- <div id="min_players_reached" class="alert alert-danger d-none mb-0 py-1" role="alert">Minimum aantal spelers is 1</div> --}}
+                                <div class="col-8 col-lg-9">
+                                    <div id="max_players_reached" class="alert alert-danger d-none mb-0 py-1" role="alert">Een team bestaat uit maximaal 8 spelers!</div>
+                                    <div id="min_players_reached" class="alert alert-danger d-none mb-0 py-1" role="alert">Een team bestaat uit minimaal 1 speler!</div>
                                 </div>
-                                <div class="col-3 d-flex">
+                                <div class="col-4 col-lg-3 d-flex">
                                     <button onclick="hideMemberInputField()" type="button" class="btn create-btn delete-btn ms-auto"><i class="fa-solid fa-minus"></i></i></button>
                                     <button onclick="showMemberInputField()" type="button" class="btn create-btn ms-auto"><i class="fa-solid fa-plus"></i></button>
                                 </div>
@@ -40,9 +40,6 @@
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
-            </div>
-            <div class="col-6 d-none d-lg-flex align-items-start justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/tour_create_img.png') }}" alt="">
             </div>
         </div>
     </div>
@@ -65,31 +62,37 @@
                 });
             }, false);
         })();
-        
+
         let count = 1;
         function showMemberInputField() {
             if(count === 8){
                 document.getElementById("max_players_reached").classList.remove("d-none");
+                setTimeout(function(){
+                    document.getElementById("max_players_reached").classList.add("d-none");
+             },5000);
+
             } else{
-                count++; 
+                count++;
                 document.getElementById("team_player_label_"+count).classList.remove("d-none");
                 document.getElementById("team_player_input_"+count).classList.remove("d-none");
                 document.getElementById("team_player_input_"+count).disabled = false;
-                document.getElementById("amount_players").value = count;  
+                document.getElementById("amount_players").value = count;
             }
         }
 
         function hideMemberInputField() {
             if(count != 1){
-                count--;
                 document.getElementById("team_player_label_"+count).classList.add("d-none");
                 document.getElementById("team_player_input_"+count).classList.add("d-none");
                 document.getElementById("team_player_input_"+count).disabled = true;
-                document.getElementById("amount_players").value = count;  
-            } 
+                count--;
+                document.getElementById("amount_players").value = count;
+            } else{
+                document.getElementById("min_players_reached").classList.remove("d-none");
+                setTimeout(function(){
+                    document.getElementById("min_players_reached").classList.add("d-none");
+             },5000);
+            }
         }
-
-
-
     </script>
 @endsection

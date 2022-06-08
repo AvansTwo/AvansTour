@@ -26,14 +26,15 @@ class TourController extends Controller
     {
         $tours = Tour::paginate(6);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filtered', FALSE);
     }
 
     public function categoryFilter($id)
     {
         $tours = Tour::where("category_id", $id)->paginate(6);
+        $filteredCategory = Category::find($id);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filteredCategory', $filteredCategory);
     }
 
     /**
@@ -59,7 +60,7 @@ class TourController extends Controller
     public function store(StoreTourRequest $request)
     {
         $file = $request->file('image_url');
-        $filename= date('YmdHi').$file->getClientOriginalName();
+        $filename= date('YmdHis').$file->getClientOriginalName();
 
         $tour = new Tour();
 
@@ -122,7 +123,7 @@ class TourController extends Controller
             if(\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            $filename = date('YmdHis').$file->getClientOriginalName();
         }
 
         $tour->update([
@@ -149,6 +150,10 @@ class TourController extends Controller
     public function destroy($id)
     {
         $tour = Tour::find($id);
+
+        if(\File::exists(public_path('tourimg/' . $tour->image_url))) {
+            \File::delete(public_path('tourimg/' . $tour->image_url));
+        }
 
         $tour->delete();
 

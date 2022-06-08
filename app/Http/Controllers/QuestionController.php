@@ -7,6 +7,9 @@ use App\Models\Question;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
 
 class QuestionController extends Controller
 {
@@ -42,8 +45,14 @@ class QuestionController extends Controller
         $question = new Question();
         $tourID = $request->tourID;
 
+        $filename = $question->questionImg;
         $file = $request->file('questionImg');
-        $filename= date('YmdHi').$file->getClientOriginalName();
+        if(!empty($file)){
+            if(\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = date('YmdHis').$file->getClientOriginalName();
+        }
 
         $question->title = $request->questionTitle;
         $question->description = $request->questionDesc;
@@ -55,7 +64,9 @@ class QuestionController extends Controller
 
         $question->save();
 
-        $file-> move(public_path('tourimg'), $filename);
+        if(!empty($file)){
+            $file-> move(public_path('tourimg'), $filename);
+        }
 
         $questionID = $question->id;
 
@@ -107,7 +118,56 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        $question = Question::find($id);
+
+        $filename = $question->image_url;
+        $file = $request->file('image_url');
+        if(!empty($file)){
+            if(\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = date('YmdHis').$file->getClientOriginalName();
+        }
+
+        if(!empty($request->questionVideo)){
+            if(\File::exists(public_path('tourimg/' . $question->image_url))) {
+                \File::delete(public_path('tourimg/' . $question->image_url));
+            }
+            $filename = null;
+        }
+
+        $question->update([
+            'title'         => $request->questionTitle,
+            'description'   => $request->questionDesc,
+            'image_url'     => $filename,
+            'video_url'     => $request->questionVideo,
+            'gps_location'  => $request->questionLocation,
+            'points'        => $request->questionPoints,
+        ]);
+
+        if(!empty($file)){
+            $file-> move(public_path('tourimg'), $filename);
+        }
+
+        $answers = DB::table('answer')->where('question_id', $question->id)->get();
+
+        foreach($answers as $answer){
+            $newAnswer = Answer::find($answer->id);
+            $correct = 0;
+            if($request->questionCorrectAnswer == $answer->id){
+                $correct = 1;
+            }
+
+            $questionAnswer = request()->get($answer->id);
+
+            $newAnswer->update([
+                'answer'            => $questionAnswer,
+                'correct_answer'    => $correct,
+            ]);
+        }
+
+        Session::flash('SuccessMessage','Vraag is succesvol aangepast');
+        return Redirect::to('/vragen/'. $question->id);
     }
 
     /**
@@ -119,6 +179,10 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $question = Question::find($id);
+
+        if(\File::exists(public_path('tourimg/' . $question->image_url))) {
+            \File::delete(public_path('tourimg/' . $question->image_url));
+        }
 
         $question->delete();
 

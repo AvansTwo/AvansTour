@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5">{{$tour->name}}<span class="title-colored"> aanpassen</span></h1>
+                <h1 class="my-5 text-center">{{$tour->name}}<span class="title-colored"> aanpassen</span></h1>
             </div>
-            <div class="col-12 col-lg-6 mb-5">
+            <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanpassen/{{$tour->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -53,9 +53,6 @@
                         <button class="btn primary-btn secondary-btn mt-3" type="submit" >Opslaan <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
-            </div>
-            <div class="col-6 d-none d-lg-flex align-items-center justify-content-center">
-                <img class="img-fluid" src="{{ asset('img/tour_create_img.png') }}" alt="">
             </div>
         </div>
     </div>
