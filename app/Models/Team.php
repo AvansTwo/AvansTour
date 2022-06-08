@@ -30,4 +30,8 @@ class Team extends Model
     {
         return $this->hasMany(Participants::class, 'team_id');
     }
+    public function teamProgress(): HasMany
+    {
+        return $this->hasMany(teamProgress::class, 'team_id');
+    }
 }

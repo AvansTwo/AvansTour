@@ -21,7 +21,6 @@ class TeamProgressSeeder extends Seeder
             'team_id' => 1,
             'question_id' => 1,
             'answer_id' => 1,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'points' => rand(0, 100),
         ]);
     }
