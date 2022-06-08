@@ -32,6 +32,8 @@ Route::get('/speurtochten', [TourController::class, 'index']);
 Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
 Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
 
+Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
+
 //Tour edit
 Route::post('/speurtochten/aanpassen/{id}', [TourController::class, 'update']);
 Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
@@ -60,7 +62,13 @@ Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
 Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
 
-//Quiz play
-Route::get('/quiz/play/{id}', [QuizController::class, 'play']);
+//Quiz play mapselect page
+Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
+
+//Quiz play get question 
+Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
+
+//Quiz play store answer question 
+Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
 //Dashboard

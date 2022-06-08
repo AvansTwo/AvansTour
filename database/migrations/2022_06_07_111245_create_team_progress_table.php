@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('team_id')->constrained('team')->cascadeOnDelete();
             $table->foreignId('question_id')->constrained('question')->cascadeOnDelete();
             $table->foreignId('answer_id')->constrained('answer')->cascadeOnDelete();
-            $table->timestamp('created_at');
             $table->unsignedInteger('points');
+            $table->timestamps();
         });
     }
 
