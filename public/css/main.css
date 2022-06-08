@@ -335,3 +335,8 @@ footer {
 #tour-img-wrapper {
     position: relative;
 }
+
+/*Quiz*/
+#amount-question-left{
+    font-weight: bold;
+}
