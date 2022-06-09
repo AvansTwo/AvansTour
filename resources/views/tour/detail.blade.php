@@ -15,7 +15,7 @@
                         <p>{{$tour->description}}</p>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-earth-europe tour-icon"></i>
-                            <p class="my-auto">Startlocatie: {{$tour->location}}</p>
+                            <p class="my-auto">Startlocatie: Bekijk de map</p>
                         </div>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-book tour-icon"></i>
