@@ -63,16 +63,6 @@
             <div class="col-12 grey-bg p-5 mt-3 mb-5 d-none d-md-inline">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="mb-3">Tour start locatie</h2>
-                    </div>
-                    <div class="col-12">
-                        <div id="map" class="w-100" style="height: 400px"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 grey-bg p-5 mt-3 mb-5 d-none d-md-inline">
-                <div class="row">
-                    <div class="col-12">
                         <h2 class="mb-3">Tour vragen</h2>
                     </div>
                     <div class="col-12">
@@ -95,8 +85,7 @@
                                         <td>{{$question->description}}</td>
                                         <td>{{$question->points}}</td>
                                         <td>
-                                            <button onclick="location.href='/vragen/{{$question->id}}';"
-                                                    class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
+                                            <button onclick="location.href='/vragen/{{$question->id}}';" class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -114,7 +103,6 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
                 </div>
             </div>

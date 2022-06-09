@@ -263,20 +263,21 @@ footer {
     z-index: 1;
     right: 0;
     border-radius: 4px 0px 4px 4px;
-    width: 300px;
 }
 
-.dropdown-content a {
+.dropdown-content a, #logout-btn {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     font-family: Verdana, serif;
+    margin: 0;
 }
 
-.dropdown-content a:hover {
+.dropdown-content a:hover, #logout-btn:hover {
     background-color: #f1f1f1;
     border-radius: 4px 0px 4px 4px;
+    color: #0d6efd;
 }
 
 .dropdown:hover .dropdown-content {

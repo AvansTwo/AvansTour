@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>AvansTour | @yield('title')</title>
-    
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -42,7 +42,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mx-4 mb-lg-0">
                 <li class="nav-item custom-link">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
                 </li>
@@ -56,6 +56,19 @@
                     <a class="nav-link" href="#">Over ons</a>
                 </li>
             </ul>
+            @if(Auth::check())
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
+                <div class="dropdown-content text-center">
+                    <a href="#">Account</a>
+                    <div class="dropdown-divider"></div>
+                    <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <button id="logout-btn" class="btn w-100" type="submit">Uitloggen</button>
+                    </form>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </nav>
