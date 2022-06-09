@@ -60,7 +60,7 @@
             <div class="dropdown">
                 <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
                 <div class="dropdown-content text-center">
-                    <a href="#">Account</a>
+                    <a href="{{route('dashboard')}}">Dashboard</a>
                     <div class="dropdown-divider"></div>
                     <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
                         @csrf

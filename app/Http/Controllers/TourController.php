@@ -98,19 +98,7 @@ class TourController extends Controller
 
         $coords = explode(',', $tour->location);
 
-        if (count($coords) >= 2) {
-            return view('tour.detail', [
-                'tour' => $tour,
-                'lat' => trim($coords[0]),
-                'long' => trim($coords[1]),
-                'totalPoints' => $totalPoints
-            ]);
-        } else {
-            return view('tour.detail', [
-                'tour' => $tour,
-                'totalPoints' => $totalPoints
-            ]);
-        }
+        return view('tour.detail')->with('tour', $tour)->with('lat', trim($coords[0]))->with('long', trim($coords[1]))->with('totalPoints', $totalPoints);
     }
 
     /**
