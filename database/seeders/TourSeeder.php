@@ -87,7 +87,7 @@ class TourSeeder extends Seeder
         DB::table('tour')->insert([
             'name' => 'Elektrotechniek',
             'description' => 'Tour voor 1e jaars Elektrotechniek studenten',
-            'image_url' => 'Business_IT_Management.jpg',
+            'image_url' => 'Elektrotechniek.jpg',
             'location' => '51.58590196238844,4.792352179256427',
             'category_id' => 7,
             'user_id' => rand(1, 5),
