@@ -31,16 +31,16 @@ class CategorySeeder extends Seeder
             'category_name' => 'Technische informatica',
         ]);
         DB::table('category')->insert([
-            'category_name' => 'Technische Bedrijfskunde',
+            'category_name' => 'Industrial Engineering & Management',
+        ]);
+        DB::table('category')->insert([
+            'category_name' => 'Business IT & Management',
         ]);
         DB::table('category')->insert([
             'category_name' => 'Elektrotechniek',
         ]);
         DB::table('category')->insert([
-            'category_name' => 'Industrial Engineering & Management',
-        ]);
-        DB::table('category')->insert([
-            'category_name' => 'Business IT & Management',
+            'category_name' => 'Technische Bedrijfskunde',
         ]);
     }
 }

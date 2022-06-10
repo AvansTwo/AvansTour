@@ -29,7 +29,7 @@ class QuestionSeeder extends Seeder
         DB::table('question')->insert([
             'title' => 'Pizza locatie',
             'description' => 'Waar kun je pizza scoren binnen de Avans locaties in Breda?',
-            'image_url' => "https://images.pexels.com/photos/315191/pexels-photo-315191.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            'image_url' => "Pizza.jpg",
             'video_url' => null,
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
