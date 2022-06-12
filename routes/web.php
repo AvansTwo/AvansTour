@@ -29,46 +29,46 @@ Route::get('/speurtochten/categorie/{id}', [TourController::class, 'categoryFilt
 Route::get('/speurtochten', [TourController::class, 'index']);
 
 //Tour create
-Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
-Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
+Route::post('/speurtochten/aanmaken', [TourController::class, 'store'])->middleware(['auth']);
+Route::get('/speurtochten/aanmaken', [TourController::class, 'create'])->middleware(['auth']);
 
 Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
 
 //Tour edit
-Route::post('/speurtochten/aanpassen/{id}', [TourController::class, 'update']);
-Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
+Route::post('/speurtochten/aanpassen/{id}', [TourController::class, 'update'])->middleware(['auth']);
+Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit'])->middleware(['auth']);
 
 //Tour show
 Route::get('/speurtochten/{id}', [TourController::class, 'show']);
 
 //Tour delete
-Route::get('/speurtochten/verwijderen/{id}', [TourController::class, 'destroy']);
+Route::get('/speurtochten/verwijderen/{id}', [TourController::class, 'destroy'])->middleware(['auth']);
 
 //Question create
-Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
-Route::get('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'create']);
+Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store'])->middleware(['auth']);
+Route::get('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'create'])->middleware(['auth']);
 
 //Question show
 Route::get('/vragen/{id}', [QuestionController::class, 'show']);
 
 //Question edit
-Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update']);
-Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit']);
+Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update'])->middleware(['auth']);
+Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit'])->middleware(['auth']);
 
 //Question delete
-Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
+Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy'])->middleware(['auth']);
 
 //Quiz create
-Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
-Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
+Route::post('/quiz/aanmaken', [QuizController::class, 'store'])->middleware(['auth']);
+Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create'])->middleware(['auth']);
 
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
 
-//Quiz play get question 
+//Quiz play get question
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
 
-//Quiz play store answer question 
+//Quiz play store answer question
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
 //Dashboard
