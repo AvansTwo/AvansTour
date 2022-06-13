@@ -98,6 +98,20 @@ class QuizController extends Controller
         $question = Question::where('id', $questionId)->first();
         return view('quiz.answer')->with('question', $question)->with('teamHash', $teamHash);
     }
+    public function quizEnding($teamHash)
+    {
+        $team = DB::table('team')->where('team_identifier', $teamHash)->first();
+        $affected = DB::table('team')
+              ->where('id', $team->id)
+              ->update(['end_time' => Carbon::now()]);
+        $points = TeamProgress::where('team_id', $team->id)->sum('points');
+        $teamQuestion = TeamProgress::where('team_id', $team->id)->count('question_id');
+        $teamUpdated = DB::table('team')->where('id', $team->id)->first();
+        $start_time = Carbon::parse($teamUpdated->start_time); 
+        $end_time = Carbon::parse($teamUpdated->end_time); 
+        $difference = $start_time->diffInMinutes($end_time);
+        return view('quiz.end')->with('team', $teamUpdated)->with('teamQuestion', $teamQuestion)->with('points', $points)->with('difference', $difference);
+    }
 
     public function getRemainingQuestions($teamHash) {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
@@ -114,7 +128,7 @@ class QuizController extends Controller
             'team_id' => $team_id
         ));
 
-        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions);
+        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash);
     }
 
     /**
