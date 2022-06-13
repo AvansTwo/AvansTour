@@ -16,14 +16,17 @@
     var centerpoint = {!! json_encode($centerpoint) !!};
     var markers = {!! json_encode($markers) !!};
     var markerCallback = {{ $markerCallback }};
-
     var map = L.map('leafletmap').setView([centerpoint[0], centerpoint[1]], 13);
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(map);
+    
+    if (markers[0] == 0) markers = [];
 
-    markers.forEach((marker) => {    
+    if(markers){
+        markers.forEach((marker) => {    
         if(marker.id && marker.team_hash) {
             L.marker([marker.lat, marker.long]).addTo(map).on('click', function(e) {
                 eval(markerCallback)(marker.id, marker.team_hash);
@@ -39,4 +42,10 @@
         }
         
     })
+    }
+
+    map.on('click', function(e) {
+        eval(mapPickLocation)(e.latlng);
+    })
+
 </script>
