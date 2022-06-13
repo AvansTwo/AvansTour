@@ -11,8 +11,7 @@
             <x-leaflet-map :centerpoint="$tour->location" :markers="$remainingQuestions" markerCallback="markerClick"></x-leaflet-map>
             <p class="text-center mt-4">Nog <span id="amount-question-left">4</span> vragen te beantwoorden</p>
             <div class="d-flex">
-                {{-- In de href nog de url van de eind pagina --}}
-                <button type="button" onclick="JSalert()" class="btn primary-btn my-1 mx-auto"><a id="exit-tour-url" style="pointer-events: none" href="">Tocht afronden</a></button>
+                <button type="button" onclick="location.href='/quiz/ending/{{$teamHash}}';" class="btn primary-btn my-1 mx-auto">Tocht afronden <i class="fa-solid fa-chevron-right"></i></button>
             </div>
         </div>
     </div>
