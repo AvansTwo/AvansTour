@@ -27,5 +27,20 @@ class CategorySeeder extends Seeder
         DB::table('category')->insert([
             'category_name' => 'Werktuigbouwkunde',
         ]);
+        DB::table('category')->insert([
+            'category_name' => 'Technische informatica',
+        ]);
+        DB::table('category')->insert([
+            'category_name' => 'Industrial Engineering & Management',
+        ]);
+        DB::table('category')->insert([
+            'category_name' => 'Business IT & Management',
+        ]);
+        DB::table('category')->insert([
+            'category_name' => 'Elektrotechniek',
+        ]);
+        DB::table('category')->insert([
+            'category_name' => 'Technische Bedrijfskunde',
+        ]);
     }
 }

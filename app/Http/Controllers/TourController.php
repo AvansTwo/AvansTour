@@ -8,12 +8,13 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TourController extends Controller
 {
@@ -89,7 +90,15 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
 
-        return view('tour.detail')->with('tour', $tour);
+        $totalPoints = 0;
+
+        foreach ($tour->question as $question) {
+            $totalPoints += $question->points;
+        }
+
+        $coords = explode(',', $tour->location);
+
+        return view('tour.detail')->with('tour', $tour)->with('lat', trim($coords[0]))->with('long', trim($coords[1]))->with('totalPoints', $totalPoints);
     }
 
     /**

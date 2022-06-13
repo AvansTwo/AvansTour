@@ -13,7 +13,7 @@
                         <p>{{$question->description}}</p>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-earth-europe tour-icon"></i>
-                            <p class="my-auto">Locatie: {{$question->gps_location}}</p>
+                            <p class="my-auto">Locatie: Bekijk de map</p>
                         </div>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-certificate tour-icon"></i>

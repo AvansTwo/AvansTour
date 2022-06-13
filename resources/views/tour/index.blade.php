@@ -8,11 +8,13 @@
                     <div class="col-12 col-lg-6">
                         <h1>Kies een <span class="title-colored">speurtocht</span> !</h1>
                     </div>
+                    @if(Auth::check())
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
                             <button type="button" onclick="location.href='/speurtochten/aanmaken';" class="btn create-btn mt-2"><i id="create-tour-btn-icon" class="fa-solid fa-square-plus"></i>Aanmaken</button>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="col-12 grey-bg p-5 my-5">
