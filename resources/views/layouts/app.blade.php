@@ -32,6 +32,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- Alertify imports -->
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 </head>
 
 <body>
@@ -50,24 +62,24 @@
                     <a class="nav-link {{ request()->is('speurtochten*') ? 'active' : '' }}" href="/speurtochten">Speurtochten</a>
                 </li>
                 <li class="nav-item custom-link">
-                    <a class="nav-link" href="#">Scoreboard</a>
+                    <a class="nav-link {{ request()->is('scoreboard*') ? 'active' : '' }}" href="/scoreboard">Scoreboard</a>
                 </li>
                 <li class="nav-item custom-link">
                     <a class="nav-link" href="#">Over ons</a>
                 </li>
             </ul>
             @if(Auth::check())
-            <div class="dropdown">
-                <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
-                <div class="dropdown-content text-center">
-                    <a href="{{route('dashboard')}}">Dashboard</a>
-                    <div class="dropdown-divider"></div>
-                    <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <button id="logout-btn" class="btn w-100" type="submit">Uitloggen</button>
-                    </form>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
+                    <div class="dropdown-content text-center">
+                        <a href="{{route('dashboard')}}">Dashboard</a>
+                        <div class="dropdown-divider"></div>
+                        <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <button id="logout-btn" class="btn w-100" type="submit">Uitloggen</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>
@@ -87,27 +99,41 @@
                 <p id="footer-copyright">&copyAvansTour</p>
             </div>
         </div>
-    </footer>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                    var forms = document.getElementsByClassName('needs-validation');
-                    // Loop over them and prevent submission
-                    var validation = Array.prototype.filter.call(forms, function(form) {
-                        form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                                event.preventDefault();
-                                event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                        }, false);
-                    });
+</footer>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
                 }, false);
-            })();
-    </script>
+            });
+        }, false);
+    })();
+    // Alertify javascript voor bevestiging tour afronden
+    function JSalert(){
+        // A confirm dialog
+        alertify.confirm("Weet je zeker dat je de tour wilt afronden?", "Zodra de tour is afgerond kan je niet meer terug!",
+
+            function(){
+                document.getElementById("exit-tour-url").style.pointerEvents = "";
+                window.location.href = document.getElementById("exit-tour-url").href;
+            },
+
+            function(){
+                alertify.error('Tour afronden gecanceld');
+            });
+    }
+</script>
 </body>
 
 </html>

@@ -2,18 +2,19 @@
 
 @font-face {
     font-family: "frutigerregular";
-    src: url("../fonts/frutiger-webfont.woff2") format("woff2"), url("../fonts/frutiger-webfont.woff") format("woff");
+    src: url("../fonts/frutiger-webfont.woff2") format("woff2"),
+        url("../fonts/frutiger-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "frutigerbold";
-    src: url("../fonts/frutiger_bold-webfont.woff2") format("woff2"), url("../fonts/frutiger_bold-webfont.woff") format("woff");
+    src: url("../fonts/frutiger_bold-webfont.woff2") format("woff2"),
+        url("../fonts/frutiger_bold-webfont.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
-
 
 /*overrule*/
 
@@ -42,7 +43,8 @@ textarea {
     border-radius: 10px;
 }
 
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover{
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
     color: black !important;
 }
 
@@ -93,7 +95,7 @@ textarea {
 }
 
 .edit-btn {
-    background-color: #FAC213 !important;
+    background-color: #fac213 !important;
     color: white !important;
 }
 
@@ -113,7 +115,6 @@ textarea {
     background-color: #a3202c !important;
 }
 
-
 /*Nav*/
 
 .custom-link {
@@ -126,7 +127,6 @@ textarea {
 .active {
     color: #c6002a !important;
 }
-
 
 /*Footer*/
 
@@ -163,7 +163,6 @@ footer {
     background-color: #051120;
 }
 
-
 /*landing*/
 
 .title-colored {
@@ -182,7 +181,6 @@ footer {
 .landing-phrase {
     margin-bottom: 5px;
 }
-
 
 /*speurtocht*/
 
@@ -216,7 +214,6 @@ footer {
     font-style: italic;
     margin-left: 10px;
 }
-
 
 /*tour-detail*/
 
@@ -265,7 +262,8 @@ footer {
     border-radius: 4px 0px 4px 4px;
 }
 
-.dropdown-content a, #logout-btn {
+.dropdown-content a,
+#logout-btn {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -280,8 +278,8 @@ footer {
     color: #0d6efd;
 }
 
-#logout-btn:hover{
-    background-color: #F47C7C;
+#logout-btn:hover {
+    background-color: #f47c7c;
     color: white;
 }
 
@@ -293,13 +291,11 @@ footer {
     background-color: #454549;
 }
 
-
 /* speurtoch aanmaken */
 
 #inputGroupPrepend {
     font-size: 24px;
 }
-
 
 /*Vraag aanmaken*/
 
@@ -313,12 +309,11 @@ footer {
     width: 100% !important;
 }
 
-.question-img{
+.question-img {
     border-radius: 4px 4px 0px 0px;
     height: 345px !important;
     width: 100%;
 }
-
 
 /*pagination*/
 
@@ -331,7 +326,6 @@ footer {
 .page-link {
     color: #c6002a !important;
 }
-
 
 /*edit tour*/
 
@@ -348,29 +342,12 @@ footer {
 }
 
 /*Quiz*/
-#amount-question-left{
+#amount-question-left {
     font-weight: bold;
 }
 
-/*quiz end screen*/
-
-.quiz-title {
-    text-align: center;
-}
-
-.quiz-icon {
-    display: inline-block;
-    font-size: 100px;
-    margin: 40px;
-}
-
-.quiz-info {
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 60px;
-}
-
-.quiz-colored {
-    color: #00cc00;
+.alertify .ajs-dialog {
+    top: 25%;
+    /* transform: translateY(-50%); */
+    /* margin: auto; */
 }
