@@ -131,6 +131,12 @@ class QuizController extends Controller
         return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash);
     }
 
+    public function endQuiz($teamHash)
+    {
+        $team = DB::table('team')->where('team_identifier', $teamHash)->first();
+        return view('quiz.answer')->with('team', $team);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
