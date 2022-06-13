@@ -71,6 +71,9 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 //Quiz play store answer question 
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
+//Quiz finish
+Route::get('/quiz/end/{id}', [QuizController::class, 'end']);
+
 //Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard');
