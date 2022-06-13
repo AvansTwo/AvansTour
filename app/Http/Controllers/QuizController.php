@@ -114,7 +114,7 @@ class QuizController extends Controller
             'team_id' => $team_id
         ));
 
-        return view('question.pick')->with('tour', $tour)->with('remainingQuestions', $questions);
+        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions);
     }
 
     /**
