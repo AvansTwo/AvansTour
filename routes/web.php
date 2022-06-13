@@ -5,7 +5,6 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,8 +31,6 @@ Route::get('/speurtochten', [TourController::class, 'index']);
 Route::post('/speurtochten/aanmaken', [TourController::class, 'store'])->middleware(['auth']);
 Route::get('/speurtochten/aanmaken', [TourController::class, 'create'])->middleware(['auth']);
 
-Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
-
 //Tour edit
 Route::post('/speurtochten/aanpassen/{id}', [TourController::class, 'update'])->middleware(['auth']);
 Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit'])->middleware(['auth']);
@@ -49,7 +46,7 @@ Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 's
 Route::get('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'create'])->middleware(['auth']);
 
 //Question show
-Route::get('/vragen/{id}', [QuestionController::class, 'show']);
+Route::get('/vragen/{id}', [QuestionController::class, 'show'])->middleware(['auth']);
 
 //Question edit
 Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update'])->middleware(['auth']);
@@ -72,3 +69,8 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
 //Dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
