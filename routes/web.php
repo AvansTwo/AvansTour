@@ -56,7 +56,7 @@ Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit'])->middl
 //Question delete
 Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy'])->middleware(['auth']);
 
-//Quiz create
+//Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
 Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
 
@@ -68,6 +68,10 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 
 //Quiz play store answer question
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
+
+//Quiz end
+Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
+
 
 //Scoreboard
 Route::get('/scoreboard', [ScoreboardController::class, 'index']);
