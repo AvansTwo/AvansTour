@@ -19,19 +19,19 @@ class ParticipantSeeder extends Seeder
     {
         DB::table('participants')->insert([
             'name' => 'Jan dijkhof',
-            'team_id' => rand(1, 3)
+            'team_id' => 1
         ]);
         DB::table('participants')->insert([
             'name' => 'Klaas dijkhof',
-            'team_id' => rand(1, 3)
+            'team_id' => 1
         ]);
         DB::table('participants')->insert([
             'name' => 'Mark Rutte',
-            'team_id' => rand(1, 3)
+            'team_id' => 1
         ]);
         DB::table('participants')->insert([
             'name' => 'Huge de Oude',
-            'team_id' => rand(1, 3)
+            'team_id' => 1
         ]);
     }
 }

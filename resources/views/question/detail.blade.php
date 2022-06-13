@@ -13,7 +13,7 @@
                         <p>{{$question->description}}</p>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-earth-europe tour-icon"></i>
-                            <p class="my-auto">Locatie: {{$question->gps_location}}</p>
+                            <p class="my-auto">Locatie: Bekijk de map</p>
                         </div>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-certificate tour-icon"></i>
@@ -37,7 +37,7 @@
                     <div class="col-12 col-lg-6 order-6 order-lg-1">
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-fluid rounded mb-5 mb-lg-0" @if(empty($question->image_url)) src="{{ asset('img/landing_img.png') }}" @else src="{{ asset('tourimg/'. $question->image_url) }}" @endif alt="tour-detail-img">
+                                <img class="img-fluid question-img mb-5 mb-lg-0" @if(empty($question->image_url)) src="{{ asset('img/landing_img.png') }}" @else src="{{ asset('tourimg/'. $question->image_url) }}" @endif alt="tour-detail-img">
                             </div>
                         </div>
                     </div>
