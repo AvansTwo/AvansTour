@@ -43,12 +43,7 @@
                 <img class="img-fluid" src="{{ asset('img/man.png') }}" alt="landing-image">
             </div>
 
-
         </div>
-
-        {{-- <div class="col-12 col-lg-5">
-            <img class="img-fluid" src="{{ asset('img/landing_img.png') }}" alt="landing-image">
-        </div> --}}
     </div>
 </div>
 
