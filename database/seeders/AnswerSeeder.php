@@ -18,34 +18,64 @@ class AnswerSeeder extends Seeder
     public function run()
     {
         DB::table('answer')->insert([
-            'answer' => 'lorem ipsum',
-            'correct_answer' => rand(0, 2),
-            'question_id' => rand(1, 3)
+            'answer' => 2000,
+            'correct_answer' => 0,
+            'question_id' => 1
         ]);
         DB::table('answer')->insert([
-            'answer' => 'lorem klaas',
-            'correct_answer' => rand(0, 2),
-            'question_id' => rand(1, 3)
-        ]);  
+            'answer' => 2002,
+            'correct_answer' => 0,
+            'question_id' => 1
+        ]);
         DB::table('answer')->insert([
-            'answer' => 'klaas ipsum',
-            'correct_answer' => rand(0, 2),
-            'question_id' => rand(1, 3)
-        ]);  
+            'answer' => 2004,
+            'correct_answer' => 1,
+            'question_id' => 1
+        ]);
         DB::table('answer')->insert([
-            'answer' => 'test ipsum',
-            'correct_answer' => rand(0, 2),
-            'question_id' => rand(1, 3)
-        ]);  
+            'answer' => 2006,
+            'correct_answer' => 0,
+            'question_id' => 1
+        ]);
         DB::table('answer')->insert([
-            'answer' => 'lorem test',
-            'correct_answer' => rand(0, 2),
-            'question_id' => rand(1, 3)
-        ]);  
+            'answer' => 'Lovendijkstraat',
+            'correct_answer' => 0,
+            'question_id' => 2
+        ]);
         DB::table('answer')->insert([
-            'answer' => 'oefen ipsum',
-            'correct_answer' => rand(0, 2),
-            'question_id' => rand(1, 3)
-        ]);  
+            'answer' => 'Hogeschoollaan',
+            'correct_answer' => 1,
+            'question_id' => 2
+        ]);
+        DB::table('answer')->insert([
+            'answer' => 'Claudius Prinsenlaan',
+            'correct_answer' => 0,
+            'question_id' => 2
+        ]);
+        DB::table('answer')->insert([
+            'answer' => 'Nergens',
+            'correct_answer' => 0,
+            'question_id' => 2
+        ]);
+        DB::table('answer')->insert([
+            'answer' => 'Onderwijsboulevard',
+            'correct_answer' => 0,
+            'question_id' => 3
+        ]);
+        DB::table('answer')->insert([
+            'answer' => 'Beukenlaan',
+            'correct_answer' => 0,
+            'question_id' => 3
+        ]);
+        DB::table('answer')->insert([
+            'answer' => 'Hogeschoollaan',
+            'correct_answer' => 1,
+            'question_id' => 3
+        ]);
+        DB::table('answer')->insert([
+            'answer' => 'Lovensedijkstraat',
+            'correct_answer' => 0,
+            'question_id' => 3
+        ]);
     }
 }

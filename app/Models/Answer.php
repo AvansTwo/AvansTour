@@ -12,6 +12,8 @@ class Answer extends Model
 {
     use HasFactory;
 
+    protected $table="answer";
+
     protected $fillable = [
         'answer',
         'correct_answer',
@@ -23,5 +25,9 @@ class Answer extends Model
     public function question(): BelongsTo
     {
         return $this->BelongsTo(question::class);
+    }
+    public function teamProgress(): HasMany
+    {
+        return $this->hasMany(teamProgress::class, 'answer_id');
     }
 }

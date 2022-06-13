@@ -19,77 +19,77 @@ class TourSeeder extends Seeder
     public function run()
     {
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Informatica',
+            'description' => 'Tour voor 1e jaars Informatica studenten',
+            'image_url' => 'Informatica.jpg',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 1,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Mechatronica',
+            'description' => 'Tour voor 1e jaars Mechatronica studenten',
+            'image_url' => 'Mechatronica.jpg',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 2,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Werktuigbouwkunde',
+            'description' => 'Tour voor 1e jaars Werktuigbouwkunde studenten',
+            'image_url' => 'Werktuigbouwkunde.jpg',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 3,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Technische Informatica',
+            'description' => 'Tour voor 1e jaars Technische Informatica studenten',
+            'image_url' => 'TechnischeInformatica.gif',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 4,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Industrial Engineering & Management',
+            'description' => 'Tour voor 1e jaars Industrial Engineering & Management studenten',
+            'image_url' => 'Industrial_Engineering_Management.jpg',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 5,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Business IT & Management',
+            'description' => 'Tour voor 1e jaars Business IT & Management studenten',
+            'image_url' => 'Business_IT_Management.jpg',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 6,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('tour')->insert([
-            'name' => 'Tour Breda #',
-            'description' => 'Random description: '.Str::random(50),
-            'image_url' => 'KMA.jpeg',
-            'location' => '0',
-            'category_id' => rand(1, 3),
+            'name' => 'Elektrotechniek',
+            'description' => 'Tour voor 1e jaars Elektrotechniek studenten',
+            'image_url' => 'Elektrotechniek.jpg',
+            'location' => '51.58590196238844,4.792352179256427',
+            'category_id' => 7,
             'user_id' => rand(1, 5),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),

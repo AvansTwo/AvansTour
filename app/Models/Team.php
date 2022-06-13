@@ -11,6 +11,8 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $table="team";
+
     protected $fillable = [
         'team_name',
         'start_time',
@@ -27,5 +29,9 @@ class Team extends Model
     public function participants(): HasMany
     {
         return $this->hasMany(Participants::class, 'team_id');
+    }
+    public function teamProgress(): HasMany
+    {
+        return $this->hasMany(teamProgress::class, 'team_id');
     }
 }
