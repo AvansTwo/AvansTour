@@ -351,3 +351,26 @@ footer {
 #amount-question-left{
     font-weight: bold;
 }
+
+/*quiz end screen*/
+
+.quiz-title {
+    text-align: center;
+}
+
+.quiz-icon {
+    display: inline-block;
+    font-size: 100px;
+    margin: 40px;
+}
+
+.quiz-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 60px;
+}
+
+.quiz-colored {
+    color: #00cc00;
+}
