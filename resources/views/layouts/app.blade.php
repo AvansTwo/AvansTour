@@ -32,6 +32,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- Alertify imports -->
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 </head>
 
 <body>
@@ -107,6 +119,23 @@
                     });
                 }, false);
             })();
+
+        // Alertify javascript voor bevestiging tour afronden
+        function JSalert(){
+         // A confirm dialog
+
+
+            alertify.confirm("Weet je zeker dat je de tour wilt afronden?", "Zodra de tour is afgerond kan je niet meer terug!",
+        
+            function(){
+                document.getElementById("exit-tour-url").style.pointerEvents = "";
+                window.location.href = document.getElementById("exit-tour-url").href;
+            },
+    
+            function(){
+            alertify.error('Tour afronden gecanceld');
+            });
+        }
     </script>
 </body>
 
