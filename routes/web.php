@@ -86,3 +86,12 @@ Route::get('/scoreboard/tour/{tourId}', [ScoreboardController::class, 'tourFilte
 
 
 //Dashboard
+
+require __DIR__.'/auth.php';
+
+//Dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
