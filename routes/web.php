@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ScoreboardController;
 
 
 /*
@@ -71,6 +72,13 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 //Quiz play store answer question 
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
-Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
+//Scoreboard
+Route::get('/scoreboard', [ScoreboardController::class, 'index']);
+
+//Scoreboard search
+Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
+
+Route::get('/scoreboard/tour/{tourId}', [ScoreboardController::class, 'tourFilter']);
+
 
 //Dashboard
