@@ -57,8 +57,8 @@ Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit'])->middl
 Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy'])->middleware(['auth']);
 
 //Quiz create
-Route::post('/quiz/aanmaken', [QuizController::class, 'store'])->middleware(['auth']);
-Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create'])->middleware(['auth']);
+Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
+Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
 
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
