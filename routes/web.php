@@ -62,14 +62,10 @@ Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create'])->middle
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
 
-<<<<<<< Updated upstream
-//Quiz play get question
-=======
 //Quiz eindscherm
 Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
 
 //Quiz play get question 
->>>>>>> Stashed changes
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
 
 //Quiz play store answer question
