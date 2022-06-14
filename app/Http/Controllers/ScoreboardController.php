@@ -29,7 +29,25 @@ class ScoreboardController extends Controller
             ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
             ->paginate(15);
 
-        $tour = Tour::all();
+        $categories = Category::all();
+
+        return view('scoreboard.index', [
+            'results' => $results,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function sortPoints($sortId)
+    {
+        $filter = $sortId == 0 ? 'ASC' : 'DESC';
+
+        $results = DB::table('team_progress')
+            ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+            ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
+            ->orderBy('points', $filter)
+            ->paginate(15);
 
         $categories = Category::all();
 

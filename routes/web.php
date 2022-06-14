@@ -91,6 +91,7 @@ Route::get('/scoreboard', [ScoreboardController::class, 'index']);
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 
 Route::get('/scoreboard/category/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
+Route::get('/scoreboard/Sort/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
