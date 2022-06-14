@@ -18,12 +18,11 @@ class ScoreboardController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
-        $tours = Tour::all();
+        $results = Team::With('tour')
+            ->paginate(15);
 
         return view('scoreboard.index', [
-            'tours' => $tours,
-            'teams' => $teams,
+            'results' => $results
         ]);
     }
 
@@ -66,10 +65,12 @@ class ScoreboardController extends Controller
 
     public function teamFilter(Request $request)
     {
-        $teams = Team::where('team_name', 'like', '%' . $request->teamString . '%')->get();
+        $results = Team::where('team_name', 'like', '%' . $request->teamString . '%')
+            ->with('Tour')
+            ->get();
 
         return view('scoreboard.index', [
-            'teams' => $teams
+            'results' => $results
         ]);
     }
 
