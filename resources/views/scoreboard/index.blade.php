@@ -59,7 +59,8 @@
                                         ->format("%h hours, %i minutes and %s seconds") }}
                                 </td>
                             @endif
-                            <td></td>
+                            <td>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

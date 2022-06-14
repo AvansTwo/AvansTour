@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Team;
+use App\Models\TeamProgress;
 use DateTime;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -22,15 +23,9 @@ class ScoreboardController extends Controller
         $results = Team::With('tour')
             ->paginate(15);
 
+        dd($results);
+
         $categories = Category::all();
-
-        $totalTime = null;
-
-        if (isset($results->end_time)) {
-            $totalTime = $results->start_time->diff($results->end_time);
-        } else {
-            $totalTime = $results->start_time->diff(new DateTime('now'));
-        }
 
         return view('scoreboard.index', [
             'results' => $results,
@@ -79,6 +74,7 @@ class ScoreboardController extends Controller
     {
         $results = Team::where('team_name', 'like', '%' . $request->teamString . '%')
             ->with('Tour')
+            ->with('teamProgress')
             ->paginate(15);
 
         return view('scoreboard.index', [
