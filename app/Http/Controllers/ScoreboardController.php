@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tour;
+use App\Models\Category;
 use App\Models\Team;
 use DateTime;
 use Illuminate\Contracts\Foundation\Application;
