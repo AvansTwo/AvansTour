@@ -22,11 +22,38 @@
                 <div class="dropdown h-100 w-100">
                     <button class="dropbtn d-block w-100">Filter Tours <i class="fa-solid fa-sort-down"></i></button>
                     <div class="dropdown-content">
-                        @foreach($tours as $tour)
-                            <a href="/scoreboard/tour/{{ $tour->id }}">{{$tour->name}}</a>
+                        @foreach($results as $result)
+                            <a href="/scoreboard/tour/{{ $result->tour->id }}">{{$result->tour->name}}</a>
                         @endforeach
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tour Name</th>
+                    <th scope="col">Team Name</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">Total Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($results as $result)
+                    <tr>
+                        <td>{{ $result->tour->id }}</td>
+                        <td>{{ $result->tour->name }}</td>
+                        <td>{{ $result->team_name }}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                {{$results->links()}}
             </div>
         </div>
     </div>
