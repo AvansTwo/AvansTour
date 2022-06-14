@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Tour;
 use App\Models\Team;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -18,14 +18,12 @@ class ScoreboardController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
-        $tours = Tour::all();
+        $results = Team::With('tour')
+            ->paginate(15);
 
         return view('scoreboard.index', [
-            'tours' => $tours,
-            'teams' => $teams,
+            'results' => $results
         ]);
-
     }
 
     /**
@@ -41,7 +39,7 @@ class ScoreboardController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -52,7 +50,7 @@ class ScoreboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,15 +63,21 @@ class ScoreboardController extends Controller
         //
     }
 
-    public function teamFilter($teamName)
+    public function teamFilter(Request $request)
     {
-        //
+        $results = Team::where('team_name', 'like', '%' . $request->teamString . '%')
+            ->with('Tour')
+            ->get();
+
+        return view('scoreboard.index', [
+            'results' => $results
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -84,8 +88,8 @@ class ScoreboardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -96,7 +100,7 @@ class ScoreboardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
