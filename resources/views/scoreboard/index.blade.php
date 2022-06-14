@@ -22,8 +22,8 @@
                 <div class="dropdown h-100 w-100">
                     <button class="dropbtn d-block w-100">Filter Tours <i class="fa-solid fa-sort-down"></i></button>
                     <div class="dropdown-content">
-                        @foreach($results as $result)
-                            <a href="/scoreboard/tour/{{ $result->id }}">{{$result->name}}</a>
+                        @foreach($categories as $category)
+                            <a href="{{ route('scoreboardCategoryFilter', $category->id) }}">{{ $category->category_name }}</a>
                         @endforeach
                     </div>
                 </div>
