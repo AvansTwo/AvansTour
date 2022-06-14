@@ -5,6 +5,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreboardController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -92,8 +93,13 @@ Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 Route::get('/scoreboard/tour/{tourId}', [ScoreboardController::class, 'tourFilter']);
 
 //Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('/dashboard/vraag', [DashboardController::class, 'show'])->middleware(['auth'])->name('dashboard');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
