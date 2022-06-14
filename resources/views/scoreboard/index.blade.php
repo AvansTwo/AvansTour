@@ -7,7 +7,7 @@
                 <h1>Scoreboard <span class="title-colored">AvansTour</span></h1>
                 <p>Filter op tournaam of zoek op teamnaam</p>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-8">
                 <form class="h-100" action="/scoreboard/team" method="post">
                     @csrf
                     <div class="input-group h-100">
@@ -25,6 +25,17 @@
                         @foreach($results as $result)
                             <a href="/scoreboard/tour/{{ $result->id }}">{{$result->name}}</a>
                         @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown h-100 w-100">
+                    <button class="dropbtn d-block w-100">Sorteer op <i class="fa-solid fa-sort-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="">Punten oplopend</a>
+                        <a href="">Punten aflopend</a>
+                        <a href="">Totale tijd aflopend</a>
+                        <a href="">Totale tijd oplopend</a>
                     </div>
                 </div>
             </div>
