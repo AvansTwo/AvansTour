@@ -7,7 +7,7 @@
                 <h1>Scoreboard <span class="title-colored">AvansTour</span></h1>
                 <p>Filter op tournaam of zoek op teamnaam</p>
             </div>
-            <div class="col-md-10 ps-0">
+            <div class="col-md-8">
                 <form class="h-100" action="/scoreboard/team" method="post">
                     @csrf
                     <div class="input-group h-100">
@@ -18,40 +18,65 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-2 pe-0">
+            <div class="col-md-2">
                 <div class="dropdown h-100 w-100">
                     <button class="dropbtn d-block w-100">Filter Tours <i class="fa-solid fa-sort-down"></i></button>
                     <div class="dropdown-content">
                         @foreach($results as $result)
-                            <a href="/scoreboard/tour/{{ $result->tour->id }}">{{$result->tour->name}}</a>
+                            <a href="/scoreboard/tour/{{ $result->id }}">{{$result->name}}</a>
                         @endforeach
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Tour Name</th>
-                    <th scope="col">Team Name</th>
-                    <th scope="col">Points</th>
-                    <th scope="col">Total Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($results as $result)
+            <div class="col-md-2">
+                <div class="dropdown h-100 w-100">
+                    <button class="dropbtn d-block w-100">Sorteer op <i class="fa-solid fa-sort-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="">Punten oplopend</a>
+                        <a href="">Punten aflopend</a>
+                        <a href="">Totale tijd aflopend</a>
+                        <a href="">Totale tijd oplopend</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>{{ $result->tour->id }}</td>
-                        <td>{{ $result->tour->name }}</td>
-                        <td>{{ $result->team_name }}</td>
-                        <td></td>
-                        <td></td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tour Name</th>
+                        <th scope="col">Team Name</th>
+                        <th scope="col">Total Time</th>
+                        <th scope="col">Points</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($results as $result)
+                        @php
+                            $startDate = new \Nette\Utils\DateTime($result->start_time);
+                        @endphp
+                        <tr>
+                            <td>{{ $result->id }}</td>
+                            <td>{{ $result->name }}</td>
+                            <td>{{ $result->team_name }}</td>
+                            @if (isset($result->end_time))
+                                <td> {{ $startDate
+                                        ->diff(new \Nette\Utils\DateTime($result->end_time))
+                                        ->format("%h hours, %i minutes and %s seconds")}}
+                                </td>
+                            @else
+                                <td> {{ $startDate
+                                        ->diff(new \Nette\Utils\DateTime())
+                                        ->format("%h hours, %i minutes and %s seconds") }}
+                                </td>
+                            @endif
+                            <td>
+                                {{ $result->points }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             <div class="d-flex justify-content-center">
                 {{$results->links()}}
             </div>
