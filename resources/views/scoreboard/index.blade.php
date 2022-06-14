@@ -34,8 +34,8 @@
                     <div class="dropdown-content">
                         <a href="{{ route('sortPoints', 0) }}">Punten oplopend</a>
                         <a href="{{ route('sortPoints', 1) }}">Punten aflopend</a>
-                        <a href="">Totale tijd aflopend</a>
-                        <a href="">Totale tijd oplopend</a>
+                        <a href="{{ route('sortTime', 1) }}">Totale tijd aflopend</a>
+                        <a href="{{ route('sortTime', 0) }}">Totale tijd oplopend</a>
                     </div>
                 </div>
             </div>
@@ -60,15 +60,9 @@
                             <td>{{ $result->name }}</td>
                             <td>{{ $result->team_name }}</td>
                             @if (isset($result->end_time))
-                                <td> {{ $startDate
-                                        ->diff(new \Nette\Utils\DateTime($result->end_time))
-                                        ->format("%h hours, %i minutes and %s seconds")}}
-                                </td>
+                                <td>{{ $result->timeDiff }}</td>
                             @else
-                                <td> {{ $startDate
-                                        ->diff(new \Nette\Utils\DateTime())
-                                        ->format("%h hours, %i minutes and %s seconds") }}
-                                </td>
+                                <td>Team heeft geen eindtijd.</td>
                             @endif
                             <td>
                                 {{ $result->points }}

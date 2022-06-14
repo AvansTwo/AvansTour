@@ -91,7 +91,8 @@ Route::get('/scoreboard', [ScoreboardController::class, 'index']);
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 
 Route::get('/scoreboard/category/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
-Route::get('/scoreboard/Sort/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
+Route::get('/scoreboard/SortPoints/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
+Route::get('/scoreboard/SortTime/{sortId}', [ScoreboardController::class, 'sortTime'])->name('sortTime');
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
