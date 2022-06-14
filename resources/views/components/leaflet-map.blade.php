@@ -44,8 +44,10 @@
     })
     }
 
+        map.invalidateSize(true);
+
     map.on('click', function(e) {
-        eval(mapPickLocation)(e.latlng);
+    eval(mapPickLocation)(e.latlng);
     })
 
 </script>

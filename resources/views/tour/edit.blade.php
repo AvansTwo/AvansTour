@@ -22,11 +22,18 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourStartLocation" class="mb-1 fw-bold">Start locatie</label>
+
+                            <div id="map">
+                            <x-leaflet-map centerpoint="51.583683,4.798869"  markerCallback="markerClick"></x-leaflet-map>
+                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Location changed!</div>
+                            <br>
+                            </div>
+
                             <div class="input-group">
-                                <div class="input-group-prepend">
+                                <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input type="text" class="form-control" value="{{$tour->location}}" name="location" id="tourStartLocation" placeholder="51.58604484973112, 4.7923486528026755" aria-describedby="inputGroupPrepend">
+                                <input type="text" class="form-control" value="{{$tour->location}}" name="location" id="tourStartLocation" aria-describedby="inputGroupPrepend" readonly>
                             </div>
                         </div>
                         <div class="col-10 mx-auto mb-3">
