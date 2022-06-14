@@ -42,6 +42,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = new Question();
+
         $tourID = $request->tourID;
 
         $filename = $question->questionImg;
@@ -58,6 +59,7 @@ class QuestionController extends Controller
         $question->image_url = $filename;
         $question->video_url = $request->questionVideo;
         $question->gps_location = $request->questionLocation;
+        $question->type = $request->typeRadio;
         $question->points = $request->questionPoints;
         $question->tour_id = $tourID;
 
@@ -69,18 +71,21 @@ class QuestionController extends Controller
 
         $questionID = $question->id;
 
-        for ($i = 1; $i <= 4; $i++) {
-            $answer = new Answer();
-            $answer->answer = $request->$i;
-            if ($request->questionCorrectAnswer == $i) {
-                $answer->correct_answer = 1;
-            } else {
-                $answer->correct_answer = 0;
+        if($request->typeRadio == 'Meerkeuze'){
+            for($i = 1; $i <= 4; $i++){
+                $answer = new Answer();
+                $answer->answer = $request->$i;
+                if($request->questionCorrectAnswer == $i){
+                    $answer->correct_answer = 1;
+                } else{
+                    $answer->correct_answer = 0;
+                }
+                $answer->question_id = $questionID;
+                $answer->save();
             }
-            $answer->question_id = $questionID;
-            $answer->save();
         }
-        Session::flash('SuccessMessage', 'Vraag is succesvol toegevoegd');
+       
+        Session::flash('SuccessMessage','Vraag is succesvol toegevoegd');
         return back();
     }
 

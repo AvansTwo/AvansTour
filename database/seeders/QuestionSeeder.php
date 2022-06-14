@@ -21,6 +21,7 @@ class QuestionSeeder extends Seeder
             'description' => 'In welk jaar is Avans ontstaan?',
             'image_url' => "Avans.jpg",
             'video_url' => null,
+            'type' => 'Meerkeuze',
             'gps_location' => "51.586118505437256,4.775678388588147",
             'points' => 10,
             'tour_id' => 1,
@@ -31,6 +32,7 @@ class QuestionSeeder extends Seeder
             'description' => 'Waar kun je pizza scoren binnen de Avans locaties in Breda?',
             'image_url' => "Pizza.jpg",
             'video_url' => null,
+            'type' => 'Meerkeuze',
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
             'tour_id' => 1,
@@ -41,8 +43,31 @@ class QuestionSeeder extends Seeder
             'description' => 'Waar kun je Starbucks koffie halen bij Avans?',
             'image_url' => "Starbucks.webp",
             'video_url' => null,
+            'type' => 'Meerkeuze',
             'gps_location' => "51.58689353598733,4.774640876287711",
             'points' => 10,
+            'tour_id' => 1,
+        ]);
+
+        DB::table('question')->insert([
+            'title' => 'De grote kerk',
+            'description' => 'Hoe heet de friettent aan de voet van de grote kerk van Breda?',
+            'image_url' => "grotekerk.jpeg",
+            'video_url' => null,
+            'type' => 'Open',
+            'gps_location' => "51.588832816540254,4.775367262326815",
+            'points' => 20,
+            'tour_id' => 1,
+        ]);
+
+        DB::table('question')->insert([
+            'title' => 'Chasseveld',
+            'description' => 'Maak een foto van de pathebioscoop op het chasseveld',
+            'image_url' => "chasseveld.jpg",
+            'video_url' => null,
+            'type' => 'Media',
+            'gps_location' => "51.58970229454752,4.7852689449590455",
+            'points' => 20,
             'tour_id' => 1,
         ]);
     }

@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ParticipantSeeder::class,
             QuestionSeeder::class,
             AnswerSeeder::class,
+            TeamAnswerSeeder::class,
             TeamProgressSeeder::class,
         ]);
 
