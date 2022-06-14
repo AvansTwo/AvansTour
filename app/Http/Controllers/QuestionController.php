@@ -47,11 +47,11 @@ class QuestionController extends Controller
 
         $filename = $question->questionImg;
         $file = $request->file('questionImg');
-        if(!empty($file)){
-            if(\File::exists(public_path('tourimg/' . $filename))) {
+        if (!empty($file)) {
+            if (\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHis').$file->getClientOriginalName();
+            $filename = date('YmdHis') . $file->getClientOriginalName();
         }
 
         $question->title = $request->questionTitle;
@@ -65,8 +65,8 @@ class QuestionController extends Controller
 
         $question->save();
 
-        if(!empty($file)){
-            $file-> move(public_path('tourimg'), $filename);
+        if (!empty($file)) {
+            $file->move(public_path('tourimg'), $filename);
         }
 
         $questionID = $question->id;
@@ -126,15 +126,15 @@ class QuestionController extends Controller
 
         $filename = $question->image_url;
         $file = $request->file('image_url');
-        if(!empty($file)){
-            if(\File::exists(public_path('tourimg/' . $filename))) {
+        if (!empty($file)) {
+            if (\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHis').$file->getClientOriginalName();
+            $filename = date('YmdHis') . $file->getClientOriginalName();
         }
 
-        if(!empty($request->questionVideo)){
-            if(\File::exists(public_path('tourimg/' . $question->image_url))) {
+        if (!empty($request->questionVideo)) {
+            if (\File::exists(public_path('tourimg/' . $question->image_url))) {
                 \File::delete(public_path('tourimg/' . $question->image_url));
             }
             $filename = null;
@@ -149,16 +149,16 @@ class QuestionController extends Controller
             'points'        => $request->questionPoints,
         ]);
 
-        if(!empty($file)){
-            $file-> move(public_path('tourimg'), $filename);
+        if (!empty($file)) {
+            $file->move(public_path('tourimg'), $filename);
         }
 
         $answers = DB::table('answer')->where('question_id', $question->id)->get();
 
-        foreach($answers as $answer){
+        foreach ($answers as $answer) {
             $newAnswer = Answer::find($answer->id);
             $correct = 0;
-            if($request->questionCorrectAnswer == $answer->id){
+            if ($request->questionCorrectAnswer == $answer->id) {
                 $correct = 1;
             }
 
@@ -170,8 +170,8 @@ class QuestionController extends Controller
             ]);
         }
 
-        Session::flash('SuccessMessage','Vraag is succesvol aangepast');
-        return Redirect::to('/vragen/'. $question->id);
+        Session::flash('SuccessMessage', 'Vraag is succesvol aangepast');
+        return Redirect::to('/vragen/' . $question->id);
     }
 
     /**
@@ -184,7 +184,7 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
 
-        if(\File::exists(public_path('tourimg/' . $question->image_url))) {
+        if (\File::exists(public_path('tourimg/' . $question->image_url))) {
             \File::delete(public_path('tourimg/' . $question->image_url));
         }
 
@@ -192,7 +192,7 @@ class QuestionController extends Controller
 
         $tour = Tour::find($question->tour_id);
 
-        Session::flash('SuccessMessage','Vraag is succesvol verwijderd');
+        Session::flash('SuccessMessage', 'Vraag is succesvol verwijderd');
         return view('tour.detail')->with('tour', $tour);
     }
 }
