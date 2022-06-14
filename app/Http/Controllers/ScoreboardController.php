@@ -65,14 +65,12 @@ class ScoreboardController extends Controller
 
     public function teamFilter(Request $request)
     {
-        $teams = Team::where('team_name', 'like', '%' . $request->teamString . '%')
+        $results = Team::where('team_name', 'like', '%' . $request->teamString . '%')
             ->with('Tour')
             ->get();
-        $tours = Tour::all();
 
         return view('scoreboard.index', [
-            'tours' => $tours,
-            'teams' => $teams
+            'results' => $results
         ]);
     }
 
