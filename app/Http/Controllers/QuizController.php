@@ -7,6 +7,7 @@ use App\Models\Tour;
 use App\Models\Team;
 use App\Models\Answer;
 use App\Models\TeamProgress;
+use App\Models\TeamAnswer;
 use App\Models\Question;
 use App\Models\Participants;
 use Carbon\Carbon;
@@ -71,17 +72,53 @@ class QuizController extends Controller
     {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
 
+        $question = Question::where('id', $questionId)->first();
+        $team_answer = new TeamAnswer();
+        switch($question->type){
+            case "Meerkeuze":
+                $team_answer->answer = $request->teamAnswerMC;
+                break;
+            case "Open":
+                $team_answer->answer = $request->teamAnswerOpen;
+                break;
+            case "Media":
+                $filename = $question->teamAnswerMedia;
+                $file = $request->file('teamAnswerMedia');
+                if(!empty($file)){
+                    if(\File::exists(public_path('teamimg/' . $filename))) {
+                        \File::delete(public_path('teamimg/' . $filename));
+                    }
+                    $filename = date('YmdHis').$file->getClientOriginalName();
+                }
+
+                if(!empty($file)){
+                    $file-> move(public_path('teamimg'), $filename);
+                }
+                $team_answer->answer = $filename;
+                break; 
+        }
+        $team_answer->save();
+
         $team_progress = new TeamProgress();
         $points = 0;
-        $answer = Answer::where('question_id', $questionId)->where('correct_answer', 1 )->first();
-        if($answer->id == $request->teamAnswer){
-            $question = Question::find($questionId);
+        $status = "";
+
+        if($question->type == 'Meerkeuze') {
+            $answer = Answer::where('question_id', $questionId)->where('correct_answer', 1 )->first();
+            if($answer->answer == $request->teamAnswerMC){
+                $points = $question->points;
+                $status = "Nagekeken";
+            }
+        }else{
             $points = $question->points;
+            $status = "Afwachting";
         }
+
         $team_progress->team_id         = $team->id;
         $team_progress->question_id     = $questionId;
-        $team_progress->answer_id       = $request->teamAnswer;
+        $team_progress->team_answer_id  = $team_answer->id;
         $team_progress->points          = $points;
+        $team_progress->status          = $status;
         $team_progress->save();
 
         return Redirect::to('/quiz/spelen/'. $team->team_identifier);

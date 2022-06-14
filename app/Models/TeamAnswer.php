@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TeamAnswer extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = "team_answer";
 
     protected $fillable = [

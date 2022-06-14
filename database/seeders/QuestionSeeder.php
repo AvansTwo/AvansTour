@@ -59,5 +59,16 @@ class QuestionSeeder extends Seeder
             'points' => 20,
             'tour_id' => 1,
         ]);
+
+        DB::table('question')->insert([
+            'title' => 'Chasseveld',
+            'description' => 'Maak een foto van de pathebioscoop op het chasseveld',
+            'image_url' => "chasseveld.jpg",
+            'video_url' => null,
+            'type' => 'Media',
+            'gps_location' => "51.58970229454752,4.7852689449590455",
+            'points' => 20,
+            'tour_id' => 1,
+        ]);
     }
 }

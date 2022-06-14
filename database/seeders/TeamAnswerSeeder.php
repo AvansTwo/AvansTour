@@ -28,7 +28,11 @@ class TeamAnswerSeeder extends Seeder
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren"'
+            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren'
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => '20220614080121pathe.png'
         ]);
     }
 }
