@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ScoreboardController;
 
 
 /*
@@ -58,12 +59,16 @@ Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit']);
 //Question delete
 Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
 
-//Quiz create
+//Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
 Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
 
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
+
+//Quiz eindscherm
+Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
+
 
 //Quiz play get question 
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
@@ -71,6 +76,24 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 //Quiz play store answer question 
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
-Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
+//Quiz finish
+Route::get('/quiz/end/{id}', [QuizController::class, 'end']);
+
+//Quiz end
+Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
+
+
+//Scoreboard
+Route::get('/scoreboard', [ScoreboardController::class, 'index']);
+
+//Scoreboard search
+Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
+
+Route::get('/scoreboard/tour/{tourId}', [ScoreboardController::class, 'tourFilter']);
 
 //Dashboard
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

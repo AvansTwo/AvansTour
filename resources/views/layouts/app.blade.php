@@ -62,7 +62,7 @@
                     <a class="nav-link {{ request()->is('speurtochten*') ? 'active' : '' }}" href="/speurtochten">Speurtochten</a>
                 </li>
                 <li class="nav-item custom-link">
-                    <a class="nav-link" href="#">Scoreboard</a>
+                    <a class="nav-link {{ request()->is('scoreboard*') ? 'active' : '' }}" href="/scoreboard">Scoreboard</a>
                 </li>
                 <li class="nav-item custom-link">
                     <a class="nav-link" href="#">Over ons</a>

@@ -15,7 +15,7 @@ class LeafletMap extends Component
      *
      * @return void
      */
-    public function __construct($centerpoint, $markers, $markerCallback = "noMarkerCallback")
+    public function __construct($centerpoint, $markers = array(), $markerCallback = "noMarkerCallback")
     {
         // $this->markers = array(count($markers));
         $this->centerpoint = explode(',', $centerpoint);
@@ -43,6 +43,7 @@ class LeafletMap extends Component
             $this->markerCallback = $markerCallback;
         }
     }
+
 
     /**
      * Get the view / contents that represent the component.
