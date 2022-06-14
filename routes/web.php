@@ -5,6 +5,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreboardController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -23,11 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Category Filter
-Route::get('/speurtochten/categorie/{id}', [TourController::class, 'categoryFilter']);
-
 //Tour index
 Route::get('/speurtochten', [TourController::class, 'index']);
+
+//Tour Filter
+Route::get('/speurtochten/categorie/{id}', [TourController::class, 'categoryFilter']);
 
 //Tour create
 Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
@@ -44,6 +45,7 @@ Route::get('/speurtochten/{id}', [TourController::class, 'show']);
 
 //Tour delete
 Route::get('/speurtochten/verwijderen/{id}', [TourController::class, 'destroy']);
+
 
 //Question create
 Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
@@ -70,10 +72,10 @@ Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuest
 Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
 
 
-//Quiz play get question 
+//Quiz play get question
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
 
-//Quiz play store answer question 
+//Quiz play store answer question
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
 //Quiz finish
@@ -89,11 +91,11 @@ Route::get('/scoreboard', [ScoreboardController::class, 'index']);
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 
-Route::get('/scoreboard/tour/{tourId}', [ScoreboardController::class, 'tourFilter']);
+Route::get('/scoreboard/category/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
 
 //Dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/vraag', [DashboardController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

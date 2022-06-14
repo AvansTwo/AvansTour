@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tour;
+use App\Models\Category;
 use App\Models\Team;
+use App\Models\TeamProgress;
+use App\Models\Tour;
+use DateTime;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ScoreboardController extends Controller
 {
@@ -18,11 +22,20 @@ class ScoreboardController extends Controller
      */
     public function index()
     {
-        $results = Team::With('tour')
+        $results = DB::table('team_progress')
+            ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+            ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
             ->paginate(15);
 
+        $tour = Tour::all();
+
+        $categories = Category::all();
+
         return view('scoreboard.index', [
-            'results' => $results
+            'results' => $results,
+            'categories' => $categories,
         ]);
     }
 
@@ -58,19 +71,39 @@ class ScoreboardController extends Controller
         //
     }
 
-    public function tourFilter($tourId)
+    public function categoryFilter($categoryFilter)
     {
-        //
+        $results = DB::table('team_progress')
+            ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+            ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+            ->select(DB::raw('tour.id, tour.name, tour.category_id, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->where('category_id', '=', $categoryFilter)
+            ->groupBy('tour.id', 'tour.name', 'tour.category_id', 'team.team_name', 'team.start_time', 'team.end_time')
+            ->paginate(15);
+
+        $categories = Category::all();
+
+        return view('scoreboard.index', [
+            'results' => $results,
+            'categories' => $categories,
+        ]);
     }
 
     public function teamFilter(Request $request)
     {
-        $results = Team::where('team_name', 'like', '%' . $request->teamString . '%')
-            ->with('Tour')
-            ->get();
+        $results = DB::table('team_progress')
+            ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+            ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->where('team_name', 'like', '%' . $request->teamString . '%')
+            ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
+            ->paginate(15);
+
+        $categories = Category::all();
 
         return view('scoreboard.index', [
-            'results' => $results
+            'results' => $results,
+            'categories' => $categories,
         ]);
     }
 

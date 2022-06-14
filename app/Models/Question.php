@@ -12,7 +12,7 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $table="question";
+    protected $table = "question";
 
     protected $fillable = [
         'title',
@@ -21,7 +21,8 @@ class Question extends Model
         'video_url',
         'gps_location',
         'points',
-        'tour_id '
+        'type',
+        'tour_id'
     ];
 
     public function tour(): BelongsTo
