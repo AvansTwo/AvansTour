@@ -7,7 +7,7 @@
                 <h1>Scoreboard <span class="title-colored">AvansTour</span></h1>
                 <p>Filter op tournaam of zoek op teamnaam</p>
             </div>
-            <div class="col-md-10 ps-0">
+            <div class="col-md-10">
                 <form class="h-100" action="/scoreboard/team" method="post">
                     @csrf
                     <div class="input-group h-100">
@@ -18,7 +18,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-2 pe-0">
+            <div class="col-md-2">
                 <div class="dropdown h-100 w-100">
                     <button class="dropbtn d-block w-100">Filter Tours <i class="fa-solid fa-sort-down"></i></button>
                     <div class="dropdown-content">
@@ -28,30 +28,30 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Tour Name</th>
-                    <th scope="col">Team Name</th>
-                    <th scope="col">Points</th>
-                    <th scope="col">Total Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($results as $result)
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>{{ $result->tour->id }}</td>
-                        <td>{{ $result->tour->name }}</td>
-                        <td>{{ $result->team_name }}</td>
-                        <td></td>
-                        <td></td>
+                        <th scope="col">ID</th>
+                        <th scope="col">Tour Name</th>
+                        <th scope="col">Team Name</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Total Time</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach($results as $result)
+                        <tr>
+                            <td>{{ $result->tour->id }}</td>
+                            <td>{{ $result->tour->name }}</td>
+                            <td>{{ $result->team_name }}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
             <div class="d-flex justify-content-center">
                 {{$results->links()}}
             </div>
