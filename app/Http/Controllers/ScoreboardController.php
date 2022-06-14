@@ -67,7 +67,7 @@ class ScoreboardController extends Controller
     {
         $results = Team::where('team_name', 'like', '%' . $request->teamString . '%')
             ->with('Tour')
-            ->get();
+            ->paginate(15);
 
         return view('scoreboard.index', [
             'results' => $results
