@@ -20,19 +20,29 @@ class TeamProgressSeeder extends Seeder
         DB::table('team_progress')->insert([
             'team_id' => 1,
             'question_id' => 1,
-            'answer_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
             'points' => 10,
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
             'question_id' => 2,
-            'answer_id' => 5,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
             'points' => 0,
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
             'question_id' => 3,
-            'answer_id' => 9,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 1,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
             'points' => 0,
         ]);
     }
