@@ -128,7 +128,8 @@ class QuizController extends Controller
             'team_id' => $team_id
         ));
 
-        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash);
+        $amount = count($questions);
+        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount);
     }
 
     public function endQuiz($teamHash)
