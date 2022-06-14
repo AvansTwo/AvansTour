@@ -23,7 +23,7 @@
                     <button class="dropbtn d-block w-100">Filter Tours <i class="fa-solid fa-sort-down"></i></button>
                     <div class="dropdown-content">
                         @foreach($results as $result)
-                            <a href="/scoreboard/tour/{{ $result->tour->id }}">{{$result->tour->name}}</a>
+                            <a href="/scoreboard/tour/{{ $result->id }}">{{$result->name}}</a>
                         @endforeach
                     </div>
                 </div>
@@ -45,8 +45,8 @@
                             $startDate = new \Nette\Utils\DateTime($result->start_time);
                         @endphp
                         <tr>
-                            <td>{{ $result->tour->id }}</td>
-                            <td>{{ $result->tour->name }}</td>
+                            <td>{{ $result->id }}</td>
+                            <td>{{ $result->name }}</td>
                             <td>{{ $result->team_name }}</td>
                             @if (isset($result->end_time))
                                 <td> {{ $startDate
@@ -60,6 +60,7 @@
                                 </td>
                             @endif
                             <td>
+                                {{ $result->points }}
                             </td>
                         </tr>
                     @endforeach
