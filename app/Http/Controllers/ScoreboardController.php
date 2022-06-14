@@ -21,6 +21,7 @@ class ScoreboardController extends Controller
     public function index()
     {
         $results = Team::With('tour')
+            ->with('teamProgress')
             ->paginate(15);
 
         dd($results);
