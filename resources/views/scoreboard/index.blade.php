@@ -36,17 +36,30 @@
                     <th scope="col">ID</th>
                     <th scope="col">Tour Name</th>
                     <th scope="col">Team Name</th>
-                    <th scope="col">Points</th>
                     <th scope="col">Total Time</th>
+                    <th scope="col">Points</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($results as $result)
+                    @php
+                        $startDate = new \Nette\Utils\DateTime($result->start_time);
+                    @endphp
                     <tr>
                         <td>{{ $result->tour->id }}</td>
                         <td>{{ $result->tour->name }}</td>
                         <td>{{ $result->team_name }}</td>
-                        <td></td>
+                        @if (isset($result->end_time))
+                            <td> {{ $startDate
+                                        ->diff(new \Nette\Utils\DateTime($result->end_time))
+                                        ->format("%h hours, %i minutes and %s seconds")}}
+                            </td>
+                        @else
+                            <td> {{ $startDate
+                                        ->diff(new \Nette\Utils\DateTime())
+                                        ->format("%h hours, %i minutes and %s seconds") }}
+                            </td>
+                        @endif
                         <td></td>
                     </tr>
                 @endforeach
