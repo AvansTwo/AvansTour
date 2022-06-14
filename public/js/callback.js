@@ -6,7 +6,7 @@ function markerClick(question_id, team_hash) {
 }
 
 function mapPickLocation(location){
-    let locationText = document.getElementById('locationText');
+    let locationText = document.getElementById('tourStartLocation') || document.getElementById('questionLocation');
     if (locationText) {
     let format = location.toString().slice(7, -1)
     let strings = format.split(',')
@@ -17,11 +17,11 @@ function mapPickLocation(location){
     setTimeout(function(){
         document.getElementById("locationChanged").classList.add("d-none");
  }, 3000);
-
-    }
 }
 
-let MapIsInvisible = true;
+}
+
+let MapIsInvisible = false;
 
 function showMap() {
     let map = document.getElementById('map');
