@@ -1,6 +1,6 @@
 <div>
     <div id="leafletmap"></div>
-
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="{{ asset('/js/callback.js') }}"></script>
 </div>
@@ -43,8 +43,7 @@
         
     })
     }
-
-        map.invalidateSize(true);
+    map.invalidateSize(true);
 
     map.on('click', function(e) {
     eval(mapPickLocation)(e.latlng);
