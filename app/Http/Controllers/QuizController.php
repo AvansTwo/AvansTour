@@ -148,6 +148,17 @@ class QuizController extends Controller
         //
     }
 
+    public function end($id) 
+    {
+        $team = DB::table('team')->where('team_identifier', $id)->first();
+        $progress = DB::table('team_progress')->where('team_id', $id)->first();
+        $tour = Tour::find($team->tour_id);
+
+        $total_points = $progress->points;
+
+        return view('quiz.end')->with('tour', $tour)->with('total_points', $total_points)->with('team', $team);
+    }
+
     /**
      * Update the specified resource in storage.
      *
