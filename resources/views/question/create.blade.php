@@ -26,6 +26,22 @@
                             <input type="text" name="questionDesc" class="form-control" id="questionDesc" placeholder="Hoeveel klaslokalen telt het gebouw LA in totaal?" required>
                         </div>
                         <div class="col-10 mx-auto mb-3">
+                            <label for="questionDesc" class="mb-1 fw-bold d-block">Type vraag</label>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="typeRadio" checked type="radio" value="Meerkeuze" id="inlineRadio1">
+                                <label class="form-check-label" for="inlineRadio1"> Meerkeuze vraag </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="typeRadio" type="radio" value="Open" id="inlineRadio2">
+                                <label class="form-check-label" for="inlineRadio2"> Open vraag </label>
+                            </div>
+                            <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="bottom"  title="Bij een mediavraag dient de student de vraag te beantwoorden met een foto of video bestand.">
+                                <input class="form-check-input" name="typeRadio" type="radio" value="Media" id="inlineRadio3" >
+                                <label class="form-check-label" for="inlineRadio3"> Media vraag* </label>
+                            </div>
+                        </div>
+                        <div class="col-10 mx-auto mb-3">
                             <label for="questionPoints" class="mb-1 fw-bold">Aantal punten vraag</label>
                             <input type="number" name="questionPoints" id="typeNumber" class="form-control" placeholder="10" required min="1" max="100"/>
                         </div>
@@ -42,25 +58,25 @@
                             <div class="form-check">
                                 <input class="form-check-input" onclick="showImageInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">
-                                    Foto vraag
+                                    Foto
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" onclick="showVideoInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                                 <label class="form-check-label" for="flexRadioDefault2">
-                                    Video vraag
+                                    Video
                                 </label>
                             </div>
                         </div>
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
-                            <label for="questionImg" class="mb-1 fw-bold">Foto vraag</label>
+                            <label for="questionImg" class="mb-1 fw-bold">Foto</label>
                             <input class="form-control" name="questionImg" type="file" id="questionImg" required>
                         </div>
                         <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 d-none">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag</label>
+                            <label for="questionVideo" class="mb-1 fw-bold">Video</label>
                             <input type="text" name="questionVideo" disabled class="form-control" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                         </div>
-                        <div class="col-10 mx-auto mb-3">
+                        <div id="multiple-choice-fields" class="col-10 mx-auto mb-3">
                             <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord 1</label>
                             <div class="input-group mb-3">
                                 <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" type="radio" required value="1" id="questionCorrectAnswer">
@@ -92,43 +108,48 @@
         </div>
     </div>
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-
         function showImageInput() {
-            document.getElementById("questionImgWrapper").classList.remove("d-none");
-            document.getElementById("questionImg").disabled = false;
-            document.getElementById("questionImg").required = true;
+            $("#questionImgWrapper").removeClass("d-none");
+            $("#questionImg").attr({
+                disabled: false,
+                required: true
+            })
 
-            document.getElementById("questionVideoWrapper").classList.add("d-none")
-            document.getElementById("questionVideo").disabled = true;
-            document.getElementById("questionVideo").required = false;
+            $("#questionVideoWrapper").addClass("d-none");
+            $("#questionVideo").attr({
+                disabled: true,
+                required: false
+            })
         }
 
         function showVideoInput() {
-            document.getElementById("questionVideoWrapper").classList.remove("d-none")
-            document.getElementById("questionVideo").disabled = false;
-            document.getElementById("questionVideo").required = true;
+            $("#questionVideoWrapper").removeClass("d-none");
+            $("#questionVideo").attr({
+                disabled: false,
+                required: true
+            })
 
-            document.getElementById("questionImgWrapper").classList.add("d-none");
-            document.getElementById("questionImg").disabled = true;
-            document.getElementById("questionImg").required = false;
+            $("#questionImgWrapper").addClass("d-none");
+            $("#questionImg").attr({
+                disabled: true,
+                required: false
+            })
         }
+        
+        $('input[type=radio][name=typeRadio]').change(function() {
+            if (this.value == 'Meerkeuze') {
+                $("#multiple-choice-fields").show();
+                $("#multiple-choice-fields :input").attr({
+                    disabled: false,
+                    required: true
+                });
+            }else{
+                $("#multiple-choice-fields").hide();
+                $("#multiple-choice-fields :input").attr({
+                    disabled: true,
+                    required: false
+                });
+            }
+        });
     </script>
 @endsection
