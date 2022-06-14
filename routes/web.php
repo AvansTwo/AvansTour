@@ -71,10 +71,10 @@ Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuest
 Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
 
 
-//Quiz play get question 
+//Quiz play get question
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
 
-//Quiz play store answer question 
+//Quiz play store answer question
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
 //Quiz finish
@@ -90,7 +90,7 @@ Route::get('/scoreboard', [ScoreboardController::class, 'index']);
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 
-Route::get('/scoreboard/tour/{tourId}', [ScoreboardController::class, 'tourFilter']);
+Route::get('/scoreboard/category/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
