@@ -1,10 +1,10 @@
-function markerClick(person, question, marker) {
+function markerClick(person, question, marker, isAdmin) {
     console.log(question.id);
     console.log(question.team_hash);
-
+    console.log(isAdmin)
     var d = map.distance(marker._latlng, person.getLatLng());
 
-    if (d < person.getRadius()){
+    if (d < person.getRadius() || isAdmin == true){
     document.location.href = `/quiz/spelen/${question.team_hash}/vraag/${question.id}`;
     } else {
         marker.bindPopup('Get closer to this question!').openPopup();
