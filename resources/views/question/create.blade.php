@@ -48,15 +48,15 @@
                         <div class="col-10 mx-auto mb-3">
                            <label for="questionLocation" class="mb-1 fw-bold">Locatie vraag</label>
                            <div id="map">
-                            <x-leaflet-map centerpoint="51.583683,4.798869"  markerCallback="markerClick"></x-leaflet-map>
-                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Location changed!</div>
+                            <x-leaflet-map centerpoint="51.583683,4.798869" mapCallback="mapPickLocation"></x-leaflet-map>
+                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Locatie aangepast</div>
                             <br>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="location" id="questionLocation" value="51.583683,4.798869" aria-describedby="inputGroupPrepend" readonly>
+                                <input type="text" class="form-control" name="location" id="questionLocation" value="" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly required disabled>
                             </div>
                         </div>
                         <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
