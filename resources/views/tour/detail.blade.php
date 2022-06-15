@@ -67,8 +67,8 @@
             <div class="col-12 grey-bg p-5 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="mb-3"><i class="fa-solid fa-earth-europe tour-icon"></i> Startlocatie:</h2>
-{{--                        <x-leaflet-map :centerpoint="$tour->location" :markers="$tour->location" markerCallback="markerClick"></x-leaflet-map>--}}
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-earth-europe tour-icon-bold"></i> Startlocatie:</h2>
+                        <x-leaflet-map :centerpoint="$tour->location" :markers="$startLocation" markerCallback="startLocationMarkerClick"></x-leaflet-map>
                     </div>
                 </div>
             </div>
@@ -109,27 +109,4 @@
             @endif
         </div>
     </div>
-    <script>
-        // initialize the map on the "map" div with a given center and zoom
-        let mapOptions = {
-            center: [{{$tour->location}}],
-            zoom: 14
-        };
-
-        let map = L.map('map', mapOptions);
-
-        let layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        });
-        map.addLayer(layer);
-
-        let iconOptions = {
-            title: "Start point",
-            draggable: false,
-        };
-
-        let marker = new L.marker([{{$tour->location}}]);
-        marker.addTo(map);
-        marker.bindPopup("Start locatie").openPopup();
-    </script>
 @endsection

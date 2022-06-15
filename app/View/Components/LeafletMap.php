@@ -9,15 +9,15 @@ class LeafletMap extends Component
     public $centerpoint;
     public $markers;
     public $markerCallback;
+    public $mapCallback;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($centerpoint, $markers = array(), $markerCallback = "noMarkerCallback")
+    public function __construct($centerpoint, $markers = array(), $markerCallback = "noMarkerCallback", $mapCallback = "noMapCallback")
     {
-        // $this->markers = array(count($markers));
         $this->centerpoint = explode(',', $centerpoint);
 
         $markerArr = array(count($markers));
@@ -39,8 +39,12 @@ class LeafletMap extends Component
         }
         
         $this->markers = $markerArr;
-        if($markerCallback != ""){
+        if(isset($markerCallback)){
             $this->markerCallback = $markerCallback;
+        }
+
+        if(isset($mapCallback)){
+            $this->mapCallback = $mapCallback;
         }
     }
 

@@ -27,7 +27,8 @@
 
     {{-- Leaflet map --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.1/dist/L.Control.Locate.min.css" />
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -133,6 +134,21 @@
                 alertify.error('Tour afronden gecanceld');
             });
     }
+
+    function JSalertCorrectAnswer(){
+        // A confirm dialog
+        alertify.confirm("Weet je zeker dat je dit antwoord wilt foutkeuren?", "Hierdoor krijgen de studenten geen punten voor deze vraag",
+
+            function(){
+                document.getElementById("incorrect-answer-url").style.pointerEvents = "";
+                window.location.href = document.getElementById("incorrect-answer-url").href;
+            },
+
+            function(){
+                alertify.error('Antwoord foutkeuren geanulleerd');
+            });
+    }
+
 </script>
 </body>
 
