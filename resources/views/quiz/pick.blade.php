@@ -9,6 +9,11 @@
             <h1>De speurtocht <span class="title-colored"> kaart</span></h1>
             <p>Loop naar een van de markers op de map en klik deze aan als je bent aangekomen op bestemming</p>
             <x-leaflet-map :centerpoint="$tour->location" :markers="$remainingQuestions" markerCallback="markerClick"></x-leaflet-map>
+            @if(Auth::check())
+            <x-geolocation isAdmin="true"></x-geolocation>
+            @else
+            <x-geolocation isAdmin="false"></x-geolocation>
+            @endif
             <p class="text-center mt-4">Nog <span id="amount-question-left">{{$amount}}</span> vragen te beantwoorden</p>
             <div class="d-flex">
                 {{-- In de href nog de url van de eind pagina --}}

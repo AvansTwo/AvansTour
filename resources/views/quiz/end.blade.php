@@ -20,7 +20,7 @@
 
                 <div class="col-12 d-flex mt-4">
                     <i class="fa-solid fa-award question-icon-mark"></i>
-                    <h2 class="quiz-info">Punten: <span class="quiz-colored">{{$points}}</span></p>
+                    <h2 class="quiz-info">Punten: <span class="quiz-colored">{{$points}}</span></h2>
                 </div>
 
                 <div class="col-12 d-flex mt-4">
