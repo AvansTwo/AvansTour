@@ -56,7 +56,7 @@
                                 <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="location" id="questionLocation" value="" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly required disabled>
+                                <input type="text" class="form-control" name="questionLocation" id="questionLocation" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" required readonly>
                             </div>
                         </div>
                         <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
