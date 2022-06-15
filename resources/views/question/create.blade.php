@@ -1,18 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Speurtocht detail')
+@section('title', 'Vraag aanmaken')
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>
-                @if(Session::has('SuccessMessage'))
-                    <div class="alert alert-success" role="alert">
-                        {{Session::get('SuccessMessage') }}
-                    </div>
-                @endif
             </div>
             <div class="col-12 mb-5">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
+                <form class="needs-validation py-5 grey-bg" novalidate action="/tour/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input type="hidden" name="tourID" value="{{ $tour->id }}" />
@@ -105,7 +100,7 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-                        <a class="btn primary-btn mt-3" href="/speurtochten/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
+                        <a class="btn primary-btn mt-3" href="/tour/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
@@ -140,7 +135,7 @@
                 required: false
             })
         }
-        
+
         $('input[type=radio][name=typeRadio]').change(function() {
             if (this.value == 'Meerkeuze') {
                 $("#multiple-choice-fields").show();

@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'Speurtocht detail')
+@section('title', 'Tour detail')
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <button type="button" onclick="location.href='/speurtochten';"
+                <button type="button" onclick="location.href='/tours';"
                         class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug
                 </button>
             </div>
@@ -34,20 +34,20 @@
                         <div class="col-12 mt-5">
                             <div class="row">
                                 <div class="col-12 col-lg-6">
-                                    <button type="button" onclick="location.href='/speurtochten/{{$tour->id}}/quiz';"
+                                    <button type="button" onclick="location.href='/tour/{{$tour->id}}/quiz';"
                                             class="btn primary-btn d-block d-lg-inline">Start nu <i
                                             class="fa-solid fa-chevron-right"></i></button>
                                 </div>
                                 @if(Auth::check())
                                 <div class="col-12 col-lg-6 mt-4 mt-lg-0">
-                                    <button onclick="location.href='/speurtochten/aanpassen/{{$tour->id}}';"
+                                    <button onclick="location.href='/tour/aanpassen/{{$tour->id}}';"
                                             class="btn create-btn edit-btn mt-2"><i
                                             class="fa-solid fa-pen-to-square"></i></button>
                                     <button type="button"
-                                            onclick="location.href='/speurtochten/{{$tour->id}}/vragen/aanmaken';"
+                                            onclick="location.href='/tour/{{$tour->id}}/vragen/aanmaken';"
                                             class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>
                                     </button>
-                                    <button onclick="location.href='/speurtochten/verwijderen/{{$tour->id}}';"
+                                    <button onclick="location.href='/tour/verwijderen/{{$tour->id}}';"
                                             class="btn create-btn delete-btn mt-2"><i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>

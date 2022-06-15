@@ -98,7 +98,7 @@ class QuizController extends Controller
                 }
                 $team_answer->answer = $filename;
                 $team_answer->is_file = $is_file;
-                break; 
+                break;
         }
         $team_answer->save();
 
@@ -110,8 +110,8 @@ class QuizController extends Controller
             $answer = Answer::where('question_id', $questionId)->where('correct_answer', 1 )->first();
             if($answer->answer == $request->teamAnswerMC){
                 $points = $question->points;
-                $status = "Nagekeken";
             }
+            $status = "Nagekeken";
         }else{
             $points = $question->points;
             $status = "Afwachting";
@@ -147,8 +147,8 @@ class QuizController extends Controller
         $points = TeamProgress::where('team_id', $team->id)->sum('points');
         $teamQuestion = TeamProgress::where('team_id', $team->id)->count('question_id');
         $teamUpdated = DB::table('team')->where('id', $team->id)->first();
-        $start_time = Carbon::parse($teamUpdated->start_time); 
-        $end_time = Carbon::parse($teamUpdated->end_time); 
+        $start_time = Carbon::parse($teamUpdated->start_time);
+        $end_time = Carbon::parse($teamUpdated->end_time);
         $difference = $start_time->diffInMinutes($end_time);
         return view('quiz.end')->with('team', $teamUpdated)->with('teamQuestion', $teamQuestion)->with('points', $points)->with('difference', $difference);
     }
@@ -189,7 +189,7 @@ class QuizController extends Controller
         //
     }
 
-    public function end($id) 
+    public function end($id)
     {
         $team = DB::table('team')->where('team_identifier', $id)->first();
         $progress = DB::table('team_progress')->where('team_id', $id)->first();
