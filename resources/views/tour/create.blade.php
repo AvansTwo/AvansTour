@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Speurtocht detail')
+@section('title', 'Tour aanmaken')
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,7 +7,7 @@
                 <h1 class="my-5 text-center">Een <span class="title-colored">tour</span> aanmaken</h1>
             </div>
             <div class="col-12">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanmaken" method="post" enctype="multipart/form-data">
+                <form class="needs-validation py-5 grey-bg" novalidate action="/tour/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-row">
@@ -24,7 +24,7 @@
 
                             <div id="map">
                             <x-leaflet-map centerpoint="51.583683,4.798869"  mapCallback="mapPickLocation"></x-leaflet-map>
-                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Location changed!</div>
+                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Locatie aangepast!</div>
                             <br>
                             </div>
 
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourimg" class="mb-1 fw-bold">Tour foto</label>
-                            <input class="form-control" name="image_url" type="file" id="formFile" required>
+                            <input class="form-control" name="image_url" type="file" accept="image/png, image/jpg, image/jpeg" id="formFile" required>
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourCategory" class="mb-1 fw-bold">Categorie</label>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-                        <a class="btn primary-btn mt-3" href="/speurtochten"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
+                        <a class="btn primary-btn mt-3" href="/tours"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
