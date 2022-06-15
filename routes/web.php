@@ -85,7 +85,7 @@ Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
 
 
 //Scoreboard
-Route::get('/scoreboard', [ScoreboardController::class, 'index']);
+Route::get('/scoreboard', [ScoreboardController::class, 'index'])->name('scoreboard.index');
 
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
