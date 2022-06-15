@@ -1,8 +1,14 @@
-function markerClick(question_id, team_hash) {
-    console.log(question_id);
-    console.log(team_hash);
+function markerClick(person, question, marker) {
+    console.log(question.id);
+    console.log(question.team_hash);
 
-    document.location.href = `/quiz/spelen/${team_hash}/vraag/${question_id}`;
+    var d = map.distance(marker._latlng, person.getLatLng());
+
+    if (d < person.getRadius()){
+    document.location.href = `/quiz/spelen/${question.team_hash}/vraag/${question.id}`;
+    } else {
+        marker.bindPopup('Get closer to this question!').openPopup();
+    }
 }
 
 function mapPickLocation(map, marker, event, circle) {
