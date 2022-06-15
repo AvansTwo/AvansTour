@@ -5,43 +5,41 @@
 </div>
 
 <script>
-var isAdmin = {{ $isAdmin }};
-console.log(isAdmin)
-map.locate({setView: true, watch: true, enableHighAccuracy: true}) /* This will return map so you can do chaining */
-        .on('locationfound', function(e){
-            let radius = Math.round(e.accuracy/10);
-            var marker = L.marker([e.latitude, e.longitude]).bindPopup(`You are within ${radius} meters from here!`);
-            var person = L.circle([e.latitude, e.longitude], radius, {
-                weight: 1,
-                color: 'blue',
-                fillColor: '#cacaca',
-                fillOpacity: 0.2
-            });
-            map.addLayer(marker);
-            map.addLayer(person);
+    var locationIcon = L.icon({
+        iconUrl: {!! json_encode(asset('img/pin-user.png')) !!},
 
-        if(markers){
+        iconSize:     [28, 41], // size of the icon
+        iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
+        popupAnchor: [0, -40]
+    });
+
+    let isAdmin = {{ $isAdmin }};
+
+    let liveMarker = L.marker([1,1], {
+        icon: locationIcon
+    }).bindPopup(`Deze radius strekt 100 meter om jouw huidige locatie!`).addTo(map);
+
+    let personCircle = L.circle([1,1], 100, {
+        weight: 1,
+        color: 'blue',
+        fillColor: '#cacaca',
+        fillOpacity: 0.2
+    }).addTo(map);
+
+    if(markers){
         markers.forEach((marker) => {    
-        if(marker.id && marker.team_hash) {
             let markerMap = L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
-                eval(markerCallback)(person, marker, markerMap, isAdmin);
+                eval(markerCallback)(personCircle, marker, markerMap, isAdmin);
             });
-        }else if (marker.id) {
-            L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
-                eval(markerCallback)(marker);
-            });
-        }else{
-            L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
-                eval(markerCallback);
-            });
-        }
-        
-    })
+        })
     }
 
-        })
-       .on('locationerror', function(e){
-            alert("Location access denied, please refresh page!");
-        });
-
-    </script>
+    // Locate listener that updates marker location
+    map.locate({setView: true, watch: true, enableHighAccuracy: true}).on('locationfound', function(e){
+        const newLatLong = new L.LatLng(e.latitude, e.longitude);
+        liveMarker.setLatLng(newLatLong);
+        personCircle.setLatLng(newLatLong);
+    }).on('locationerror', function(e){
+        alert("Avanstour heeft geen toegang tot je locatie!! Verleen toegang om verder te gaan met de tour");
+    });
+</script>

@@ -18,7 +18,6 @@ class LeafletMap extends Component
      */
     public function __construct($centerpoint, $markers = array(), $markerCallback = "noMarkerCallback", $mapCallback = "noMapCallback")
     {
-        // $this->markers = array(count($markers));
         $this->centerpoint = explode(',', $centerpoint);
 
         $markerArr = array(count($markers));

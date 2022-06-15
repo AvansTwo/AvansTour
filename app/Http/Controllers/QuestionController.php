@@ -98,7 +98,12 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        return view('question.detail')->with('question', $question);
+        
+        $questionLocation = array((object) [
+            "gps_location" => $question->gps_location
+        ]);
+
+        return view('question.detail')->with('question', $question)->with('questionLocation', $questionLocation);
     }
 
     /**
