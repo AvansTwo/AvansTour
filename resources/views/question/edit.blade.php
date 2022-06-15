@@ -27,7 +27,7 @@
                             <label for="questionLocation" class="mb-1 fw-bold">Locatie vraag</label>
 
                             <div id="map">
-                            <x-leaflet-map centerpoint="51.583683,4.798869"  markerCallback="markerClick"></x-leaflet-map>
+                            <x-leaflet-map centerpoint="51.583683,4.798869"  mapCallback="mapPickLocation"></x-leaflet-map>
                             <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Location changed!</div>
                             <br>
                             </div>

@@ -19,8 +19,9 @@ return new class extends Migration
             //Table properties
             $table->foreignId('team_id')->constrained('team')->cascadeOnDelete();
             $table->foreignId('question_id')->constrained('question')->cascadeOnDelete();
-            $table->foreignId('answer_id')->constrained('answer')->cascadeOnDelete();
+            $table->foreignId('team_answer_id')->constrained('team_answer')->cascadeOnDelete();
             $table->unsignedInteger('points');
+            $table->enum('status', ['Afwachting', 'Nagekeken']);
             $table->timestamps();
         });
     }
