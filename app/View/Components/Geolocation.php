@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class Geolocation extends Component
 {
+    public $isAdmin;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($isAdmin)
     {
-        //
+        $this->isAdmin = $isAdmin;
     }
 
     /**

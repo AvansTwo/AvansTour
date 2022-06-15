@@ -5,7 +5,8 @@
 </div>
 
 <script>
-
+var isAdmin = {{ $isAdmin }};
+console.log(isAdmin)
 map.locate({setView: true, watch: true, enableHighAccuracy: true}) /* This will return map so you can do chaining */
         .on('locationfound', function(e){
             let radius = Math.round(e.accuracy/10);
@@ -23,7 +24,7 @@ map.locate({setView: true, watch: true, enableHighAccuracy: true}) /* This will 
         markers.forEach((marker) => {    
         if(marker.id && marker.team_hash) {
             let markerMap = L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
-                eval(markerCallback)(person, marker, markerMap);
+                eval(markerCallback)(person, marker, markerMap, isAdmin);
             });
         }else if (marker.id) {
             L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
