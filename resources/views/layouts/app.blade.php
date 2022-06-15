@@ -133,6 +133,21 @@
                 alertify.error('Tour afronden gecanceld');
             });
     }
+
+    function JSalertCorrectAnswer(){
+        // A confirm dialog
+        alertify.confirm("Weet je zeker dat je dit antwoord wilt foutkeuren?", "Hierdoor krijgen de studenten geen punten voor deze vraag",
+
+            function(){
+                document.getElementById("incorrect-answer-url").style.pointerEvents = "";
+                window.location.href = document.getElementById("incorrect-answer-url").href;
+            },
+
+            function(){
+                alertify.error('Antwoord foutkeuren geanulleerd');
+            });
+    }
+
 </script>
 </body>
 

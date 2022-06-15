@@ -14,9 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('team_progress', function (Blueprint $table) {
-            //CompositeKey
-            $table->primary(['team_id', 'question_id']);
-            //Table properties
+            $table->id();
             $table->foreignId('team_id')->constrained('team')->cascadeOnDelete();
             $table->foreignId('question_id')->constrained('question')->cascadeOnDelete();
             $table->foreignId('team_answer_id')->constrained('team_answer')->cascadeOnDelete();

@@ -4,20 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Models\TeamProgress;
 use App\Models\Question;
 use App\Models\Answer;
+use App\Models\Team;
+use App\Models\TeamAnswer;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+
 
 class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
-        return view('dashboard.index');
+        $teams = TeamProgress::all()->where('status', 'Afwachting');
+        return view('dashboard.index')->with('teams', $teams);
     }
 
     /**
@@ -25,9 +31,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    
+     public function teamIndex($teamId)
     {
-        //
+        $teamProgress = TeamProgress::all()->where('team_id', $teamId)->where('status', 'Afwachting');
+        $teamName = $teamProgress->first();
+        return view('dashboard.teamIndex')->with('teamProgress', $teamProgress)->with('teamName', $teamName);
     }
 
     /**
@@ -44,18 +53,41 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $answerId
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($teamProgressId)
     {
-        //
-
-        return view('dashboard.detail');
-
-        // $answer = Question::find($id);
-        // return view('dashboard.detail')->with('answer', $answer);
+        $TeamProgress = TeamProgress::find($teamProgressId);
+        return view('dashboard.detail')->with('TeamProgress', $TeamProgress);
     }
+
+    public function correctAnswer($teamProgressId){
+        $TeamProgress = TeamProgress::find($teamProgressId);
+        $TeamProgress->update([
+            'team_id'           => $TeamProgress->team_id,
+            'question_id'       => $TeamProgress->question_id,
+            'team_answer_id '   => $TeamProgress->team_answer_id,
+            'points'            => $TeamProgress->points,
+            'status'            => 'Nagekeken',
+        ]);
+
+        return Redirect::to('/dashboard/team/'. $teamId);
+    }
+
+    public function inCorrectAnswer($teamProgressId){
+        $TeamProgress = TeamProgress::find($teamProgressId);
+        $TeamProgress->update([
+            'team_id'           => $TeamProgress->team_id,
+            'question_id'       => $TeamProgress->question_id,
+            'team_answer_id '   => $TeamProgress->team_answer_id,
+            'points'            => 0,
+            'status'            => 'Nagekeken',
+        ]);
+
+        return Redirect::to('/dashboard/team/'. $teamId);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

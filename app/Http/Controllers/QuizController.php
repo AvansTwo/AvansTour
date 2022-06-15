@@ -71,6 +71,7 @@ class QuizController extends Controller
     public function storeTeamProgress(Request $request, $teamHash, $questionId)
     {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
+        $is_file = 0;
 
         $question = Question::where('id', $questionId)->first();
         $team_answer = new TeamAnswer();
@@ -93,8 +94,10 @@ class QuizController extends Controller
 
                 if(!empty($file)){
                     $file-> move(public_path('teamimg'), $filename);
+                    $is_file = 1;
                 }
                 $team_answer->answer = $filename;
+                $team_answer->is_file = $is_file;
                 break; 
         }
         $team_answer->save();
