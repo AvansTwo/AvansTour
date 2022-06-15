@@ -86,12 +86,14 @@ Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
 
 
 //Scoreboard
-Route::get('/scoreboard', [ScoreboardController::class, 'index']);
+Route::get('/scoreboard', [ScoreboardController::class, 'index'])->name('scoreboard.index');
 
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 
 Route::get('/scoreboard/category/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
+Route::get('/scoreboard/SortPoints/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
+Route::get('/scoreboard/SortTime/{sortId}', [ScoreboardController::class, 'sortTime'])->name('sortTime');
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
