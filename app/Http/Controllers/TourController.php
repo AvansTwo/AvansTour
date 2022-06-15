@@ -96,9 +96,13 @@ class TourController extends Controller
             $totalPoints += $question->points;
         }
 
-        $coords = explode(',', $tour->location);
+        $startLocation = array((object) [
+            "gps_location" => $tour->location
+        ]);
 
-        return view('tour.detail')->with('tour', $tour)->with('lat', trim($coords[0]))->with('long', trim($coords[1]))->with('totalPoints', $totalPoints);
+
+
+        return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
     }
 
     /**
