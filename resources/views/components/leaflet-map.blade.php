@@ -1,6 +1,5 @@
 <div>
     <div id="leafletmap"></div>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.76.1/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="{{ asset('/js/callback.js') }}"></script>
 </div>
@@ -25,28 +24,11 @@
     
     if (markers[0] == 0) markers = [];
 
-    if(markers){
-        markers.forEach((marker) => {    
-        if(marker.id && marker.team_hash) {
-            L.marker([marker.lat, marker.long]).addTo(map).on('click', function(e) {
-                eval(markerCallback)(marker.id, marker.team_hash);
-            });
-        }else if (marker.id) {
-            L.marker([marker.lat, marker.long]).addTo(map).on('click', function(e) {
-                eval(markerCallback)(marker.id);
-            });
-        }else{
-            L.marker([marker.lat, marker.long]).addTo(map).on('click', function(e) {
-                eval(markerCallback);
-            });
-        }
-        
-    })
+    if(mapCallback == mapPickLocation) {
+        let marker = L.marker([1, 1], {icon: icon}).addTo(map);
+        map.on('click', function(e) {
+            eval(mapCallback)(map, marker, e, circle);
+        })
     }
-    map.invalidateSize(true);
-
-    map.on('click', function(e) {
-    eval(mapPickLocation)(e.latlng);
-    })
 
 </script>
