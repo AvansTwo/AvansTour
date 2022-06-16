@@ -78,9 +78,6 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 //Quiz play store answer question
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
-//Quiz finish
-Route::get('/quiz/end/{id}', [QuizController::class, 'end']);
-
 //Quiz end
 Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
 
