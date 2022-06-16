@@ -31,7 +31,11 @@ function mapPickLocation(map, marker, event, circle) {
             }, 3000);
         }
     } else {
-        alert('De locatie van de vraag moet binnen de geven cirkel liggen');
+        Swal.fire(
+            'Hey, dat is niet mogelijk!',
+            'Je kunt geen locaties buiten de cirkel selecteren',
+            'warning'
+        ) 
     }
 }
 
