@@ -30,36 +30,36 @@ Route::get('/tours', [TourController::class, 'index']);
 //Tour Filter
 Route::get('/tours/categorie/{id}', [TourController::class, 'categoryFilter']);
 
-//Tour create
-Route::post('/tour/aanmaken', [TourController::class, 'store']);
-Route::get('/tour/aanmaken', [TourController::class, 'create']);
-
+//TODO: Waarvoor deze route?
 Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
 
+//Tour create
+Route::post('/tour/aanmaken', [TourController::class, 'store'])->middleware('auth');
+Route::get('/tour/aanmaken', [TourController::class, 'create'])->middleware('auth');
+
 //Tour edit
-Route::post('/tour/aanpassen/{id}', [TourController::class, 'update']);
-Route::get('/tour/aanpassen/{id}', [TourController::class, 'edit']);
+Route::post('/tour/aanpassen/{id}', [TourController::class, 'update'])->middleware('auth');
+Route::get('/tour/aanpassen/{id}', [TourController::class, 'edit'])->middleware('auth');
+
+//Tour delete
+Route::get('/tour/verwijderen/{id}', [TourController::class, 'destroy'])->middleware('auth');
 
 //Tour show
 Route::get('/tour/{id}', [TourController::class, 'show']);
 
-//Tour delete
-Route::get('/tour/verwijderen/{id}', [TourController::class, 'destroy']);
-
-
 //Question create
-Route::post('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
-Route::get('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'create']);
+Route::post('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'store'])->middleware('auth');
+Route::get('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'create'])->middleware('auth');
 
 //Question show
 Route::get('/vragen/{id}', [QuestionController::class, 'show']);
 
 //Question edit
-Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update']);
-Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit']);
+Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update'])->middleware('auth');
+Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit'])->middleware('auth');
 
 //Question delete
-Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
+Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy'])->middleware('auth');
 
 //Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
