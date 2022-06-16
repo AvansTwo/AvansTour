@@ -1,37 +1,37 @@
 // Alertify javascript voor bevestiging tour afronden
-function JSalert(){
-    alertify.confirm("Weet je het zeker?","Wil je de tour afronden? Zodra de tour is afgerond kun je niet meer terug!",
-        function(){
+function JSalert() {
+    alertify.confirm("Weet je het zeker?", "Wil je de tour afronden? Zodra de tour is afgerond kun je niet meer terug!",
+        function () {
             document.getElementById("exit-tour-url").style.pointerEvents = "";
             window.location.href = document.getElementById("exit-tour-url").href;
         },
-        function(){
+        function () {
 
         }).set('movable', false).set('closable', false);
 
 }
 
 // Alertify javascript voor foutkeuren antwoord
-function JSalertCorrectAnswer(){
-    alertify.confirm("Weet je het zeker?","Wil je dit antwoord foutkeuren? Hierdoor krijgen de studenten geen punten voor deze vraag :(",
-        function(){
+function JSalertCorrectAnswer() {
+    alertify.confirm("Weet je het zeker?", "Wil je dit antwoord foutkeuren? Hierdoor krijgen de studenten geen punten voor deze vraag :(",
+        function () {
             document.getElementById("incorrect-answer-url").style.pointerEvents = "";
             window.location.href = document.getElementById("incorrect-answer-url").href;
         },
-        function(){
+        function () {
 
         }).set('movable', false).set('closable', false);
 }
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
+(function () {
     'use strict';
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.getElementsByClassName('needs-validation');
         // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
                 if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -71,14 +71,14 @@ function showVideoInput() {
     })
 }
 
-$('input[type=radio][name=typeRadio]').change(function() {
+$('input[type=radio][name=typeRadio]').change(function () {
     if (this.value == 'Meerkeuze') {
         $("#multiple-choice-fields").show();
         $("#multiple-choice-fields :input").attr({
             disabled: false,
             required: true
         });
-    }else{
+    } else {
         $("#multiple-choice-fields").hide();
         $("#multiple-choice-fields :input").attr({
             disabled: true,
@@ -95,7 +95,7 @@ function removeTourImage() {
 }
 
 function showImageInput() {
-    if(!document.getElementById("questionPhoto")){
+    if (!document.getElementById("questionPhoto")) {
         document.getElementById("questionImg").classList.remove("d-none");
     }
     document.getElementById("questionImgWrapper").classList.remove("d-none");
@@ -117,64 +117,66 @@ function showVideoInput() {
     document.getElementById("questionImg").required = false;
 }
 
-if(type == "Open"){
-    $("#openvraagFields").removeClass('d-none')
+function checkType(type) {
+    if (type == "Open") {
+        $("#openvraagFields").removeClass('d-none')
 
-    $("#multipleChoiceFields :input").attr({
-        disabled: true,
-        required: false
-    })
+        $("#multipleChoiceFields :input").attr({
+            disabled: true,
+            required: false
+        })
 
-    $("#mediaQuestionAnswer :input").attr({
-        disabled: true,
-        required: false
-    })
-}
+        $("#mediaQuestionAnswer :input").attr({
+            disabled: true,
+            required: false
+        })
+    }
 
-if(type == "Media"){
-    $("#mediaQuestionAnswer").removeClass('d-none')
+    if (type == "Media") {
+        $("#mediaQuestionAnswer").removeClass('d-none')
 
-    $("#openvraagFields :input").attr({
-        disabled: true,
-        required: false
-    })
+        $("#openvraagFields :input").attr({
+            disabled: true,
+            required: false
+        })
 
-    $("#multipleChoiceFields :input").attr({
-        disabled: true,
-        required: false
-    })
+        $("#multipleChoiceFields :input").attr({
+            disabled: true,
+            required: false
+        })
+    }
 }
 
 // Create team page
 let count = 1;
 function showMemberInputField() {
-    if(count === 8){
+    if (count === 8) {
         document.getElementById("max_players_reached").classList.remove("d-none");
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("max_players_reached").classList.add("d-none");
-        },5000);
+        }, 5000);
 
-    } else{
+    } else {
         count++;
-        document.getElementById("team_player_label_"+count).classList.remove("d-none");
-        document.getElementById("team_player_input_"+count).classList.remove("d-none");
-        document.getElementById("team_player_input_"+count).disabled = false;
+        document.getElementById("team_player_label_" + count).classList.remove("d-none");
+        document.getElementById("team_player_input_" + count).classList.remove("d-none");
+        document.getElementById("team_player_input_" + count).disabled = false;
         document.getElementById("amount_players").value = count;
     }
 }
 
 function hideMemberInputField() {
-    if(count != 1){
-        document.getElementById("team_player_label_"+count).classList.add("d-none");
-        document.getElementById("team_player_input_"+count).classList.add("d-none");
-        document.getElementById("team_player_input_"+count).disabled = true;
+    if (count != 1) {
+        document.getElementById("team_player_label_" + count).classList.add("d-none");
+        document.getElementById("team_player_input_" + count).classList.add("d-none");
+        document.getElementById("team_player_input_" + count).disabled = true;
         count--;
         document.getElementById("amount_players").value = count;
-    } else{
+    } else {
         document.getElementById("min_players_reached").classList.remove("d-none");
-        setTimeout(function(){
+        setTimeout(function () {
             document.getElementById("min_players_reached").classList.add("d-none");
-        },5000);
+        }, 5000);
     }
 }
 

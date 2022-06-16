@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Vraag aanpassen')
 @section('content')
-    <div class="container">
+    <div class="container" onload="checkType({{$question->type}})">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Tour vraag <span class="title-colored">aanpassen</span></h1>
