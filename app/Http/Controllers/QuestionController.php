@@ -115,7 +115,12 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        return view('question.edit')->with('question', $question);
+
+        $questionLocation = array((object) [
+            "gps_location" => $question->gps_location
+        ]);
+
+        return view('question.edit')->with('question', $question)->with('questionLocation', $questionLocation);
     }
 
     /**

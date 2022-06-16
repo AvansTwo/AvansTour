@@ -7,6 +7,13 @@ function markerClick(person, question, marker, isAdmin) {
         marker.bindPopup('Loop naar deze locatie om de vraag te openen').openPopup();
     }
 }
+function mapRePickStartLocation() {
+    console.log("redefined start")
+}
+
+function relocateQuestion() {
+    console.log('redefined question')
+}
 
 function mapPickLocation(map, marker, event, circle) {
     var d = map.distance(event.latlng, circle.getLatLng());
@@ -31,7 +38,11 @@ function mapPickLocation(map, marker, event, circle) {
             }, 3000);
         }
     } else {
-        alert('De locatie van de vraag moet binnen de geven cirkel liggen');
+        Swal.fire(
+            'Hey, dat is niet mogelijk!',
+            'Je kunt geen locaties buiten de cirkel selecteren',
+            'warning'
+        ) 
     }
 }
 
