@@ -1,3 +1,11 @@
+<style>
+    .bg-gray-100 {
+        --tw-bg-opacity: 1;
+        background-color: #c6002a;
+    }
+
+</style>
+
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
