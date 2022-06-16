@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('team_answer', function (Blueprint $table) {
             $table->id();
             $table->text('answer');
+            $table->boolean('is_file')->default(0);
+            $table->timestamps();
         });
     }
 

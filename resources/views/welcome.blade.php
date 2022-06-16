@@ -10,7 +10,7 @@
                         <p class="mb-5">Ga digitaal op avontuur door de stad Breda en leer deze en jouw toekomstig studiegenoten beter kennen, ga de strijd aan met andere groepjes om zoveel mogelijk punten te verzamelen</p>
                         <p class="landing-phrase"><span class="red-dot"></span>Speel de tocht op jouw mobiele telefoon</p>
                         <p class="landing-phrase"><span class="red-dot"></span>Een teamnaam is genoeg om aan de slag te gaan</p>
-                        <button type="button" onclick="location.href='/speurtochten';" class="btn primary-btn mt-5">Start nu <i class="fa-solid fa-chevron-right"></i></button>
+                        <button type="button" onclick="location.href='/tours';" class="btn primary-btn mt-5">Start nu <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                     <div class="col-12 col-lg-6">
                         <img class="img-fluid" src="{{ asset('img/landing_img.png') }}" alt="landing-image">

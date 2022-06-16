@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Speurtocht aanpassen')
+@section('title', 'Tour aanpassen')
 @section('content')
     <div class="container">
         <div class="row">
@@ -7,7 +7,7 @@
                 <h1 class="my-5 text-center">{{$tour->name}}<span class="title-colored"> aanpassen</span></h1>
             </div>
             <div class="col-12 mb-5">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/speurtochten/aanpassen/{{$tour->id}}" method="post" enctype="multipart/form-data">
+                <form class="needs-validation py-5 grey-bg" novalidate action="/tour/aanpassen/{{$tour->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input name="user_id" type="hidden" value="1">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourimg" class="mb-1 fw-bold">Tour foto</label>
-                            <input class="form-control @if(!empty($tour->image_url)) d-none @endif" name="image_url" disabled type="file" id="tour-img-input">
+                            <input class="form-control @if(!empty($tour->image_url)) d-none @endif" name="image_url" disabled accept="image/png, image/jpg, image/jpeg" type="file" id="tour-img-input">
                             <div id="tour-img-wrapper" class="wrapper @if(empty($tour->image_url)) d-none @endif">
                                 <img class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-img">
                                 <button onclick="removeTourImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
 
-                            <a class="btn primary-btn mt-3" href="/speurtochten/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
+                            <a class="btn primary-btn mt-3" href="/tour/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit" >Opslaan <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>

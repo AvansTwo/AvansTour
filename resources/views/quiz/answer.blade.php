@@ -21,7 +21,7 @@
                         </div>
                     @endforeach
                 </div>
-                
+
                 <!-- Openvraag -->
                 <div class="col-12 mx-auto mb-3 d-none" id="openvraagFields">
                     <label for="questionAnswerOpen" class="mb-1 fw-bold title-colored"> Antwoord: </label>
@@ -30,8 +30,8 @@
 
                 <!-- Mediavraag -->
                 <div id="mediaQuestionAnswer" class="col-12 mx-auto mb-5 d-none">
-                    <label for="questionImg" class="mb-1 fw-bold">Upload foto/video: </label>
-                    <input class="form-control" name="teamAnswerMedia" type="file" id="teamAnswerMedia" required>
+                    <label for="questionImg" class="mb-1 fw-bold">Upload foto: </label>
+                    <input class="form-control" name="teamAnswerMedia" type="file" accept="image/png, image/jpg, image/jpeg" id="teamAnswerMedia" required>
                 </div>
 
                 <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
@@ -45,7 +45,7 @@
         </div>
     </div>
 </div>
-<script>  
+<script>
     const question = {!! json_encode($question) !!};
     const type = question.type;
     if(type == "Meerkeuze"){
