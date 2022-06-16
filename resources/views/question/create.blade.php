@@ -108,48 +108,6 @@
         </div>
     </div>
     <script>
-        function showImageInput() {
-            $("#questionImgWrapper").removeClass("d-none");
-            $("#questionImg").attr({
-                disabled: false,
-                required: true
-            })
 
-            $("#questionVideoWrapper").addClass("d-none");
-            $("#questionVideo").attr({
-                disabled: true,
-                required: false
-            })
-        }
-
-        function showVideoInput() {
-            $("#questionVideoWrapper").removeClass("d-none");
-            $("#questionVideo").attr({
-                disabled: false,
-                required: true
-            })
-
-            $("#questionImgWrapper").addClass("d-none");
-            $("#questionImg").attr({
-                disabled: true,
-                required: false
-            })
-        }
-
-        $('input[type=radio][name=typeRadio]').change(function() {
-            if (this.value == 'Meerkeuze') {
-                $("#multiple-choice-fields").show();
-                $("#multiple-choice-fields :input").attr({
-                    disabled: false,
-                    required: true
-                });
-            }else{
-                $("#multiple-choice-fields").hide();
-                $("#multiple-choice-fields :input").attr({
-                    disabled: true,
-                    required: false
-                });
-            }
-        });
     </script>
 @endsection
