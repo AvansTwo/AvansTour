@@ -1,6 +1,17 @@
+
+<style>
+    .bg-gray-100 {
+        --tw-bg-opacity: 1;
+        background-color: #c6002a;
+    }
+
+</style>
+
 <x-guest-layout>
     <x-auth-card>
+
         <x-slot name="logo">
+            {{-- <img class="img-fluid" src="{{ asset('img/landing_img.png') }}" alt="landing-image"> --}}
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
@@ -52,5 +63,7 @@
                 </x-button>
             </div>
         </form>
+
+        </div>
     </x-auth-card>
 </x-guest-layout>

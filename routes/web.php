@@ -68,9 +68,6 @@ Route::get('/tour/{id}/quiz', [QuizController::class, 'create']);
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
 
-//Quiz eindscherm
-Route::get('/quiz/ending/{teamHash}', [QuizController::class, 'quizEnding']);
-
 
 //Quiz play get question
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
@@ -78,9 +75,8 @@ Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class,
 //Quiz play store answer question
 Route::post('/quiz/spelen/{teamHash}/vraag/{questionId}/beantwoorden', [QuizController::class, 'storeTeamProgress']);
 
-//Quiz end
-Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
-
+//Quiz finish
+Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'quizEnding']);
 
 //Scoreboard
 Route::get('/scoreboard', [ScoreboardController::class, 'index'])->name('scoreboard.index');
