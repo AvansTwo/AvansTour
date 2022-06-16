@@ -58,10 +58,11 @@
     }
 
     if(mapCallback == mapPickLocation) {
+        map.setZoom(16)
         var circle = L.circle([51.588376,4.776478], {
             color: 'red',
             fillOpacity: 0.0,
-            radius: 4500
+            radius: 3000
         }).addTo(map);
 
         let marker = L.marker([1, 1], {icon: icon}).addTo(map);
