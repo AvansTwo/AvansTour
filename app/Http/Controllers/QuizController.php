@@ -148,13 +148,11 @@ class QuizController extends Controller
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
 
         $teamQuestion = TeamProgress::where('team_id', $team->id)->count('question_id');
-        $points = TeamProgress::where('team_id', $team->id)->sum('points');
-
-        $start_time = Carbon::parse($team->start_time);
-        $end_time = Carbon::parse($team->end_time);
-        $difference = $start_time->diffInMinutes($end_time);
-
-        return view('quiz.end')->with('team', $team)->with('teamQuestion', $teamQuestion)->with('points', $points)->with('difference', $difference);
+        $teamUpdated = DB::table('team')->where('id', $team->id)->first();
+        $start_time = Carbon::parse($teamUpdated->start_time);
+        $end_time = Carbon::parse($teamUpdated->end_time);
+        $difference = $start_time->diff($end_time)->format('%H:%I:%S');;
+        return view('quiz.end')->with('team', $teamUpdated)->with('teamQuestion', $teamQuestion)->with('points', $points)->with('difference', $difference);
     }
 
     public function getRemainingQuestions($teamHash) {
