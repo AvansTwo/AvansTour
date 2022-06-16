@@ -4,17 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <button type="button" onclick="location.href='/speurtochten/{{$question->tour->id}}';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+                <button type="button" onclick="location.href='/tour/{{$question->tour->id}}';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
             </div>
             <div class="col-12 grey-bg p-5 my-5">
                 <div class="row">
                     <div class="col-12 col-lg-6 order-1 order-lg-6">
                         <h1>{{$question->title}}</h1>
                         <p>{{$question->description}}</p>
-                        <div class="col-12 d-flex mt-4">
-                            <i class="fa-solid fa-earth-europe tour-icon"></i>
-                            <p class="my-auto">Locatie: Bekijk de map</p>
-                        </div>
                         <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-certificate tour-icon"></i>
                             <p class="my-auto">Punten: {{$question->points}}</p>
@@ -41,6 +37,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 grey-bg mb-5 p-5">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mb-3 fw-bold"><i class="fa-solid fa-earth-europe tour-icon-bold"></i> Locatie vraag:</h2>
+                    <x-leaflet-map :centerpoint="$question->gps_location" :markers="$questionLocation"></x-leaflet-map>
                 </div>
             </div>
         </div>

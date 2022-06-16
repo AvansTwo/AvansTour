@@ -25,31 +25,31 @@ Route::get('/', function () {
 });
 
 //Tour index
-Route::get('/speurtochten', [TourController::class, 'index']);
+Route::get('/tours', [TourController::class, 'index']);
 
 //Tour Filter
-Route::get('/speurtochten/categorie/{id}', [TourController::class, 'categoryFilter']);
+Route::get('/tours/categorie/{id}', [TourController::class, 'categoryFilter']);
 
 //Tour create
-Route::post('/speurtochten/aanmaken', [TourController::class, 'store']);
-Route::get('/speurtochten/aanmaken', [TourController::class, 'create']);
+Route::post('/tour/aanmaken', [TourController::class, 'store']);
+Route::get('/tour/aanmaken', [TourController::class, 'create']);
 
 Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
 
 //Tour edit
-Route::post('/speurtochten/aanpassen/{id}', [TourController::class, 'update']);
-Route::get('/speurtochten/aanpassen/{id}', [TourController::class, 'edit']);
+Route::post('/tour/aanpassen/{id}', [TourController::class, 'update']);
+Route::get('/tour/aanpassen/{id}', [TourController::class, 'edit']);
 
 //Tour show
-Route::get('/speurtochten/{id}', [TourController::class, 'show']);
+Route::get('/tour/{id}', [TourController::class, 'show']);
 
 //Tour delete
-Route::get('/speurtochten/verwijderen/{id}', [TourController::class, 'destroy']);
+Route::get('/tour/verwijderen/{id}', [TourController::class, 'destroy']);
 
 
 //Question create
-Route::post('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
-Route::get('/speurtochten/{id}/vragen/aanmaken', [QuestionController::class, 'create']);
+Route::post('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'store']);
+Route::get('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'create']);
 
 //Question show
 Route::get('/vragen/{id}', [QuestionController::class, 'show']);
@@ -63,7 +63,7 @@ Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy']);
 
 //Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
-Route::get('/speurtochten/{id}/quiz', [QuizController::class, 'create']);
+Route::get('/tour/{id}/quiz', [QuizController::class, 'create']);
 
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
@@ -86,17 +86,31 @@ Route::get('/quiz/einde/{teamHash}', [QuizController::class, 'endQuiz']);
 
 
 //Scoreboard
-Route::get('/scoreboard', [ScoreboardController::class, 'index']);
+Route::get('/scoreboard', [ScoreboardController::class, 'index'])->name('scoreboard.index');
 
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
 
-Route::get('/scoreboard/category/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
-Route::get('/scoreboard/Sort/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
+Route::get('/scoreboard/categorie/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
+Route::get('/scoreboard/punten/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
+Route::get('/scoreboard/tijd/{sortId}', [ScoreboardController::class, 'sortTime'])->name('sortTime');
 
 //Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/dashboard/vraag', [DashboardController::class, 'show'])->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
+    Route::get('/dashboard/team/{teamId}', [DashboardController::class, 'teamIndex'])
+        ->name('dashboardTeamIndex');
+
+    Route::get('/dashboard/vraag/{teamProgressId}', [DashboardController::class, 'show'])
+        ->name('dashboardShow');
+
+    Route::get('/dashboard/vraag/{teamProgressId}/goed', [DashboardController::class, 'correctAnswer'])
+        ->name('dashboardCorrectAnswer');
+
+    Route::get('/dashboard/vraag/{teamProgressId}/fout', [DashboardController::class, 'inCorrectAnswer'])
+        ->name('dashboardInCorrectAnswer');
+});
 
 require __DIR__ . '/auth.php';

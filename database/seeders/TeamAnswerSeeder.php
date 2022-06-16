@@ -16,23 +16,24 @@ class TeamAnswerSeeder extends Seeder
     public function run()
     {
         DB::table('team_answer')->insert([
-            'answer' => '2004'
+            'answer' => '2004',
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => 'Lovendijkstraat'
+            'answer' => 'Lovendijkstraat',
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => 'Onderwijsboulevard'
+            'answer' => 'Onderwijsboulevard',
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren'
+            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren',
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => '20220614080121pathe.png'
+            'answer' => '20220614080121pathe.png',
+            'is_file' => 1
         ]);
     }
 }

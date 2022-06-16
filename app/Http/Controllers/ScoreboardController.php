@@ -11,6 +11,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ScoreboardController extends Controller
@@ -25,7 +26,7 @@ class ScoreboardController extends Controller
         $results = DB::table('team_progress')
             ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
             ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
-            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points, TIMEDIFF(team.end_time, team.start_time) as timeDiff, DATEDIFF(team.end_time, team.start_time) as dateDiff'))
             ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
             ->paginate(15);
 
@@ -44,9 +45,30 @@ class ScoreboardController extends Controller
         $results = DB::table('team_progress')
             ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
             ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
-            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points, TIMEDIFF(team.end_time, team.start_time) as timeDiff, DATEDIFF(team.end_time, team.start_time) as dateDiff'))
             ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
             ->orderBy('points', $filter)
+            ->paginate(15);
+
+        $categories = Category::all();
+
+        return view('scoreboard.index', [
+            'results' => $results,
+            'categories' => $categories,
+        ]);
+    }
+
+    public function sortTime($sortId)
+    {
+        $filter = $sortId == 0 ? 'ASC' : 'DESC';
+
+        $results = DB::table('team_progress')
+            ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+            ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points, TIMEDIFF(team.end_time, team.start_time) as timeDiff, DATEDIFF(team.end_time, team.start_time) as dateDiff'))
+            ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
+            ->orderBy('timeDiff', $filter)
+            ->orderBy('dateDiff', $filter)
             ->paginate(15);
 
         $categories = Category::all();
@@ -94,7 +116,7 @@ class ScoreboardController extends Controller
         $results = DB::table('team_progress')
             ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
             ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
-            ->select(DB::raw('tour.id, tour.name, tour.category_id, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->select(DB::raw('tour.id, tour.name, tour.category_id, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points, TIMEDIFF(team.end_time, team.start_time) as timeDiff, DATEDIFF(team.end_time, team.start_time) as dateDiff'))
             ->where('category_id', '=', $categoryFilter)
             ->groupBy('tour.id', 'tour.name', 'tour.category_id', 'team.team_name', 'team.start_time', 'team.end_time')
             ->paginate(15);
@@ -112,7 +134,7 @@ class ScoreboardController extends Controller
         $results = DB::table('team_progress')
             ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
             ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
-            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points'))
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points, TIMEDIFF(team.end_time, team.start_time) as timeDiff, DATEDIFF(team.end_time, team.start_time) as dateDiff'))
             ->where('team_name', 'like', '%' . $request->teamString . '%')
             ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
             ->paginate(15);

@@ -18,24 +18,33 @@
                     </div>
                 </form>
             </div>
-            <div class="col-6 mt-4 mt-md-0 col-md-2">
-                <div class="dropdown h-100 w-100">
-                    <button class="dropbtn d-block w-100">Filter opleiding <i class="fa-solid fa-sort-down"></i></button>
-                    <div class="dropdown-content">
-                        @foreach($categories as $category)
-                            <a href="/scoreboard/categorie/{{ $category->id }}">{{$category->category_name}}</a>
-                        @endforeach
+            <div class="col-12 col-md-4 mt-4 mt-md-0">
+                <div class="row">
+                    <div class="col-5 d-flex flex-column justify-content-center">
+                        <div class="dropdown">
+                            <button class="dropbtn d-block w-100">Opleiding <i class="fa-solid fa-sort-down"></i></button>
+                            <div class="dropdown-content w-100">
+                                @foreach($categories as $category)
+                                    <a href="/scoreboard/categorie/{{$category->id}}">{{$category->category_name}}</a>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-6 mt-4 mt-md-0 col-md-2">
-                <div class="dropdown h-100 w-100">
-                    <button class="dropbtn d-block w-100">Sorteer op <i class="fa-solid fa-sort-down"></i></button>
-                    <div class="dropdown-content">
-                        <a href="{{ route('sortPoints', 0) }}">Punten oplopend</a>
-                        <a href="{{ route('sortPoints', 1) }}">Punten aflopend</a>
-                        <a href="">Totale tijd aflopend</a>
-                        <a href="">Totale tijd oplopend</a>
+                    <div class="col-5 d-flex flex-column justify-content-center">
+                        <div class="dropdown">
+                            <button class="dropbtn d-block w-100">Sorteer <i class="fa-solid fa-sort-down"></i></button>
+                            <div class="dropdown-content w-100">
+                                <a href="{{ route('sortPoints', 0) }}">Punten oplopend</a>
+                                <a href="{{ route('sortPoints', 1) }}">Punten aflopend</a>
+                                <a href="{{ route('sortTime', 1) }}">Totale tijd aflopend</a>
+                                <a href="{{ route('sortTime', 0) }}">Totale tijd oplopend</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex flex-column justify-content-center">
+                        <a class="btn btn-secondary h-100 d-flex flex-column justify-content-center" href="{{ route('scoreboard.index') }}">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -60,15 +69,9 @@
                             <td>{{ $result->name }}</td>
                             <td>{{ $result->team_name }}</td>
                             @if (isset($result->end_time))
-                                <td> {{ $startDate
-                                        ->diff(new \Nette\Utils\DateTime($result->end_time))
-                                        ->format("%h uur, %i minuten en %s seconden")}}
-                                </td>
+                                <td>{{ $result->timeDiff }}</td>
                             @else
-                                <td> {{ $startDate
-                                        ->diff(new \Nette\Utils\DateTime())
-                                        ->format("%h uur, %i minuten and %s seconden") }}
-                                </td>
+                                <td>Team heeft geen eindtijd.</td>
                             @endif
                             <td>
                                 {{ $result->points }}
