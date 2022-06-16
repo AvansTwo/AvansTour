@@ -1,13 +1,10 @@
 function markerClick(person, question, marker, isAdmin) {
-    console.log(question.id);
-    console.log(question.team_hash);
-    console.log(isAdmin)
     var d = map.distance(marker._latlng, person.getLatLng());
 
-    if (d < person.getRadius() || isAdmin == true){
-    document.location.href = `/quiz/spelen/${question.team_hash}/vraag/${question.id}`;
+    if (d < person.getRadius() || isAdmin == true) {
+        document.location.href = `/quiz/spelen/${question.team_hash}/vraag/${question.id}`;
     } else {
-        marker.bindPopup('Get closer to this question!').openPopup();
+        marker.bindPopup('Loop naar deze locatie om de vraag te openen').openPopup();
     }
 }
 
@@ -17,7 +14,12 @@ function mapPickLocation(map, marker, event, circle) {
         marker.setLatLng(new L.LatLng(event.latlng.lat, event.latlng.lng));
 
         let location = event.latlng;
-        let locationText = document.getElementById('tourStartLocation') || document.getElementById('questionLocation');
+        let locationText = document.getElementById('tourStartLocation');
+
+        if (locationText == null) {
+            locationText = document.getElementById('questionLocation');
+        }
+
         if (locationText) {
             let format = location.toString().slice(7, -1)
             let strings = format.split(',')
@@ -29,8 +31,12 @@ function mapPickLocation(map, marker, event, circle) {
             }, 3000);
         }
     } else {
-        alert('Place your location within the circle!');
+        alert('De locatie van de vraag moet binnen de geven cirkel liggen');
     }
+}
+
+function startLocationMarkerClick() {
+    console.log('Start location clicked');
 }
 
 let MapIsInvisible = false;

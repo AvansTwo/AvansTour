@@ -76,8 +76,8 @@ class TourController extends Controller
 
         $file-> move(public_path('tourimg'), $filename);
 
-        Session::flash('SuccessMessage','Tour is succesvol aangemaakt, voeg nu vragen toe!');
-        return Redirect::to('/speurtochten/'. $tour->id .'/vragen/aanmaken');
+        Session::flash('Checkmark','Tour is succesvol aangemaakt, voeg nu vragen toe!');
+        return Redirect::to('/tour/'. $tour->id .'/vragen/aanmaken');
     }
 
     /**
@@ -96,9 +96,13 @@ class TourController extends Controller
             $totalPoints += $question->points;
         }
 
-        $coords = explode(',', $tour->location);
+        $startLocation = array((object) [
+            "gps_location" => $tour->location
+        ]);
 
-        return view('tour.detail')->with('tour', $tour)->with('lat', trim($coords[0]))->with('long', trim($coords[1]))->with('totalPoints', $totalPoints);
+
+
+        return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
     }
 
     /**
@@ -144,10 +148,12 @@ class TourController extends Controller
             'user_id'       =>  $request->user_id,
         ]);
 
-        $file-> move(public_path('tourimg'), $filename);
+        if (!empty($file)) {
+            $file->move(public_path('tourimg'), $filename);
+        }
 
-        Session::flash('SuccessMessage','Tour is succesvol aangepast');
-        return Redirect::to('/speurtochten/'. $tour->id);
+        Session::flash('Checkmark','Tour is succesvol aangepast');
+        return Redirect::to('/tour/'. $tour->id);
     }
 
     /**
@@ -166,7 +172,7 @@ class TourController extends Controller
 
         $tour->delete();
 
-        Session::flash('SuccessMessage','Tour is succesvol verwijderd');
-        return redirect('/speurtochten');
+        Session::flash('Checkmark','Tour is succesvol verwijderd');
+        return redirect('/tours');
     }
 }

@@ -84,8 +84,8 @@ class QuestionController extends Controller
                 $answer->save();
             }
         }
-       
-        Session::flash('SuccessMessage','Vraag is succesvol toegevoegd');
+
+        Session::flash('Checkmark','Vraag is succesvol toegevoegd');
         return back();
     }
 
@@ -98,7 +98,12 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        return view('question.detail')->with('question', $question);
+
+        $questionLocation = array((object) [
+            "gps_location" => $question->gps_location
+        ]);
+
+        return view('question.detail')->with('question', $question)->with('questionLocation', $questionLocation);
     }
 
     /**
@@ -118,7 +123,7 @@ class QuestionController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -170,7 +175,7 @@ class QuestionController extends Controller
             ]);
         }
 
-        Session::flash('SuccessMessage', 'Vraag is succesvol aangepast');
+        Session::flash('Checkmark','Vraag is succesvol aangepast');
         return Redirect::to('/vragen/' . $question->id);
     }
 
@@ -178,11 +183,12 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         $question = Question::find($id);
+        $tour = Tour::find($question->tour_id);
 
         if (\File::exists(public_path('tourimg/' . $question->image_url))) {
             \File::delete(public_path('tourimg/' . $question->image_url));
@@ -190,9 +196,7 @@ class QuestionController extends Controller
 
         $question->delete();
 
-        $tour = Tour::find($question->tour_id);
-
-        Session::flash('SuccessMessage', 'Vraag is succesvol verwijderd');
-        return view('tour.detail')->with('tour', $tour);
+        Session::flash('Checkmark','Vraag is succesvol verwijderd');
+        return Redirect::to('/speurtochten/' . $tour->id);
     }
 }
