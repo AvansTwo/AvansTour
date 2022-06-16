@@ -34,6 +34,26 @@ function JSalertDeleteTour() {
         .set("closable", false);
 }
 
+// Alertify javascript voor bevestiging vraag verwijderen
+function JSalertDeleteQuestion() {
+    alertify
+        .confirm(
+            "Weet je het zeker?",
+            "Wil je deze vraag verwijderen? Een verwijderde vraag is echt weg!",
+            function () {
+                document.getElementById(
+                    "delete-question-url"
+                ).style.pointerEvents = "";
+                window.location.href = document.getElementById(
+                    "delete-question-url"
+                ).href;
+            },
+            function () {}
+        )
+        .set("movable", false)
+        .set("closable", false);
+}
+
 // Alertify javascript voor foutkeuren antwoord
 function JSalertCorrectAnswer() {
     alertify
