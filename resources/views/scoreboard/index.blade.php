@@ -22,7 +22,8 @@
                 <div class="row">
                     <div class="col-5 d-flex flex-column justify-content-center">
                         <div class="dropdown">
-                            <button class="dropbtn d-block w-100">Opleiding <i class="fa-solid fa-sort-down"></i></button>
+                            <button class="dropbtn d-block w-100">Opleiding <i class="fa-solid fa-sort-down"></i>
+                            </button>
                             <div class="dropdown-content w-100">
                                 @foreach($categories as $category)
                                     <a href="/scoreboard/categorie/{{$category->id}}">{{$category->category_name}}</a>
@@ -42,7 +43,8 @@
                         </div>
                     </div>
                     <div class="col-2 d-flex flex-column justify-content-center">
-                        <a class="btn btn-secondary h-100 d-flex flex-column justify-content-center" href="{{ route('scoreboard.index') }}">
+                        <a class="btn btn-secondary h-100 d-flex flex-column justify-content-center rounded-0"
+                           href="{{ route('scoreboard.index') }}">
                             <i class="fa-solid fa-rotate-right"></i>
                         </a>
                     </div>
@@ -52,7 +54,6 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">Plaats</th>
                         <th scope="col">Tour naam</th>
                         <th scope="col">Team naam</th>
                         <th scope="col">Totale tijd</th>
@@ -60,12 +61,16 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if (count($results) === 0)
+                        <tr>
+                            <td colspan="4" class="text-center"> No results found!</td>
+                        </tr>
+                    @endif
                     @foreach($results as $result)
                         @php
                             $startDate = new \Nette\Utils\DateTime($result->start_time);
                         @endphp
                         <tr>
-                            <td>#{{ $result->id }}</td>
                             <td>{{ $result->name }}</td>
                             <td>{{ $result->team_name }}</td>
                             @if (isset($result->end_time))
@@ -80,9 +85,9 @@
                     @endforeach
                     </tbody>
                 </table>
-            <div class="d-flex justify-content-center">
-                {{$results->links()}}
+                <div class="d-flex justify-content-center">
+                    {{$results->links()}}
+                </div>
             </div>
         </div>
-    </div>
 @endsection
