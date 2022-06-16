@@ -60,7 +60,7 @@
                             @if(!empty($question->image_url))
                             <div id="tour-img-wrapper" class="wrapper">
                                 <img id="questionPhoto" class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-img">
-                                <button onclick="removeTourImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                <button onclick="removeQuestionImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
                             </div>
                             @endif
                         </div>

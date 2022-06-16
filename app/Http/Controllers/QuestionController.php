@@ -197,6 +197,6 @@ class QuestionController extends Controller
         $question->delete();
 
         Session::flash('Checkmark','Vraag is succesvol verwijderd');
-        return Redirect::to('/speurtochten/' . $tour->id);
+        return Redirect::to('/tour/' . $tour->id);
     }
 }

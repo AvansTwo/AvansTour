@@ -88,7 +88,7 @@ $('input[type=radio][name=typeRadio]').change(function() {
 });
 
 // Question edit page
-function removeTourImage() {
+function removeQuestionImage() {
     document.getElementById("questionImg").classList.remove("d-none");
     document.getElementById("questionImg").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
