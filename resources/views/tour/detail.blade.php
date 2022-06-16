@@ -92,7 +92,7 @@
                             <tbody>
                             @foreach($tour->question as $question)
                                 <tr>
-                                    <th scope="row">{{$question->id}}</th>
+                                    <th scope="row">{{ $loop->index+1 }}</th>
                                     <td>{{$question->title}}</td>
                                     <td>{{$question->description}}</td>
                                     <td>{{$question->points}}</td>
