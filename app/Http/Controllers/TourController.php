@@ -116,7 +116,11 @@ class TourController extends Controller
         $tour = Tour::find($id);
         $catgories = Category::all();
 
-        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories);
+        $startLocation = array((object) [
+            "gps_location" => $tour->location
+        ]);
+
+        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories)->with('startLocation', $startLocation);
     }
 
     /**
