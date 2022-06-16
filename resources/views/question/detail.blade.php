@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <button type="button" onclick="location.href='/speurtochten/{{$question->tour->id}}';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+                <button type="button" onclick="location.href='/tour/{{$question->tour->id}}';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
             </div>
             <div class="col-12 grey-bg p-5 my-5">
                 <div class="row">

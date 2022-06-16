@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Quiz aanmaken')
+@section('title', 'TourTeam aanmaken')
 @section('content')
     <div class="container">
         <div class="row">
@@ -36,63 +36,11 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-                        <a class="btn primary-btn mt-3" href="/speurtochten/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
+                        <a class="btn primary-btn mt-3" href="/tour/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Aanmaken <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-
-        let count = 1;
-        function showMemberInputField() {
-            if(count === 8){
-                document.getElementById("max_players_reached").classList.remove("d-none");
-                setTimeout(function(){
-                    document.getElementById("max_players_reached").classList.add("d-none");
-             },5000);
-
-            } else{
-                count++;
-                document.getElementById("team_player_label_"+count).classList.remove("d-none");
-                document.getElementById("team_player_input_"+count).classList.remove("d-none");
-                document.getElementById("team_player_input_"+count).disabled = false;
-                document.getElementById("amount_players").value = count;
-            }
-        }
-
-        function hideMemberInputField() {
-            if(count != 1){
-                document.getElementById("team_player_label_"+count).classList.add("d-none");
-                document.getElementById("team_player_input_"+count).classList.add("d-none");
-                document.getElementById("team_player_input_"+count).disabled = true;
-                count--;
-                document.getElementById("amount_players").value = count;
-            } else{
-                document.getElementById("min_players_reached").classList.remove("d-none");
-                setTimeout(function(){
-                    document.getElementById("min_players_reached").classList.add("d-none");
-             },5000);
-            }
-        }
-    </script>
 @endsection

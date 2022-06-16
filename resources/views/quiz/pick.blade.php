@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Vraag beantwoorden')
 @section('content')
-
-
 <div class="container">
     <div class="row">
         <div class="col-12 grey-bg p-5 my-5">
@@ -23,6 +21,4 @@
         </div>
     </div>
 </div>
-
-
 @endsection

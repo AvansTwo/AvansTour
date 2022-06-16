@@ -21,7 +21,7 @@
                         </div>
                     @endforeach
                 </div>
-                
+
                 <!-- Openvraag -->
                 <div class="col-12 mx-auto mb-3 d-none" id="openvraagFields">
                     <label for="questionAnswerOpen" class="mb-1 fw-bold title-colored"> Antwoord: </label>
@@ -30,8 +30,8 @@
 
                 <!-- Mediavraag -->
                 <div id="mediaQuestionAnswer" class="col-12 mx-auto mb-5 d-none">
-                    <label for="questionImg" class="mb-1 fw-bold">Upload foto/video: </label>
-                    <input class="form-control" name="teamAnswerMedia" type="file" id="teamAnswerMedia" required>
+                    <label for="questionImg" class="mb-1 fw-bold">Upload foto: </label>
+                    <input class="form-control" name="teamAnswerMedia" type="file" accept="image/png, image/jpg, image/jpeg" id="teamAnswerMedia" required>
                 </div>
 
                 <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
@@ -44,51 +44,22 @@
             <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-detail-img">
         </div>
     </div>
-</div>
-<script>  
-    const question = {!! json_encode($question) !!};
-    const type = question.type;
-    if(type == "Meerkeuze"){
-        $("#multipleChoiceFields").removeClass('d-none')
+    <script>
+        const question = {!! json_encode($question) !!};
+        const type = question.type;
+        if(type == "Meerkeuze"){
+            $("#multipleChoiceFields").removeClass('d-none')
 
-        $("#openvraagFields :input").attr({
-            disabled: true,
-            required: false
-        })
+            $("#openvraagFields :input").attr({
+                disabled: true,
+                required: false
+            })
 
-        $("#mediaQuestionAnswer :input").attr({
-            disabled: true,
-            required: false
-        })
-    }
-
-    if(type == "Open"){
-        $("#openvraagFields").removeClass('d-none')
-
-        $("#multipleChoiceFields :input").attr({
-            disabled: true,
-            required: false
-        })
-
-        $("#mediaQuestionAnswer :input").attr({
-            disabled: true,
-            required: false
-        })
-    }
-
-    if(type == "Media"){
-        $("#mediaQuestionAnswer").removeClass('d-none')
-
-        $("#openvraagFields :input").attr({
-            disabled: true,
-            required: false
-        })
-
-        $("#multipleChoiceFields :input").attr({
-            disabled: true,
-            required: false
-        })
-    }
-
+            $("#mediaQuestionAnswer :input").attr({
+                disabled: true,
+                required: false
+            })
+        }
     </script>
+</div>
 @endsection
