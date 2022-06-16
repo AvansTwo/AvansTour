@@ -25,11 +25,16 @@
                     <div class="col-5 col-lg-2">
                         <div class="float-end">
                             <div class="dropdown">
+                            @isset($filteredCategory)
+                            <button type="button" onclick="location.href='/tours';" class="btn primary-btn mt-5">All tours</button>
+                            @else
                                 <button class="dropbtn">Filter <i class="fa-solid fa-sort-down"></i></button>
                                 <div class="dropdown-content">
+
                                     @foreach($categories as $category)
                                     <a href="/tours/categorie/{{ $category->id }}">{{$category->category_name}}</a>
                                     @endforeach
+                                    @endisset
                                 </div>
                             </div>
                         </div>
