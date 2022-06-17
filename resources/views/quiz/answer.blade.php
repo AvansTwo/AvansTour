@@ -60,6 +60,34 @@
                 required: false
             })
         }
+
+        if(type == "Open"){
+            $("#openvraagFields").removeClass('d-none')
+
+            $("#meerkeuze :input").attr({
+                disabled: true,
+                required: false
+            })
+
+            $("#mediaQuestionAnswer :input").attr({
+                disabled: true,
+                required: false
+            })
+        }
+
+        if(type == "Media"){
+            $("#mediaQuestionAnswer").removeClass('d-none')
+
+            $("#openvraagFields :input").attr({
+                disabled: true,
+                required: false
+            })
+
+            $("#meerkeuze :input").attr({
+                disabled: true,
+                required: false
+            })
+        }
     </script>
 </div>
 @endsection

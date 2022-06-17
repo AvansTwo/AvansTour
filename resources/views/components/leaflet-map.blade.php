@@ -71,7 +71,7 @@
         var circle = L.circle([51.588376,4.776478], {
             color: 'red',
             fillOpacity: 0.0,
-            radius: 3000
+            radius: 6000
         }).addTo(map);
         if (mapCallback == mapRePickStartLocation){ 
          marker = L.marker([markers[0].lat, markers[0].long], {icon: startIcon}).addTo(map);
