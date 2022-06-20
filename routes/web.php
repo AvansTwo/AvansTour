@@ -6,6 +6,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreboardController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -106,5 +107,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/vraag/{teamProgressId}/fout', [DashboardController::class, 'inCorrectAnswer'])
         ->name('dashboardInCorrectAnswer');
 });
+
+//Settings
+Route::get('/settings', [AdminController::class, 'index']);
 
 require __DIR__ . '/auth.php';
