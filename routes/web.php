@@ -83,6 +83,7 @@ Route::get('/scoreboard', [ScoreboardController::class, 'index'])->name('scorebo
 
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
+Route::post('/scoreboard/dag', [ScoreboardController::class, 'dayFilter'])->name('scoreboard.dayFilter');
 
 Route::get('/scoreboard/categorie/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
 Route::get('/scoreboard/punten/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');

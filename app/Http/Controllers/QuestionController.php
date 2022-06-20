@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
@@ -36,11 +38,24 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreQuestionRequest $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            '_token' => 'nullable',
+            'tourID' => 'required',
+            'questionTitle' => 'required',
+            'questionDesc' => 'required',
+            'typeRadio' => 'required',
+            'questionPoints' => 'required',
+            'questionLocation' => 'required',
+            'flexRadioDefault' => 'nullable',
+        ]);
+
+        dd($validatedData);
+
         $question = new Question();
 
         $tourID = $request->tourID;
@@ -126,9 +141,9 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -188,7 +203,7 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
