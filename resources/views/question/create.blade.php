@@ -34,7 +34,7 @@
                                 <input class="form-check-input" name="typeRadio" type="radio" value="Open" id="inlineRadio2">
                                 <label class="form-check-label" for="inlineRadio2"> Open vraag </label>
                             </div>
-                            <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="bottom"  title="Bij een mediavraag dient de student de vraag te beantwoorden met een foto of video bestand.">
+                            <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="bottom"  title="Bij een mediavraag dient de student de vraag te beantwoorden met een foto.">
                                 <input class="form-check-input" name="typeRadio" type="radio" value="Media" id="inlineRadio3" >
                                 <label class="form-check-label" for="inlineRadio3"> Media vraag* </label>
                             </div>
