@@ -429,12 +429,12 @@ footer {
     transition: background-color 100ms ease-in;
 }
 .ctrl__button:hover {
-    background-color: #90a2b0;
+    background-color: #f31d49;
     -webkit-transition: background-color 100ms ease-in;
     transition: background-color 100ms ease-in;
 }
 .ctrl__button:active {
-    background-color: #778996;
+    background-color: #ee96a9;
     -webkit-transition: background-color 100ms ease-in;
     transition: background-color 100ms ease-in;
 }
@@ -542,4 +542,8 @@ footer {
         -webkit-transform: translateY(25px);
         transform: translateY(25px);
     }
+}
+
+.mb-10 {
+    margin-bottom: 5rem !important;
 }
