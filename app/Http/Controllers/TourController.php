@@ -70,7 +70,7 @@ class TourController extends Controller
         $tour->image_url = $filename;
         $tour->location = $request->location;
         $tour->category_id = $request->category_id;
-        $tour->user_id = 1;
+        $tour->user_id = Auth::user()->id;
 
         $tour->save();
 
