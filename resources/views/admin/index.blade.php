@@ -32,13 +32,13 @@
             <button type="button" onclick="deleteTourData()" class="btn primary-btn mt-3">Data verwijderen</button>
         </div>
         
-        <div class="col-12 col-lg-6 my-10 px-5">    
+        <div class="col-12 col-lg-6 mb-10 px-5">    
             <p>Categorie toevoegen</p>
             <input type="text" name="name" class="form-control" id="tourName" placeholder="Categorie naam">
             <button type="button" onclick="addCategory()" class="btn primary-btn mt-3">Toevoegen</button>
         </div>
 
-        <div class="col-12 col-lg-6 my-10 px-5">
+        <div class="col-12 col-lg-6 mb-10 px-5">
             <p>Nieuwe gebruiker aanmaken</p>
             <button type="button" onclick="location.href='/register';" class="btn primary-btn mt-3">Register</button>
         </div>
