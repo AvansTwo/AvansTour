@@ -146,7 +146,7 @@ class QuizController extends Controller
             ]);
 
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
-        $points = TeamProgress::where('team_id', $team)->sum('points');
+        $points = TeamProgress::where('team_id', $team->id)->sum('points');
         $teamQuestion = TeamProgress::where('team_id', $team->id)->count('question_id');
         $teamUpdated = DB::table('team')->where('id', $team->id)->first();
         $start_time = Carbon::parse($teamUpdated->start_time);
