@@ -6,6 +6,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreboardController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -83,6 +84,7 @@ Route::get('/scoreboard', [ScoreboardController::class, 'index'])->name('scorebo
 
 //Scoreboard search
 Route::post('/scoreboard/team', [ScoreboardController::class, 'teamFilter']);
+Route::post('/scoreboard/dag', [ScoreboardController::class, 'dayFilter'])->name('scoreboard.dayFilter');
 
 Route::get('/scoreboard/categorie/{categoryId}', [ScoreboardController::class, 'categoryFilter'])->name('scoreboardCategoryFilter');
 Route::get('/scoreboard/punten/{sortId}', [ScoreboardController::class, 'sortPoints'])->name('sortPoints');
@@ -105,5 +107,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/vraag/{teamProgressId}/fout', [DashboardController::class, 'inCorrectAnswer'])
         ->name('dashboardInCorrectAnswer');
 });
+
+//Settings
+Route::get('/settings', [AdminController::class, 'index'])->name("settings");
 
 require __DIR__ . '/auth.php';

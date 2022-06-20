@@ -147,6 +147,24 @@ class ScoreboardController extends Controller
         ]);
     }
 
+    public function dayFilter(Request $request) {
+
+        $results = DB::table('team_progress')
+            ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+            ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+            ->select(DB::raw('tour.id, tour.name, team.team_name, team.start_time, team.end_time, sum(team_progress.points) as points, TIMEDIFF(team.end_time, team.start_time) as timeDiff, DATEDIFF(team.end_time, team.start_time) as dateDiff'))
+            ->where(DB::raw('CAST(team.start_time as date)'), '=', $request->datePicker)
+            ->groupBy('tour.id', 'tour.name', 'team.team_name', 'team.start_time', 'team.end_time')
+            ->paginate(15);
+
+        $categories = Category::all();
+
+        return view('scoreboard.index', [
+            'results' => $results,
+            'categories' => $categories,
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
