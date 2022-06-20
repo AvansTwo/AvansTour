@@ -24,7 +24,7 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'questionLocation' => 'required',
         ];
     }
 }

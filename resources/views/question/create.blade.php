@@ -5,6 +5,9 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>
+                @error('questionLocation')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/tour/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
@@ -51,7 +54,7 @@
                                 <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="questionLocation" id="questionLocation" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" required readonly>
+                                <input required type="text" class="form-control @error('questionLocation') is-invalid @enderror" name="questionLocation" id="questionLocation" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly>
                             </div>
                         </div>
                         <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
