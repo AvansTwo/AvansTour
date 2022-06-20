@@ -17,7 +17,7 @@ class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -31,11 +31,14 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
      public function teamIndex($teamId)
     {
         $teamProgress = TeamProgress::all()->where('team_id', $teamId)->where('status', 'Afwachting');
         $teamName = $teamProgress->first();
+        if(empty($teamName)){
+            return Redirect::to('/dashboard');
+        }
         return view('dashboard.teamIndex')->with('teamProgress', $teamProgress)->with('teamName', $teamName);
     }
 
@@ -72,7 +75,7 @@ class DashboardController extends Controller
             'status'            => 'Nagekeken',
         ]);
 
-        return Redirect::to('/dashboard/team/'. $teamId);
+        return Redirect::to('/dashboard/team/'. $TeamProgress->team->id);
     }
 
     public function inCorrectAnswer($teamProgressId){
@@ -85,7 +88,7 @@ class DashboardController extends Controller
             'status'            => 'Nagekeken',
         ]);
 
-        return Redirect::to('/dashboard/team/'. $teamId);
+        return Redirect::to('/dashboard/team/'. $TeamProgress->team->id);
     }
 
 

@@ -19,10 +19,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/form.js') }}" defer></script>
+    <script src="{{ asset('js/script.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/436d2e61dc.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/form.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -104,47 +105,6 @@
     </div>
 </footer>
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-
-    // Alertify javascript voor bevestiging tour afronden
-    function JSalert(){
-        alertify.confirm("Weet je het zeker?","Wil je de tour afronden? Zodra de tour is afgerond kun je niet meer terug!",
-            function(){
-                document.getElementById("exit-tour-url").style.pointerEvents = "";
-                window.location.href = document.getElementById("exit-tour-url").href;
-            },
-            function(){
-
-            }).set('movable', false).set('closable', false);
-
-    }
-    function JSalertCorrectAnswer(){
-        alertify.confirm("Weet je het zeker?","Wil je dit antwoord foutkeuren? Hierdoor krijgen de studenten geen punten voor deze vraag :(",
-            function(){
-                document.getElementById("incorrect-answer-url").style.pointerEvents = "";
-                window.location.href = document.getElementById("incorrect-answer-url").href;
-            },
-            function(){
-
-            }).set('movable', false).set('closable', false);
-    }
     @if(Session::has('Checkmark'))
     Swal.fire(
         'Gelukt!',
@@ -152,7 +112,6 @@
         'success'
     )
     @endif
-
 </script>
 </body>
 
