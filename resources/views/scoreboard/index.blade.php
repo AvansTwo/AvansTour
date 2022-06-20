@@ -33,7 +33,7 @@
                     @csrf
                     <div class="input-group h-100">
                         <input class="form-control rounded-0 h-100" type="date" placeholder="test"
-                               aria-label="Datum" aria-describedby="button-addon3" name="datePicker" value="2022-06-17"/>
+                               aria-label="Datum" aria-describedby="button-addon3" name="datePicker" value="YYYY-MM-DD"/>
                         <button class="btn btn-outline-danger px-5 rounded-0" type="submit" id="button-addon3">Filter
                         </button>
                     </div>
