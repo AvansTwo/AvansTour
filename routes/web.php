@@ -109,6 +109,6 @@ Route::middleware('auth')->group(function () {
 });
 
 //Settings
-Route::get('/settings', [AdminController::class, 'index']);
+Route::get('/settings', [AdminController::class, 'index'])->name("settings");
 
 require __DIR__ . '/auth.php';

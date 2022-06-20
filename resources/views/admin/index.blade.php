@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row my-5 col-12">
 
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-10 px-5">
             <p>Geef aan hoe dichtbij de speler bij het punt moet zijn.</p>
             <div class='ctrl'>
                 <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
@@ -15,30 +15,32 @@
                 <div class='ctrl__button ctrl__button--increment'>+</div>
             </div>
 
-            <button type="button" onclick="saveRange()" class="btn primary-btn mt-5">Opslaan</button>
+            <button type="button" onclick="saveRange()" class="btn primary-btn mt-3">Opslaan</button>
         </div>
 
 
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-10 px-5">
             <p>Geef aan van welke tot welke datum wil je tourgegevens verwijderen</p>
-            <label for="start">Start date:</label>
-
-            <input type="date" id="start" name="trip-start" value="2022-06-20" min="2000-01-01" max="2050-12-31">
-
-            <label for="start">End date:</label>
-            <input type="date" id="start" name="trip-end" value="2022-06-20" min="2000-01-01" max="2050-12-31">
-        </div>
-
-        <div class="col-12 col-lg-6 my-5">    
-            <label for="category" class="mb-1 fw-bold">Categorie toevoegen</label>
-            <input type="text" name="name" class="form-control" id="tourName" placeholder="Categorie naam">
             
-            <button type="button" onclick="deleteTourData()" class="btn primary-btn mt-5">Opslaan</button>
+            <form action="">
+                <div class="form-row d-flex">
+                    <input class="form-control rounded-0" type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="datePicker" value="YYYY-MM-DD"/>
+                    <input class="form-control rounded-0" type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="datePicker" value="YYYY-MM-DD"/>
+                </div>
+            </form>
+
+            <button type="button" onclick="deleteTourData()" class="btn primary-btn mt-3">Data verwijderen</button>
+        </div>
+        
+        <div class="col-12 col-lg-6 my-10 px-5">    
+            <p>Categorie toevoegen</p>
+            <input type="text" name="name" class="form-control" id="tourName" placeholder="Categorie naam">
+            <button type="button" onclick="addCategory()" class="btn primary-btn mt-3">Toevoegen</button>
         </div>
 
-        <div class="col-12 col-lg-6 my-5">
-            <p>Nieuwe gebruiker registeren</p>
-            <button type="button" onclick="location.href='/register';" class="btn primary-btn mt-5">Register</button>
+        <div class="col-12 col-lg-6 my-10 px-5">
+            <p>Nieuwe gebruiker aanmaken</p>
+            <button type="button" onclick="location.href='/register';" class="btn primary-btn mt-3">Register</button>
         </div>
     </div>
 </div>
