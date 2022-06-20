@@ -106,9 +106,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/vraag/{teamProgressId}/fout', [DashboardController::class, 'inCorrectAnswer'])
         ->name('dashboardInCorrectAnswer');
+
+    //Settings
+    Route::get('/settings', [AdminController::class, 'index'])->name("settings");
 });
 
-//Settings
-Route::get('/settings', [AdminController::class, 'index']);
 
 require __DIR__ . '/auth.php';

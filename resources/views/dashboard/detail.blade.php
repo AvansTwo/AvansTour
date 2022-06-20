@@ -29,7 +29,7 @@
                     </button>
 
                     <button onclick="JSalertCorrectAnswer()" class="btn create-btn delete-btn mt-2">
-                        <a id="incorrect-answer-url" style="pointer-events: none" href="/dashboard/vraag/{{$TeamProgress->id}}/fout">Foutkeuren <i class="fa-solid fa-xmark"></i></a>
+                        <a id="incorrect-answer-url" style="pointer-events: none" href="/dashboard/vraag/{{$TeamProgress->id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
                     </button>
                 </div>
             </div>
