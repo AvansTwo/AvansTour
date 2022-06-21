@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             AnswerSeeder::class,
             TeamAnswerSeeder::class,
             TeamProgressSeeder::class,
+            SettingsSeeder::class
         ]);
 
         // \App\Models\User::factory(10)->create();

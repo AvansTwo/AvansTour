@@ -10,13 +10,14 @@ class LeafletMap extends Component
     public $markers;
     public $markerCallback;
     public $mapCallback;
+    public $radius;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($centerpoint, $markers = array(), $markerCallback = "noMarkerCallback", $mapCallback = "noMapCallback")
+    public function __construct($centerpoint, $markers = array(), $markerCallback = "noMarkerCallback", $mapCallback = "noMapCallback", $radius = 100)
     {
         $this->centerpoint = explode(',', $centerpoint);
 
@@ -45,6 +46,9 @@ class LeafletMap extends Component
 
         if(isset($mapCallback)){
             $this->mapCallback = $mapCallback;
+        }
+        if(isset($radius)){
+            $this->radius = $radius;
         }
     }
 
