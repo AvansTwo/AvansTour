@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
@@ -70,7 +71,7 @@ class TourController extends Controller
         $tour->image_url = $filename;
         $tour->location = $request->location;
         $tour->category_id = $request->category_id;
-        $tour->user_id = 1;
+        $tour->user_id = Auth::user()->id;
 
         $tour->save();
 
@@ -116,7 +117,11 @@ class TourController extends Controller
         $tour = Tour::find($id);
         $catgories = Category::all();
 
-        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories);
+        $startLocation = array((object) [
+            "gps_location" => $tour->location
+        ]);
+
+        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories)->with('startLocation', $startLocation);
     }
 
     /**

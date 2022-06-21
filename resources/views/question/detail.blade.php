@@ -24,7 +24,9 @@
                         <div class="col-12 mt-5">
                             <div class="row">
                                 <div class="col-12 col-lg-6 mt-4 mt-lg-0">
-                                    <button onclick="location.href='/vragen/verwijderen/{{$question->id}}';" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                    <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
+                                        <a id="delete-question-url" style="pointer-events: none" href="/vragen/verwijderen/{{$question->id}}" class="fa-solid fa-trash"></a>
+                                    </button>
                                     <button onclick="location.href='/vragen/aanpassen/{{$question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </div>
                             </div>

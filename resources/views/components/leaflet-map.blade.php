@@ -50,25 +50,41 @@
                     eval(markerCallback);
                 }).bindPopup("Startlocatie");
             })
-        }else if(markerCallback == noMarkerCallback){
+        }else if(markerCallback == mapRePickStartLocation){
+            eval(markerCallback);
+        } else if(markerCallback == noMarkerCallback){
             markers.forEach((marker) => {    
                 L.marker([marker.lat, marker.long], {icon: icon}).addTo(map);
+            })
+        } else if (markerCallback == relocateQuestion) {
+            markers.forEach((marker) => {
+              let newMarker = L.marker([marker.lat, marker.long], {icon: icon}).addTo(map);
+                map.on('click', function(e) {
+              newMarker.setLatLng(e.latlng);
+            })
             })
         }
     }
 
-    if(mapCallback == mapPickLocation) {
+    if((mapCallback == mapPickLocation) || (mapCallback == mapRePickStartLocation)) {
         map.setZoom(16)
         var circle = L.circle([51.588376,4.776478], {
             color: 'red',
             fillOpacity: 0.0,
-            radius: 3000
+            radius: 6000
         }).addTo(map);
-
-        let marker = L.marker([1, 1], {icon: icon}).addTo(map);
-        map.on('click', function(e) {
+        if (mapCallback == mapRePickStartLocation){ 
+         marker = L.marker([markers[0].lat, markers[0].long], {icon: startIcon}).addTo(map);
+         map.on('click', function(e) {
+            eval(mapPickLocation)(map, marker, e, circle);
+        })
+        } else {
+         marker = L.marker([1, 1], {icon: icon}).addTo(map);
+         map.on('click', function(e) {
             eval(mapCallback)(map, marker, e, circle);
         })
+        }
+
     }
 
 </script>

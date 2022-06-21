@@ -24,8 +24,8 @@
                             <label for="tourStartLocation" class="mb-1 fw-bold">Start locatie</label>
 
                             <div id="map">
-                            <x-leaflet-map centerpoint="51.583683,4.798869"  mapCallback="mapPickLocation"></x-leaflet-map>
-                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Location changed!</div>
+                            <x-leaflet-map centerpoint="{{$tour->location}}" :markers="$startLocation" mapCallback="mapRePickStartLocation" markerCallback="mapRePickStartLocation"></x-leaflet-map>
+                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Locatie veranderd!</div>
                             <br>
                             </div>
 

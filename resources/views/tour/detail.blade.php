@@ -47,8 +47,8 @@
                                             onclick="location.href='/tour/{{$tour->id}}/vragen/aanmaken';"
                                             class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>
                                     </button>
-                                    <button onclick="location.href='/tour/verwijderen/{{$tour->id}}';"
-                                            class="btn create-btn delete-btn mt-2"><i class="fa-solid fa-trash"></i>
+                                    <button type="button" onclick="JSalertDeleteTour()" class="btn create-btn delete-btn mt-2">
+                                        <a id="delete-tour-url" style="pointer-events: none" href="/tour/verwijderen/{{$tour->id}}" class="fa-solid fa-trash"></a>
                                     </button>
                                 </div>
                                 @endif
@@ -92,7 +92,7 @@
                             <tbody>
                             @foreach($tour->question as $question)
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row">{{ $loop->index+1 }}</th>
                                     <td>{{$question->title}}</td>
                                     <td>{{$question->description}}</td>
                                     <td>{{$question->points}}</td>

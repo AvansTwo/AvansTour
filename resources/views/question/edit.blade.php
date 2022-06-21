@@ -27,8 +27,8 @@
                             <label for="questionLocation" class="mb-1 fw-bold">Locatie vraag</label>
 
                             <div id="map">
-                            <x-leaflet-map centerpoint="51.583683,4.798869"  mapCallback="mapPickLocation"></x-leaflet-map>
-                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Location changed!</div>
+                            <x-leaflet-map centerpoint="{{$question->gps_location}}" :markers="$questionLocation" mapCallback="mapPickLocation" markerCallback="relocateQuestion"></x-leaflet-map>
+                            <div id="locationChanged" class="alert alert-success d-none mb-0 py-1" role="alert">Locatie veranderd!</div>
                             <br>
                             </div>
 
@@ -60,7 +60,7 @@
                             @if(!empty($question->image_url))
                             <div id="tour-img-wrapper" class="wrapper">
                                 <img id="questionPhoto" class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-img">
-                                <button onclick="removeTourImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                <button onclick="removeQuestionImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
                             </div>
                             @endif
                         </div>

@@ -24,6 +24,9 @@
                     </div>
                     <div class="col-5 col-lg-2">
                         <div class="float-end">
+                            @isset($filteredCategory)
+                                <button type="button" onclick="location.href='/tours';" class="btn primary-btn">Reset</button>
+                            @else
                             <div class="dropdown">
                                 <button class="dropbtn">Filter <i class="fa-solid fa-sort-down"></i></button>
                                 <div class="dropdown-content">
@@ -32,6 +35,7 @@
                                     @endforeach
                                 </div>
                             </div>
+                            @endisset
                         </div>
                     </div>
                     <div class="col-12 mt-5">

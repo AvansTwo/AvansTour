@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('team', function (Blueprint $table) {
             $table->id();
             $table->string('team_name');
-            $table->timestamp('start_time');
+            $table->timestamp('start_time')->nullable();
             $table->timestamp('end_time')->nullable();
             $table->string('team_identifier');
             $table->foreignId('tour_id')->constrained('tour')->cascadeOnDelete();
