@@ -121,6 +121,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/instellingen/categorieen', [CategoryController::class, 'index']);
     Route::get('/instellingen/categorie/{id}/verwijderen', [CategoryController::class, 'destroy']);
     Route::post('/instellingen/categorie/aanmaken', [CategoryController::class, 'store']);
+
+    Route::post('/instellingen/teamsverwijderen', [AdminController::class, 'deleteTeamsInRange']);
 });
 
 
