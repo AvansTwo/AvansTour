@@ -8,7 +8,7 @@
                 <p class="mb-5">Kies wat je wilt aanmaken, wijzigen of verwijderen</p>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-                <button type="button" class="btn settins-link" data-bs-toggle="modal" data-bs-target="#radiusModal">
+                <button type="button" class="btn settins-link" data-bs-toggle="modal" data-bs-target="#radiusModal" onclick="resizeMap()">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-location-arrow"></i>
                         <h4 class="mt-2">Radius</h4>
@@ -16,7 +16,6 @@
                 </button>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-
                 <button type="button" class="btn settins-link" data-bs-toggle="modal" data-bs-target="#deleteDataModal">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-trash-arrow-up"></i>
@@ -25,7 +24,7 @@
                 </button>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-                <a class="settins-link" href="">
+                <a class="settins-link" href="/instellingen/gebruikers">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-users"></i>
                         <h4 class="mt-2">Gebruikers</h4>
@@ -33,7 +32,7 @@
                 </a>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-                <a class="settins-link" href="">
+                <a class="settins-link" href="/instellingen/categorieën">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-graduation-cap"></i>
                         <h4 class="mt-2">Opleidingen</h4>
@@ -52,20 +51,21 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center w-60 mx-auto">Geef aan hoe dichtbij de speler bij het punt moet zijn (in meter).</p>
-                        <form class="needs-validation" novalidate action="/settings/radius/update" method="post" enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate action="/instellingen/radius/aanpassen" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
                                 <div class="col-12 mx-auto mb-3">
                                     <div class='ctrl d-flex justify-content-center my-5'>
-                                        <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
+                                        <div class='ctrl__button ctrl__button--decrement' onclick="resizeCircle()">&ndash;</div>
                                         <div class='ctrl__counter'>
                                             <input class='ctrl__counter-input' name="radius" maxlength='10' type='text' value='@if(!empty($radius)) {{$radius->radius}} @else 100 @endif'>
-                                            <div class='ctrl__counter-num'>@if(!empty($radius)) {{$radius->radius}} @else 100 @endif</div>
+                                            <div id="radiusCounter" class='ctrl__counter-num'>@if(!empty($radius)) {{$radius->radius}} @else 100 @endif</div>
                                         </div>
-                                        <div class='ctrl__button ctrl__button--increment'>+</div>
+                                        <div class='ctrl__button ctrl__button--increment' onclick="resizeCircle()">+</div>
                                     </div>
                                 </div>
                             </div>
+                            <x-leaflet-map centerpoint="51.588376,4.776478" mapCallback="mapOpen" radius="{{$radius->radius}}"></x-leaflet-map>
                             <div class="modal-footer">
                                 <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
                                 <button type="submit" class="btn primary-btn">Opslaan</button>
