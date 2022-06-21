@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class TeamAnswer extends Model
 {
@@ -15,12 +15,8 @@ class TeamAnswer extends Model
         'answer',
     ];
 
-    public function teamProgress(): BelongsTo
+    public function progress(): HasOne
     {
-        return $this->belongsTo(teamProgress::class, "team_answer_id");
-    }
-    public function progress(): BelongsTo
-    {
-        return $this->belongsTo(teamProgress::class);
+        return $this->hasOne(TeamProgress::class, 'team_answer_id');
     }
 }

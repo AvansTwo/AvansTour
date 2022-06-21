@@ -6,7 +6,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TeamProgress extends Model
@@ -32,7 +31,7 @@ class TeamProgress extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function teamAnswer(): BelongsTo
+    public function answer(): BelongsTo
     {
         return $this->belongsTo(TeamAnswer::class);
     }
