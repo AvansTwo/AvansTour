@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tour;
+use App\Models\Settings;
 use App\Models\Team;
 use App\Models\Answer;
 use App\Models\TeamProgress;
@@ -169,9 +170,14 @@ class QuizController extends Controller
             'tour_id' => $tour_id,
             'team_id' => $team_id
         ));
-
+        $radius = Settings::find(1);
+        if (empty($radius)) {
+            $setting = new Settings();
+            $setting->save();
+            $radius = Settings::find(1);
+        }
         $amount = count($questions);
-        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount);
+        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount)->with('radius', $radius->radius);
     }
 
     /**

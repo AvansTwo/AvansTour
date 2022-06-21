@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Settings;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
-        return view('admin.index');
+        $radius = Settings::find(1);
+        return view('admin.index')->with("radius", $radius);
     }
 
     /**
@@ -35,7 +39,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $settings = new Settings();
+
+        $settings->radius = $request->radius;
+
+        $settings->save();
+
+        Session::flash('Checkmark','Radius opgeslagen!');
+        return view('admin.index');
     }
 
     /**
@@ -65,11 +76,23 @@ class AdminController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function updateRadius(Request $request)
     {
-        //
+        $setting = Settings::find(1);
+
+        if (!empty($setting)) {
+            $setting->update([
+                'radius' => $request->radius,
+            ]);
+        } else {
+            $setting = new Settings();
+            $setting->radius = $request->radius;
+            $setting->save();
+        }
+        Session::flash('Checkmark','Radius opgeslagen!');
+        return Redirect::to('/settings');
     }
 
     /**

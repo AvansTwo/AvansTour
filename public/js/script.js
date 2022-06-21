@@ -263,3 +263,5 @@ function removeTourImage() {
     document.getElementById("tour-img-input").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
 }
+
+
