@@ -10,7 +10,7 @@ function JSalert() {
                 window.location.href =
                     document.getElementById("exit-tour-url").href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -27,7 +27,7 @@ function JSalertDeleteUser() {
                 window.location.href =
                     document.getElementById("delete-user-url").href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -44,7 +44,21 @@ function JSalertDeleteCategorie() {
                 window.location.href =
                     document.getElementById("delete-categorie-url").href;
             },
-            function () {}
+            function () { }
+        )
+        .set("movable", false)
+        .set("closable", false);
+}
+
+function JSalertDeleteTeamProgress() {
+    alertify
+        .confirm(
+            "Weet je het zeker?",
+            "Wil je teams tussen de gegeven data verwijderen? <strong class='d-block mt-3'>!! Bij het verwijderen van teams worden leden/fotos/antwoorden ook verwijderd !!</strong>",
+            function () {
+                document.getElementById("deleteTeamsForm").submit();
+            },
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -62,7 +76,7 @@ function JSalertDeleteTour() {
                 window.location.href =
                     document.getElementById("delete-tour-url").href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -82,7 +96,7 @@ function JSalertDeleteQuestion() {
                     "delete-question-url"
                 ).href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -102,7 +116,7 @@ function JSalertCorrectAnswer() {
                     "incorrect-answer-url"
                 ).href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);

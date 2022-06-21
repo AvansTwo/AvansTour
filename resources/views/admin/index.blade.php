@@ -86,7 +86,7 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center">Geef aan van welke tot welke datum je tourgegevens wilt verwijderen</p>
-                        <form class="needs-validation" novalidate action="/settings/teamsverwijderen" method="POST">
+                        <form id="deleteTeamsForm" class="needs-validation" novalidate action="/instellingen/teamsverwijderen" method="POST">
                             @csrf
                             <div class="form-row">
                                 <div class="col-8 mx-auto mb-3">
@@ -98,9 +98,9 @@
                                     <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="endDate" value="YYYY-MM-DD"/>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer text-center">
                                 <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
-                                <input value="Opslaan" type="submit" class="btn primary-btn">
+                                <button type="button" onclick="JSalertDeleteTeamProgress()" class="btn primary-btn">Verwijderen</button>
                             </div>
                         </form>
                     </div>
