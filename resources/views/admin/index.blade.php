@@ -16,7 +16,6 @@
                 </button>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-
                 <button type="button" class="btn settins-link" data-bs-toggle="modal" data-bs-target="#deleteDataModal">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-trash-arrow-up"></i>
@@ -25,7 +24,7 @@
                 </button>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-                <a class="settins-link" href="">
+                <a class="settins-link" href="/instellingen/gebruikers">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-users"></i>
                         <h4 class="mt-2">Gebruikers</h4>
@@ -33,7 +32,7 @@
                 </a>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-                <a class="settins-link" href="">
+                <a class="settins-link" href="/instellingen/categorieën">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-graduation-cap"></i>
                         <h4 class="mt-2">Opleidingen</h4>
@@ -52,7 +51,7 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center w-60 mx-auto">Geef aan hoe dichtbij de speler bij het punt moet zijn (in meter).</p>
-                        <form class="needs-validation" novalidate action="/settings/radius/update" method="post" enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate action="/instellingen/radius/aanpassen" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
                                 <div class="col-12 mx-auto mb-3">
