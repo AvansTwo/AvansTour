@@ -109,6 +109,7 @@ Route::middleware('auth')->group(function () {
 
     //Settings
     Route::get('/settings', [AdminController::class, 'index'])->name("settings");
+    Route::post('/settings/radius/update', [AdminController::class, 'updateRadius'])->name("updateRadius");
 });
 
 

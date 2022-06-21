@@ -14,12 +14,13 @@
     });
 
     let isAdmin = {{ $isAdmin }};
+    let radius = {{$radius}};
 
     let liveMarker = L.marker([1,1], {
         icon: locationIcon
-    }).bindPopup(`Deze radius strekt 100 meter om jouw huidige locatie!`).addTo(map);
+    }).bindPopup(`Deze radius strekt ${radius} meter om jouw huidige locatie!`).addTo(map);
 
-    let personCircle = L.circle([1,1], 100, {
+    let personCircle = L.circle([1,1], radius, {
         weight: 1,
         color: 'blue',
         fillColor: '#cacaca',
