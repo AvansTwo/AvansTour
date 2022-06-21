@@ -52,18 +52,25 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center w-60 mx-auto">Geef aan hoe dichtbij de speler bij het punt moet zijn (in meter).</p>
-                        <div class='ctrl d-flex justify-content-center my-5'>
-                            <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
-                            <div class='ctrl__counter'>
-                                <input class='ctrl__counter-input' maxlength='10' type='text' value='0'>
-                                <div class='ctrl__counter-num'>100</div>
+                        <form class="needs-validation" novalidate action="/settings/radius/update" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-row">
+                                <div class="col-12 mx-auto mb-3">
+                                    <div class='ctrl d-flex justify-content-center my-5'>
+                                        <div class='ctrl__button ctrl__button--decrement'>&ndash;</div>
+                                        <div class='ctrl__counter'>
+                                            <input class='ctrl__counter-input' name="radius" maxlength='10' type='text' value='100'>
+                                            <div class='ctrl__counter-num'>100</div>
+                                        </div>
+                                        <div class='ctrl__button ctrl__button--increment'>+</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class='ctrl__button ctrl__button--increment'>+</div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
-                        <button type="button" class="btn primary-btn">Opslaan</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
+                                <button type="submit" class="btn primary-btn">Opslaan</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -344,8 +344,3 @@ function removeTourImage() {
     document.addEventListener('DOMContentLoaded', controls.ready);
 })();
 
-
-$(function() {
-    $('#datepicker').datepicker();
-});
-
