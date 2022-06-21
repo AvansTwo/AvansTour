@@ -58,5 +58,21 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'Sybrand Bos',
+            'email' => 'snjw.bos@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Welkom01'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Joost van Dam',
+            'email' => 'ja.vandam3@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

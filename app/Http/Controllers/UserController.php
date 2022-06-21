@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
 use Illuminate\Http\Request;
-use App\Models\Settings;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $radius = Settings::find(1);
-        return view('admin.index')->with("radius", $radius);
+        $users = User::all();
+        return view('admin.usersIndex')->with("users", $users);
     }
 
     /**
@@ -39,14 +38,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $settings = new Settings();
-
-        $settings->radius = $request->radius;
-
-        $settings->save();
-
-        Session::flash('Checkmark','Radius opgeslagen!');
-        return view('admin.index');
+        //
     }
 
     /**
@@ -76,33 +68,26 @@ class AdminController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function updateRadius(Request $request)
+    public function update(Request $request, $id)
     {
-        $setting = Settings::find(1);
-
-        if (!empty($setting)) {
-            $setting->update([
-                'radius' => $request->radius,
-            ]);
-        } else {
-            $setting = new Settings();
-            $setting->radius = $request->radius;
-            $setting->save();
-        }
-        Session::flash('Checkmark','Radius opgeslagen!');
-        return Redirect::to('/instellingen');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        Session::flash('Checkmark','Gebruiker is succesvol verwijderd');
+        return redirect('/instellingen/gebruikers');
     }
 }

@@ -50,6 +50,19 @@ function startLocationMarkerClick() {
     console.log('Start location clicked');
 }
 
+function resizeMap() {
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 500);
+}
+
+function resizeCircle() {
+   let counter = document.getElementById('radiusCounter');
+   setTimeout(() => {
+    radiusSize.setRadius(counter.innerHTML);
+}, 300);  
+}
+
 let MapIsInvisible = false;
 
 function showMap() {
@@ -67,7 +80,9 @@ function showMap() {
 
 }
 
-
+function mapOpen(map, radius) {
+    map.invalidateSize();
+}
 // Default callbacks
 function noMarkerCallback() {
     console.log('No marker callback specified');

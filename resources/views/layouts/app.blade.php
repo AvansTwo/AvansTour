@@ -74,7 +74,7 @@
                     <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
                     <div class="dropdown-content text-center">
                         <a href="{{route('dashboard')}}">Dashboard</a>
-                        <a href="{{route('settings')}}">Settings</a>
+                        <a href="{{route('settings')}}">Instellingen</a>
                         <div class="dropdown-divider"></div>
                         <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
                             @csrf
