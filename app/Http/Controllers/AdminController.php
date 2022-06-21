@@ -13,12 +13,12 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
-        return view('admin.index');
+        $radius = Settings::find(1);
+        return view('admin.index')->with("radius", $radius);
     }
 
     /**
@@ -76,20 +76,23 @@ class AdminController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function updateRadius(Request $request)
     {
-        $setting = Setting::find($id);
+        $setting = Settings::find(1);
 
-        if ($setting) {
-        $setting->radius = $request->radius;
-        $setting->save();
-        Session::flash('Checkmark','Radius opgeslagen!');
-        return view('admin.index');
+        if (!empty($setting)) {
+            $setting->update([
+                'radius' => $request->radius,
+            ]);
         } else {
-        store($request);
+            $setting = new Settings();
+            $setting->radius = $request->radius;
+            $setting->save();
         }
+        Session::flash('Checkmark','Radius opgeslagen!');
+        return Redirect::to('/settings');
     }
 
     /**
