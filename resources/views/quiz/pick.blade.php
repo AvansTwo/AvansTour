@@ -8,9 +8,9 @@
             <p>Loop naar een van de markers op de map en klik deze aan als je bent aangekomen op bestemming</p>
             <x-leaflet-map :centerpoint="$tour->location" :markers="$remainingQuestions" markerCallback="markerClick"></x-leaflet-map>
             @if(Auth::check())
-            <x-geolocation isAdmin="true"></x-geolocation>
+            <x-geolocation isAdmin="true" radius={{$radius}}></x-geolocation>
             @else
-            <x-geolocation isAdmin="false"></x-geolocation>
+            <x-geolocation isAdmin="false" radius={{$radius}}></x-geolocation>
             @endif
             <p class="text-center mt-4">Nog <span id="amount-question-left">{{$amount}}</span> vragen te beantwoorden</p>
             <div class="d-flex">
