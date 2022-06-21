@@ -35,13 +35,10 @@ class AdminController extends Controller
      */
     public function deleteTeamsInRange(Request $request)
     {
-        $startDateC = Carbon::parse($request->startDate)->format('Y-m-d');
-        $endDateC = Carbon::parse($request->endDate)->format('Y-m-d');
+        $startDate = Carbon::parse($request->startDate)->format('Y-m-d');
+        $endDate = Carbon::parse($request->endDate)->format('Y-m-d');
 
-        $startDate = strtotime($request->startDate);
-        $endDate = strtotime($request->endDate);
-
-        $teams = Team::whereBetween('created_at', [$startDateC ." 00:00:00", $endDateC ." 23:59:59"])->get();
+        $teams = Team::whereBetween('created_at', [$startDate ." 00:00:00", $endDate ." 23:59:59"])->get();
         foreach($teams as $team){
             $teamProgresses = $team->teamProgress;
 
@@ -57,6 +54,9 @@ class AdminController extends Controller
 
             $team->delete();
         }
+
+        Session::flash('Checkmark','Teams in de gegeven periode zijn verwijderd!');
+        return Redirect::to('/instellingen');
     }
 
 
