@@ -22,7 +22,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $teams = TeamProgress::all()->where('status', 'Afwachting');
+        $teams = DB::select('SELECT team.team_name, team.id AS team_id, tour.name AS tour_name from team left join team_progress on team_progress.team_id = team.id left join tour on tour.id = team.tour_id WHERE team_progress.team_id IS NOT NULL GROUP BY team.team_name, team.id, tour.name ');
         return view('dashboard.index')->with('teams', $teams);
     }
 
