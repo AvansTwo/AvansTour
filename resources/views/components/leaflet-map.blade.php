@@ -13,6 +13,7 @@
 
 <script>
     var centerpoint = {!! json_encode($centerpoint) !!};
+    var size = {{  $radius  }};
     var markers = {!! json_encode($markers) !!};
     var markerCallback = {{ $markerCallback }};
     var map = L.map('leafletmap').setView([centerpoint[0], centerpoint[1]], 13);
@@ -31,6 +32,14 @@
         iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
         popupAnchor: [0, -40]
     })
+    var locationIcon = L.icon({
+        iconUrl: {!! json_encode(asset('img/pin-user.png')) !!},
+
+        iconSize:     [28, 41], // size of the icon
+        iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
+        popupAnchor: [0, -40]
+    });
+
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -84,7 +93,20 @@
             eval(mapCallback)(map, marker, e, circle);
         })
         }
+    }
 
+    if (mapCallback == mapOpen) {
+        var marker = L.marker([51.588376,4.776478], {
+            icon: locationIcon
+        }).addTo(map);
+        var radiusSize = L.circle([51.588376,4.776478], {
+            color: 'red',
+            fillOpacity: 0.0,
+            radius: size
+        }).addTo(map);
+        map.on('click', function(e) {
+            eval(mapCallback)(map, radiusSize);
+        })
     }
 
 </script>
