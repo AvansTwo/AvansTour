@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <button type="button" onclick="location.href='/speurtochten/{{$question->tour->id}}';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
+                <button type="button" onclick="location.href='/tour/{{$question->tour->id}}';" class="btn primary-btn secondary-btn mt-5"><i class="fa-solid fa-chevron-left"></i> Ga terug</button>
             </div>
             <div class="col-12 grey-bg p-5 my-5">
                 <div class="row">
@@ -12,21 +12,22 @@
                         <h1>{{$question->title}}</h1>
                         <p>{{$question->description}}</p>
                         <div class="col-12 d-flex mt-4">
-                            <i class="fa-solid fa-earth-europe tour-icon"></i>
-                            <p class="my-auto">Locatie: {{$question->gps_location}}</p>
-                        </div>
-                        <div class="col-12 d-flex mt-4">
                             <i class="fa-solid fa-certificate tour-icon"></i>
                             <p class="my-auto">Punten: {{$question->points}}</p>
                         </div>
+                        <div class="col-12 d-flex mt-4">
+                            @if(!empty($question->video_url))
+                                <i class="fa-brands fa-youtube-square tour-icon"></i>
+                                <p class="my-auto">Youtube: <a target="_blank" href="{{$question->video_url}}">Link</a></p>
+                            @endif
+                        </div>
                         <div class="col-12 mt-5">
                             <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <button type="button" onclick="location.href='#';" class="btn primary-btn d-block d-lg-inline">Start nu <i class="fa-solid fa-chevron-right"></i></button>
-                                </div>
                                 <div class="col-12 col-lg-6 mt-4 mt-lg-0">
-{{--                                    <button onclick="location.href='/speurtochten/aanpassen/{{$tour->id}}';" class="btn create-btn edit-btn mt-2"><i class="fa-solid fa-pen-to-square"></i></button>--}}
-{{--                                    <button type="button" onclick="location.href='/speurtochten/{{$tour->id}}/vragen/aanmaken';" class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i></button>--}}
+                                    <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
+                                        <a id="delete-question-url" style="pointer-events: none" href="/vragen/verwijderen/{{$question->id}}" class="fa-solid fa-trash"></a>
+                                    </button>
+                                    <button onclick="location.href='/vragen/aanpassen/{{$question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -34,18 +35,19 @@
                     <div class="col-12 col-lg-6 order-6 order-lg-1">
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-detail-img">
-                            </div>
-                            <div class="col-12">
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0krOPZWdwKc" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <div class="col-12 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-
+                                <img class="img-fluid question-img mb-5 mb-lg-0" @if(empty($question->image_url)) src="{{ asset('img/landing_img.png') }}" @else src="{{ asset('tourimg/'. $question->image_url) }}" @endif alt="tour-detail-img">
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 grey-bg mb-5 p-5">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mb-3 fw-bold"><i class="fa-solid fa-earth-europe tour-icon-bold"></i> Locatie vraag:</h2>
+                    <x-leaflet-map :centerpoint="$question->gps_location" :markers="$questionLocation"></x-leaflet-map>
                 </div>
             </div>
         </div>

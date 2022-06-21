@@ -8,12 +8,14 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TourController extends Controller
 {
@@ -26,14 +28,15 @@ class TourController extends Controller
     {
         $tours = Tour::paginate(6);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filtered', FALSE);
     }
 
     public function categoryFilter($id)
     {
         $tours = Tour::where("category_id", $id)->paginate(6);
+        $filteredCategory = Category::find($id);
         $categories = Category::all();
-        return view('tour.index')->with('tours', $tours)->with('categories', $categories);
+        return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filteredCategory', $filteredCategory);
     }
 
     /**
@@ -59,7 +62,7 @@ class TourController extends Controller
     public function store(StoreTourRequest $request)
     {
         $file = $request->file('image_url');
-        $filename= date('YmdHi').$file->getClientOriginalName();
+        $filename= date('YmdHis').$file->getClientOriginalName();
 
         $tour = new Tour();
 
@@ -68,14 +71,14 @@ class TourController extends Controller
         $tour->image_url = $filename;
         $tour->location = $request->location;
         $tour->category_id = $request->category_id;
-        $tour->user_id = 1;
+        $tour->user_id = Auth::user()->id;
 
         $tour->save();
 
         $file-> move(public_path('tourimg'), $filename);
 
-        Session::flash('SuccessMessage','Tour is succesvol aangemaakt, voeg nu vragen toe!');
-        return Redirect::to('/speurtochten/'. $tour->id .'/vragen/aanmaken');
+        Session::flash('Checkmark','Tour is succesvol aangemaakt, voeg nu vragen toe!');
+        return Redirect::to('/tour/'. $tour->id .'/vragen/aanmaken');
     }
 
     /**
@@ -88,7 +91,19 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
 
-        return view('tour.detail')->with('tour', $tour);
+        $totalPoints = 0;
+
+        foreach ($tour->question as $question) {
+            $totalPoints += $question->points;
+        }
+
+        $startLocation = array((object) [
+            "gps_location" => $tour->location
+        ]);
+
+
+
+        return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
     }
 
     /**
@@ -102,7 +117,11 @@ class TourController extends Controller
         $tour = Tour::find($id);
         $catgories = Category::all();
 
-        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories);
+        $startLocation = array((object) [
+            "gps_location" => $tour->location
+        ]);
+
+        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories)->with('startLocation', $startLocation);
     }
 
     /**
@@ -122,7 +141,7 @@ class TourController extends Controller
             if(\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
             }
-            $filename = date('YmdHi').$file->getClientOriginalName();
+            $filename = date('YmdHis').$file->getClientOriginalName();
         }
 
         $tour->update([
@@ -134,20 +153,31 @@ class TourController extends Controller
             'user_id'       =>  $request->user_id,
         ]);
 
-        $file-> move(public_path('tourimg'), $filename);
+        if (!empty($file)) {
+            $file->move(public_path('tourimg'), $filename);
+        }
 
-        Session::flash('SuccessMessage','Tour is succesvol aangepast');
-        return Redirect::to('/speurtochten/'. $tour->id);
+        Session::flash('Checkmark','Tour is succesvol aangepast');
+        return Redirect::to('/tour/'. $tour->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return Application|Factory|View
      */
     public function destroy($id)
     {
-        //
+        $tour = Tour::find($id);
+
+        if(\File::exists(public_path('tourimg/' . $tour->image_url))) {
+            \File::delete(public_path('tourimg/' . $tour->image_url));
+        }
+
+        $tour->delete();
+
+        Session::flash('Checkmark','Tour is succesvol verwijderd');
+        return redirect('/tours');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -17,14 +18,61 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('users')->insert([
-//            'name' => Str::random(10),
-//            'email' => Str::random(10).'@gmail.com',
-//            'password' => Hash::make('password'),
-//        ]);
-
-        User::factory()
-            ->count(5)
-            ->create();
+        DB::table('users')->insert([
+            'name' => 'Simon Nuijten',
+            'email' => 'st.nuijten@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Tristan Goossens',
+            'email' => 'tt.goossens@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Quincy van Deursen',
+            'email' => 'q.vandeursen@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Thimo Luijsterburg',
+            'email' => 'tb.luijsterburg@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Jelmer  Verhoeven',
+            'email' => 'jjp.verhoeven@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Sybrand Bos',
+            'email' => 'snjw.bos@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Welkom01'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Joost van Dam',
+            'email' => 'ja.vandam3@student.avans.nl',
+            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'password' => Hash::make('Test123'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

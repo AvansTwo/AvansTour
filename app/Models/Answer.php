@@ -12,7 +12,7 @@ class Answer extends Model
 {
     use HasFactory;
 
-    protected $table="answer";
+    protected $table = "answer";
 
     protected $fillable = [
         'answer',
