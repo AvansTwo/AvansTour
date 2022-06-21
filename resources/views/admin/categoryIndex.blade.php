@@ -11,7 +11,8 @@
             <div class="col-12 mt-5">
                 <div class="row">
                     <div class="col-12 col-lg-6">
-                        <h1><span class="title-colored">AvansTour</span></h1>
+                        <h1 class="mb-3 fw-bold"><span class="title-colored">Categorieën</span> (tours)</h1>
+                        <p>Alle categorieën zonder gelinkte tours</p>
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
@@ -23,7 +24,7 @@
             <div class="col-12 grey-bg my-5 p-5 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="mb-3">Categorieën AvansTour</h2>
+                        
                     </div>
                     <div class="col-12">
                         <table class="table text-center">

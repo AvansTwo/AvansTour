@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Tour;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::whereNotIn('id', Tour::select('category_id')->get())->get();
         return view('admin.categoryIndex')->with('categories', $categories);
     }
 
@@ -43,7 +44,7 @@ class CategoryController extends Controller
         $category->save();
 
         Session::flash('Checkmark','Categorie opgeslagen');
-        return Redirect::to('/instellingen/categorieën');
+        return Redirect::to('/instellingen/categorieen');
     }
 
     /**
@@ -92,6 +93,6 @@ class CategoryController extends Controller
         $category->delete();
 
         Session::flash('Checkmark','Categorie is succesvol verwijderd');
-        return redirect('/instellingen/categorieën');
+        return redirect('/instellingen/categorieen');
     }
 }
