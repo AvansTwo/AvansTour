@@ -18,7 +18,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/form.js') }}" defer></script>
     <script src="{{ asset('js/script.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/436d2e61dc.js" crossorigin="anonymous"></script>
@@ -75,7 +74,7 @@
                     <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
                     <div class="dropdown-content text-center">
                         <a href="{{route('dashboard')}}">Dashboard</a>
-                        <a href="{{route('settings')}}">Settings</a>
+                        <a href="{{route('settings')}}">Instellingen</a>
                         <div class="dropdown-divider"></div>
                         <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
                             @csrf

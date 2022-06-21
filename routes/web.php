@@ -7,6 +7,10 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ScoreboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+
+
 
 
 /*
@@ -108,7 +112,16 @@ Route::middleware('auth')->group(function () {
         ->name('dashboardInCorrectAnswer');
 
     //Settings
-    Route::get('/settings', [AdminController::class, 'index'])->name("settings");
+    Route::get('/instellingen', [AdminController::class, 'index'])->name("settings");
+    Route::post('/instellingen/radius/aanpassen', [AdminController::class, 'updateRadius']);
+
+    Route::get('/instellingen/gebruikers', [UserController::class, 'index']);
+    Route::get('/instellingen/gebruiker/{id}/verwijderen', [UserController::class, 'destroy']);
+
+    Route::get('/instellingen/categorieën', [CategoryController::class, 'index']);
+    Route::get('/instellingen/categorie/{id}/verwijderen', [CategoryController::class, 'destroy']);
+    Route::post('/instellingen/categorie/aanmaken', [CategoryController::class, 'store']);
+
 });
 
 
