@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="float-none float-lg-end mb-5 mb-lg-0">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#createCategoryModel" class="btn create-btn mt-2"><i id="create-tour-btn-icon" class="fa-solid fa-square-plus"></i>Aanmaken</button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#createCategoryModel" class="btn create-btn mt-2"><i id="create-tour-btn-icon" class="fa-solid fa-square-plus"></i>Toevoegen</button>
                         </div>
                     </div>
                 </div>

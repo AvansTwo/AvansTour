@@ -20,7 +20,7 @@ function JSalertDeleteUser() {
     alertify
         .confirm(
             "Weet je het zeker?",
-            "Wil je deze gebruiker echt verwijderen?<strong class='d-block mt-3'>Als je deze verwijderd worden alle bijbehorende tours ook verwijderd</strong>",
+            "Wil je deze gebruiker echt verwijderen?<strong class='d-block mt-3'>!! Als je deze verwijderd worden alle bijbehorende tours ook verwijderd !!</strong>",
             function () {
                 document.getElementById("delete-user-url").style.pointerEvents =
                     "";
@@ -37,7 +37,7 @@ function JSalertDeleteCategorie() {
     alertify
         .confirm(
             "Weet je het zeker?",
-            "Wil je deze categorie echt verwijderen? Als je deze verwijderd worden alle bijbehorende tours ook verwijderd",
+            "Wil je deze categorie echt verwijderen?<strong class='d-block mt-3'>!! Als je deze verwijderd worden alle bijbehorende tours ook verwijderd !!</strong>",
             function () {
                 document.getElementById("delete-categorie-url").style.pointerEvents =
                     "";
