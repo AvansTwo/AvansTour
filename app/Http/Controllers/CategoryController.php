@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Models\Settings;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
-class AdminController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $radius = Settings::find(1);
-        return view('admin.index')->with("radius", $radius);
+        $categories = Category::all();
+        return view('admin.categoryIndex')->with('categories', $categories);
     }
 
     /**
@@ -39,14 +38,12 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $settings = new Settings();
+        $category = new Category();
+        $category->category_name = $request->category_name;
+        $category->save();
 
-        $settings->radius = $request->radius;
-
-        $settings->save();
-
-        Session::flash('Checkmark','Radius opgeslagen!');
-        return view('admin.index');
+        Session::flash('Checkmark','Categorie opgeslagen');
+        return Redirect::to('/instellingen/categorieën');
     }
 
     /**
@@ -76,33 +73,25 @@ class AdminController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
-    public function updateRadius(Request $request)
+    public function update(Request $request, $id)
     {
-        $setting = Settings::find(1);
-
-        if (!empty($setting)) {
-            $setting->update([
-                'radius' => $request->radius,
-            ]);
-        } else {
-            $setting = new Settings();
-            $setting->radius = $request->radius;
-            $setting->save();
-        }
-        Session::flash('Checkmark','Radius opgeslagen!');
-        return Redirect::to('/instellingen');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        Session::flash('Checkmark','Categorie is succesvol verwijderd');
+        return redirect('/instellingen/categorieën');
     }
 }
