@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Team;
+use App\Models\TeamProgress;
+use App\Models\TeamAnswer;
+use App\Models\Category;
+use App\Models\Tour;
 use App\Models\Settings;
-use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -20,6 +26,39 @@ class AdminController extends Controller
         $radius = Settings::find(1);
         return view('admin.index')->with("radius", $radius);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteTeamsInRange(Request $request)
+    {
+        $startDate = Carbon::parse($request->startDate)->format('Y-m-d');
+        $endDate = Carbon::parse($request->endDate)->format('Y-m-d');
+
+        $teams = Team::whereBetween('created_at', [$startDate ." 00:00:00", $endDate ." 23:59:59"])->get();
+        foreach($teams as $team){
+            $teamProgresses = $team->teamProgress;
+
+            foreach($teamProgresses as $teamProgress){
+                $answer = TeamAnswer::find($teamProgress->team_answer_id);
+
+                if (\File::exists(public_path('teamimg/' . $answer->answer))) {
+                    \File::delete(public_path('teamimg/' . $answer->answer));
+                }
+
+                $answer->delete();
+            }
+
+            $team->delete();
+        }
+
+        Session::flash('Checkmark','Teams in de gegeven periode zijn verwijderd!');
+        return Redirect::to('/instellingen');
+    }
+
 
     /**
      * Show the form for creating a new resource.

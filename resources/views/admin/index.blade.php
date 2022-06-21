@@ -32,7 +32,7 @@
                 </a>
             </div>
             <div class="col-6 d-flex justify-content-around mb-5">
-                <a class="settins-link" href="/instellingen/categorieën">
+                <a class="settins-link" href="/instellingen/categorieen">
                     <div class="settings-btn-bg button-wrapper flex-column d-flex justify-content-center text-center">
                         <i class="fa-solid fa-graduation-cap"></i>
                         <h4 class="mt-2">Opleidingen</h4>
@@ -46,11 +46,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Radius tours aanpassen</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tour radius aanpassen</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p class="text-center w-60 mx-auto">Geef aan hoe dichtbij de speler bij het punt moet zijn (in meter).</p>
+                        <p class="text-center w-60 mx-auto">Geef aan hoe dichtbij de speler bij een vraag moet zijn (in meter) om hem te kunnen beantwoorden.</p>
                         <form class="needs-validation" novalidate action="/instellingen/radius/aanpassen" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
@@ -58,8 +58,8 @@
                                     <div class='ctrl d-flex justify-content-center my-5'>
                                         <div class='ctrl__button ctrl__button--decrement' onclick="resizeCircle()">&ndash;</div>
                                         <div class='ctrl__counter'>
-                                            <input class='ctrl__counter-input' name="radius" maxlength='10' type='text' value='@if(!empty($radius)) {{$radius->radius}} @else 100 @endif'>
-                                            <div id="radiusCounter" class='ctrl__counter-num'>@if(!empty($radius)) {{$radius->radius}} @else 100 @endif</div>
+                                            <input class='ctrl__counter-input' name="radius" maxlength='10' type='text' readonly value='@if(!empty($radius)) {{$radius->radius}} @else 100 @endif'>
+                                            <div id="radiusCounter" class='ctrl__counter-num' >@if(!empty($radius)) {{$radius->radius}} @else 100 @endif</div>
                                         </div>
                                         <div class='ctrl__button ctrl__button--increment' onclick="resizeCircle()">+</div>
                                     </div>
@@ -86,21 +86,21 @@
                     </div>
                     <div class="modal-body">
                         <p class="text-center">Geef aan van welke tot welke datum je tourgegevens wilt verwijderen</p>
-                        <form class="needs-validation" novalidate action="" method="post" enctype="multipart/form-data">
+                        <form id="deleteTeamsForm" class="needs-validation" novalidate action="/instellingen/teamsverwijderen" method="POST">
                             @csrf
                             <div class="form-row">
                                 <div class="col-8 mx-auto mb-3">
                                     <label for="startdate" class="mb-1 fw-bold">Start datum</label>
-                                    <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="startdate" value="YYYY-MM-DD"/>
+                                    <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="startDate" value="YYYY-MM-DD"/>
                                 </div>
                                 <div class="col-8 mx-auto mb-3">
                                     <label for="enddate" class="mb-1 fw-bold">Eind datum</label>
-                                    <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="enddate" value="YYYY-MM-DD"/>
+                                    <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="endDate" value="YYYY-MM-DD"/>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer text-center">
                                 <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
-                                <button type="submit" class="btn primary-btn">Opslaan</button>
+                                <button type="button" onclick="JSalertDeleteTeamProgress()" class="btn primary-btn">Verwijderen</button>
                             </div>
                         </form>
                     </div>
