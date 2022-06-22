@@ -155,34 +155,6 @@ function JSalertCorrectAnswer() {
 })();
 
 // Create question page
-function showImageInput() {
-    $("#questionImgWrapper").removeClass("d-none");
-    $("#questionImg").attr({
-        disabled: false,
-        required: true,
-    });
-
-    $("#questionVideoWrapper").addClass("d-none");
-    $("#questionVideo").attr({
-        disabled: true,
-        required: false,
-    });
-}
-
-function showVideoInput() {
-    $("#questionVideoWrapper").removeClass("d-none");
-    $("#questionVideo").attr({
-        disabled: false,
-        required: true,
-    });
-
-    $("#questionImgWrapper").addClass("d-none");
-    $("#questionImg").attr({
-        disabled: true,
-        required: false,
-    });
-}
-
 $("input[type=radio][name=typeRadio]").change(function () {
     if (this.value == "Meerkeuze") {
         $("#multiple-choice-fields").show();
@@ -204,29 +176,6 @@ function removeQuestionImage() {
     document.getElementById("questionImg").classList.remove("d-none");
     document.getElementById("questionImg").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
-}
-
-function showImageInput() {
-    if (!document.getElementById("questionPhoto")) {
-        document.getElementById("questionImg").classList.remove("d-none");
-    }
-    document.getElementById("questionImgWrapper").classList.remove("d-none");
-    document.getElementById("questionImg").disabled = false;
-    document.getElementById("questionImg").required = true;
-
-    document.getElementById("questionVideoWrapper").classList.add("d-none");
-    document.getElementById("questionVideo").disabled = true;
-    document.getElementById("questionVideo").required = false;
-}
-
-function showVideoInput() {
-    document.getElementById("questionVideoWrapper").classList.remove("d-none");
-    document.getElementById("questionVideo").disabled = false;
-    document.getElementById("questionVideo").required = true;
-
-    document.getElementById("questionImgWrapper").classList.add("d-none");
-    document.getElementById("questionImg").disabled = true;
-    document.getElementById("questionImg").required = false;
 }
 
 function checkType(type) {
