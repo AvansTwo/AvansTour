@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 
 class QuestionController extends Controller
@@ -43,22 +44,21 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            '_token' => 'nullable',
-            'tourID' => 'required',
-            'questionTitle' => 'required',
-            'questionDesc' => 'required',
-            'typeRadio' => 'required',
-            'questionPoints' => 'required',
-            'questionLocation' => 'required',
-            'flexRadioDefault' => 'nullable',
+        $tourID = $request->tourID;
+
+        $validator = Validator::make($request->all(), [
+            'questionTitle'         => ['required', 'string', 'min:3', 'max:40'],
+            'questionDesc'          => ['required', 'string', 'min:3', 'max:500'],
+            'questionImg'           => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
+            'questionLocation'      => ['required', 'between:-180,180'],
+            'questionPoints'        => ['required', 'integer'],
         ]);
 
-        dd($validatedData);
+        if ($validator->fails()) {
+            return redirect("/tour/". $tourID ."/vragen/aanmaken")->withErrors($validator)->withInput();
+        }
 
         $question = new Question();
-
-        $tourID = $request->tourID;
 
         $filename = $question->questionImg;
         $file = $request->file('questionImg');
@@ -72,7 +72,6 @@ class QuestionController extends Controller
         $question->title = $request->questionTitle;
         $question->description = $request->questionDesc;
         $question->image_url = $filename;
-        $question->video_url = $request->questionVideo;
         $question->gps_location = $request->questionLocation;
         $question->type = $request->typeRadio;
         $question->points = $request->questionPoints;
@@ -158,18 +157,12 @@ class QuestionController extends Controller
             $filename = date('YmdHis') . $file->getClientOriginalName();
         }
 
-        if (!empty($request->questionVideo)) {
-            if (\File::exists(public_path('tourimg/' . $question->image_url))) {
-                \File::delete(public_path('tourimg/' . $question->image_url));
-            }
-            $filename = null;
-        }
+
 
         $question->update([
             'title'         => $request->questionTitle,
             'description'   => $request->questionDesc,
             'image_url'     => $filename,
-            'video_url'     => $request->questionVideo,
             'gps_location'  => $request->questionLocation,
             'points'        => $request->questionPoints,
         ]);

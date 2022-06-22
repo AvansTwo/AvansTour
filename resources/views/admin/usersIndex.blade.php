@@ -57,8 +57,8 @@
         </div>
 
         <!-- Create User Modal -->
-        <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade bd-example-modal-lg" id="createUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Gebruiker aanmaken</h5>
@@ -70,19 +70,28 @@
                             <div class="form-row">
                                 <div class="col-10 mx-auto mb-3">
                                     <label for="username" class="mb-1 fw-bold">Gebruikersnaam</label>
-                                    <input type="text" required name="username" class="form-control" placeholder="JanPeter2">
+                                    <input type="text" required name="username" value="{{ old('username') }}" class="form-control" placeholder="JanPeter2">
+                                    @error('username')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-10 mx-auto mb-3">
                                     <label for="email" class="mb-1 fw-bold">Email</label>
-                                    <input type="email" required name="email" class="form-control" placeholder="Janpeter@student.avans.nl">
+                                    <input type="email" required name="email" value="{{ old('email') }}" class="form-control" placeholder="Janpeter@student.avans.nl">
+                                    @error('email')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-10 mx-auto mb-3">
                                     <label for="password" class="mb-1 fw-bold">Wachtwoord</label>
-                                    <input type="password" required name="password" class="form-control" placeholder="*****">
+                                    <input type="password" required name="password" value="{{ old('password') }}" class="form-control" placeholder="*****">
+                                    @error('password')
+                                    <div class="alert alert-danger mt-1">Wachtwoord moet uit minimaal 8 karakters, minimaal 1 letter en 1 cijfer bestaan.</div>
+                                    @enderror
                                 </div>
                                 <div class="col-10 mx-auto mb-3">
                                     <label for="confirm_password" class="mb-1 fw-bold">Bevestig wachtwoord</label>
-                                    <input type="password" required name="confirm_password" class="form-control" placeholder="*****">
+                                    <input type="password" required name="password_confirmation" class="form-control" placeholder="*****">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -94,6 +103,12 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <script>
+        @if ($errors->any())
+        $(document).ready(function(){
+            $("#createUserModal").modal('show');
+        });
+        @endif
+    </script>
 @endsection

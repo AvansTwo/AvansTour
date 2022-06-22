@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.play')
 @section('title', 'Vraag beantwoorden')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-12 grey-bg p-5 my-5">
             <h1>De speurtocht <span class="title-colored"> kaart</span></h1>
-            <p>Loop naar een van de markers op de map en klik deze aan als je bent aangekomen op bestemming</p>
+            <p>loop naar één van de markers op de map en klik deze aan als je bent aangekomen op de bestemming</p>
             <x-leaflet-map :centerpoint="$tour->location" :markers="$remainingQuestions" markerCallback="markerClick"></x-leaflet-map>
             @if(Auth::check())
             <x-geolocation isAdmin="true" radius={{$radius}}></x-geolocation>

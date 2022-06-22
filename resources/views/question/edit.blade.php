@@ -39,21 +39,6 @@
                                 <input type="text" class="form-control" name="questionLocation" value="{{$question->gps_location}}" id="questionLocation" placeholder="51.58604484973112, 4.7923486528026755" aria-describedby="inputGroupPrepend" required>
                             </div>
                         </div>
-
-                        <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" onclick="showImageInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault1" @if(!empty($question->image_url)) checked @endif>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Foto vraag
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" onclick="showVideoInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault2" @if(!empty($question->video_url)) checked @endif>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Video vraag
-                                </label>
-                            </div>
-                        </div>
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5 @if(empty($question->image_url)) d-none @endif">
                             <label for="questionImg" class="mb-1 fw-bold">Foto vraag</label>
                             <input class="form-control d-none" @if(!empty($question->image_url)) disabled  @endif name="image_url" type="file" id="questionImg">

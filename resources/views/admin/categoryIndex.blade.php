@@ -24,7 +24,7 @@
             <div class="col-12 grey-bg my-5 p-5 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        
+
                     </div>
                     <div class="col-12">
                         <table class="table text-center">
@@ -70,7 +70,10 @@
                             <div class="form-row">
                                 <div class="col-10 mx-auto mb-3">
                                     <label for="categoryName" class="mb-1 fw-bold">Naam</label>
-                                    <input type="text" required name="category_name" class="form-control" id="categoryName" placeholder="Informatica">
+                                    <input type="text" value="{{ old('category_name') }}" required name="category_name" class="form-control" id="categoryName" placeholder="Informatica">
+                                    @error('category_name')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -82,6 +85,12 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <script>
+        @if ($errors->any())
+        $(document).ready(function(){
+            $("#createCategoryModel").modal('show');
+        });
+        @endif
+    </script>
 @endsection
