@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     @if($TeamProgress->teamAnswer->is_file == 1)
-                    <img class="img-fluid " src="{{ asset('teamimg/'.$TeamProgress->teamAnswer->answer) }}" alt="answer_image" >
+                        <img class="img-fluid " src="{{ asset('teamimg/'.$TeamProgress->teamAnswer->answer) }}" alt="answer_image" >
                     @else
                     <img class="img-fluid " src="{{ asset('img/landing_img.png') }}" alt="landing-image" >
                     @endif
@@ -29,7 +29,7 @@
                     </button>
 
                     <button onclick="JSalertCorrectAnswer()" class="btn create-btn delete-btn mt-2">
-                        <a id="incorrect-answer-url" style="pointer-events: none" href="/dashboard/vraag/{{$TeamProgress->id}}/fout">Foutkeuren <i class="fa-solid fa-xmark"></i></a>
+                        <a id="incorrect-answer-url" style="pointer-events: none" href="/dashboard/vraag/{{$TeamProgress->id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
                     </button>
                 </div>
             </div>

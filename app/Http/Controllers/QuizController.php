@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tour;
+use App\Models\Settings;
 use App\Models\Team;
 use App\Models\Answer;
 use App\Models\TeamProgress;
@@ -57,16 +58,16 @@ class QuizController extends Controller
 
         $team->save();
 
-        for($i = 1; $i <= $request->amount_players; $i++){
+        for ($i = 1; $i <= $request->amount_players; $i++) {
             $participant = new Participants();
 
-            $participant->name = request()->get('member_'.$i);
+            $participant->name = request()->get('member_' . $i);
             $participant->team_id = $team->id;
 
             $participant->save();
         }
 
-        return Redirect::to('/quiz/spelen/'.$team->team_identifier);
+        return Redirect::to('/quiz/spelen/' . $team->team_identifier);
     }
     public function storeTeamProgress(Request $request, $teamHash, $questionId)
     {
@@ -75,7 +76,7 @@ class QuizController extends Controller
 
         $question = Question::where('id', $questionId)->first();
         $team_answer = new TeamAnswer();
-        switch($question->type){
+        switch ($question->type) {
             case "Meerkeuze":
                 $team_answer->answer = $request->teamAnswerMC;
                 break;
@@ -85,15 +86,15 @@ class QuizController extends Controller
             case "Media":
                 $filename = $question->teamAnswerMedia;
                 $file = $request->file('teamAnswerMedia');
-                if(!empty($file)){
-                    if(\File::exists(public_path('teamimg/' . $filename))) {
+                if (!empty($file)) {
+                    if (\File::exists(public_path('teamimg/' . $filename))) {
                         \File::delete(public_path('teamimg/' . $filename));
                     }
-                    $filename = date('YmdHis').$file->getClientOriginalName();
+                    $filename = date('YmdHis') . $file->getClientOriginalName();
                 }
 
-                if(!empty($file)){
-                    $file-> move(public_path('teamimg'), $filename);
+                if (!empty($file)) {
+                    $file->move(public_path('teamimg'), $filename);
                     $is_file = 1;
                 }
                 $team_answer->answer = $filename;
@@ -106,13 +107,13 @@ class QuizController extends Controller
         $points = 0;
         $status = "";
 
-        if($question->type == 'Meerkeuze') {
-            $answer = Answer::where('question_id', $questionId)->where('correct_answer', 1 )->first();
-            if($answer->answer == $request->teamAnswerMC){
+        if ($question->type == 'Meerkeuze') {
+            $answer = Answer::where('question_id', $questionId)->where('correct_answer', 1)->first();
+            if ($answer->answer == $request->teamAnswerMC) {
                 $points = $question->points;
             }
             $status = "Nagekeken";
-        }else{
+        } else {
             $points = $question->points;
             $status = "Afwachting";
         }
@@ -124,7 +125,7 @@ class QuizController extends Controller
         $team_progress->status          = $status;
         $team_progress->save();
 
-        return Redirect::to('/quiz/spelen/'. $team->team_identifier);
+        return Redirect::to('/quiz/spelen/' . $team->team_identifier);
     }
 
     /**
@@ -155,7 +156,8 @@ class QuizController extends Controller
         return view('quiz.end')->with('team', $teamUpdated)->with('teamQuestion', $teamQuestion)->with('points', $points)->with('difference', $difference);
     }
 
-    public function getRemainingQuestions($teamHash) {
+    public function getRemainingQuestions($teamHash)
+    {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
         $tour = Tour::find($team->tour_id);
 
@@ -169,9 +171,14 @@ class QuizController extends Controller
             'tour_id' => $tour_id,
             'team_id' => $team_id
         ));
-
+        $radius = Settings::find(1);
+        if (empty($radius)) {
+            $setting = new Settings();
+            $setting->save();
+            $radius = Settings::find(1);
+        }
         $amount = count($questions);
-        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount);
+        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount)->with('radius', $radius->radius);
     }
 
     /**
