@@ -387,6 +387,10 @@ footer {
     max-height: 300px;
 }
 
+/*dashboard*/
+.dashboard-link{
+    color: black;
+}
 /*Spinner*/
 .ctrl {
     -webkit-box-flex: 0;
