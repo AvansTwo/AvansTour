@@ -15,7 +15,7 @@
             <p class="text-center mt-4">Nog <span id="amount-question-left">{{$amount}}</span> vragen te beantwoorden</p>
             <div class="d-flex">
                 {{-- In de href nog de url van de eind pagina --}}
-                <button type="button" onclick="JSalert()" class="btn primary-btn my-1 mx-auto"><a id="exit-tour-url" style="pointer-events: none" href="/quiz/einde/{{$teamHash}}">Tocht afronden</a></button>
+                <button type="button" onclick="JSalertEndTour()" class="btn primary-btn my-1 mx-auto"><a id="exit-tour-url" style="pointer-events: none" href="/quiz/einde/{{$teamHash}}">Tocht afronden</a></button>
 
             </div>
         </div>

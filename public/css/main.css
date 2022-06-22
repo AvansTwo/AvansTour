@@ -28,6 +28,7 @@ main {
 h1 {
     font-size: clamp(40px, 5vw, 60px) !important;
     font-weight: bold !important;
+    text-transform:capitalize;
 }
 
 h2 {

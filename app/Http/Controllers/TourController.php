@@ -61,41 +61,7 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        $rules = [
-            'name'          => ['required', 'min:3', 'max:40', "unique:tour,name"],
-            'description'   => ['required', 'min:3', 'max:100'],
-            'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
-            'location'      => ['required', 'between:-180,180'],
-            'category_id'   => ['required', 'integer'],
-        ];
-
-        $messages = [
-            'required'                                  => 'Dit veld is verplicht.',
-            'min:3'                                     => 'Voer minimaal 3 karakters in.',
-            'max:40'                                    => 'Voer maximaal 40 karakters in',
-            'max:100'                                   => 'Voer maximaal 100 karakters in.',
-            'image'                                     => 'Bestandstype dient een afbeelding te zijn.',
-            'mimes:jpeg,png,jpg,gif,svg'                => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
-            'unique:tour,name'                          => 'Een tournaam dient uniek te zijn.',
-            'max:2048'                                  => 'Een foto dient maximaal 2mb te zijn.',
-            'dimensions:min_width=600,min_height=350'   => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
-            'between:-180,180'                          => 'Locatie dient tussen -180 en 180 te liggen.',
-            'integer'                                   => 'Getal dient een heel getal te zijn'
-        ];
-
-        $attributes = [
-            'name'          => 'Naam',
-            'description'   => 'Omschrijving',
-            'image_url'     => 'Foto',
-            'location'      => 'Locatie',
-            'category_id'   => 'Categorie'
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $messages, $attributes);
-
-        if ($validator->fails()) {
-            return redirect("/tour/aanmaken")->withErrors($validator)->withInput();
-        }
+        $validated = $request->validated();
 
         $file = $request->file('image_url');
         $filename = date('YmdHis') . $file->getClientOriginalName();
