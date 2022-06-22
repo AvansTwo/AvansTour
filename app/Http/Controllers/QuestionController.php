@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 
 class QuestionController extends Controller
@@ -43,20 +44,21 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            '_token' => 'nullable',
-            'tourID' => 'required',
-            'questionTitle' => 'required',
-            'questionDesc' => 'required',
-            'typeRadio' => 'required',
-            'questionPoints' => 'required',
-            'questionLocation' => 'required',
-            'flexRadioDefault' => 'nullable',
+        $tourID = $request->tourID;
+
+        $validator = Validator::make($request->all(), [
+            'questionTitle'         => ['required', 'string', 'min:3', 'max:40'],
+            'questionDesc'          => ['required', 'string', 'min:3', 'max:500'],
+            'questionImg'           => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
+            'questionLocation'      => ['required', 'between:-180,180'],
+            'questionPoints'        => ['required', 'integer'],
         ]);
 
-        $question = new Question();
+        if ($validator->fails()) {
+            return redirect("/tour/". $tourID ."/vragen/aanmaken")->withErrors($validator)->withInput();
+        }
 
-        $tourID = $request->tourID;
+        $question = new Question();
 
         $filename = $question->questionImg;
         $file = $request->file('questionImg');
@@ -155,7 +157,7 @@ class QuestionController extends Controller
             $filename = date('YmdHis') . $file->getClientOriginalName();
         }
 
-        
+
 
         $question->update([
             'title'         => $request->questionTitle,

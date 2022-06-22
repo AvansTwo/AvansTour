@@ -14,7 +14,6 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -62,15 +61,6 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-
-        $attributeNames = array(
-            'name' => 'Naam',
-            'description' => 'Beschrijving',
-            'image_url' => 'Plaatje',
-            'location' => 'Locatie',
-            'category_id' => 'Categorie',
-        );
-
         $validator = Validator::make($request->all(), [
             'name'          => ['required', 'string', 'min:3', 'max:40', "unique:tour,name"],
             'description'   => ['required', 'string', 'min:3', 'max:500'],
@@ -79,12 +69,9 @@ class TourController extends Controller
             'category_id'   => ['required', 'integer'],
         ]);
 
-
-
         if ($validator->fails()) {
             return redirect("/tour/aanmaken")->withErrors($validator)->withInput();
         }
-
 
         $file = $request->file('image_url');
         $filename = date('YmdHis') . $file->getClientOriginalName();
