@@ -55,6 +55,10 @@ a {
     text-decoration: none !important;
 }
 
+input[data-readonly] {
+    pointer-events: none;
+}
+
 /*buttons*/
 
 .btn {

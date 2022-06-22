@@ -49,7 +49,7 @@ class QuestionController extends Controller
         $validator = Validator::make($request->all(), [
             'questionTitle'         => ['required', 'string', 'min:3', 'max:40'],
             'questionDesc'          => ['required', 'string', 'min:3', 'max:500'],
-            'questionImg'           => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
+            'questionImg'           => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=350,min_height=600'],
             'questionLocation'      => ['required', 'between:-180,180'],
             'questionPoints'        => ['required', 'integer'],
         ]);
