@@ -36,7 +36,7 @@
     }
 
     // Locate listener that updates marker location
-    map.locate({watch: true, enableHighAccuracy: true}).on('locationfound', function(e){
+    map.locate({setView: once, watch: true, enableHighAccuracy: true}).on('locationfound', function(e){
         const newLatLong = new L.LatLng(e.latitude, e.longitude);
         liveMarker.setLatLng(newLatLong);
         personCircle.setLatLng(newLatLong);
