@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -31,10 +32,19 @@ class AdminController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function deleteTeamsInRange(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'startDate'     => ['required', 'date'],
+            'endDate'       => ['required', 'date'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("/instellingen")->withErrors($validator)->withInput();
+        }
+
         $startDate = Carbon::parse($request->startDate)->format('Y-m-d');
         $endDate = Carbon::parse($request->endDate)->format('Y-m-d');
 
@@ -119,6 +129,14 @@ class AdminController extends Controller
      */
     public function updateRadius(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'radius'    => ['required', 'integer', 'between:10,200'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("/instellingen")->withErrors($validator)->withInput();
+        }
+
         $setting = Settings::find(1);
 
         if (!empty($setting)) {
