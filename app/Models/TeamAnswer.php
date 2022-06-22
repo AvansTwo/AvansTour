@@ -15,8 +15,12 @@ class TeamAnswer extends Model
         'answer',
     ];
 
-    public function progress(): HasOne
+    public function teamProgress(): BelongsTo
     {
-        return $this->hasOne(TeamProgress::class, 'team_answer_id');
+        return $this->belongsTo(teamProgress::class, "team_answer_id");
+    }
+    public function progress(): BelongsTo
+    {
+        return $this->belongsTo(teamProgress::class);
     }
 }
