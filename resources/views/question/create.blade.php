@@ -34,10 +34,6 @@
                                 <input class="form-check-input" name="typeRadio" type="radio" value="Open" id="inlineRadio2">
                                 <label class="form-check-label" for="inlineRadio2"> Open vraag </label>
                             </div>
-                            <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="bottom"  title="Bij een mediavraag dient de student de vraag te beantwoorden met een foto.">
-                                <input class="form-check-input" name="typeRadio" type="radio" value="Media" id="inlineRadio3" >
-                                <label class="form-check-label" for="inlineRadio3"> Media vraag* </label>
-                            </div>
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionPoints" class="mb-1 fw-bold">Aantal punten vraag</label>
@@ -57,27 +53,9 @@
                                 <input required type="text" class="form-control @error('questionLocation') is-invalid @enderror" name="questionLocation" id="questionLocation" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly>
                             </div>
                         </div>
-                        <div class="col-8 col-lg-5 d-flex justify-content-between mx-auto mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" onclick="showImageInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Foto
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" onclick="showVideoInput()" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    Video
-                                </label>
-                            </div>
-                        </div>
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
                             <label for="questionImg" class="mb-1 fw-bold">Foto</label>
                             <input class="form-control" name="questionImg" type="file" id="questionImg" required>
-                        </div>
-                        <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 d-none">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video</label>
-                            <input type="text" name="questionVideo" disabled class="form-control" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                         </div>
                         <div id="multiple-choice-fields" class="col-10 mx-auto mb-3">
                             <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord 1</label>
