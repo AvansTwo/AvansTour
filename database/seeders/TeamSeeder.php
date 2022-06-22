@@ -18,7 +18,7 @@ class TeamSeeder extends Seeder
     public function run()
     {
         DB::table('team')->insert([
-            'team_name' => 'Team A',
+            'team_name' => 'Script serpents',
             'tour_id' => 1,
             'team_identifier' => 'RAXY4XmITwkoEfNnZcwBggjbeKfzwD',
             'start_time' => '2022-06-21 12:37:33',

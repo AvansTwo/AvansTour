@@ -20,7 +20,7 @@
             <div class="col-12 grey-bg p-5 my-5">
                 <div class="row">
                     <div class="col-7 col-lg-10">
-                        <h2>@isset($filteredCategory) Tours zijn gefiltered op {{$filteredCategory->category_name}} @else Op dit moment actueel @endisset</h2>
+                        <h2>@isset($filteredCategory) Tours zijn gefiltered op {{$filteredCategory->category_name}} @else Op dit moment beschikbaar @endisset</h2>
                     </div>
                     <div class="col-5 col-lg-2">
                         <div class="float-end">

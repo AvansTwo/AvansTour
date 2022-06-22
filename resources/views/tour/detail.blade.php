@@ -73,7 +73,7 @@
                 </div>
             </div>
             @if(Auth::check())
-            <div class="col-12 grey-bg p-5 mt-3 mb-5 d-none d-md-inline">
+            <div class="col-12 grey-bg p-5 mt-3 mb-5">
                 <div class="row">
                     <div class="col-12">
                         <h2 class="mb-3">Tour vragen</h2>
