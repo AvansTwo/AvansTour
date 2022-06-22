@@ -23,6 +23,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
@@ -30,6 +32,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
@@ -37,6 +41,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
@@ -44,6 +50,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 20,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
@@ -51,6 +59,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 5,
             'points' => 20,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 2,
@@ -58,6 +68,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 2,
@@ -65,6 +77,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 2,
@@ -72,6 +86,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 2,
@@ -79,6 +95,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 3,
@@ -86,6 +104,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 3,
@@ -93,6 +113,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 3,
@@ -100,6 +122,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 4,
@@ -107,6 +131,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 20,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 4,
@@ -114,6 +140,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 4,
@@ -121,6 +149,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 4,
@@ -128,6 +158,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 20,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 5,
@@ -135,6 +167,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 5,
@@ -142,6 +176,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 5,
@@ -149,6 +185,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 5,
@@ -156,6 +194,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('team_progress')->insert([
@@ -164,6 +204,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 6,
@@ -171,6 +213,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 6,
@@ -178,6 +222,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 6,
@@ -185,6 +231,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 7,
@@ -192,6 +240,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 1,
             'points' => 10,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 7,
@@ -199,6 +249,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 7,
@@ -206,6 +258,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 7,
@@ -213,6 +267,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 25,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('team_progress')->insert([
@@ -221,6 +277,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 8,
@@ -228,6 +286,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 8,
@@ -235,6 +295,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 15,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('team_progress')->insert([
@@ -243,6 +305,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 8,
@@ -250,6 +314,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 8,
@@ -257,6 +323,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 0,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
         DB::table('team_progress')->insert([
@@ -265,6 +333,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Nagekeken',
             'team_answer_id' => 3,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 9,
@@ -272,6 +342,8 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 4,
             'points' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
 }
