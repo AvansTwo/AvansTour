@@ -54,8 +54,6 @@ class QuestionController extends Controller
             'flexRadioDefault' => 'nullable',
         ]);
 
-        dd($validatedData);
-
         $question = new Question();
 
         $tourID = $request->tourID;
@@ -72,7 +70,6 @@ class QuestionController extends Controller
         $question->title = $request->questionTitle;
         $question->description = $request->questionDesc;
         $question->image_url = $filename;
-        $question->video_url = $request->questionVideo;
         $question->gps_location = $request->questionLocation;
         $question->type = $request->typeRadio;
         $question->points = $request->questionPoints;
@@ -158,18 +155,12 @@ class QuestionController extends Controller
             $filename = date('YmdHis') . $file->getClientOriginalName();
         }
 
-        if (!empty($request->questionVideo)) {
-            if (\File::exists(public_path('tourimg/' . $question->image_url))) {
-                \File::delete(public_path('tourimg/' . $question->image_url));
-            }
-            $filename = null;
-        }
+        
 
         $question->update([
             'title'         => $request->questionTitle,
             'description'   => $request->questionDesc,
             'image_url'     => $filename,
-            'video_url'     => $request->questionVideo,
             'gps_location'  => $request->questionLocation,
             'points'        => $request->questionPoints,
         ]);

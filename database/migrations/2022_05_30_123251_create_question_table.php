@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('title', 150);
             $table->string('description');
             $table->string('image_url')->nullable();
-            $table->string('video_url')->nullable();
             $table->string('gps_location')->nullable();
             $table->integer('points')->default(0);
             $table->enum('type', ['Meerkeuze', 'Open', 'Media']);
