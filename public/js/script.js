@@ -10,7 +10,7 @@ function JSalert() {
                 window.location.href =
                     document.getElementById("exit-tour-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -27,7 +27,7 @@ function JSalertDeleteUser() {
                 window.location.href =
                     document.getElementById("delete-user-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -37,14 +37,16 @@ function JSalertDeleteCategorie() {
     alertify
         .confirm(
             "Weet je het zeker?",
-            "Wil je deze categorie echt verwijderen?<strong class='d-block mt-3'>!! Als je deze verwijderd worden alle bijbehorende tours ook verwijderd !!</strong>",
+            "Wil je deze categorie echt verwijderen?",
             function () {
-                document.getElementById("delete-categorie-url").style.pointerEvents =
-                    "";
-                window.location.href =
-                    document.getElementById("delete-categorie-url").href;
+                document.getElementById(
+                    "delete-categorie-url"
+                ).style.pointerEvents = "";
+                window.location.href = document.getElementById(
+                    "delete-categorie-url"
+                ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -58,7 +60,7 @@ function JSalertDeleteTeamProgress() {
             function () {
                 document.getElementById("deleteTeamsForm").submit();
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -76,7 +78,7 @@ function JSalertDeleteTour() {
                 window.location.href =
                     document.getElementById("delete-tour-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -96,7 +98,7 @@ function JSalertDeleteQuestion() {
                     "delete-question-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -116,7 +118,7 @@ function JSalertCorrectAnswer() {
                     "incorrect-answer-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -311,5 +313,3 @@ function removeTourImage() {
     document.getElementById("tour-img-input").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
 }
-
-

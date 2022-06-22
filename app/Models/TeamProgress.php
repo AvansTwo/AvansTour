@@ -31,7 +31,7 @@ class TeamProgress extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function answer(): BelongsTo
+    public function teamAnswer(): BelongsTo
     {
         return $this->belongsTo(TeamAnswer::class);
     }

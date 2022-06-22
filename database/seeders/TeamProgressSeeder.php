@@ -29,7 +29,7 @@ class TeamProgressSeeder extends Seeder
             'question_id' => 2,
             'status' => 'Nagekeken',
             'team_answer_id' => 2,
-            'points' => 0,
+            'points' => 5,
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
@@ -51,6 +51,227 @@ class TeamProgressSeeder extends Seeder
             'status' => 'Afwachting',
             'team_answer_id' => 5,
             'points' => 20,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 2,
+            'question_id' => 1,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
+            'points' => 10,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 2,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 2,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 2,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 3,
+            'question_id' => 1,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
+            'points' => 10,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 3,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 3,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 4,
+            'question_id' => 1,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
+            'points' => 20,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 4,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 10,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 4,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 4,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 20,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 5,
+            'question_id' => 1,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 5,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 5,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 5,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 5,
+        ]);
+
+        DB::table('team_progress')->insert([
+            'team_id' => 6,
+            'question_id' => 1,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
+            'points' => 10,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 6,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 6,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 6,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 10,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 7,
+            'question_id' => 1,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 1,
+            'points' => 10,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 7,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 7,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 7,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 25,
+        ]);
+
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 15,
+        ]);
+
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 2,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 2,
+            'points' => 0,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 0,
+        ]);
+
+        DB::table('team_progress')->insert([
+            'team_id' => 8,
+            'question_id' => 3,
+            'status' => 'Nagekeken',
+            'team_answer_id' => 3,
+            'points' => 5,
+        ]);
+        DB::table('team_progress')->insert([
+            'team_id' => 9,
+            'question_id' => 4,
+            'status' => 'Afwachting',
+            'team_answer_id' => 4,
+            'points' => 5,
         ]);
     }
 }
