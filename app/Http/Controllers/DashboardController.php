@@ -23,30 +23,28 @@ class DashboardController extends Controller
     public function index()
     {
         $teams = DB::select('SELECT team.team_name, team.id AS team_id, tour.name AS tour_name
-                                   from team
-                                   left join team_progress on team_progress.team_id = team.id
-                                   left join tour on tour.id = team.tour_id
-                                   WHERE team_progress.status = "Afwachting"
-                                   AND team_progress.team_id IS NOT NULL
-                                   GROUP BY team.team_name, team.id, tour.name');
+                            from team
+                            left join team_progress on team_progress.team_id = team.id
+                            left join tour on tour.id = team.tour_id
+                            WHERE team_progress.status = "Afwachting"
+                            AND team_progress.team_id IS NOT NULL
+                            GROUP BY team.team_name, team.id, tour.name');
+
+        foreach($teams as $team) {
+            $team->progress = TeamProgress::join('question', 'question.id', '=', 'team_progress.question_id')
+                                ->join('tour', 'tour.id', '=', 'question.tour_id')
+                                ->where([
+                                    'team_progress.status' => 'Afwachting',
+                                    'team_progress.team_id' => $team->team_id, 
+                                    'tour.name' => $team->tour_name,
+                                ])->get();
+
+            foreach($team->progress as $progress){
+                $progress->answer = TeamAnswer::find($progress->team_answer_id);
+            }
+        }
 
         return view('dashboard.index')->with('teams', $teams);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-     public function teamIndex($teamId)
-    {
-        $teamProgress = TeamProgress::all()->where('team_id', $teamId)->where('status', 'Afwachting');
-        $teamName = $teamProgress->first();
-        if(empty($teamName)){
-            return Redirect::to('/dashboard');
-        }
-        return view('dashboard.teamIndex')->with('teamProgress', $teamProgress)->with('teamName', $teamName);
     }
 
     /**
@@ -68,34 +66,36 @@ class DashboardController extends Controller
      */
     public function show($teamProgressId)
     {
-        $TeamProgress = TeamProgress::find($teamProgressId);
-        return view('dashboard.detail')->with('TeamProgress', $TeamProgress);
+        //
     }
 
-    public function correctAnswer($teamProgressId){
-        $TeamProgress = TeamProgress::find($teamProgressId);
-        $TeamProgress->update([
-            'team_id'           => $TeamProgress->team_id,
-            'question_id'       => $TeamProgress->question_id,
-            'team_answer_id '   => $TeamProgress->team_answer_id,
+    public function correctAnswer($teamId, $questionId){
+        $TeamProgress = TeamProgress::where([
+            'team_id' => $teamId,
+            'question_id' => $questionId,
+        ])->first();
+
+        TeamProgress::where([
+            'team_id'           => $teamId,
+            'question_id'       => $questionId,
+        ])->update([
             'points'            => $TeamProgress->points,
             'status'            => 'Nagekeken',
         ]);
 
-        return Redirect::to('/dashboard/team/'. $TeamProgress->team->id);
+        return Redirect::to('/dashboard');
     }
 
-    public function inCorrectAnswer($teamProgressId){
-        $TeamProgress = TeamProgress::find($teamProgressId);
-        $TeamProgress->update([
-            'team_id'           => $TeamProgress->team_id,
-            'question_id'       => $TeamProgress->question_id,
-            'team_answer_id '   => $TeamProgress->team_answer_id,
+    public function inCorrectAnswer($teamId, $questionId){
+        TeamProgress::where([
+            'team_id'           => $teamId,
+            'question_id'       => $questionId,
+        ])->update([
             'points'            => 0,
             'status'            => 'Nagekeken',
         ]);
 
-        return Redirect::to('/dashboard/team/'. $TeamProgress->team->id);
+        return Redirect::to('/dashboard');
     }
 
 

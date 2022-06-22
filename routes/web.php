@@ -99,16 +99,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    Route::get('/dashboard/team/{teamId}', [DashboardController::class, 'teamIndex'])
-        ->name('dashboardTeamIndex');
-
-    Route::get('/dashboard/vraag/{teamProgressId}', [DashboardController::class, 'show'])
-        ->name('dashboardShow');
-
-    Route::get('/dashboard/vraag/{teamProgressId}/goed', [DashboardController::class, 'correctAnswer'])
+    Route::get('/dashboard/team/{teamId}/vraag/{questionId}/goed', [DashboardController::class, 'correctAnswer'])
         ->name('dashboardCorrectAnswer');
 
-    Route::get('/dashboard/vraag/{teamProgressId}/fout', [DashboardController::class, 'inCorrectAnswer'])
+    Route::get('/dashboard/team/{teamId}/vraag/{questionId}/fout', [DashboardController::class, 'inCorrectAnswer'])
         ->name('dashboardInCorrectAnswer');
 
     //Settings
