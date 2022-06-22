@@ -34,14 +34,15 @@
             });
         })
     }
-
     // Locate listener that updates marker location
     map.locate({watch: true, enableHighAccuracy: true}).on('locationfound', function(e){
         const newLatLong = new L.LatLng(e.latitude, e.longitude);
         liveMarker.setLatLng(newLatLong);
         personCircle.setLatLng(newLatLong);
-        map.flyTo(newLatLong);
     }).on('locationerror', function(e){
         alert("Avanstour heeft geen toegang tot je locatie!! Verleen toegang om verder te gaan met de tour");
     });
+    setTimeout(() => {
+        map.setView(liveMarker._latlng, 15);
+    }, 500);
 </script>

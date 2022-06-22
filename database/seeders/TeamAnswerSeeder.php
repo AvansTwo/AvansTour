@@ -15,7 +15,8 @@ class TeamAnswerSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        //antwoorden team 1
         DB::table('team_answer')->insert([
             'answer' => '2004',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -41,10 +42,136 @@ class TeamAnswerSeeder extends Seeder
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => '20220614080121pathe.png',
+            'answer' => 'teamanswerimage1.png',
             'is_file' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+
+        //antwoorden team 2
+        DB::table('team_answer')->insert([
+            'answer' => '2004',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Lovendijkstraat',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Onderwijsboulevard',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'teamanswerimage2.png',
+            'is_file' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        // antwoorden team 3
+        DB::table('team_answer')->insert([
+            'answer' => '2004',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Lovendijkstraat',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Onderwijsboulevard',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'teamanswerimage3.png',
+            'is_file' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        //antwoorden team 4
+        DB::table('team_answer')->insert([
+            'answer' => '2004',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Lovendijkstraat',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Onderwijsboulevard',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'teamanswerimage4.png',
+            'is_file' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        //antwoorden team 5
+        DB::table('team_answer')->insert([
+            'answer' => '2004',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Lovendijkstraat',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'Onderwijsboulevard',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'De friettent aan de voet van de grote kerk heet  "De toren',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('team_answer')->insert([
+            'answer' => 'teamanswerimage5.png',
+            'is_file' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        
     }
 }
