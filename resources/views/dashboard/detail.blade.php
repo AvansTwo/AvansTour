@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     @if($TeamProgress->teamAnswer->is_file == 1)
-                    <img class="img-fluid " src="{{ asset('teamimg/'.$TeamProgress->teamAnswer->answer) }}" alt="answer_image" >
+                        <img class="img-fluid " src="{{ asset('teamimg/'.$TeamProgress->teamAnswer->answer) }}" alt="answer_image" >
                     @else
                     <img class="img-fluid " src="{{ asset('img/landing_img.png') }}" alt="landing-image" >
                     @endif
