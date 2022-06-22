@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.play')
 @section('title', 'Quiz aanmaken')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="mt-5 text-center">Tour</span> beëindigd!</h1>
+            <h1 class="mt-5 text-center"><span class="title-colored">Tour</span> beëindigd!</h1>
         </div>
         <div class="row grey-bg p-5 my-5">
             <div class="col-12 col-lg-8">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-12 d-flex mt-4">
                     <i class="fa-solid fa-award question-icon-mark"></i>
-                    <h2 class="quiz-info">Punten: <span class="quiz-colored">{{$points}}</span></h2>
+                    <h2 class="quiz-info">Potentiële punten: <span class="quiz-colored">{{$points}}</span></h2>
                 </div>
                 <div class="col-12 d-flex mt-4">
                     <i class="fa-solid fa-certificate question-icon-mark"></i>
