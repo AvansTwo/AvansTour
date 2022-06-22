@@ -139,7 +139,7 @@
                 };
                 this.increment = function() {
                     var counter = _this.getCounter();
-                    var nextCounter = (counter <= 990) ? counter+10 : counter;
+                    var nextCounter = (counter <= 190) ? counter+10 : counter;
                     _this.setCounter(nextCounter);
                 };
                 this.getCounter = function() {
