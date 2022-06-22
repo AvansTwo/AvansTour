@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.play')
 @section('title', 'Vraag beantwoorden')
 @section('content')
 <div class="container">
