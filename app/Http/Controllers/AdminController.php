@@ -40,7 +40,7 @@ class AdminController extends Controller
 
         $teams = Team::whereBetween('created_at', [$startDate ." 00:00:00", $endDate ." 23:59:59"])->get();
         foreach($teams as $team){
-            $teamProgresses = $team->teamProgress;
+            $teamProgresses = TeamProgress::all()->where('team_id', $team->id);
 
             foreach($teamProgresses as $teamProgress){
                 $answer = TeamAnswer::find($teamProgress->team_answer_id);
