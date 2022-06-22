@@ -1,5 +1,5 @@
 // Alertify javascript voor bevestiging tour afronden
-function JSalert() {
+function JSalertEndTour() {
     alertify
         .confirm(
             "Weet je het zeker?",
@@ -16,16 +16,18 @@ function JSalert() {
         .set("closable", false);
 }
 
-function JSalertDeleteUser() {
+function JSalertDeleteUser(userId) {
     alertify
         .confirm(
             "Weet je het zeker?",
-            "Wil je deze gebruiker echt verwijderen?<strong class='d-block mt-3'>!! Als je deze verwijderd worden alle bijbehorende tours ook verwijderd !!</strong>",
+            "Wil je deze gebruiker echt verwijderen?",
             function () {
-                document.getElementById("delete-user-url").style.pointerEvents =
-                    "";
-                window.location.href =
-                    document.getElementById("delete-user-url").href;
+                document.getElementById(
+                    "delete-user-url_"+userId
+                ).style.pointerEvents = "";
+                window.location.href = document.getElementById(
+                    "delete-user-url_"+userId
+                ).href;
             },
             function () {}
         )
@@ -33,17 +35,17 @@ function JSalertDeleteUser() {
         .set("closable", false);
 }
 
-function JSalertDeleteCategorie() {
+function JSalertDeleteCategorie(categorieId) {
     alertify
         .confirm(
             "Weet je het zeker?",
             "Wil je deze categorie echt verwijderen?",
             function () {
                 document.getElementById(
-                    "delete-categorie-url"
+                    "delete-categorie-url_"+categorieId
                 ).style.pointerEvents = "";
                 window.location.href = document.getElementById(
-                    "delete-categorie-url"
+                    "delete-categorie-url_"+categorieId
                 ).href;
             },
             function () {}
