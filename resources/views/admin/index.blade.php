@@ -109,7 +109,7 @@
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
-                                <button type="submit" onclick="JSalertDeleteTeamProgress()" class="btn primary-btn">Verwijderen</button>
+                                <button type="button" onclick="JSalertDeleteTeamProgress()" class="btn primary-btn">Verwijderen</button>
                             </div>
                         </form>
                     </div>

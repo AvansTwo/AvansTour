@@ -48,57 +48,9 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="/"><img src="{{ asset('img/logo_avans.png') }}" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ms-auto mb-2 mx-4 mb-lg-0">
-                <li class="nav-item custom-link">
-                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
-                </li>
-                <li class="nav-item custom-link">
-                    <a class="nav-link {{ request()->is('tour*') ? 'active' : '' }}" href="/tours">Tours</a>
-                </li>
-                <li class="nav-item custom-link">
-                    <a class="nav-link {{ request()->is('scoreboard*') ? 'active' : '' }}" href="/scoreboard">Scoreboard</a>
-                </li>
-            </ul>
-            @if(Auth::check())
-                <div class="dropdown">
-                    <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
-                    <div class="dropdown-content text-center">
-                        <a href="{{route('dashboard')}}">Dashboard</a>
-                        <a href="{{route('settings')}}">Instellingen</a>
-                        <div class="dropdown-divider"></div>
-                        <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <button id="logout-btn" class="btn w-100" type="submit">Uitloggen</button>
-                        </form>
-                    </div>
-                </div>
-            @endif
-        </div>
-    </div>
-</nav>
 <main>
     @yield('content')
 </main>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <a href="https://www.facebook.com/avans/" target="_blank"><i id="facebook" class="fa-brands fa-facebook footer-icon"></i></a>
-                <a href="https://twitter.com/avanshogeschool" target="_blank"><i id="twitter" class="fa-brands fa-twitter footer-icon"></i></a>
-            </div>
-            <div class="col-12 text-center">
-                <p id="footer-copyright">&copyAvansTour</p>
-            </div>
-        </div>
-    </div>
-</footer>
 <script>
     @if(Session::has('Checkmark'))
     Swal.fire(
@@ -109,5 +61,4 @@
     @endif
 </script>
 </body>
-
 </html>

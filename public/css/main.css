@@ -20,6 +20,11 @@
 main {
     min-height: 75vh;
 }
+
+*{
+    word-break: break-word;
+}
+
 h1 {
     font-size: clamp(40px, 5vw, 60px) !important;
     font-weight: bold !important;
@@ -217,7 +222,7 @@ footer {
 
 #tour-year {
     font-style: italic;
-    margin-left: 10px;
+    width: 50px;
 }
 
 /*tour-detail*/
