@@ -22,10 +22,10 @@
                     @foreach($teams as $team)
                         <tr>
                             <th scope="row">{{ $loop->index+1 }}</th>
-                            <td>{{$team->team->team_name}}</td>
-                            <td>{{$team->team->tour->name}}</td>
+                            <td>{{$team->team_name}}</td>
+                            <td>{{$team->tour_name}}</td>
                             <td>
-                                <button onclick="location.href='/dashboard/team/{{$team->team->id}}';" class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
+                                <button onclick="location.href='/dashboard/team/{{$team->team_id}}';" class="btn secondary-btn"><i class="fa-solid fa-eye"></i></button>
                             </td>
                         </tr>
                     @endforeach
