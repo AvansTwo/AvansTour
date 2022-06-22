@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Tour;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -35,10 +36,18 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'category_name'     => ['required', 'string', 'min:3', 'max:20', "unique:category,category_name"],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect("/instellingen/categorieen")->withErrors($validator)->withInput();
+        }
+
         $category = new Category();
         $category->category_name = $request->category_name;
         $category->save();

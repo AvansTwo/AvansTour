@@ -64,6 +64,9 @@
                                         <div class='ctrl__button ctrl__button--increment' onclick="resizeCircle()">+</div>
                                     </div>
                                 </div>
+                                @error('radius')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                             <x-leaflet-map centerpoint="51.588376,4.776478" mapCallback="mapOpen" radius="{{$radius->radius}}"></x-leaflet-map>
                             <div class="modal-footer">
@@ -92,15 +95,21 @@
                                 <div class="col-8 mx-auto mb-3">
                                     <label for="startdate" class="mb-1 fw-bold">Start datum</label>
                                     <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="startDate" value="YYYY-MM-DD"/>
+                                    @error('startDate')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-8 mx-auto mb-3">
                                     <label for="enddate" class="mb-1 fw-bold">Eind datum</label>
                                     <input class="form-control rounded-0" required type="date" placeholder="test" aria-label="Datum" aria-describedby="button-addon3" name="endDate" value="YYYY-MM-DD"/>
+                                    @error('endDate')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="modal-footer text-center">
                                 <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
-                                <button type="button" onclick="JSalertDeleteTeamProgress()" class="btn primary-btn">Verwijderen</button>
+                                <button type="submit" onclick="JSalertDeleteTeamProgress()" class="btn primary-btn">Verwijderen</button>
                             </div>
                         </form>
                     </div>
@@ -187,5 +196,23 @@
             var controls = new ctrls();
             document.addEventListener('DOMContentLoaded', controls.ready);
         })();
+
+        @error('radius')
+        $(document).ready(function(){
+            $("#radiusModal").modal('show');
+        });
+        @enderror
+
+        @error('startDate')
+        $(document).ready(function(){
+            $("#deleteDataModal").modal('show');
+        });
+        @enderror
+
+        @error('endDate')
+        $(document).ready(function(){
+            $("#deleteDataModal").modal('show');
+        });
+        @enderror
     </script>
 @endsection
