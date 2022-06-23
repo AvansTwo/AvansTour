@@ -20,7 +20,7 @@
                         </button>
                       </h2>
 
-                      <div class="accordion-collapse collapse" id="button-{!!$team->team_id!!}" aria-labelledby="header-{{$team->team_id}}">
+                      <div class="accordion-collapse collapse" id="button-{{$team->team_id}}" aria-labelledby="header-{{$team->team_id}}">
                         <div class="accordion-body p-4">
                           <h4 class="fw-bold mb-3">Na te kijken <span class="title-colored">vragen</span></h4>
 
@@ -28,7 +28,7 @@
                           <div class="card mb-3">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="{{asset('tourimg/'. $progress->question->image_url)}}" class="img-fluid">
+                                <img @if(!empty($progress->question->image_url)) src="{{asset('tourimg/'. $progress->question->image_url)}}" @else src="{{asset('img/landing_img.png')}}" @endif class="img-fluid">
                               </div>
                               <div class="col-md-8">
                                 <div class="card-body">
