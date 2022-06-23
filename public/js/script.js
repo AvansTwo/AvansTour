@@ -10,7 +10,7 @@ function JSalertEndTour() {
                 window.location.href =
                     document.getElementById("exit-tour-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -23,13 +23,13 @@ function JSalertDeleteUser(userId) {
             "Wil je deze gebruiker echt verwijderen?",
             function () {
                 document.getElementById(
-                    "delete-user-url_" + userId
+                    "delete-user-url_"+userId
                 ).style.pointerEvents = "";
                 window.location.href = document.getElementById(
-                    "delete-user-url_" + userId
+                    "delete-user-url_"+userId
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -42,13 +42,13 @@ function JSalertDeleteCategorie(categorieId) {
             "Wil je deze categorie echt verwijderen?",
             function () {
                 document.getElementById(
-                    "delete-categorie-url_" + categorieId
+                    "delete-categorie-url_"+categorieId
                 ).style.pointerEvents = "";
                 window.location.href = document.getElementById(
-                    "delete-categorie-url_" + categorieId
+                    "delete-categorie-url_"+categorieId
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -62,7 +62,7 @@ function JSalertDeleteTeamProgress() {
             function () {
                 document.getElementById("deleteTeamsForm").submit();
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -80,7 +80,7 @@ function JSalertDeleteTour() {
                 window.location.href =
                     document.getElementById("delete-tour-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -100,7 +100,7 @@ function JSalertDeleteQuestion() {
                     "delete-question-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -120,7 +120,7 @@ function JSalertCorrectAnswer() {
                     "incorrect-answer-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -157,7 +157,7 @@ function JSalertCorrectAnswer() {
 })();
 
 // Create question page
-$("input[type=radio][name=type]").change(function () {
+$("input[type=radio][name=typeRadio]").change(function () {
     if (this.value == "Meerkeuze") {
         $("#multiple-choice-fields").show();
         $("#multiple-choice-fields :input").attr({
@@ -181,19 +181,7 @@ function removeQuestionImage() {
 }
 
 function checkType(type) {
-    if (type == "Meerkeuze") {
-        $("#mediaQuestionAnswer").removeClass("d-none");
-
-        $("#openvraagFields :input").attr({
-            disabled: true,
-            required: false,
-        });
-
-        $("#multipleChoiceFields :input").attr({
-            disabled: true,
-            required: false,
-        });
-    } else {
+    if (type == "Open") {
         $("#openvraagFields").removeClass("d-none");
 
         $("#multipleChoiceFields :input").attr({
@@ -202,6 +190,20 @@ function checkType(type) {
         });
 
         $("#mediaQuestionAnswer :input").attr({
+            disabled: true,
+            required: false,
+        });
+    }
+
+    if (type == "Media") {
+        $("#mediaQuestionAnswer").removeClass("d-none");
+
+        $("#openvraagFields :input").attr({
+            disabled: true,
+            required: false,
+        });
+
+        $("#multipleChoiceFields :input").attr({
             disabled: true,
             required: false,
         });
