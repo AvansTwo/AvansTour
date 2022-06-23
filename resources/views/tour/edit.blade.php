@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourimg" class="mb-1 fw-bold">Tour foto</label>
-                            <input class="form-control @if(!empty($tour->image_url)) d-none @endif @error('image_url') is-invalid @enderror" name="image_url" disabled accept="image/png, image/jpg, image/jpeg" type="file" id="tour-img-input">
+                            <input class="form-control @if(!empty($tour->image_url)) d-none @endif @error('image_url') is-invalid @enderror" name="image_url" @if(!empty($tour->image_url)) disabled @endif  accept="image/png, image/jpg, image/jpeg" type="file" id="tour-img-input">
                             <div id="tour-img-wrapper" class="wrapper @if(empty($tour->image_url)) d-none @endif">
                                 <img class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-img">
                                 <button onclick="removeTourImage()" type="button" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
