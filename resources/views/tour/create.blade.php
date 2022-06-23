@@ -55,7 +55,7 @@
                         <div class="col-10 mx-auto mb-3">
                             <label for="image_url" class="mb-1 fw-bold">Tour foto</label>
                             <input class="form-control @error('image_url') is-invalid @enderror" value="{{ old('image_url') }}" name="image_url" type="file" accept="image/png, image/jpg, image/jpeg" id="formFile" required>
-                            <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg,gif,svg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
+                            <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
                             <div class="invalid-feedback">
                                 Selecteer een afbeelding.
                             </div>
