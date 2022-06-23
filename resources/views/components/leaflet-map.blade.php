@@ -96,7 +96,6 @@
     }
 
     if (mapCallback == mapOpen) {
-        map.setZoom(16);
         var marker = L.marker([51.588376,4.776478], {
             icon: locationIcon
         }).addTo(map);

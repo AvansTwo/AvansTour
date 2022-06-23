@@ -41,8 +41,8 @@
                                     <th scope="row">{{ $loop->index+1 }}</th>
                                     <td>{{$categorie->category_name }}</td>
                                     <td>
-                                        <button type="button" onclick="JSalertDeleteCategorie({{$categorie->id}})" class="btn secondary-btn delete-btn">
-                                            <a id="delete-categorie-url_{{$categorie->id}}" style="pointer-events: none" href="/instellingen/categorie/{{$categorie->id}}/verwijderen" class="fa-solid fa-trash"></a>
+                                        <button type="button" onclick="JSalertDeleteCategorie()" class="btn secondary-btn delete-btn">
+                                            <a id="delete-categorie-url" style="pointer-events: none" href="/instellingen/categorie/{{$categorie->id}}/verwijderen" class="fa-solid fa-trash"></a>
                                         </button>
 
                                     </td>

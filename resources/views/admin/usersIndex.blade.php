@@ -42,9 +42,10 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>
-                                        <button type="button" onclick="JSalertDeleteUser({{$user->id}})" class="btn secondary-btn delete-btn">
-                                            <a id="delete-user-url_{{$user->id}}" style="pointer-events: none" href="/instellingen/gebruiker/{{$user->id}}/verwijderen" class="fa-solid fa-trash"></a>
+                                        <button type="button" onclick="JSalertDeleteUser()" class="btn secondary-btn delete-btn">
+                                            <a id="delete-user-url" style="pointer-events: none" href="/instellingen/gebruiker/{{$user->id}}/verwijderen" class="fa-solid fa-trash"></a>
                                         </button>
+
                                     </td>
                                 </tr>
                             @endforeach

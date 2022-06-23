@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="my-5 text-center">Een Nieuwe <span class="title-colored">Vraag</span> Toevoegen</h1>
+                <h1 class="my-5 text-center">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>
             </div>
             <div class="col-12 mb-5">
                 <form class="needs-validation py-5 grey-bg" novalidate action="/tour/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
@@ -30,17 +30,16 @@
                             <label for="questionDesc" class="mb-1 fw-bold d-block">Type vraag</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="typeRadio" checked type="radio" value="Meerkeuze" id="inlineRadio1">
-                                <label class="form-check-label" for="inlineRadio1">Meerkeuze vraag</label>
+                                <label class="form-check-label" for="inlineRadio1"> Meerkeuze vraag </label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="typeRadio" type="radio" value="Open" id="inlineRadio2">
-                                <label class="form-check-label" for="inlineRadio2">Open vraag</label>
+                                <label class="form-check-label" for="inlineRadio2"> Open vraag </label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="bottom"  title="Bij een mediavraag dient de student de vraag te beantwoorden met een foto.">
                                 <input class="form-check-input" name="typeRadio" type="radio" value="Media" id="inlineRadio3" >
-                                <label class="form-check-label" for="inlineRadio3">Mediavraag*</label>
+                                <label class="form-check-label" for="inlineRadio3"> Media vraag* </label>
                             </div>
-                            <small class="w-100 d-block mt-2 fst-italic">*Mediavraag dient beantwoord worden met een foto</small>
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionPoints" class="mb-1 fw-bold">Aantal punten vraag</label>
