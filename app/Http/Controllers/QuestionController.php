@@ -52,7 +52,8 @@ class QuestionController extends Controller
         if (!empty($file)) {
             $filename = date('YmdHis') . $file->getClientOriginalName();
         }
-
+        $validated['image_url'] = $filename;
+        
         $question = new Question($validated);
 
         $question->save();
