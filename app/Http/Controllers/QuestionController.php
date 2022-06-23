@@ -44,7 +44,7 @@ class QuestionController extends Controller
      * @param StoreQuestionRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
         $validated = $request->validated();
 
