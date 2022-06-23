@@ -64,7 +64,7 @@ class QuestionController extends Controller
 
         $questionID = $question->id;
 
-        if($request->typeRadio == 'Meerkeuze'){
+        if($request->type == 'Meerkeuze'){
             for($i = 1; $i <= 4; $i++){
                 $answer = new Answer();
                 $answer->answer = $request->$i;
