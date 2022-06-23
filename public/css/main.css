@@ -601,3 +601,7 @@ footer {
         transform: translateY(25px);
     }
 }
+
+.table-responsive-tour {
+    min-width: 773px;
+}

@@ -64,11 +64,12 @@ class TourController extends Controller
     {
         $validated = $request->validated();
 
-        $tour = new Tour($validated);
-
-        $file = $validated['image_url'];
+        $file = $validated['image_url'] ?? $request->file('image_url');
         $filename = date('YmdHis') . $file->getClientOriginalName();
 
+        $validated['image_url'] = $filename;
+
+        $tour = new Tour($validated);
         $tour->user_id = Auth::user()->id;
 
         $tour->save();
