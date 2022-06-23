@@ -134,7 +134,7 @@ class QuestionController extends Controller
                 \File::delete(public_path('tourimg/' . $filename));
             }
             $filename = date('YmdHis') . $file->getClientOriginalName();
-        } else{
+        } else if(empty($file) && $request->removeImage == 1){
             $filename = $question->image_url;
             if (\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));

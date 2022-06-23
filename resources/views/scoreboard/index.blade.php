@@ -65,7 +65,7 @@
         </div>
         <div class="col-12 my-5">
             <div class="table-responsive">
-                <table class="table table-striped table-responsive-scoreboard">
+                <table class="table table-striped custom-table-responsive">
                     <thead>
                     <tr>
                         <th scope="col">Tour naam</th>

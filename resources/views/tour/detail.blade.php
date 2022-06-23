@@ -84,7 +84,7 @@
                             <h2 class="mb-3">Tour vragen</h2>
                         </div>
                         <div class="col-12 table-responsive">
-                            <table class="table text-center table-responsive-tour">
+                            <table class="table text-center table-striped custom-table-responsive">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>

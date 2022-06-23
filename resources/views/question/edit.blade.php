@@ -10,6 +10,7 @@
                 <form class="needs-validation py-5 grey-bg" novalidate action="/vragen/aanpassen/{{$question->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <input id="removeImage" type="hidden" name="removeImage" value="0"/>
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionTitle" class="mb-1 fw-bold">Titel vraag</label>

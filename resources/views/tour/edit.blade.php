@@ -19,8 +19,8 @@
                 <form class="needs-validation py-5 grey-bg" novalidate action="{{ route('tour.update', [$tour->id]) }}"
                       method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <input name="user_id" type="hidden" value="1">
+                    <input id="removeTourImageBool" type="hidden" name="removeImage" value="0"/>
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourName" class="mb-1 fw-bold">Naam tocht</label>
