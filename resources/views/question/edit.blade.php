@@ -49,10 +49,6 @@
                             </div>
                             @endif
                         </div>
-                        <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 @if(empty($question->video_url)) d-none @endif">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag</label>
-                            <input type="text" name="questionVideo" class="form-control" value="{{$question->video_url}}" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        </div>
                         <div class="col-10 mx-auto mb-3">
                             @foreach($question->answer as $answer)
                                 <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord {{ $loop->index+1 }}</label>

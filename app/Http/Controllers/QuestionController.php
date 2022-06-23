@@ -49,9 +49,9 @@ class QuestionController extends Controller
         $validated = $request->validated();
 
         $file = $validated['image_url'] ?? $request->file('image_url');
-        $filename = date('YmdHis') . $file->getClientOriginalName();
-
-        $validated['image_url'] = $filename;
+        if (!empty($file)) {
+            $filename = date('YmdHis') . $file->getClientOriginalName();
+        }
 
         $question = new Question($validated);
 
@@ -134,8 +134,6 @@ class QuestionController extends Controller
             }
             $filename = date('YmdHis') . $file->getClientOriginalName();
         }
-
-
 
         $question->update([
             'title'         => $request->questionTitle,

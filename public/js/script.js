@@ -157,7 +157,7 @@ function JSalertCorrectAnswer() {
 })();
 
 // Create question page
-$("input[type=radio][name=typeRadio]").change(function () {
+$("input[type=radio][name=type]").change(function () {
     if (this.value == "Meerkeuze") {
         $("#multiple-choice-fields").show();
         $("#multiple-choice-fields :input").attr({
