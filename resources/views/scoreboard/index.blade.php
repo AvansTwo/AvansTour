@@ -66,7 +66,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th class="d-none d-md-table-cell" scope="col">Tour naam</th>
+                    <th scope="col">Tour naam</th>
                     <th scope="col">Team naam</th>
                     <th scope="col">Totale tijd</th>
                     <th scope="col">Punten</th>
@@ -83,7 +83,7 @@
                         $startDate = new \Nette\Utils\DateTime($result->start_time);
                     @endphp
                     <tr>
-                        <td class="d-none d-md-table-cell">{{ $result->name }}</td>
+                        <td>{{ $result->name }}</td>
                         <td>{{ $result->team_name }}</td>
                         @if (isset($result->end_time))
                             <td>{{ $result->timeDiff }}</td>
