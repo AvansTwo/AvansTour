@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Vraag aanpassen')
 @section('content')
-    <div class="container" onload="checkType({{$question->type}})">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Tour vraag <span class="title-colored">aanpassen</span></h1>
@@ -48,10 +48,6 @@
                                 <button onclick="removeQuestionImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
                             </div>
                             @endif
-                        </div>
-                        <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 @if(empty($question->video_url)) d-none @endif">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag</label>
-                            <input type="text" name="questionVideo" class="form-control" value="{{$question->video_url}}" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             @foreach($question->answer as $answer)
