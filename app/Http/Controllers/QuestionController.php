@@ -72,6 +72,9 @@ class QuestionController extends Controller
         if ($validator->fails()) {
             return Redirect::back()->withErrors($validator)->withInput();
         }
+        $validated['image_url'] = $filename ?? null;
+
+        $question = new Question($validated);
 
         $file = $request->file('questionImg');
         $filename = date('YmdHis') . $file->getClientOriginalName();
@@ -164,6 +167,12 @@ class QuestionController extends Controller
                 \File::delete(public_path('tourimg/' . $filename));
             }
             $filename = date('YmdHis') . $file->getClientOriginalName();
+        } else{
+            $filename = $question->image_url;
+            if (\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = null;
         }
 
 

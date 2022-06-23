@@ -49,10 +49,13 @@
                             </div>
                             @endif
                         </div>
-                        <div id="questionVideoWrapper" class="col-10 mx-auto mb-5 @if(empty($question->video_url)) d-none @endif">
-                            <label for="questionVideo" class="mb-1 fw-bold">Video vraag</label>
-                            <input type="text" name="questionVideo" class="form-control" value="{{$question->video_url}}" id="questionVideo" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                        </div>
+                        @if(empty($question->image_url))
+                            <div id="newQuestionImgWrapper" class="col-10 mx-auto mb-5">
+                                <label for="questionImg" class="mb-1 fw-bold">Foto</label>
+                                <input class="form-control @error('image_url') is-invalid @enderror"  name="image_url" accept="image/png, image/jpg, image/jpeg" type="file" id="questionImg">
+                                <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
+                            </div>
+                        @endif
                         <div class="col-10 mx-auto mb-3">
                             @foreach($question->answer as $answer)
                                 <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord {{ $loop->index+1 }}</label>
