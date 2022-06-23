@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\Question\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -27,7 +30,7 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create($id)
     {
@@ -43,48 +46,14 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'questionTitle'         => ['required', 'min:3', 'max:40'],
-            'questionDesc'          => ['required', 'min:3', 'max:100'],
-            'questionImg'           => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
-            'questionLocation'      => ['required', 'between:-180,180', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'],
-            'questionPoints'        => ['required', 'integer'],
-        ];
+        $validated = $request->validated();
 
-        $customMessages = [
-            'questionImg.image'                       => 'Bestandstype dient een afbeelding te zijn.',
-            'questionImg.mimes:jpeg,png,jpg,gif,svg'  => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
-            'questionImg.max'                         => 'Een foto dient maximaal 2mb te zijn.',
-            'questionImg.dimensions'                  => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
-            'questionLocation.between'                => 'Locatie dient tussen -180 en 180 te liggen.',
-        ];
-
-        $attributes = [
-            'questionTitle'     => 'Titel vraag',
-            'questionDesc'      => 'Omschrijving vraag',
-            'questionImg'       => 'Foto vraag',
-            'questionLocation'  => 'Locatie vraag',
-            'questionPoints'    => 'Punten vraag'
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $customMessages, $attributes);
-
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        $file = $request->file('questionImg');
+        $file = $validated['image_url'] ?? $request->file('image_url');
         $filename = date('YmdHis') . $file->getClientOriginalName();
 
-        $question = new Question();
+        $validated['image_url'] = $filename;
 
-        $question->title        = $request->questionTitle;
-        $question->description  = $request->questionDesc;
-        $question->image_url    = $filename;
-        $question->gps_location = $request->questionLocation;
-        $question->type         = $request->typeRadio;
-        $question->points       = $request->questionPoints;
-        $question->tour_id      = $request->tourID;
+        $question = new Question($validated);
 
         $question->save();
 
@@ -116,7 +85,7 @@ class QuestionController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show($id)
     {
@@ -133,7 +102,7 @@ class QuestionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function edit($id)
     {

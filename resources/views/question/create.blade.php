@@ -68,8 +68,8 @@
                         </div>
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
                             <label for="questionImg" class="mb-1 fw-bold">Foto</label>
-                            <input class="form-control" name="questionImg" type="file" id="questionImg">
-                            @error('questionImg')
+                            <input class="form-control" name="image_url" type="file" id="questionImg">
+                            @error('image_url')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>

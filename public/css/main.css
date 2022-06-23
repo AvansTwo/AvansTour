@@ -604,3 +604,7 @@ footer {
 .table-responsive-tour {
     min-width: 773px;
 }
+
+.table-responsive-scoreboard {
+    min-width: 576px;
+}
