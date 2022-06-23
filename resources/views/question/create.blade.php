@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Vraag aanmaken')
 @section('content')
-    <div class="container">
+    <div class="container" onload="checkType({{old('type')}})">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Een Nieuwe <span class="title-colored">Vraag</span> Toevoegen</h1>

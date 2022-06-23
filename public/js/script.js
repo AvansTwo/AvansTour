@@ -208,6 +208,9 @@ function checkType(type) {
     }
 }
 
+
+
+
 // Create team page
 let count = 1;
 function showMemberInputField() {

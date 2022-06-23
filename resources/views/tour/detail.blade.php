@@ -61,7 +61,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <img class="img-fluid rounded mb-5 mb-lg-0"
-                                     src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-detail-img">
+                                 src="@if(!empty($tour->image_url)){{ asset('tourimg/'. $tour->image_url) }}@else {{ asset('img/landing_img.png') }} @endif" alt="tour-detail-img">
                             </div>
                         </div>
                     </div>
