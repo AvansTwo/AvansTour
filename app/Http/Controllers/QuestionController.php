@@ -6,12 +6,13 @@ use App\Http\Requests\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 class QuestionController extends Controller
 {
@@ -43,51 +44,41 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'questionTitle'         => ['required', 'min:3', 'max:40'],
-            'questionDesc'          => ['required', 'min:3', 'max:100'],
-            'questionImg'           => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
-            'questionLocation'      => ['required', 'between:-180,180', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'],
+        $tourID = $request->tourID;
+
+        $validator = Validator::make($request->all(), [
+            'questionTitle'         => ['required', 'string', 'min:3', 'max:40'],
+            'questionDesc'          => ['required', 'string', 'min:3', 'max:500'],
+            'questionImg'           => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
+            'questionLocation'      => ['required', 'between:-180,180'],
             'questionPoints'        => ['required', 'integer'],
-        ];
-
-        $customMessages = [
-            'questionImg.image'                       => 'Bestandstype dient een afbeelding te zijn.',
-            'questionImg.mimes:jpeg,png,jpg,gif,svg'  => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
-            'questionImg.max'                         => 'Een foto dient maximaal 2mb te zijn.',
-            'questionImg.dimensions'                  => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
-            'questionLocation.between'                => 'Locatie dient tussen -180 en 180 te liggen.',
-        ];
-
-        $attributes = [
-            'questionTitle'     => 'Titel vraag',
-            'questionDesc'      => 'Omschrijving vraag',
-            'questionImg'       => 'Foto vraag',
-            'questionLocation'  => 'Locatie vraag',
-            'questionPoints'    => 'Punten vraag'
-        ];
-
-        $validator = Validator::make($request->all(), $rules, $customMessages, $attributes);
+        ]);
 
         if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
+            return redirect("/tour/". $tourID ."/vragen/aanmaken")->withErrors($validator)->withInput();
         }
         $validated['image_url'] = $filename ?? null;
 
         $question = new Question($validated);
 
-        $file = $request->file('questionImg');
-        $filename = date('YmdHis') . $file->getClientOriginalName();
-
         $question = new Question();
 
-        $question->title        = $request->questionTitle;
-        $question->description  = $request->questionDesc;
-        $question->image_url    = $filename;
+        $filename = $question->questionImg;
+        $file = $request->file('questionImg');
+        if (!empty($file)) {
+            if (\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = date('YmdHis') . $file->getClientOriginalName();
+        }
+
+        $question->title = $request->questionTitle;
+        $question->description = $request->questionDesc;
+        $question->image_url = $filename;
         $question->gps_location = $request->questionLocation;
-        $question->type         = $request->typeRadio;
-        $question->points       = $request->questionPoints;
-        $question->tour_id      = $request->tourID;
+        $question->type = $request->typeRadio;
+        $question->points = $request->questionPoints;
+        $question->tour_id = $tourID;
 
         $question->save();
 

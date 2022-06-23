@@ -28,7 +28,6 @@ main {
 h1 {
     font-size: clamp(40px, 5vw, 60px) !important;
     font-weight: bold !important;
-    text-transform:capitalize;
 }
 
 h2 {
@@ -54,10 +53,6 @@ textarea {
 a {
     color: black !important;
     text-decoration: none !important;
-}
-
-input[data-readonly] {
-    pointer-events: none;
 }
 
 /*buttons*/
@@ -392,10 +387,6 @@ footer {
     max-height: 300px;
 }
 
-/*dashboard*/
-.dashboard-link{
-    color: black;
-}
 /*Spinner*/
 .ctrl {
     -webkit-box-flex: 0;
