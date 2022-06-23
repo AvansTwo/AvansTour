@@ -43,7 +43,7 @@ Route::post('/tour/aanmaken', [TourController::class, 'store'])->middleware('aut
 Route::get('/tour/aanmaken', [TourController::class, 'create'])->middleware('auth');
 
 //Tour edit
-Route::post('/tour/aanpassen/{id}', [TourController::class, 'update'])->middleware('auth');
+Route::post('/tour/aanpassen/{id}', [TourController::class, 'update'])->middleware('auth')->name('tour.update');
 Route::get('/tour/aanpassen/{id}', [TourController::class, 'edit'])->middleware('auth');
 
 //Tour delete
