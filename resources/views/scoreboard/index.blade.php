@@ -33,8 +33,7 @@
                     @csrf
                     <div class="input-group h-100">
                         <input class="form-control rounded-0 h-100" type="date" placeholder="test"
-                               aria-label="Datum" aria-describedby="button-addon3" name="datePicker"
-                               value="YYYY-MM-DD"/>
+                               aria-label="Datum" aria-describedby="button-addon3" name="datePicker" value="YYYY-MM-DD"/>
                         <button class="btn btn-outline-danger px-5 rounded-0" type="submit" id="button-addon3">Filter
                         </button>
                     </div>
@@ -64,42 +63,40 @@
             </div>
         </div>
         <div class="col-12 my-5">
-            <div class="table-responsive">
-                <table class="table table-striped table-responsive-scoreboard">
-                    <thead>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="d-none d-md-table-cell" scope="col">Tour naam</th>
+                    <th scope="col">Team naam</th>
+                    <th scope="col">Totale tijd</th>
+                    <th scope="col">Punten</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if (count($results) === 0)
                     <tr>
-                        <th scope="col">Tour naam</th>
-                        <th scope="col">Team naam</th>
-                        <th scope="col">Totale tijd</th>
-                        <th scope="col">Punten</th>
+                        <td colspan="4" class="text-center"> No results found!</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @if (count($results) === 0)
-                        <tr>
-                            <td colspan="4" class="text-center"> No results found!</td>
-                        </tr>
-                    @endif
-                    @foreach($results as $result)
-                        @php
-                            $startDate = new \Nette\Utils\DateTime($result->start_time);
-                        @endphp
-                        <tr>
-                            <td>{{ $result->name }}</td>
-                            <td>{{ $result->team_name }}</td>
-                            @if (isset($result->end_time))
-                                <td>{{ $result->timeDiff }}</td>
-                            @else
-                                <td>Team heeft geen eindtijd.</td>
-                            @endif
-                            <td>
-                                {{ $result->points }}
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+                @endif
+                @foreach($results as $result)
+                    @php
+                        $startDate = new \Nette\Utils\DateTime($result->start_time);
+                    @endphp
+                    <tr>
+                        <td class="d-none d-md-table-cell">{{ $result->name }}</td>
+                        <td>{{ $result->team_name }}</td>
+                        @if (isset($result->end_time))
+                            <td>{{ $result->timeDiff }}</td>
+                        @else
+                            <td>Team heeft geen eindtijd.</td>
+                        @endif
+                        <td>
+                            {{ $result->points }}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
             <div class="d-flex justify-content-center">
                 {{$results->links()}}
             </div>

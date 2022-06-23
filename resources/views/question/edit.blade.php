@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Vraag aanpassen')
 @section('content')
-    <div class="container">
+    <div class="container" onload="checkType({{$question->type}})">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Tour vraag <span class="title-colored">aanpassen</span></h1>
@@ -49,6 +49,13 @@
                             </div>
                             @endif
                         </div>
+                        @if(empty($question->image_url))
+                            <div id="newQuestionImgWrapper" class="col-10 mx-auto mb-5">
+                                <label for="questionImg" class="mb-1 fw-bold">Foto</label>
+                                <input class="form-control @error('image_url') is-invalid @enderror"  name="image_url" accept="image/png, image/jpg, image/jpeg" type="file" id="questionImg">
+                                <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
+                            </div>
+                        @endif
                         <div class="col-10 mx-auto mb-3">
                             @foreach($question->answer as $answer)
                                 <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord {{ $loop->index+1 }}</label>

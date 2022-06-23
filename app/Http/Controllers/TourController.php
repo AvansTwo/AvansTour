@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Tour\StoreTourRequest;
-use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -64,12 +63,15 @@ class TourController extends Controller
     {
         $validated = $request->validated();
 
-        $file = $validated['image_url'] ?? $request->file('image_url');
+        $file = $request->file('image_url');
         $filename = date('YmdHis') . $file->getClientOriginalName();
 
-        $validated['image_url'] = $filename;
-
-        $tour = new Tour($validated);
+        $tour = new Tour();
+        $tour->name = $request->name;
+        $tour->description = $request->description;
+        $tour->image_url = $filename;
+        $tour->location = $request->location;
+        $tour->category_id = $request->category_id;
         $tour->user_id = Auth::user()->id;
 
         $tour->save();
@@ -126,17 +128,16 @@ class TourController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateTourRequest $request
+     * @param Request $request
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(UpdateTourRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validated();
         $tour = Tour::find($id);
 
         $filename = $tour->image_url;
-        $file = $validated['image_url'] ?? $request->file('image_url');
+        $file = $request->file('image_url');
         if (!empty($file)) {
             if (\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
@@ -145,11 +146,11 @@ class TourController extends Controller
         }
 
         $tour->update([
-            'name'          =>  $validated['name'],
-            'description'   =>  $validated['description'],
+            'name'          =>  $request->name,
+            'description'   =>  $request->description,
             'image_url'     =>  $filename,
-            'location'      =>  $validated['location'],
-            'category_id'   =>  $validated['category_id'],
+            'location'      =>  $request->location,
+            'category_id'   =>  $request->category_id,
             'user_id'       =>  $tour->user_id
         ]);
 

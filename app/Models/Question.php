@@ -19,6 +19,7 @@ class Question extends Model
         'title',
         'description',
         'image_url',
+        'video_url',
         'gps_location',
         'points',
         'type',
