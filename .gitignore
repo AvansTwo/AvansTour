@@ -12,3 +12,7 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Tour and team images
+/public/teamimg
+/public/tourimg
