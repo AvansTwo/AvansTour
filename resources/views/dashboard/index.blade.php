@@ -6,21 +6,21 @@
             <div class="col-12 mt-5">
                 <h1>Welkom op het <span class="title-colored">Dashboard</span></h1>
                 <p>Teams die meedoen aan AvansTour</p>
-
+            
             </div>
-            <div class="col-12 grey-bg my-5 p-0 p-lg-5">
+            <div class="col-12 grey-bg my-5 p-5">
                 <div class="accordion accordion-flush">
                     @foreach($teams as $team)
                     <div class="accordion-item mb-3">
-                      <h2 class="accordion-header" id="header-{{$team->team_id}}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#button-{{$team->team_id}}" aria-expanded="false" aria-controls="button-{{$team->team_id}}">
+                      <h2 class="accordion-header" id="header-{!!$team->team_id!!}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#button-{!!$team->team_id!!}" aria-expanded="false" aria-controls="button-{!!$team->team_id!!}">
                             <div class="d-block">
-                                <p class="d-inline fw-bold dashboard-link">{{$team->team_name}} | <span class="title-colored">{{$team->tour_name}}</span> ({{count($team->progress)}})</p>
+                                <p class="d-inline fw-bold">{{$team->team_name}} | <span class="title-colored">{{$team->tour_name}}</span> ({{count($team->progress)}})</p>
                             </div>
                         </button>
                       </h2>
 
-                      <div class="accordion-collapse collapse" id="button-{!!$team->team_id!!}" aria-labelledby="header-{{$team->team_id}}">
+                      <div class="accordion-collapse collapse" id="button-{!!$team->team_id!!}" aria-labelledby="header-{!!$team->team_id!!}">
                         <div class="accordion-body p-4">
                           <h4 class="fw-bold mb-3">Na te kijken <span class="title-colored">vragen</span></h4>
 
@@ -58,10 +58,10 @@
                                                 class="btn create-btn mt-2">Goedkeuren <i class="fa-solid fa-check"></i>
                                             </button>
 
-                                            <button onclick="JSalertCorrectAnswer()" class="btn create-btn delete-btn mt-2">
-                                                <a id="incorrect-answer-url" style="pointer-events: none" href="/dashboard/team/{{$team->team_id}}/vraag/{{$progress->question_id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
+                                            <button class="btn create-btn delete-btn mt-2">
+                                                <a id="incorrect-answer-url" href="/dashboard/team/{{$team->team_id}}/vraag/{{$progress->question_id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
                                             </button>
-                                        </div>
+                                        </div>         
                                     </div>
                                   </div>
                                 </div>

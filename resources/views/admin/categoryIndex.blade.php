@@ -27,29 +27,31 @@
 
                     </div>
                     <div class="col-12">
-                        <table class="table text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Naam</th>
-                                <th scope="col">Verwijderen</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($categories as $categorie)
+                        <div class="col-12 table-responsive">
+                            <table class="table text-center table-striped custom-table-responsive">
+                                <thead>
                                 <tr>
-                                    <th scope="row">{{ $loop->index+1 }}</th>
-                                    <td>{{$categorie->category_name }}</td>
-                                    <td>
-                                        <button type="button" onclick="JSalertDeleteCategorie({{$categorie->id}})" class="btn secondary-btn delete-btn">
-                                            <a id="delete-categorie-url_{{$categorie->id}}" style="pointer-events: none" href="/instellingen/categorie/{{$categorie->id}}/verwijderen" class="fa-solid fa-trash"></a>
-                                        </button>
-
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Naam</th>
+                                    <th scope="col">Verwijderen</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($categories as $categorie)
+                                    <tr>
+                                        <th scope="row">{{ $loop->index+1 }}</th>
+                                        <td>{{$categorie->category_name }}</td>
+                                        <td>
+                                            <button type="button" onclick="JSalertDeleteCategorie({{$categorie->id}})" class="btn secondary-btn delete-btn">
+                                                <a id="delete-categorie-url_{{$categorie->id}}" style="pointer-events: none" href="/instellingen/categorie/{{$categorie->id}}/verwijderen" class="fa-solid fa-trash"></a>
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

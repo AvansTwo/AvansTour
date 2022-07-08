@@ -16,7 +16,7 @@
     let isAdmin = {{ $isAdmin }};
     let radius = {{$radius}};
 
-    let liveMarker = L.marker([1,1], {
+    let liveMarker = L.marker([51.58913787971526,4.77596559775307], {
         icon: locationIcon
     }).bindPopup(`Deze radius strekt ${radius} meter om jouw huidige locatie!`).addTo(map);
 

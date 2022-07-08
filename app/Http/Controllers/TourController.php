@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-
 
 class TourController extends Controller
 {
@@ -62,19 +59,29 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        $validated = $request->validated();
+        $validator = Validator::make($request->all(), [
+            'name'          => ['required', 'string', 'min:3', 'max:40', "unique:tour,name"],
+            'description'   => ['required', 'string', 'min:3', 'max:100'],
+            'image_url'     => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
+            'location'      => ['required', 'between:-180,180'],
+            'category_id'   => ['required', 'integer'],
+        ]);
 
         $file = $validated['image_url'] ?? $request->file('image_url');
-        $filename = date('YmdHis') . $file->getClientOriginalName();
+        if (!empty($file)) {
+            $filename = date('YmdHis') . $file->getClientOriginalName();
+        }
 
-        $validated['image_url'] = $filename;
+        $validated['image_url'] = $filename ?? null;
 
         $tour = new Tour($validated);
         $tour->user_id = Auth::user()->id;
 
         $tour->save();
 
-        $file->move(public_path('tourimg'), $filename);
+        if (!empty($file)) {
+            $file->move(public_path('tourimg'), $filename);
+        }
 
         Session::flash('Checkmark', 'Tour is succesvol aangemaakt, voeg nu vragen toe!');
         return Redirect::to('/tour/' . $tour->id . '/vragen/aanmaken');
@@ -142,6 +149,12 @@ class TourController extends Controller
                 \File::delete(public_path('tourimg/' . $filename));
             }
             $filename = date('YmdHis') . $file->getClientOriginalName();
+        } else if(empty($file) && $request->removeImage == 1){
+            $filename = $tour->image_url;
+            if (\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = null;
         }
 
         $tour->update([
