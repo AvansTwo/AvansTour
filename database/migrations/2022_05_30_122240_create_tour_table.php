@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 150);
             $table->string('description');
-            $table->string('image_url');
+            $table->string('image_url')->nullable();
             $table->string('location');
             $table->foreignId('category_id')->nullable()->constrained('category')->restrictOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();

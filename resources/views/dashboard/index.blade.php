@@ -57,9 +57,9 @@
                                             <button onclick="location.href='/dashboard/team/{{$team->team_id}}/vraag/{{$progress->question_id}}/goed'"
                                                 class="btn create-btn mt-2">Goedkeuren <i class="fa-solid fa-check"></i>
                                             </button>
-                        
-                                            <button onclick="JSalertCorrectAnswer()" class="btn create-btn delete-btn mt-2">
-                                                <a id="incorrect-answer-url" style="pointer-events: none" href="/dashboard/team/{{$team->team_id}}/vraag/{{$progress->question_id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
+
+                                            <button class="btn create-btn delete-btn mt-2">
+                                                <a id="incorrect-answer-url" href="/dashboard/team/{{$team->team_id}}/vraag/{{$progress->question_id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
                                             </button>
                                         </div>         
                                     </div>
