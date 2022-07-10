@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-
 
 class TourController extends Controller
 {
@@ -69,24 +66,21 @@ class TourController extends Controller
             'category_id'   => ['required', 'integer'],
         ]);
 
-        if ($validator->fails()) {
-            return redirect("/tour/aanmaken")->withErrors($validator)->withInput();
+        $file = $validated['image_url'] ?? $request->file('image_url');
+        if (!empty($file)) {
+            $filename = date('YmdHis') . $file->getClientOriginalName();
         }
 
-        $file = $request->file('image_url');
-        $filename = date('YmdHis') . $file->getClientOriginalName();
+        $validated['image_url'] = $filename ?? null;
 
-        $tour = new Tour();
-        $tour->name = $request->name;
-        $tour->description = $request->description;
-        $tour->image_url = $filename;
-        $tour->location = $request->location;
-        $tour->category_id = $request->category_id;
+        $tour = new Tour($validated);
         $tour->user_id = Auth::user()->id;
 
         $tour->save();
 
-        $file->move(public_path('tourimg'), $filename);
+        if (!empty($file)) {
+            $file->move(public_path('tourimg'), $filename);
+        }
 
         Session::flash('Checkmark', 'Tour is succesvol aangemaakt, voeg nu vragen toe!');
         return Redirect::to('/tour/' . $tour->id . '/vragen/aanmaken');
@@ -153,6 +147,12 @@ class TourController extends Controller
                 \File::delete(public_path('tourimg/' . $filename));
             }
             $filename = date('YmdHis') . $file->getClientOriginalName();
+        } else if(empty($file) && $request->removeImage == 1){
+            $filename = $tour->image_url;
+            if (\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = null;
         }
 
         $tour->update([

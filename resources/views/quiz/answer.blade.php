@@ -41,7 +41,7 @@
             </form>
         </div>
         <div class="col-12 col-lg-6 order-6 order-lg-1 p-5">
-            <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $question->image_url) }}" alt="tour-detail-img">
+            <img class="img-fluid rounded mb-5 mb-lg-0" @if(!empty($question->image_url)) src="{{asset('tourimg/'. $question->image_url)}}" @else src="{{asset('img/landing_img.png')}}" @endif alt="tour-detail-img">
         </div>
     </div>
     <script>

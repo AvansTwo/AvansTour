@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\Question\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
-
 
 class QuestionController extends Controller
 {
@@ -28,7 +30,7 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create($id)
     {
@@ -42,40 +44,17 @@ class QuestionController extends Controller
      * @param StoreQuestionRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
-        $tourID = $request->tourID;
+        $validated = $request->validated();
 
-        $validator = Validator::make($request->all(), [
-            'questionTitle'         => ['required', 'string', 'min:3', 'max:40'],
-            'questionDesc'          => ['required', 'string', 'min:3', 'max:500'],
-            'questionImg'           => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
-            'questionLocation'      => ['required', 'between:-180,180'],
-            'questionPoints'        => ['required', 'integer'],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect("/tour/". $tourID ."/vragen/aanmaken")->withErrors($validator)->withInput();
-        }
-
-        $question = new Question();
-
-        $filename = $question->questionImg;
-        $file = $request->file('questionImg');
+        $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
-            }
             $filename = date('YmdHis') . $file->getClientOriginalName();
         }
+        $validated['image_url'] = $filename ?? null;
 
-        $question->title = $request->questionTitle;
-        $question->description = $request->questionDesc;
-        $question->image_url = $filename;
-        $question->gps_location = $request->questionLocation;
-        $question->type = $request->typeRadio;
-        $question->points = $request->questionPoints;
-        $question->tour_id = $tourID;
+        $question = new Question($validated);
 
         $question->save();
 
@@ -85,7 +64,7 @@ class QuestionController extends Controller
 
         $questionID = $question->id;
 
-        if($request->typeRadio == 'Meerkeuze'){
+        if($request->type == 'Meerkeuze'){
             for($i = 1; $i <= 4; $i++){
                 $answer = new Answer();
                 $answer->answer = $request->$i;
@@ -107,7 +86,7 @@ class QuestionController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function show($id)
     {
@@ -124,7 +103,7 @@ class QuestionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
@@ -155,9 +134,13 @@ class QuestionController extends Controller
                 \File::delete(public_path('tourimg/' . $filename));
             }
             $filename = date('YmdHis') . $file->getClientOriginalName();
+        } else if(empty($file) && $request->removeImage == 1){
+            $filename = $question->image_url;
+            if (\File::exists(public_path('tourimg/' . $filename))) {
+                \File::delete(public_path('tourimg/' . $filename));
+            }
+            $filename = null;
         }
-
-
 
         $question->update([
             'title'         => $request->questionTitle,

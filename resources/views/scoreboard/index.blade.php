@@ -63,17 +63,9 @@
             </div>
         </div>
         <div class="col-12 my-5">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Tour naam</th>
-                    <th scope="col">Team naam</th>
-                    <th scope="col">Totale tijd</th>
-                    <th scope="col">Punten</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if (count($results) === 0)
+            <div class="table-responsive">
+                <table class="table table-striped custom-table-responsive">
+                    <thead>
                     <tr>
                         <td colspan="4" class="text-center"> No results found!</td>
                     </tr>

@@ -176,7 +176,9 @@ function removeQuestionImage() {
     document.getElementById("questionImg").classList.remove("d-none");
     document.getElementById("questionImg").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
+    document.getElementById("removeImage").value = 1;
 }
+
 
 function checkType(type) {
     if (type == "Open") {
@@ -207,6 +209,9 @@ function checkType(type) {
         });
     }
 }
+
+
+
 
 // Create team page
 let count = 1;
@@ -261,4 +266,5 @@ function removeTourImage() {
     document.getElementById("tour-img-input").classList.remove("d-none");
     document.getElementById("tour-img-input").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
+    document.getElementById("removeTourImageBool").value = 1;
 }

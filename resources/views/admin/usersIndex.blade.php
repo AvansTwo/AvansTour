@@ -26,31 +26,32 @@
                         <h2 class="mb-3">Gebruikers AvansTour</h2>
                     </div>
                     <div class="col-12">
-                        <table class="table text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Naam</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Verwijderen</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($users as $user)
+                        <div class="table-responsive">
+                            <table class="table text-center table-striped custom-table-responsive">
+                                <thead>
                                 <tr>
-                                    <th scope="row">{{ $loop->index+1 }}</th>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>
-                                        <button type="button" onclick="JSalertDeleteUser()" class="btn secondary-btn delete-btn">
-                                            <a id="delete-user-url" style="pointer-events: none" href="/instellingen/gebruiker/{{$user->id}}/verwijderen" class="fa-solid fa-trash"></a>
-                                        </button>
-
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Naam</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Verwijderen</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($users as $user)
+                                    <tr>
+                                        <th scope="row">{{ $loop->index+1 }}</th>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>
+                                            <button type="button" onclick="JSalertDeleteUser({{$user->id}})" class="btn secondary-btn delete-btn">
+                                                <a id="delete-user-url_{{$user->id}}" style="pointer-events: none" href="/instellingen/gebruiker/{{$user->id}}/verwijderen" class="fa-solid fa-trash"></a>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

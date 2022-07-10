@@ -58,7 +58,8 @@
                     <div class="col-12 col-lg-6 order-6 order-lg-1">
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-fluid rounded mb-5 mb-lg-0" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-detail-img">
+                                <img class="img-fluid rounded mb-5 mb-lg-0"
+                                 src="@if(!empty($tour->image_url)){{ asset('tourimg/'. $tour->image_url) }}@else {{ asset('img/landing_img.png') }} @endif" alt="tour-detail-img">
                             </div>
                         </div>
                     </div>
@@ -73,24 +74,14 @@
                 </div>
             </div>
             @if(Auth::check())
-            <div class="col-12 grey-bg p-5 mt-3 mb-5">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="mb-3">Tour vragen</h2>
-                    </div>
-                    <div class="col-12">
-                        <table class="table text-center">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Titel</th>
-                                <th scope="col">Omschrijving</th>
-                                <th scope="col">Punten</th>
-                                <th scope="col">Bekijken</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($tour->question as $question)
+                <div class="col-12 grey-bg p-5 mt-3 mb-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="mb-3">Tour vragen</h2>
+                        </div>
+                        <div class="col-12 table-responsive">
+                            <table class="table text-center table-striped custom-table-responsive">
+                                <thead>
                                 <tr>
                                     <th scope="row">{{ $loop->index+1 }}</th>
                                     <td>{{$question->title}}</td>
