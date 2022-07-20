@@ -25,7 +25,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.586118505437256,4.775678388588147",
             'points' => 10,
-            'tour_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -37,7 +36,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
-            'tour_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -49,7 +47,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.58689353598733,4.774640876287711",
             'points' => 10,
-            'tour_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -61,7 +58,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Open',
             'gps_location' => "51.588832816540254,4.775367262326815",
             'points' => 20,
-            'tour_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -73,7 +69,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Media',
             'gps_location' => "51.58970229454752,4.7852689449590455",
             'points' => 20,
-            'tour_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -86,7 +81,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.586118505437256,4.775678388588147",
             'points' => 10,
-            'tour_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -98,7 +92,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
-            'tour_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -110,7 +103,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.58689353598733,4.774640876287711",
             'points' => 10,
-            'tour_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -122,7 +114,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Open',
             'gps_location' => "51.588832816540254,4.775367262326815",
             'points' => 20,
-            'tour_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -134,7 +125,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Media',
             'gps_location' => "51.58970229454752,4.7852689449590455",
             'points' => 20,
-            'tour_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -147,7 +137,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.586118505437256,4.775678388588147",
             'points' => 10,
-            'tour_id' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -159,7 +148,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
-            'tour_id' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -171,7 +159,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.58689353598733,4.774640876287711",
             'points' => 10,
-            'tour_id' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -183,7 +170,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Open',
             'gps_location' => "51.588832816540254,4.775367262326815",
             'points' => 20,
-            'tour_id' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -195,7 +181,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Media',
             'gps_location' => "51.58970229454752,4.7852689449590455",
             'points' => 20,
-            'tour_id' => 3,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -208,7 +193,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.586118505437256,4.775678388588147",
             'points' => 10,
-            'tour_id' => 4,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -220,7 +204,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
-            'tour_id' => 4,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -232,7 +215,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.58689353598733,4.774640876287711",
             'points' => 10,
-            'tour_id' => 4,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -244,7 +226,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Open',
             'gps_location' => "51.588832816540254,4.775367262326815",
             'points' => 20,
-            'tour_id' => 4,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -256,7 +237,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Media',
             'gps_location' => "51.58970229454752,4.7852689449590455",
             'points' => 20,
-            'tour_id' => 4,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -268,7 +248,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.586118505437256,4.775678388588147",
             'points' => 10,
-            'tour_id' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -280,7 +259,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.589827823285766,4.773251368799545",
             'points' => 10,
-            'tour_id' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -292,7 +270,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Meerkeuze',
             'gps_location' => "51.58689353598733,4.774640876287711",
             'points' => 10,
-            'tour_id' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -304,7 +281,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Open',
             'gps_location' => "51.588832816540254,4.775367262326815",
             'points' => 20,
-            'tour_id' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -316,7 +292,6 @@ class QuestionSeeder extends Seeder
             'type' => 'Media',
             'gps_location' => "51.58970229454752,4.7852689449590455",
             'points' => 20,
-            'tour_id' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

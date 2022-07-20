@@ -7,7 +7,17 @@
                 <h1 class="my-5 text-center">{{$tour->name}}<span class="title-colored"> aanpassen</span></h1>
             </div>
             <div class="col-12 mb-5">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/tour/aanpassen/{{$tour->id}}" method="post" enctype="multipart/form-data">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="m-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form class="needs-validation py-5 grey-bg" novalidate action="{{ route('tour.update', [$tour->id]) }}"
+                      method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="user_id" type="hidden" value="1">
                     <input id="removeTourImageBool" type="hidden" name="removeImage" value="0"/>
@@ -31,7 +41,8 @@
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend" onclick="showMap()">
-                                    <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span class="input-group-text" id="inputGroupPrepend"><i
+                                            class="fa-solid fa-location-dot"></i></span>
                                 </div>
                                 <input type="text" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') == null ? $tour->location : old('location') }}" name="location" id="tourStartLocation" aria-describedby="inputGroupPrepend" readonly>
                             </div>
@@ -46,18 +57,22 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourCategory" class="mb-1 fw-bold">Categorie</label>
-                            <select class="form-select" id="tourCategory" name="category_id" required>
+                            <select class="form-select @error('category_id') is-invalid @enderror" id="tourCategory"
+                                    name="category_id" required>
                                 <option value="" disabled selected hidden>Selecteer opleidings categorie</option>
                                 @foreach($categories as $category)
-                                    <option @if($category->id == $tour->category_id) selected @endif value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    <option @if($category->id == $tour->category_id) selected
+                                            @endif value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
 
-                            <a class="btn primary-btn mt-3" href="/tour/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
-                        <button class="btn primary-btn secondary-btn mt-3" type="submit" >Opslaan <i class="fa-solid fa-chevron-right"></i></button>
+                        <a class="btn primary-btn mt-3" href="/tour/{{$tour->id}}"><i
+                                class="fa-solid fa-chevron-left"></i> Ga terug</a>
+                        <button class="btn primary-btn secondary-btn mt-3" type="submit">Opslaan <i
+                                class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>
             </div>

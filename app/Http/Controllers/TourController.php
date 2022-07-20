@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Tour\StoreTourRequest;
+use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -58,7 +59,7 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = Validator::make($request->all(), [
             'name'          => ['required', 'string', 'min:3', 'max:40', "unique:tour,name"],
             'description'   => ['required', 'string', 'min:3', 'max:100'],
             'image_url'     => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
@@ -132,16 +133,17 @@ class TourController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateTourRequest $request
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTourRequest $request, $id)
     {
+        $validated = $request->validated();
         $tour = Tour::find($id);
 
         $filename = $tour->image_url;
-        $file = $request->file('image_url');
+        $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
             if (\File::exists(public_path('tourimg/' . $filename))) {
                 \File::delete(public_path('tourimg/' . $filename));
@@ -156,11 +158,11 @@ class TourController extends Controller
         }
 
         $tour->update([
-            'name'          =>  $request->name,
-            'description'   =>  $request->description,
+            'name'          =>  $validated['name'],
+            'description'   =>  $validated['description'],
             'image_url'     =>  $filename,
-            'location'      =>  $request->location,
-            'category_id'   =>  $request->category_id,
+            'location'      =>  $validated['location'],
+            'category_id'   =>  $validated['category_id'],
             'user_id'       =>  $tour->user_id
         ]);
 

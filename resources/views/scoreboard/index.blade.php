@@ -33,7 +33,8 @@
                     @csrf
                     <div class="input-group h-100">
                         <input class="form-control rounded-0 h-100" type="date" placeholder="test"
-                               aria-label="Datum" aria-describedby="button-addon3" name="datePicker" value="YYYY-MM-DD"/>
+                               aria-label="Datum" aria-describedby="button-addon3" name="datePicker"
+                               value="YYYY-MM-DD"/>
                         <button class="btn btn-outline-danger px-5 rounded-0" type="submit" id="button-addon3">Filter
                         </button>
                     </div>
@@ -67,7 +68,10 @@
                 <table class="table table-striped custom-table-responsive">
                     <thead>
                     <tr>
-                        <td colspan="4" class="text-center"> No results found!</td>
+                        <th scope="col">Tour naam</th>
+                        <th scope="col">Team naam</th>
+                        <th scope="col">Totale tijd</th>
+                        <th scope="col">Punten</th>
                     </tr>
                 @endif
                 @foreach($results as $result)
