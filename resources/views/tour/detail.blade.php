@@ -16,7 +16,7 @@
                         @if(!Auth::check())
                             <div class="col-12 d-flex mt-4">
                                 <i class="fa-solid fa-question question-icon-mark"></i>
-                                <p class="my-auto">Vragen: {{count($tour->question)}}</p>
+                                <p class="my-auto">Vragen: {{count($tour->tourQuestion)}}</p>
                             </div>
                             <div class="col-12 d-flex mt-4">
                                 <i class="fa-solid fa-star tour-icon"></i>
@@ -91,19 +91,23 @@
                                     <th scope="col">Titel</th>
                                     <th scope="col">Omschrijving</th>
                                     <th scope="col">Punten</th>
-                                    <th scope="col">Bekijken</th>
+                                    <th scope="col">Aanpassen</th>
+                                    <th scope="col">Verwijderen</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($tour->question as $question)
+                                @foreach($tour->tourQuestion as $tourQuestion)
                                     <tr>
                                         <th scope="row">{{ $loop->index+1 }}</th>
-                                        <td>{{$question->title}}</td>
-                                        <td>{{$question->description}}</td>
-                                        <td>{{$question->points}}</td>
+                                        <td>{{$tourQuestion->question->title}}</td>
+                                        <td>{{$tourQuestion->question->description}}</td>
+                                        <td>{{$tourQuestion->question->points}}</td>
                                         <td>
-                                            <button onclick="location.href='/vragen/{{$question->id}}';"
-                                                    class="btn secondary-btn"><i class="fa-solid fa-eye"></i>
+                                            <button onclick="location.href='/tour/{{$tour->id}}/vragen/aanpassen/{{$tourQuestion->question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                                        </td>
+                                        <td>
+                                            <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
+                                                <a id="delete-question-url" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
                                             </button>
                                         </td>
                                     </tr>

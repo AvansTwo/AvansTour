@@ -73,7 +73,6 @@
                         <th scope="col">Totale tijd</th>
                         <th scope="col">Punten</th>
                     </tr>
-                @endif
                 @foreach($results as $result)
                     @php
                         $startDate = new \Nette\Utils\DateTime($result->start_time);

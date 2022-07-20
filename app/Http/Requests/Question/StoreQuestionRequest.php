@@ -27,33 +27,33 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'questionTitle'         => ['required', 'min:3', 'max:40'],
-            'questionDesc'          => ['required', 'min:3', 'max:100'],
-            'questionImg'           => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
-            'questionLocation'      => ['required', 'between:-180,180', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/'],
-            'questionPoints'        => ['required', 'integer'],
+            'title'         => ['required', 'min:3', 'max:40'],
+            'description'   => ['required', 'min:3', 'max:100'],
+            'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
+            'gps_location'  => ['required', 'between:-180,180', 'regex:/^(-?\d+(.\d+)?),\s*(-?\d+(.\d+)?)$/'],
+            'points'        => ['required', 'integer'],
         ];
     }
 
     public function messages()
     {
         return [
-            'questionImg.image'                       => 'Bestandstype dient een afbeelding te zijn.',
-            'questionImg.mimes:jpeg,png,jpg,gif,svg'  => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
-            'questionImg.max'                         => 'Een foto dient maximaal 2mb te zijn.',
-            'questionImg.dimensions'                  => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
-            'questionLocation.between'                => 'Locatie dient tussen -180 en 180 te liggen.',
+            'image_url.image'                       => 'Bestandstype dient een afbeelding te zijn.',
+            'image_url.mimes:jpeg,png,jpg,gif,svg'  => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
+            'image_url.max'                         => 'Een foto dient maximaal 2mb te zijn.',
+            'image_url.dimensions'                  => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
+            'gps_location.between'                => 'Locatie dient tussen -180 en 180 te liggen.',
         ];
     }
 
     public function attributes()
     {
         return [
-            'questionTitle'     => 'Titel vraag',
-            'questionDesc'      => 'Omschrijving vraag',
-            'questionImg'       => 'Foto vraag',
-            'questionLocation'  => 'Locatie vraag',
-            'questionPoints'    => 'Punten vraag'
+            'title'         => 'Titel vraag',
+            'description'   => 'Omschrijving vraag',
+            'image_url'     => 'Foto vraag',
+            'gps_location'  => 'Locatie vraag',
+            'points'        => 'Punten vraag'
         ];
     }
 

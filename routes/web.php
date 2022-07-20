@@ -56,15 +56,12 @@ Route::get('/tour/{id}', [TourController::class, 'show']);
 Route::post('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'store'])->middleware('auth');
 Route::get('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'create'])->middleware('auth');
 
-//Question show
-Route::get('/vragen/{id}', [QuestionController::class, 'show']);
-
 //Question edit
-Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update'])->middleware('auth');
-Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit'])->middleware('auth');
+Route::post('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController::class, 'update'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController::class, 'edit'])->middleware('auth');
 
 //Question delete
-Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/verwijderen/{questionId}', [QuestionController::class, 'destroy'])->middleware('auth');
 
 //Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);

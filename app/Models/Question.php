@@ -38,4 +38,9 @@ class Question extends Model
     {
         return $this->hasMany(teamProgress::class, 'question_id');
     }
+
+    public function tourQuestion(): HasMany
+    {
+        return $this->hasMany(TourQuestion::class, 'question_id');
+    }
 }
