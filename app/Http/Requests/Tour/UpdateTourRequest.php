@@ -32,6 +32,7 @@ class UpdateTourRequest extends FormRequest
             'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:8192', 'dimensions:min_width=600,min_height=350'],
             'location'      => ['required', 'between:-180,180', 'regex:/([0-9]{1,3}.[0-9]*,[0-9]{1,3}.[0-9]*)/'],
             'category_id'   => ['required', 'integer'],
+            'user_id'       => ['required', 'integer'],
         ];
     }
 
@@ -54,7 +55,8 @@ class UpdateTourRequest extends FormRequest
             'description'   => 'Omschrijving',
             'image_url'     => 'Foto',
             'location'      => 'Locatie',
-            'category_id'   => 'Categorie'
+            'category_id'   => 'Categorie',
+            'user_id'       => 'Gebruiker'
         ];
     }
 
