@@ -155,19 +155,21 @@ function JSalertCorrectAnswer() {
 })();
 
 // Create question page
-$("input[type=radio][name=typeRadio]").change(function () {
+$("input[type=radio][name=type]").change(function () {
     if (this.value == "Meerkeuze") {
         $("#multiple-choice-fields").show();
         $("#multiple-choice-fields :input").attr({
             disabled: false,
             required: true,
         });
+        $("#multiple-choice-fields").removeClass("d-none");
     } else {
         $("#multiple-choice-fields").hide();
         $("#multiple-choice-fields :input").attr({
             disabled: true,
             required: false,
         });
+        $("#multiple-choice-fields").addClass("d-none");
     }
 });
 
@@ -181,7 +183,7 @@ function removeQuestionImage() {
 
 
 function checkType(type) {
-    if (type == "Open") {
+    if (type === "Open") {
         $("#openvraagFields").removeClass("d-none");
 
         $("#multipleChoiceFields :input").attr({
@@ -195,7 +197,7 @@ function checkType(type) {
         });
     }
 
-    if (type == "Media") {
+    if (type === "Media") {
         $("#mediaQuestionAnswer").removeClass("d-none");
 
         $("#openvraagFields :input").attr({

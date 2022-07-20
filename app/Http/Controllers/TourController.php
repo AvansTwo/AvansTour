@@ -98,16 +98,13 @@ class TourController extends Controller
         $tour = Tour::find($id);
 
         $totalPoints = 0;
-
-        foreach ($tour->question as $question) {
-            $totalPoints += $question->points;
+        foreach ($tour->tourQuestion as $tourQuestion) {
+            $totalPoints += $tourQuestion->question->points;
         }
 
         $startLocation = array((object) [
             "gps_location" => $tour->location
         ]);
-
-
 
         return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
     }

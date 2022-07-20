@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Vraag aanmaken')
 @section('content')
-    <div class="container" onload="checkType({{old('type')}})">
+    <div class="container">
+        <frame onload="console.log('Loaded!')">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>
@@ -19,41 +20,41 @@
                 <form class="needs-validation py-5 grey-bg" novalidate action="/tour/{{$tour->id}}/vragen/aanmaken" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="tourID" value="{{ $tour->id }}" />
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionTitle" class="mb-1 fw-bold">Titel vraag</label>
-                            <input type="text" value="{{ old('questionTitle') }}" name="questionTitle" class="form-control" id="questionTitle" placeholder="Klaslokalen" required>
-                            @error('questionTitle')
+                            <input type="text" value="{{ old('title') }}" name="title" class="form-control" id="title" placeholder="Klaslokalen" required>
+                            @error('title')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionDesc" class="mb-1 fw-bold">Omschrijving vraag</label>
-                            <input type="text" value="{{ old('questionDesc') }}" name="questionDesc" class="form-control" id="questionDesc" placeholder="Hoeveel klaslokalen telt het gebouw LA in totaal?" required>
-                            @error('questionDesc')
+                            <input type="text" value="{{ old('description') }}" name="description" class="form-control" id="description" placeholder="Hoeveel klaslokalen telt het gebouw LA in totaal?" required>
+                            @error('description')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionDesc" class="mb-1 fw-bold d-block">Type vraag</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="typeRadio" checked type="radio" value="Meerkeuze" id="inlineRadio1">
-                                <label class="form-check-label" for="inlineRadio1"> Meerkeuze vraag </label>
+                                <input class="form-check-input" name="type" @if(old('type') == "Meerkeuze" || old('type') == "") checked @endif type="radio" value="Meerkeuze" id="inlineRadio1">
+                                <label class="form-check-label" for="inlineRadio1">Meerkeuze vraag</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="typeRadio" type="radio" value="Open" id="inlineRadio2">
-                                <label class="form-check-label" for="inlineRadio2"> Open vraag </label>
+                                <input class="form-check-input" name="type" @if(old('type') == "Open") checked @endif type="radio" value="Open" id="inlineRadio2">
+                                <label class="form-check-label" for="inlineRadio2">Open vraag</label>
                             </div>
-                            <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="bottom"  title="Bij een mediavraag dient de student de vraag te beantwoorden met een foto.">
-                                <input class="form-check-input" name="typeRadio" type="radio" value="Media" id="inlineRadio3" >
-                                <label class="form-check-label" for="inlineRadio3"> Media vraag* </label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" name="type" @if(old('type') == "Media") checked @endif type="radio" value="Media" id="inlineRadio3" >
+                                <label class="form-check-label" for="inlineRadio3">Mediavraag*</label>
                             </div>
+                            <small class="w-100 d-block mt-2 fst-italic">*Mediavraag dient beantwoord worden met een foto</small>
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionPoints" class="mb-1 fw-bold">Aantal punten vraag</label>
-                            <input type="number" value="{{ old('questionPoints') }}" name="questionPoints" id="typeNumber" class="form-control" placeholder="10" required min="1" max="100"/>
-                            @error('questionPoints')
+                            <input type="number" value="{{ old('points') }}" name="points" id="typeNumber" class="form-control" placeholder="10" required min="1" max="100"/>
+                            @error('points')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
@@ -68,20 +69,20 @@
                                 <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input required type="text" value="{{ old('questionLocation') }}" class="form-control @error('questionLocation') is-invalid @enderror" name="questionLocation" id="questionLocation" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly>
-                                @error('questionLocation')
-                                <div class="alert alert-danger mt-1">{{ $message }}</div>
-                                @enderror
+                                <input required type="text" value="{{ old('gps_location') }}" class="form-control @error('gps_location') is-invalid @enderror" name="gps_location" id="gps_location" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly>
                             </div>
-                        </div>
-                        <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
-                            <label for="questionImg" class="mb-1 fw-bold">Foto</label>
-                            <input class="form-control" name="questionImg" type="file" id="questionImg">
-                            @error('questionImg')
+                            @error('gps_location')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div id="multiple-choice-fields" class="col-10 mx-auto mb-3">
+                        <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
+                            <label for="questionImg" class="mb-1 fw-bold">Foto</label>
+                            <input class="form-control" name="image_url" type="file" id="image_url">
+                            @error('image_url')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div id="multiple-choice-fields" class="col-10 mx-auto mb-3 @if(old('type') == "Meerkeuze" || old('type') == "") d-block @else d-none @endif">
                             <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord 1</label>
                             <div class="input-group mb-3">
                                 <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" type="radio" required value="1" id="questionCorrectAnswer">
@@ -124,7 +125,4 @@
             </div>
         </div>
     </div>
-    <script>
-
-    </script>
 @endsection

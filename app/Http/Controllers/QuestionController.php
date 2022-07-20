@@ -6,6 +6,7 @@ use App\Http\Requests\Question\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
+use App\Models\TourQuestion;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Contracts\View\Factory;
@@ -44,7 +45,7 @@ class QuestionController extends Controller
      * @param StoreQuestionRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreQuestionRequest $request)
+    public function store($id, StoreQuestionRequest $request)
     {
         $validated = $request->validated();
 
@@ -78,6 +79,11 @@ class QuestionController extends Controller
             }
         }
 
+        $tourQuestion = new TourQuestion();
+        $tourQuestion->tour_id = $id;
+        $tourQuestion->question_id = $questionID;
+        $tourQuestion->save();
+
         Session::flash('Checkmark','Vraag is succesvol toegevoegd');
         return back();
     }
@@ -105,15 +111,16 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit($tourId, $questionId)
     {
-        $question = Question::find($id);
+        $question = Question::find($questionId);
+        $tour = Tour::find($tourId);
 
         $questionLocation = array((object) [
             "gps_location" => $question->gps_location
         ]);
 
-        return view('question.edit')->with('question', $question)->with('questionLocation', $questionLocation);
+        return view('question.edit')->with('question', $question)->with('questionLocation', $questionLocation)->with('tour', $tour);
     }
 
     /**
@@ -123,9 +130,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tourId, $questionId)
     {
-        $question = Question::find($id);
+        $question = Question::find($questionId);
+        $tour = Tour::find($tourId);
 
         $filename = $question->image_url;
         $file = $request->file('image_url');
@@ -172,7 +180,7 @@ class QuestionController extends Controller
         }
 
         Session::flash('Checkmark','Vraag is succesvol aangepast');
-        return Redirect::to('/vragen/' . $question->id);
+        return Redirect::to('/tour/' . $tour->id);
     }
 
     /**
@@ -181,14 +189,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($tourId, $tourQuestion)
     {
-        $question = Question::find($id);
-        $tour = Tour::find($question->tour_id);
-
-        if (\File::exists(public_path('tourimg/' . $question->image_url))) {
-            \File::delete(public_path('tourimg/' . $question->image_url));
-        }
+        $question = TourQuestion::find($tourQuestion);
+        $tour = Tour::find($tourId);
 
         $question->delete();
 
