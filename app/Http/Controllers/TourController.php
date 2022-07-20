@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Tour\StoreTourRequest;
 use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -122,12 +123,13 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
         $catgories = Category::all();
+        $users = User::all();
 
         $startLocation = array((object) [
             "gps_location" => $tour->location
         ]);
 
-        return view('tour.edit')->with('tour', $tour)->with('categories', $catgories)->with('startLocation', $startLocation);
+        return view('tour.edit')->with('tour', $tour)->with('users', $users)->with('categories', $catgories)->with('startLocation', $startLocation);
     }
 
     /**
@@ -163,7 +165,7 @@ class TourController extends Controller
             'image_url'     =>  $filename,
             'location'      =>  $validated['location'],
             'category_id'   =>  $validated['category_id'],
-            'user_id'       =>  $tour->user_id
+            'user_id'       =>  $validated['user_id'],
         ]);
 
         if (!empty($file)) {
