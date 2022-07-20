@@ -47,6 +47,8 @@
                                                 onclick="location.href='/tour/{{$tour->id}}/vragen/aanmaken';"
                                                 class="btn create-btn mt-2"><i class="mr-5 fa-solid fa-square-plus"></i>
                                         </button>
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#copyTourDataModel" class="btn create-btn copy-btn mt-2"><i class="mr-5 fa-solid fa-copy"></i>
+                                        </button>
                                         <button type="button" onclick="JSalertDeleteTour()"
                                                 class="btn create-btn delete-btn mt-2">
                                             <a id="delete-tour-url" style="pointer-events: none"
@@ -118,6 +120,37 @@
                     </div>
                 </div>
             @endif
+            <!-- Copy Tour Data Modal -->
+            <div class="modal fade" id="copyTourDataModel" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Tour kopiëren</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center">Wil je een tour kopiëren? <span class="d-block mt-2">Alle vragen worden ook mee gekopieerd.</span></p>
+                            <form id="copyTourForm" class="needs-validation" novalidate action="/tour/{{$tour->id}}/kopie" method="POST">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="col-10 mx-auto mb-3 mt-2">
+                                        <label for="tourName" class="mb-1 fw-bold">Tour naam*</label>
+                                        <input class="form-control rounded-0" required type="text" placeholder="Informatica tour (kopie)" aria-label="Tour naam" name="tourName"/>
+                                        <small class="w-100 d-block mt-1 fst-italic">*Tournaam dient uniek te zijn.</small>
+                                        @error('tourName')
+                                        <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="modal-footer text-center">
+                                    <button type="button" class="btn primary-btn secondary-btn" data-bs-dismiss="modal">Sluiten</button>
+                                    <button type="submit" class="btn primary-btn">Kopiëren</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
