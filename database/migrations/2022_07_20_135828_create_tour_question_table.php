@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('question', function (Blueprint $table) {
+        Schema::create('tour_question', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 150);
-            $table->string('description');
-            $table->string('image_url')->nullable();
-            $table->string('gps_location')->nullable();
-            $table->integer('points')->default(0);
-            $table->enum('type', ['Meerkeuze', 'Open', 'Media']);
+            $table->foreignId('tour_id')->constrained('tour')->cascadeOnDelete();
+            $table->foreignId('question_id')->constrained('question')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question');
+        Schema::dropIfExists('tour_question');
     }
 };
