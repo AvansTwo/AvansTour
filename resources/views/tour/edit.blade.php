@@ -23,6 +23,16 @@
                     <input id="removeTourImageBool" type="hidden" name="removeImage" value="0"/>
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
+                            <label for="tourCreator" class="mb-1 fw-bold">Maker tour:</label>
+                            <select class="form-select" id="tourCreator" name="user_id" required>
+                                <option value="" disabled selected hidden>Selecteer maker tour</option>
+                                @foreach($users as $user)
+                                    <option @if($user->id == $tour->user_id) selected
+                                            @endif value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-10 mx-auto mb-3">
                             <label for="tourName" class="mb-1 fw-bold">Naam tocht</label>
                             <input type="text" value="{{ old('name', $tour->name ?? '') }}" name="name" class="form-control @error('name') is-invalid @enderror" id="tourName" placeholder="Informatica tour" required>
                         </div>
