@@ -35,12 +35,12 @@ Route::get('/tours', [TourController::class, 'index']);
 //Tour Filter
 Route::get('/tours/categorie/{id}', [TourController::class, 'categoryFilter']);
 
-//TODO: Waarvoor deze route?
-Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
-
 //Tour create
 Route::post('/tour/aanmaken', [TourController::class, 'store'])->middleware('auth');
 Route::get('/tour/aanmaken', [TourController::class, 'create'])->middleware('auth');
+
+//Tour copy
+Route::post('/tour/{id}/kopie', [TourController::class, 'copyTour'])->middleware('auth');
 
 //Tour edit
 Route::post('/tour/aanpassen/{id}', [TourController::class, 'update'])->middleware('auth')->name('tour.update');
@@ -69,7 +69,6 @@ Route::get('/tour/{id}/quiz', [QuizController::class, 'create']);
 
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
-
 
 //Quiz play get question
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
