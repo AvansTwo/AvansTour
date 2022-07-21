@@ -6,6 +6,7 @@ use App\Http\Requests\Tour\StoreTourRequest;
 use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
@@ -89,6 +91,14 @@ class TourController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param $id
+     * @param Request $request
+     * @return void
+     */
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -99,16 +109,13 @@ class TourController extends Controller
         $tour = Tour::find($id);
 
         $totalPoints = 0;
-
-        foreach ($tour->question as $question) {
-            $totalPoints += $question->points;
+        foreach ($tour->tourQuestion as $tourQuestion) {
+            $totalPoints += $tourQuestion->question->points;
         }
 
         $startLocation = array((object) [
             "gps_location" => $tour->location
         ]);
-
-
 
         return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
     }
@@ -174,6 +181,32 @@ class TourController extends Controller
 
         Session::flash('Checkmark', 'Tour is succesvol aangepast');
         return Redirect::to('/tour/' . $tour->id);
+    }
+
+    /**
+     * Copy the specified resource in storage.
+     *
+     * @param Request $request
+     * @param  int  $id
+     * @return RedirectResponse
+     */
+    public function copyTour (Request $request, $id)
+    {
+        $tour = Tour::find($id);
+        $copyTour = $tour->replicate();
+        $copyTour->name = $request->tourName;
+        $copyTour->image_url = "";
+
+        $copyTour->save();
+
+        foreach ($tour->tourQuestion as $tourQuestion){
+            $copyTourQuestion = $tourQuestion->replicate();
+            $copyTourQuestion->tour_id = $copyTour->id;
+            $copyTourQuestion->save();
+        }
+
+        Session::flash('Checkmark', 'Tour is succesvol gekopieerd');
+        return Redirect::to('/tour/' . $copyTour->id);
     }
 
     /**

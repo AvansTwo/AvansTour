@@ -7,7 +7,7 @@
                 <h1 class="my-5 text-center">Tour vraag <span class="title-colored">aanpassen</span></h1>
             </div>
             <div class="col-12 mb-5">
-                <form class="needs-validation py-5 grey-bg" novalidate action="/vragen/aanpassen/{{$question->id}}" method="post" enctype="multipart/form-data">
+                <form class="needs-validation py-5 grey-bg" novalidate action="/tour/{{$tour->id}}/vragen/aanpassen/{{$question->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input id="removeImage" type="hidden" name="removeImage" value="0"/>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
-                        <a class="btn primary-btn mt-3" href="/vragen/{{$question->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
+                        <a class="btn primary-btn mt-3" href="/tour/{{$tour->id}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                         <button class="btn primary-btn secondary-btn mt-3" type="submit">Opslaan <i class="fa-solid fa-chevron-right"></i></button>
                     </div>
                 </form>

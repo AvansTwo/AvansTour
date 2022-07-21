@@ -28,6 +28,7 @@ main {
 h1 {
     font-size: clamp(40px, 5vw, 60px) !important;
     font-weight: bold !important;
+    text-transform: capitalize;
 }
 
 h2 {
@@ -99,6 +100,14 @@ a {
 
 .create-btn:hover {
     background-color: #5c6524 !important;
+}
+
+.copy-btn {
+    background-color: #3B5998 !important;
+}
+
+.copy-btn:hover {
+    background-color: #273d65 !important;
 }
 
 .edit-btn {

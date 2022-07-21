@@ -24,7 +24,7 @@ function mapPickLocation(map, marker, event, circle) {
         let locationText = document.getElementById('tourStartLocation');
 
         if (locationText == null) {
-            locationText = document.getElementById('questionLocation');
+            locationText = document.getElementById('gps_location');
         }
 
         if (locationText) {
@@ -42,7 +42,7 @@ function mapPickLocation(map, marker, event, circle) {
             'Hey, dat is niet mogelijk!',
             'Je kunt geen locaties buiten de cirkel selecteren',
             'warning'
-        ) 
+        )
     }
 }
 
@@ -60,7 +60,7 @@ function resizeCircle() {
    let counter = document.getElementById('radiusCounter');
    setTimeout(() => {
     radiusSize.setRadius(counter.innerHTML);
-}, 300);  
+}, 300);
 }
 
 let MapIsInvisible = false;
