@@ -19,7 +19,36 @@
                                 </h2>
                                 <div id="collapseLocationAndroid" class="accordion-collapse collapse" aria-labelledby="locationAndroid" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                       Hier komt informatie over het instellen.
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-5">
+                                                    <h2>Website <span class="title-colored">toegang</span> geven tot je locatie</h2>
+                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geupdate en gedurende dat je de tocht loop bijgehouden.</p>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img class="img-thumbnail" src="{{ asset('img/android_website_permission.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-5">
+                                                    <h2><span class="title-colored">Toegang</span> geven tot je locatie door middel van slotje</h2>
+                                                    <p>Het kan voorkomen dat de pop-up niet word getoond op jouw telefoon, je kunt door middel van op het slotje te klikken in de URL balk kijken of de website toegang heeft tot jouw locatie. Zorg dat de slider voor locatie permissie aanstaat. </p>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img class="img-thumbnail" src="{{ asset('img/android_website_lock_permission.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-5">
+                                                    <h2>Webbrowser <span class="title-colored">toegang</span> geven tot je locatie door middel van instellingen</h2>
+                                                    <p>Mocht je hebben ingesteld dat jouw webbrowser helemaal geen toegang heeft tot jouw locatie zal de website hier niet naar vragen. Navigeer naar: Instelligen->Apps->GoogleChrome*->Permissies en zet hier "locatie-toegang" op "Alleen wanneer ik de app gebruik".</p>
+                                                    <small class="w-100 d-block my-2 fst-italic">*Google Chrome is in dit geval een voorbeeld, dit moet jouw desbetreffende browser zijn zoals bijv. FireFox of Opera</small>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img class="img-thumbnail" src="{{ asset('img/android_settings_permission.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
