@@ -29,6 +29,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/FAQ', function () {
+    return view('FAQ.index');
+});
+
 //Tour index
 Route::get('/tours', [TourController::class, 'index']);
 

@@ -92,6 +92,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Titel</th>
                                     <th scope="col">Omschrijving</th>
+                                    <th scope="col">Type vraag</th>
                                     <th scope="col">Punten</th>
                                     <th scope="col">Aanpassen</th>
                                     <th scope="col">Verwijderen</th>
@@ -103,6 +104,7 @@
                                         <th scope="row">{{ $loop->index+1 }}</th>
                                         <td>{{$tourQuestion->question->title}}</td>
                                         <td>{{$tourQuestion->question->description}}</td>
+                                        <td>{{$tourQuestion->question->type}}</td>
                                         <td>{{$tourQuestion->question->points}}</td>
                                         <td>
                                             <button onclick="location.href='/tour/{{$tour->id}}/vragen/aanpassen/{{$tourQuestion->question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>

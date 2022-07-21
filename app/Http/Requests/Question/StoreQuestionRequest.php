@@ -5,7 +5,6 @@ namespace App\Http\Requests\Question;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rule;
 
 class StoreQuestionRequest extends FormRequest
 {
@@ -28,7 +27,7 @@ class StoreQuestionRequest extends FormRequest
     {
         return [
             'title'         => ['required', 'min:3', 'max:40'],
-            'description'   => ['required', 'min:3', 'max:100'],
+            'description'   => ['required', 'min:3', 'max:200'],
             'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
             'gps_location'  => ['required', 'between:-180,180', 'regex:/^(-?\d+(.\d+)?),\s*(-?\d+(.\d+)?)$/'],
             'points'        => ['required', 'integer'],
@@ -42,7 +41,7 @@ class StoreQuestionRequest extends FormRequest
             'image_url.mimes:jpeg,png,jpg,gif,svg'  => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
             'image_url.max'                         => 'Een foto dient maximaal 2mb te zijn.',
             'image_url.dimensions'                  => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
-            'gps_location.between'                => 'Locatie dient tussen -180 en 180 te liggen.',
+            'gps_location.between'                  => 'Locatie dient tussen -180 en 180 te liggen.',
         ];
     }
 

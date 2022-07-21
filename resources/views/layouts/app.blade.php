@@ -65,6 +65,9 @@
                 <li class="nav-item custom-link">
                     <a class="nav-link {{ request()->is('scoreboard*') ? 'active' : '' }}" href="/scoreboard">Scoreboard</a>
                 </li>
+                <li class="nav-item custom-link">
+                    <a class="nav-link {{ request()->is('FAQ*') ? 'active' : '' }}" href="/FAQ">FAQ</a>
+                </li>
             </ul>
             @if(Auth::check())
                 <div class="dropdown">
