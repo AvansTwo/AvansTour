@@ -16,6 +16,7 @@ class TourQuestionSeeder extends Seeder
      */
     public function run()
     {
+        // tour 1 questions
         DB::table('tour_question')->insert([
             'tour_id' => 1,
             'question_id' => 1,
@@ -33,6 +34,86 @@ class TourQuestionSeeder extends Seeder
         DB::table('tour_question')->insert([
             'tour_id' => 1,
             'question_id' => 3,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('tour_question')->insert([
+            'tour_id' => 1,
+            'question_id' => 4,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('tour_question')->insert([
+            'tour_id' => 1,
+            'question_id' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        // tour 2 questions
+        DB::table('tour_question')->insert([
+            'tour_id' => 2,
+            'question_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('tour_question')->insert([
+            'tour_id' => 2,
+            'question_id' => 2,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('tour_question')->insert([
+            'tour_id' => 2,
+            'question_id' => 3,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('tour_question')->insert([
+            'tour_id' => 2,
+            'question_id' => 4,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('tour_question')->insert([
+            'tour_id' => 2,
+            'question_id' => 5,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        // tour 3 questions
+        DB::table('tour_question')->insert([
+            'tour_id' => 3,
+            'question_id' => 1,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('tour_question')->insert([
+            'tour_id' => 3,
+            'question_id' => 2,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('tour_question')->insert([
+            'tour_id' => 3,
+            'question_id' => 3,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('tour_question')->insert([
+            'tour_id' => 3,
+            'question_id' => 4,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('tour_question')->insert([
+            'tour_id' => 3,
+            'question_id' => 5,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
