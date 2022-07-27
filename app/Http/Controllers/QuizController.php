@@ -165,7 +165,18 @@ class QuizController extends Controller
         $team_id = $team->id;
 
         $tour = Tour::find($tour_id);
-        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash FROM question AS q WHERE tour_id = :tourid AND q.id NOT IN ( SELECT question_id FROM team_progress AS tp INNER JOIN question ON tp.question_id = question.id WHERE question.tour_id = :tour_id AND team_id = :team_id)'), array(
+        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash 
+        FROM tour_question AS tq
+        INNER JOIN question AS q ON tq.question_id = q.id
+        INNER JOIN tour AS t ON tq.tour_id = t.id
+        WHERE t.id = :tourid
+        AND q.id NOT IN (
+            SELECT tp.question_id
+            FROM team_progress AS tp
+            INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
+            WHERE tp.team_id = :team_id
+            AND tq.tour_id = :tour_id 
+        );'), array(
             'team_hash' => $teamHash,
             'tourid' => $tour_id,
             'tour_id' => $tour_id,
