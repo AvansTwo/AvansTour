@@ -28,24 +28,6 @@ class TeamProgressSeeder extends Seeder
         ]);
         DB::table('team_progress')->insert([
             'team_id' => 1,
-            'question_id' => 2,
-            'status' => 'Nagekeken',
-            'team_answer_id' => 2,
-            'points' => 5,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('team_progress')->insert([
-            'team_id' => 1,
-            'question_id' => 3,
-            'status' => 'Nagekeken',
-            'team_answer_id' => 3,
-            'points' => 0,
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('team_progress')->insert([
-            'team_id' => 1,
             'question_id' => 4,
             'status' => 'Afwachting',
             'team_answer_id' => 4,
