@@ -31,13 +31,20 @@ class DashboardController extends Controller
                             GROUP BY team.team_name, team.id, tour.name');
 
         foreach($teams as $team) {
-            $team->progress = TeamProgress::join('question', 'question.id', '=', 'team_progress.question_id')
-                                ->join('tour', 'tour.id', '=', 'question.tour_id')
-                                ->where([
-                                    'team_progress.status' => 'Afwachting',
-                                    'team_progress.team_id' => $team->team_id, 
-                                    'tour.name' => $team->tour_name,
-                                ])->get();
+            $teamProgress = DB::select(DB::raw("SELECT * 
+            FROM team_progress AS tp
+            INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
+            INNER JOIN question AS q ON tq.question_id = q.id
+            INNER JOIN tour AS t ON tq.tour_id = t.id
+            WHERE tp.status = 'Afwachting'
+            AND tp.team_id = :team_id
+            AND t.name = :tour_name;"
+            ), array(
+                'team_id' => $team->team_id,
+                'tour_name' => $team->tour_name,
+            ));
+
+            $team->progress = TeamProgress::hydrate($teamProgress);
 
             foreach($team->progress as $progress){
                 $progress->answer = TeamAnswer::find($progress->team_answer_id);
