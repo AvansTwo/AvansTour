@@ -59,9 +59,39 @@
                                         Instellen gebruik locatie IOS (Apple) besturingssysteem.
                                     </button>
                                 </h2>
-                                <div id="collapseLocationIos" class="accordion-collapse collapse" aria-labelledby="locationAndroid" data-bs-parent="#accordionExample">
+                                <div id="collapseLocationIos" class="accordion-collapse collapse" aria-labelledby="locationIOS" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        Hier komt informatie over het instellen.
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-5">
+                                                    <h2>Website <span class="title-colored">toegang</span> geven tot je locatie</h2>
+                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geupdate en gedurende dat je de tocht loop bijgehouden.</p>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img class="img-thumbnail" src="{{ asset('img/IOS_website_permission.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-5">
+                                                    <h2><span class="title-colored">Toegang</span> geven tot je locatie door middel van browser instellingen</h2>
+                                                    <p>Om je exacte locatie weer te geven op de website heeft de website toegang nodig van Safari. Dit doe je door op het aA icoon op je zoekbalk te drukken. Dit opent een submenu, druk vervolgens op de knop Website-instellingen. Deze knop brengt je naar een instellingen pagina waar u verschillende instellingen vind. Klik hier vervolgens op Locatie en ten slotte op Sta toe.</p>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img class="img-thumbnail" src="{{ asset('img/IOS_website_lock_permission.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 col-md-6 mt-5">
+                                                    <h2>Webbrowser <span class="title-colored">toegang</span> geven tot je locatie door middel van instellingen</h2>
+                                                    <p>Heeft AvansTour nog steeds geen toegang tot jouw locatie of staat deze in het centrum van Breda? Dan heeft Safari hoogst waarschijnlijk helemaal geen toegang tot je locatie. Je kunt in de instellingen van je apparaat toegang geven door naar de volgende pagina te gaan:
+                                                        <strong>Privacy > Locatievoorzieningen > Safari-sites</strong>
+                                                        Op deze pagina staan de instellingen voor toegang tot locatie van Safari. Controleer of de instellingen als volgt staan.</p>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <img class="img-thumbnail" src="{{ asset('img/IOS_settings_permission.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
