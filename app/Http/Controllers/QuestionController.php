@@ -39,6 +39,28 @@ class QuestionController extends Controller
         return view('question.create')->with('tour', $tour);
     }
 
+    public function copy($tourId, $questionId)
+    {
+        $currentTour = Tour::find($tourId);
+        $tours = Tour::all();
+        $question = Question::find($questionId);
+        return view('question.copy')->with('question', $question)->with('currentTour', $currentTour)->with('tours', $tours);
+    }
+
+    public function storeCopy(Request $request, $tourId, $questionId)
+    {
+        $data = $request->except('_token');
+        foreach ($data as $key) {
+            $tourQuestion = new TourQuestion();
+            $tourQuestion->tour_id = $key;
+            $tourQuestion->question_id = $questionId;
+            $tourQuestion->save();
+        }
+
+        Session::flash('Checkmark','Vraag is succesvol gekopieerd');
+        return Redirect::to('/tour/' . $tourId);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

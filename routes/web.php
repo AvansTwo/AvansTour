@@ -67,6 +67,10 @@ Route::get('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController::
 //Question delete
 Route::get('/tour/{tourId}/vragen/verwijderen/{questionId}', [QuestionController::class, 'destroy'])->middleware('auth');
 
+//Question copy
+Route::post('/tour/{tourId}/vragen/kopie/{questionId}', [QuestionController::class, 'storeCopy'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/kopie/{questionId}', [QuestionController::class, 'copy'])->middleware('auth');
+
 //Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
 Route::get('/tour/{id}/quiz', [QuizController::class, 'create']);

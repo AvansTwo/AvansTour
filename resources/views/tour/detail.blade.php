@@ -95,6 +95,7 @@
                                     <th scope="col">Type vraag</th>
                                     <th scope="col">Punten</th>
                                     <th scope="col">Aanpassen</th>
+                                    <th scope="col">Kopiëren</th>
                                     <th scope="col">Verwijderen</th>
                                 </tr>
                                 </thead>
@@ -108,6 +109,9 @@
                                         <td>{{$tourQuestion->question->points}}</td>
                                         <td>
                                             <button onclick="location.href='/tour/{{$tour->id}}/vragen/aanpassen/{{$tourQuestion->question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                                        </td>
+                                        <td>
+                                            <button onclick="location.href='/tour/{{$tour->id}}/vragen/kopie/{{$tourQuestion->question->id}}';" class="btn create-btn copy-btn"><i class="fa-solid fa-copy"></i></button>
                                         </td>
                                         <td>
                                             <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
