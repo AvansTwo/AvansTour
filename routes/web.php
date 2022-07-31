@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/FAQ', function () {
-    return view('FAQ.index');
+    return view('faq.index');
 });
 
 //Tour index

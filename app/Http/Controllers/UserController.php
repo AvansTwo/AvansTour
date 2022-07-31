@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -107,6 +108,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        if($user == Auth::user()){
+            Session::flash('Error','Je kunt niet je eigen account verwijderen');
+            return redirect('/instellingen/gebruikers');
+        }
 
         $user->delete();
 
