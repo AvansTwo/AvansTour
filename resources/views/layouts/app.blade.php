@@ -110,6 +110,13 @@
         'success'
     )
     @endif
+    @if(Session::has('Error'))
+    Swal.fire(
+        'Ho, foutje!',
+        '{{Session('Error')}}',
+        'error'
+    )
+    @endif
 </script>
 </body>
 
