@@ -23,6 +23,12 @@
                     <input id="removeTourImageBool" type="hidden" name="removeImage" value="0"/>
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="active" @if($tour->active == 1 ) checked @endif type="checkbox" id="activeSwitch">
+                                <label class="form-check-label" for="activeSwitch">Speelbare tour</label>
+                            </div>
+                        </div>
+                        <div class="col-10 mx-auto mb-3">
                             <label for="tourCreator" class="mb-1 fw-bold">Maker tour:</label>
                             <select class="form-select" id="tourCreator" name="user_id" required>
                                 <option value="" disabled selected hidden>Selecteer maker tour</option>

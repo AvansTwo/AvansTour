@@ -6,7 +6,6 @@ use App\Http\Requests\Tour\StoreTourRequest;
 use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -27,7 +26,12 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tours = Tour::paginate(6);
+
+        if(Auth::user()){
+            $tours = Tour::paginate(6);
+        } else{
+            $tours = Tour::where("active", 1)->paginate(6);
+        }
         $categories = Category::all();
         return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filtered', FALSE);
     }
@@ -166,12 +170,18 @@ class TourController extends Controller
             $filename = null;
         }
 
+        $active = 0;
+        if(!empty($request->active)){
+            $active = 1;
+        }
+
         $tour->update([
             'name'          =>  $validated['name'],
             'description'   =>  $validated['description'],
             'image_url'     =>  $filename,
             'location'      =>  $validated['location'],
             'category_id'   =>  $validated['category_id'],
+            'active'        =>  $active,
             'user_id'       =>  $validated['user_id'],
         ]);
 
