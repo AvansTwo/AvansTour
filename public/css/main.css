@@ -220,10 +220,22 @@ footer {
     font-size: 16px;
     font-family: Verdana, serif;
     margin: auto 0;
+    word-break: break-word;
+    max-width: 300px;
 }
 
 .tour-card {
     transition: all 0.3s ease-in-out;
+}
+
+.hidden-tour{
+    opacity: 0.5;
+}
+
+.hidden-tour-icon{
+    font-size: 40px;
+    position: absolute;
+    bottom: 0;
 }
 
 .tour-card:hover {

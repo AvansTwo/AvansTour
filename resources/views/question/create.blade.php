@@ -2,7 +2,6 @@
 @section('title', 'Vraag aanmaken')
 @section('content')
     <div class="container">
-        <frame onload="console.log('Loaded!')">
         <div class="row">
             <div class="col-12">
                 <h1 class="my-5 text-center">Een nieuwe <span class="title-colored">vraag</span> toevoegen</h1>

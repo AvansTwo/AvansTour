@@ -20,6 +20,7 @@ class Tour extends Model
         'image_url',
         'location',
         'category_id',
+        'active',
         'user_id'
     ];
 
