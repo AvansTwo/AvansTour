@@ -84,7 +84,7 @@
                         <div id="multiple-choice-fields" class="col-10 mx-auto mb-3 @if(old('type') == "Meerkeuze" || old('type') == "") d-block @else d-none @endif">
                             <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord 1</label>
                             <div class="input-group mb-3">
-                                <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" type="radio" required value="1" id="questionCorrectAnswer">
+                                <input name="questionCorrectAnswer" @if(old('questionCorrectAnswer') == "1") checked @endif class="form-check-input questionCheckbox" type="radio" required value="1" id="questionCorrectAnswer">
                                 <input name="1" value="{{ old('1') }}" id="1" type="text" class="form-control" required>
                                 @error('1')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -92,7 +92,7 @@
                             </div>
                             <label for="questionAnswer2" class="mb-1 fw-bold">Antwoord 2</label>
                             <div class="input-group mb-3">
-                                <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" type="radio" required value="2" id="questionCorrectAnswer">
+                                <input name="questionCorrectAnswer" @if(old('questionCorrectAnswer') == "2") checked @endif class="form-check-input questionCheckbox" type="radio" required value="2" id="questionCorrectAnswer">
                                 <input name="2" value="{{ old('2') }}" id="1" id="2" type="text" class="form-control" required>
                                 @error('2')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -100,7 +100,7 @@
                             </div>
                             <label for="questionAnswer3" class="mb-1 fw-bold">Antwoord 3</label>
                             <div class="input-group mb-3">
-                                <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" type="radio" required value="3" id="questionCorrectAnswer">
+                                <input name="questionCorrectAnswer" @if(old('questionCorrectAnswer') == "3") checked @endif class="form-check-input questionCheckbox" type="radio" required value="3" id="questionCorrectAnswer">
                                 <input name="3" value="{{ old('3') }}" id="1" id="3" type="text" class="form-control" required>
                                 @error('3')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
@@ -108,7 +108,7 @@
                             </div>
                             <label for="questionAnswer4" class="mb-1 fw-bold">Antwoord 4</label>
                             <div class="input-group mb-3">
-                                <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" type="radio" required value="4" id="questionCorrectAnswer">
+                                <input name="questionCorrectAnswer" @if(old('questionCorrectAnswer') == "4") checked @endif class="form-check-input questionCheckbox" type="radio" required value="4" id="questionCorrectAnswer">
                                 <input name="4" value="{{ old('4') }}" id="1" id="4" type="text" class="form-control" required>
                                 @error('4')
                                 <div class="alert alert-danger mt-1">{{ $message }}</div>
