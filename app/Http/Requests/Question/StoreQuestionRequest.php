@@ -31,6 +31,7 @@ class StoreQuestionRequest extends FormRequest
             'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
             'gps_location'  => ['required', 'between:-180,180', 'regex:/^(-?\d+(.\d+)?),\s*(-?\d+(.\d+)?)$/'],
             'points'        => ['required', 'integer'],
+            'type'          => ['required']
         ];
     }
 
@@ -52,7 +53,8 @@ class StoreQuestionRequest extends FormRequest
             'description'   => 'Omschrijving vraag',
             'image_url'     => 'Foto vraag',
             'gps_location'  => 'Locatie vraag',
-            'points'        => 'Punten vraag'
+            'points'        => 'Punten vraag',
+            'type'          => 'type vraag'
         ];
     }
 

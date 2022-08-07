@@ -152,8 +152,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $tourId, $questionId)
+    public function update(StoreQuestionRequest $request, $tourId, $questionId)
     {
+        $validated = $request->validated();
+
+        dd($validated);
+
         $question = Question::find($questionId);
         $tour = Tour::find($tourId);
 
@@ -175,6 +179,7 @@ class QuestionController extends Controller
         $question->update([
             'title'         => $request->questionTitle,
             'description'   => $request->questionDesc,
+            'type'          => $request->type,
             'image_url'     => $filename,
             'gps_location'  => $request->questionLocation,
             'points'        => $request->questionPoints,
@@ -186,19 +191,39 @@ class QuestionController extends Controller
 
         $answers = DB::table('answer')->where('question_id', $question->id)->get();
 
-        foreach ($answers as $answer) {
-            $newAnswer = Answer::find($answer->id);
-            $correct = 0;
-            if ($request->questionCorrectAnswer == $answer->id) {
-                $correct = 1;
+        if($request->type == 'Meerkeuze' && $answers->isEmpty()){
+            for($i = 1; $i <= 4; $i++){
+                $answer = new Answer();
+                $answer->answer = $request->$i;
+                if($request->questionCorrectAnswer == $i){
+                    $answer->correct_answer = 1;
+                } else{
+                    $answer->correct_answer = 0;
+                }
+                $answer->question_id = $questionId;
+                $answer->save();
             }
+        } else if ($request->type != "Meerkeuze" && $answers->isNotEmpty()){
+            foreach ($answers as $answer) {
+                $deleteAnswer = Answer::find($answer->id);
+                $deleteAnswer->delete();
+            }
+        }
+        else{
+            foreach ($answers as $answer) {
+                $newAnswer = Answer::find($answer->id);
+                $correct = 0;
+                if ($request->questionCorrectAnswer == $answer->id) {
+                    $correct = 1;
+                }
 
-            $questionAnswer = request()->get($answer->id);
+                $questionAnswer = request()->get($answer->id);
 
-            $newAnswer->update([
-                'answer'            => $questionAnswer,
-                'correct_answer'    => $correct,
-            ]);
+                $newAnswer->update([
+                    'answer'            => $questionAnswer,
+                    'correct_answer'    => $correct,
+                ]);
+            }
         }
 
         Session::flash('Checkmark','Vraag is succesvol aangepast');
