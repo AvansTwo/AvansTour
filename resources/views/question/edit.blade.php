@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionPoints" class="mb-1 fw-bold">Aantal punten vraag</label>
-                            <input type="number" name="points" id="typeNumber" class="form-control" value="@if(old('points')) {{ old('points') }} @else{{$question->points}} @endif" placeholder="10" required min="1" max="100"/>
+                            <input type="number" value="{{$question->points}}" name="points" id="typeNumber" class="form-control" placeholder="10" required min="1" max="100"/>
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="questionLocation" class="mb-1 fw-bold">Locatie vraag</label>
@@ -59,10 +59,10 @@
                             </div>
 
                             <div class="input-group">
-                            <div class="input-group-prepend" onclick="showMap()">
+                                <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input type="text" class="form-control" name="gps_location" value="{{$question->gps_location}}" id="gps_location" placeholder="51.58604484973112, 4.7923486528026755" aria-describedby="inputGroupPrepend" required>
+                                <input required type="text" value="{{$question->gps_location}}" class="form-control @error('gps_location') is-invalid @enderror" name="gps_location" id="gps_location" placeholder="Coördinaten" aria-describedby="inputGroupPrepend" readonly>
                             </div>
                         </div>
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5 @if(empty($question->image_url)) d-none @endif">
@@ -87,8 +87,8 @@
                             @foreach($question->answer as $answer)
                             <label for="questionAnswer1" class="mb-1 fw-bold">Antwoord {{ $loop->index+1 }}</label>
                             <div class="input-group mb-3">
-                                <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" @if($answer->correct_answer == 1) checked @endif type="radio" required value="{{$answer->id}}" id="questionCorrectAnswer">
-                                <input name="{{$answer->id}}" value="{{$answer->answer}}" id="{{$answer->id}}" type="text" class="form-control" required>
+                                <input name="questionCorrectAnswer" class="form-check-input questionCheckbox" @if(old('questionCorrectAnswer') == $answer->id) checked @elseif($answer->correct_answer == 1) checked @endif type="radio" required value="{{$answer->id}}" id="questionCorrectAnswer">
+                                <input name="{{$answer->id}}" value="@if(old($answer->id)) {{old($answer->id)}} @else {{$answer->answer}} @endif" id="{{$answer->id}}" type="text" class="form-control" required>
                             </div>
                             @endforeach
                         </div>

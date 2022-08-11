@@ -156,8 +156,6 @@ class QuestionController extends Controller
     {
         $validated = $request->validated();
 
-        dd($validated);
-
         $question = Question::find($questionId);
         $tour = Tour::find($tourId);
 
@@ -177,12 +175,12 @@ class QuestionController extends Controller
         }
 
         $question->update([
-            'title'         => $request->questionTitle,
-            'description'   => $request->questionDesc,
+            'title'         => $request->title,
+            'description'   => $request->description,
             'type'          => $request->type,
             'image_url'     => $filename,
-            'gps_location'  => $request->questionLocation,
-            'points'        => $request->questionPoints,
+            'gps_location'  => $request->gps_location,
+            'points'        => $request->points,
         ]);
 
         if (!empty($file)) {
