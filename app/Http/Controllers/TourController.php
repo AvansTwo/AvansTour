@@ -66,13 +66,7 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        $validated = Validator::make($request->all(), [
-            'name'          => ['required', 'string', 'min:3', 'max:40', "unique:tour,name"],
-            'description'   => ['required', 'string', 'min:3', 'max:100'],
-            'image_url'     => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
-            'location'      => ['required', 'between:-180,180'],
-            'category_id'   => ['required', 'integer'],
-        ]);
+        $validated = $request->validated();
 
         $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
