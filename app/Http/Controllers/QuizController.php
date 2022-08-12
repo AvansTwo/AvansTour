@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\StorageController;
 
 
 class QuizController extends Controller
@@ -87,16 +88,10 @@ class QuizController extends Controller
                 $filename = $question->teamAnswerMedia;
                 $file = $request->file('teamAnswerMedia');
                 if (!empty($file)) {
-                    if (\File::exists(public_path('teamimg/' . $filename))) {
-                        \File::delete(public_path('teamimg/' . $filename));
-                    }
-                    $filename = date('YmdHis') . $file->getClientOriginalName();
-                }
-
-                if (!empty($file)) {
-                    $file->move(public_path('teamimg'), $filename);
+                    $filename = StorageController::upload($file, 'Team-images');
                     $is_file = 1;
                 }
+
                 $team_answer->answer = $filename;
                 $team_answer->is_file = $is_file;
                 break;
@@ -137,6 +132,7 @@ class QuizController extends Controller
     public function getQuestion($teamHash, $questionId)
     {
         $question = Question::where('id', $questionId)->first();
+        $question->image_url = StorageController::get($question->image_url);
         return view('quiz.answer')->with('question', $question)->with('teamHash', $teamHash);
     }
     public function quizEnding($teamHash)

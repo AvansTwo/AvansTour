@@ -28,7 +28,7 @@
                           <div class="card mb-3">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="{{asset('tourimg/'. $progress->question->image_url)}}" class="img-fluid">
+                                <img src="{{$progress->question->image_url}}" class="img-fluid">
                               </div>
                               <div class="col-md-8">
                                 <div class="card-body">
@@ -48,7 +48,7 @@
                                         <h5 class="fw-bold">Team <span class="title-colored">{{$team->team_name}}</span> heeft geantwoord:</h5>
 
                                         @if($progress->question->type == 'Media')
-                                            <img class="img-fluid" src="{{asset('teamimg/' . $progress->answer->answer)}}" height="400" width="300" />
+                                            <img class="img-fluid" src="{{$progress->answer->answer}}" height="400" width="300" />
                                         @else
                                             <p>{{$progress->answer->answer}}</p>
                                         @endif

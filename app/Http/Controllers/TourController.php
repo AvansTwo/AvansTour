@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\StorageController;
 use App\Http\Requests\Tour\StoreTourRequest;
 use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
@@ -12,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -26,13 +28,19 @@ class TourController extends Controller
      */
     public function index()
     {
-
         if(Auth::user()){
             $tours = Tour::paginate(6);
         } else{
             $tours = Tour::where("active", 1)->paginate(6);
         }
         $categories = Category::all();
+
+        foreach($tours as $tour){
+            if($tour->image_url != null){
+                $tour->image_url = StorageController::get($tour->image_url);
+            }
+        }
+
         return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filtered', FALSE);
     }
 
@@ -41,6 +49,13 @@ class TourController extends Controller
         $tours = Tour::where("category_id", $id)->paginate(6);
         $filteredCategory = Category::find($id);
         $categories = Category::all();
+
+        foreach($tours as $tour){
+            if($tour->image_url != null){
+                $tour->image_url = StorageController::get($tour->image_url);
+            }
+        }
+
         return view('tour.index')->with('tours', $tours)->with('categories', $categories)->with('filteredCategory', $filteredCategory);
     }
 
@@ -66,23 +81,25 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
+        $validated = Validator::make($request->all(), [
+            'name'          => ['required', 'string', 'min:3', 'max:40', "unique:tour,name"],
+            'description'   => ['required', 'string', 'min:3', 'max:100'],
+            'image_url'     => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
+            'location'      => ['required', 'between:-180,180'],
+            'category_id'   => ['required', 'integer'],
+        ]);
         $validated = $request->validated();
 
         $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
-            $filename = date('YmdHis') . $file->getClientOriginalName();
+            $do_filepath = StorageController::upload($file, 'Tour-images');
         }
-
-        $validated['image_url'] = $filename ?? null;
+        
+        $validated['image_url'] = $do_filepath ?? null;
 
         $tour = new Tour($validated);
         $tour->user_id = Auth::user()->id;
-
         $tour->save();
-
-        if (!empty($file)) {
-            $file->move(public_path('tourimg'), $filename);
-        }
 
         Session::flash('Checkmark', 'Tour is succesvol aangemaakt, voeg nu vragen toe!');
         return Redirect::to('/tour/' . $tour->id . '/vragen/aanmaken');
@@ -105,6 +122,11 @@ class TourController extends Controller
     public function show($id)
     {
         $tour = Tour::find($id);
+
+        if($tour->image_url != null){
+            $tour->image_url = StorageController::get($tour->image_url);
+        }
+        
 
         $totalPoints = 0;
         foreach ($tour->tourQuestion as $tourQuestion) {
@@ -130,6 +152,10 @@ class TourController extends Controller
         $catgories = Category::all();
         $users = User::all();
 
+        if($tour->image_url != null){
+            $tour->image_url = StorageController::get($tour->image_url);
+        }
+
         $startLocation = array((object) [
             "gps_location" => $tour->location
         ]);
@@ -152,15 +178,10 @@ class TourController extends Controller
         $filename = $tour->image_url;
         $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
-            }
-            $filename = date('YmdHis') . $file->getClientOriginalName();
+            StorageController::delete($tour->image_url);
+            $filename = StorageController::upload($file, 'Tour-images');
         } else if(empty($file) && $request->removeImage == 1){
-            $filename = $tour->image_url;
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
-            }
+            StorageController::delete($tour->image_url);
             $filename = null;
         }
 
@@ -178,10 +199,6 @@ class TourController extends Controller
             'active'        =>  $active,
             'user_id'       =>  $validated['user_id'],
         ]);
-
-        if (!empty($file)) {
-            $file->move(public_path('tourimg'), $filename);
-        }
 
         Session::flash('Checkmark', 'Tour is succesvol aangepast');
         return Redirect::to('/tour/' . $tour->id);
@@ -223,10 +240,11 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
 
-        if (\File::exists(public_path('tourimg/' . $tour->image_url))) {
-            \File::delete(public_path('tourimg/' . $tour->image_url));
-        }
 
+        if($tour->image_url != null) {
+            StorageController::delete($tour->image_url);
+        }
+        
         $tour->delete();
 
         Session::flash('Checkmark', 'Tour is succesvol verwijderd');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\StorageController;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\TeamProgress;
@@ -55,8 +56,8 @@ class AdminController extends Controller
             foreach($teamProgresses as $teamProgress){
                 $answer = TeamAnswer::find($teamProgress->team_answer_id);
 
-                if (\File::exists(public_path('teamimg/' . $answer->answer))) {
-                    \File::delete(public_path('teamimg/' . $answer->answer));
+                if($answer->is_file){
+                    StorageController::delete($answer->answer);
                 }
 
                 $answer->delete();
