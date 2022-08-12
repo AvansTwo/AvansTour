@@ -48,6 +48,14 @@ class DashboardController extends Controller
 
             foreach($team->progress as $progress){
                 $progress->answer = TeamAnswer::find($progress->team_answer_id);
+
+                if($progress->answer->is_file){
+                    $progress->answer->answer = StorageController::get($progress->answer->answer);
+                }
+
+                if($progress->question->image_url != null){
+                    $progress->question->image_url = StorageController::get($progress->question->image_url);
+                }
             }
         }
 
