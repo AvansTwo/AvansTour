@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\StorageController;
 use App\Http\Requests\Question\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
@@ -70,20 +71,17 @@ class QuestionController extends Controller
     public function store($id, StoreQuestionRequest $request)
     {
         $validated = $request->validated();
-
         $file = $validated['image_url'] ?? $request->file('image_url');
+
         if (!empty($file)) {
-            $filename = date('YmdHis') . $file->getClientOriginalName();
+           $do_filepath = StorageController::upload($file, 'Question-images');
         }
-        $validated['image_url'] = $filename ?? null;
+        $validated['image_url'] = $do_filepath ?? null;
 
         $question = new Question($validated);
 
         $question->save();
 
-        if (!empty($file)) {
-            $file->move(public_path('tourimg'), $filename);
-        }
 
         $questionID = $question->id;
 
@@ -120,6 +118,10 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
 
+        if($question->image_url != null){
+            $question->image_url = StorageController::get($question->image_url);
+        }
+
         $questionLocation = array((object) [
             "gps_location" => $question->gps_location
         ]);
@@ -137,6 +139,10 @@ class QuestionController extends Controller
     {
         $question = Question::find($questionId);
         $tour = Tour::find($tourId);
+
+        if($question->image_url != null){
+            $question->image_url = StorageController::get($question->image_url);
+        }
 
         $questionLocation = array((object) [
             "gps_location" => $question->gps_location
@@ -162,15 +168,10 @@ class QuestionController extends Controller
         $filename = $question->image_url;
         $file = $request->file('image_url');
         if (!empty($file)) {
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
-            }
-            $filename = date('YmdHis') . $file->getClientOriginalName();
+            StorageController::delete($question->image_url);
+            $filename = StorageController::upload($file, 'Question-images');
         } else if(empty($file) && $request->removeImage == 1){
-            $filename = $question->image_url;
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
-            }
+            StorageController::delete($question->image_url);
             $filename = null;
         }
 
@@ -182,10 +183,6 @@ class QuestionController extends Controller
             'gps_location'  => $request->gps_location,
             'points'        => $request->points,
         ]);
-
-        if (!empty($file)) {
-            $file->move(public_path('tourimg'), $filename);
-        }
 
         $answers = DB::table('answer')->where('question_id', $question->id)->get();
 
@@ -239,6 +236,10 @@ class QuestionController extends Controller
         $question = TourQuestion::find($tourQuestion);
         $tour = Tour::find($tourId);
 
+        if($question->image_url != null) {
+            StorageController::delete($question->image_url);
+        }
+       
         $question->delete();
 
         Session::flash('Checkmark','Vraag is succesvol verwijderd');

@@ -41,7 +41,7 @@ class TeamAnswerSeeder extends Seeder
         ]);
 
         DB::table('team_answer')->insert([
-            'answer' => 'teamanswerimage1.png',
+            'answer' => 'Team-images/teamanswerimage1.png',
             'is_file' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
