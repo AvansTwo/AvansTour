@@ -43,7 +43,7 @@
                             @foreach($tours as $tour)
                                 <div class="col-12 col-lg-4">
                                     <div class="tour-card mb-5 @if($tour->active == 0) hidden-tour @endif">
-                                        <a class="text-decoration-none" href="/tour/{{$tour->id}}"><img class="img-fluid tour-img" src="@if(!empty($tour->image_url)){{ asset('tourimg/'. $tour->image_url) }}@else {{ asset('img/landing_img.png') }} @endif" alt="tour_card">
+                                        <a class="text-decoration-none" href="/tour/{{$tour->id}}"><img class="img-fluid tour-img" src="@if(!empty($tour->image_url)){{ $tour->image_url }}@else {{ asset('img/landing_img.png') }} @endif" alt="tour_card">
                                             <div class="tour-desc text-dark">
                                                 <p class="tour-text">{{$tour->name}} @if($tour->active == 0) <i class="fa-solid fa-eye-slash"></i> @endif</p>
                                                 <p id="tour-year" class="tour-text ml-5">{{date('Y', strtotime($tour->created_at))}} </p>
