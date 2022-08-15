@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Tour\StoreTourRequest;
 use App\Http\Requests\Tour\UpdateTourRequest;
+use App\Models\Team;
+use App\Models\TeamAnswer;
+use App\Models\TeamProgress;
 use App\Models\Tour;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
@@ -118,21 +121,24 @@ class TourController extends Controller
     {
         $tour = Tour::find($id);
 
-        if($tour->image_url != null){
-            $tour->image_url = StorageController::get($tour->image_url);
+        if($tour->active == 1 || Auth::user()){
+            if($tour->image_url != null){
+                $tour->image_url = StorageController::get($tour->image_url);
+            }
+
+            $totalPoints = 0;
+            foreach ($tour->tourQuestion as $tourQuestion) {
+                $totalPoints += $tourQuestion->question->points;
+            }
+
+            $startLocation = array((object) [
+                "gps_location" => $tour->location
+            ]);
+
+            return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
+        } else{
+            return Redirect::to('/tours');
         }
-
-
-        $totalPoints = 0;
-        foreach ($tour->tourQuestion as $tourQuestion) {
-            $totalPoints += $tourQuestion->question->points;
-        }
-
-        $startLocation = array((object) [
-            "gps_location" => $tour->location
-        ]);
-
-        return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
     }
 
     /**
@@ -176,7 +182,7 @@ class TourController extends Controller
             if($tour->image_url != null) {
                 StorageController::delete($tour->image_url);
             }
-            
+
             $filename = StorageController::upload($file, 'Tour-images');
         }else {
             StorageController::delete($tour->image_url);
@@ -186,11 +192,29 @@ class TourController extends Controller
             }else{
                 $filename = StorageController::upload($file, 'Tour-images');
             }
-        } 
+        }
 
         $active = 0;
+        
         if(!empty($request->active)){
             $active = 1;
+        } else{
+            $teams = Team::where("tour_id", $id);
+            foreach($teams as $team){
+                $teamProgresses = TeamProgress::all()->where('team_id', $team->id);
+
+                foreach($teamProgresses as $teamProgress){
+                    $answer = TeamAnswer::find($teamProgress->team_answer_id);
+
+                    if($answer->is_file){
+                        StorageController::delete($answer->answer);
+                    }
+
+                    $answer->delete();
+                }
+
+                $team->delete();
+            }
         }
 
         $tour->update([
