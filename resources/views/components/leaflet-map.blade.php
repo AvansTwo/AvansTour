@@ -25,6 +25,13 @@
         iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
         popupAnchor: [0, -40]
     });
+    var goldIcon = L.icon({
+        iconUrl: {!! json_encode(asset('img/pin_gold.png')) !!},
+
+        iconSize:     [28, 41], // size of the icon
+        iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
+        popupAnchor: [0, -40]
+    });
     var startIcon = L.icon({
         iconUrl: {!! json_encode(asset('img/pin-start.png')) !!},
 
@@ -51,7 +58,7 @@
             markers.forEach((marker) => {    
                 L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
                     eval(markerCallback)(marker.id, marker.team_hash);
-                });
+                });              
             })
         }else if(markerCallback == startLocationMarkerClick){
             markers.forEach((marker) => {    

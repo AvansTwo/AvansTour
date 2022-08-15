@@ -37,6 +37,14 @@ class LeafletMap extends Component
             if(isset($markers[$i]->team_hash)) {
                 $markerArr[$i]['team_hash'] = $markers[$i]->team_hash;
             }
+
+            if(isset($markers[$i]->points)){
+                if($markers[$i]->points >= 50){
+                    $markerArr[$i]['special'] = true;
+                }else{
+                    $markerArr[$i]['special'] = false;
+                }
+            }
         }
         
         $this->markers = $markerArr;
