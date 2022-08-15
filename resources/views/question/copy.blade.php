@@ -10,13 +10,13 @@
                         <h2 class="mb-5">{{$question->title}}</h2>
                         <p>Selecteer hieronder naar welke tours je de vraag wilt kopiëren</p>
                     </div>
-                    <div class="col-12 mt-5">
+                    <div class="col-12 mt-3 mt-md-5">
                         <form class="needs-validation grey-bg" novalidate action="/tour/{{$currentTour->id}}/vragen/kopie/{{$question->id}}" method="post">
                             @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="row">
                                 @foreach($tours as $tour)
-                                <div class="col-4 mx-auto mb-3">
+                                <div class="col-12 col-md-4 mx-auto mb-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="{{$tour->name}}" value="{{$tour->id}}"  id="tour{{ $loop->index }}">
                                         <label class="form-check-label" for="flexCheckDefault">

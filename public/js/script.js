@@ -270,3 +270,19 @@ function removeTourImage() {
     document.getElementById("tour-img-wrapper").classList.add("d-none");
     document.getElementById("removeTourImageBool").value = 1;
 }
+
+// FAQ page
+function copyEmailText(){
+    let copy_icon = document.getElementById("copy-text-icon");
+    let copy_text = document.getElementById("CopyEmailText")
+
+    navigator.clipboard.writeText(copy_text.innerText);
+
+    copy_icon.classList.remove("fa-copy");
+    copy_icon.classList.add("fa-check");
+
+    setTimeout(function(){
+        copy_icon.classList.remove("fa-check");
+        copy_icon.classList.add("fa-copy");
+    }, 2000);
+}
