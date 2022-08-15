@@ -11,6 +11,7 @@ use App\Models\Team;
 use App\Models\TeamAnswer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Pagination\Paginator;
 
 
 class DashboardController extends Controller
@@ -22,13 +23,15 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $teams = DB::select('SELECT team.team_name, team.id AS team_id, tour.name AS tour_name
-                            from team
-                            left join team_progress on team_progress.team_id = team.id
-                            left join tour on tour.id = team.tour_id
-                            WHERE team_progress.status = "Afwachting"
-                            AND team_progress.team_id IS NOT NULL
-                            GROUP BY team.team_name, team.id, tour.name');
+        $teams = DB::table('team')
+                    ->join('team_progress', 'team.id', '=', 'team_progress.team_id')
+                    ->join('tour', 'tour.id', '=', 'team.tour_id')
+                    ->select('team.team_name', 'team.id', 'tour.name')
+                    ->where('team_progress.status', '=', "Afwachting")
+                    ->whereNotNull('team_progress.team_id')
+                    ->groupBy('team.team_name', 'team.id', 'tour.name')
+                    ->paginate(3);
+
 
         foreach($teams as $team) {
             $teamProgress = DB::select(DB::raw("SELECT * 
@@ -40,8 +43,8 @@ class DashboardController extends Controller
             AND tp.team_id = :team_id
             AND t.name = :tour_name;"
             ), array(
-                'team_id' => $team->team_id,
-                'tour_name' => $team->tour_name,
+                'team_id' => $team->id,
+                'tour_name' => $team->name,
             ));
 
             $team->progress = TeamProgress::hydrate($teamProgress);
@@ -58,6 +61,8 @@ class DashboardController extends Controller
                 }
             }
         }
+
+        
 
         return view('dashboard.index')->with('teams', $teams);
     }
