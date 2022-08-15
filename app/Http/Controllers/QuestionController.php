@@ -168,10 +168,16 @@ class QuestionController extends Controller
         $filename = $question->image_url;
         $file = $request->file('image_url');
         if (!empty($file)) {
-            StorageController::delete($question->image_url);
+            if($question->image_url != null){
+                StorageController::delete($question->image_url);
+            }
+           
             $filename = StorageController::upload($file, 'Question-images');
-        } else if(empty($file) && $request->removeImage == 1){
-            StorageController::delete($question->image_url);
+        } else {
+            if($request->removeImage == 1){
+                StorageController::delete($question->image_url);
+            }
+
             $filename = null;
         }
 

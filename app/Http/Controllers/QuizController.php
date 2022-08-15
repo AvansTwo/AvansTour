@@ -160,7 +160,7 @@ class QuizController extends Controller
         $team_id = $team->id;
 
         $tour = Tour::find($tour_id);
-        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash
+        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, q.points, :team_hash AS team_hash
         FROM tour_question AS tq
         INNER JOIN question AS q ON tq.question_id = q.id
         INNER JOIN tour AS t ON tq.tour_id = t.id
