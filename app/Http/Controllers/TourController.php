@@ -185,14 +185,12 @@ class TourController extends Controller
 
             $filename = StorageController::upload($file, 'Tour-images');
         }else {
-            StorageController::delete($tour->image_url);
-
             if($request->removeImage == 1) {
-                $filename = null;
-            }else{
-                $filename = StorageController::upload($file, 'Tour-images');
+                StorageController::delete($tour->image_url);
             }
-        }
+
+            $filename = null;
+        } 
 
         $active = 0;
         
@@ -243,7 +241,7 @@ class TourController extends Controller
         $tour = Tour::find($id);
         $copyTour = $tour->replicate();
         $copyTour->name = $request->tourName;
-        $copyTour->image_url = "";
+        $copyTour->image_url = null;
 
         $copyTour->save();
 

@@ -131,7 +131,9 @@ class QuizController extends Controller
     public function getQuestion($teamHash, $questionId)
     {
         $question = Question::where('id', $questionId)->first();
-        $question->image_url = StorageController::get($question->image_url);
+        if($question->image_url != null){
+            $question->image_url = StorageController::get($question->image_url);
+        }
         return view('quiz.answer')->with('question', $question)->with('teamHash', $teamHash);
     }
     public function quizEnding($teamHash)
