@@ -68,7 +68,8 @@
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5 @if(empty($question->image_url)) d-none @endif">
                             <label for="questionImg" class="mb-1 fw-bold">Foto vraag</label>
                             <input class="form-control d-none" @if(!empty($question->image_url)) disabled  @endif name="image_url" type="file" id="questionImg">
-                            @if(!empty($question->image_url))
+                            <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
+                        @if(!empty($question->image_url))
                             <div id="tour-img-wrapper" class="wrapper">
                                 <img id="questionPhoto" class="img-fluid img-thumbnail" src="{{ $question->image_url }}" alt="tour-img">
                                 <button onclick="removeQuestionImage()" type="reset" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>

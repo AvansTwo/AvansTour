@@ -23,7 +23,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Website <span class="title-colored">toegang</span> geven tot je locatie</h2>
-                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geupdate en gedurende dat je de tocht loop bijgehouden.</p>
+                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geüpdate en gedurende dat je de tocht loopt bijgehouden.</p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/android_website_permission.jpg') }}" alt="">
@@ -41,7 +41,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Webbrowser <span class="title-colored">toegang</span> geven tot je locatie door middel van instellingen</h2>
-                                                    <p>Mocht je hebben ingesteld dat jouw webbrowser helemaal geen toegang heeft tot jouw locatie zal de website hier niet naar vragen. Navigeer naar: Instelligen->Apps->GoogleChrome*->Permissies en zet hier "locatie-toegang" op "Alleen wanneer ik de app gebruik".</p>
+                                                    <p>Mocht je hebben ingesteld dat jouw webbrowser helemaal geen toegang heeft tot jouw locatie zal de website hier niet naar vragen. Navigeer naar: <strong>Instelligen->Apps->GoogleChrome*->Permissies</strong> en zet hier "locatie-toegang" op "Alleen wanneer ik de app gebruik".</p>
                                                     <small class="w-100 d-block my-2 fst-italic">*Google Chrome is in dit geval een voorbeeld, dit moet jouw desbetreffende browser zijn zoals bijv. FireFox of Opera</small>
                                                 </div>
                                                 <div class="col-12 col-md-6">
@@ -64,7 +64,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Website <span class="title-colored">toegang</span> geven tot je locatie</h2>
-                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geupdate en gedurende dat je de tocht loop bijgehouden.</p>
+                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geüpdate en gedurende dat je de tocht loopt bijgehouden.</p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/IOS_website_permission.jpg') }}" alt="">
@@ -83,7 +83,7 @@
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Webbrowser <span class="title-colored">toegang</span> geven tot je locatie door middel van instellingen</h2>
                                                     <p>Heeft AvansTour nog steeds geen toegang tot jouw locatie of staat deze in het centrum van Breda? Dan heeft Safari hoogst waarschijnlijk helemaal geen toegang tot je locatie. Je kunt in de instellingen van je apparaat toegang geven door naar de volgende pagina te gaan:
-                                                        <strong>Privacy > Locatievoorzieningen > Safari-sites</strong>
+                                                        <strong>Privacy > Locatievoorzieningen > Safari-sites.</strong>
                                                         Op deze pagina staan de instellingen voor toegang tot locatie van Safari. Controleer of de instellingen als volgt staan.</p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
@@ -173,6 +173,33 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/Scoreboard_Page.jpg') }}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="contact">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseContact" aria-expanded="true">
+                                        Over AvansTour en contact opnemen
+                                    </button>
+                                </h2>
+                                <div id="collapseContact" class="accordion-collapse collapse" aria-labelledby="collapseContact" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 px-md-5 mt-5">
+                                                    <h1 class="text-center">Wat achtergrond informatie over <span class="title-colored">AvansTour</span></h1>
+                                                    <p class="mt-4 px-md-5">AvansTour is in eerste instantie begonnen als een 1e jaars informatica project in opdracht van Avans. Het project
+                                                        is later doorgezet door 2 studenten van het Avans, <a target="_blank" title="Linkedin" class="Linkedin-link" href="https://www.linkedin.com/in/sybrand-bos-ba550b185/">Sybrand Bos</a> en <a target="_blank" title="Linkedin" class="Linkedin-link" href="https://www.linkedin.com/in/tristan-goossens-3836b01a2/">Tristan Goossens</a>.
+                                                        Zij hebben in de zomer de webapplicatie verder uitgewerkt en nieuwe functionaliteiten toegevoegd die het
+                                                        gebruik van de app makkelijker maken.
+                                                    <p class="mt-4 px-md-5">
+                                                        Tijdens de ontwikkeling van de applicatie is nauw samengewerkt met <a target="_blank" title="Linkedin" class="Linkedin-link" href="https://www.linkedin.com/in/anouk-van-berkel-a3412790/">Anouk van Berkel</a>, Senior medewerker bedrijfsvoering Avans. Zij heeft
+                                                        gefungeerd als producteigenaar en heeft haar eisen en wensen kenbaar gemaakt met betrekking tot de applicatie.
+                                                    </p>
+                                                    <p class="mt-4 px-md-5">Wil je graag in contact komen met ons? Stuur ons een persoonlijk bericht via Linkedin <i>(Link in tekst hierboven)</i> of stuur een mail naar het AvansTour ontwikkelteam: <span class="CopyMeClass" id="CopyEmailText">info@avanstour.website</span> <button onclick="copyEmailText()" type="button" class="copy-text-button"><i id="copy-text-icon" class="fa-solid fa-copy"></i></button></p>
                                                 </div>
                                             </div>
                                         </div>

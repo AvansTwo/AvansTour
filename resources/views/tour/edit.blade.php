@@ -66,6 +66,7 @@
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourimg" class="mb-1 fw-bold">Tour foto</label>
                             <input class="form-control @if(!empty($tour->image_url)) d-none @endif @error('image_url') is-invalid @enderror" name="image_url" @if(!empty($tour->image_url)) disabled @endif  accept="image/png, image/jpg, image/jpeg" type="file" id="tour-img-input">
+                            <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
                             <div id="tour-img-wrapper" class="wrapper @if(empty($tour->image_url)) d-none @endif">
                                 <img class="img-fluid img-thumbnail" src="{{ $tour->image_url }}" alt="tour-img">
                                 <button onclick="removeTourImage()" type="button" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>

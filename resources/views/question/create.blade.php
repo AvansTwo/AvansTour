@@ -77,6 +77,7 @@
                         <div id="questionImgWrapper" class="col-10 mx-auto mb-5">
                             <label for="questionImg" class="mb-1 fw-bold">Foto</label>
                             <input class="form-control" name="image_url" type="file" id="image_url">
+                            <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
                             @error('image_url')
                             <div class="alert alert-danger mt-1">{{ $message }}</div>
                             @enderror

@@ -403,6 +403,22 @@ footer {
     background-color: #c6002a;
 }
 
+/*FAQ*/
+.Linkedin-link{
+    color: #0d6efd !important;
+}
+
+#CopyEmailText{
+    text-decoration: underline;
+}
+
+.copy-text-button{
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
 /* Dashboard */
 .small-text {
     font-size: 0.7rem;
