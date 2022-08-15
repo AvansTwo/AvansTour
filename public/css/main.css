@@ -21,6 +21,10 @@ main {
     min-height: 75vh;
 }
 
+.accordion-body{
+    padding: 0 !important;
+}
+
 *{
     word-break: break-word;
 }
@@ -265,6 +269,7 @@ footer {
     height: 245px !important;
     max-height: 245px !important;
     width: 100%;
+    object-fit: cover;
 }
 
 /*dropdown*/

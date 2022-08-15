@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamProgress\StoreTeamProgressRequest;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\Settings;
@@ -15,8 +16,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\StorageController;
-
 
 class QuizController extends Controller
 {
@@ -70,7 +69,7 @@ class QuizController extends Controller
 
         return Redirect::to('/quiz/spelen/' . $team->team_identifier);
     }
-    public function storeTeamProgress(Request $request, $teamHash, $questionId)
+    public function storeTeamProgress(StoreTeamProgressRequest $request, $teamHash, $questionId)
     {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
         $is_file = 0;
@@ -161,7 +160,7 @@ class QuizController extends Controller
         $team_id = $team->id;
 
         $tour = Tour::find($tour_id);
-        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash 
+        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash
         FROM tour_question AS tq
         INNER JOIN question AS q ON tq.question_id = q.id
         INNER JOIN tour AS t ON tq.tour_id = t.id
@@ -171,7 +170,7 @@ class QuizController extends Controller
             FROM team_progress AS tp
             INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
             WHERE tp.team_id = :team_id
-            AND tq.tour_id = :tour_id 
+            AND tq.tour_id = :tour_id
         );'), array(
             'team_hash' => $teamHash,
             'tourid' => $tour_id,

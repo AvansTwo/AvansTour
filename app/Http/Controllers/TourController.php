@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\StorageController;
 use App\Http\Requests\Tour\StoreTourRequest;
 use App\Http\Requests\Tour\UpdateTourRequest;
 use App\Models\Tour;
@@ -13,7 +12,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -46,7 +44,11 @@ class TourController extends Controller
 
     public function categoryFilter($id)
     {
-        $tours = Tour::where("category_id", $id)->paginate(6);
+        if(Auth::user()){
+            $tours = Tour::where("category_id", $id)->paginate(6);
+        } else{
+            $tours = Tour::where("category_id", $id)->where("active", 1)->paginate(6);
+        }
         $filteredCategory = Category::find($id);
         $categories = Category::all();
 
@@ -81,20 +83,13 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        $validated = Validator::make($request->all(), [
-            'name'          => ['required', 'string', 'min:3', 'max:40', "unique:tour,name"],
-            'description'   => ['required', 'string', 'min:3', 'max:100'],
-            'image_url'     => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:12288', 'dimensions:min_width=854,min_height=480,max_width=3840,max_height=2160'],
-            'location'      => ['required', 'between:-180,180'],
-            'category_id'   => ['required', 'integer'],
-        ]);
         $validated = $request->validated();
 
         $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
             $do_filepath = StorageController::upload($file, 'Tour-images');
         }
-        
+
         $validated['image_url'] = $do_filepath ?? null;
 
         $tour = new Tour($validated);
@@ -126,7 +121,7 @@ class TourController extends Controller
         if($tour->image_url != null){
             $tour->image_url = StorageController::get($tour->image_url);
         }
-        
+
 
         $totalPoints = 0;
         foreach ($tour->tourQuestion as $tourQuestion) {
@@ -244,7 +239,7 @@ class TourController extends Controller
         if($tour->image_url != null) {
             StorageController::delete($tour->image_url);
         }
-        
+
         $tour->delete();
 
         Session::flash('Checkmark', 'Tour is succesvol verwijderd');

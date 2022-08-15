@@ -31,7 +31,7 @@
                 <!-- Mediavraag -->
                 <div id="mediaQuestionAnswer" class="col-12 mx-auto mb-5 d-none">
                     <label for="questionImg" class="mb-1 fw-bold">Upload foto: </label>
-                    <input class="form-control" name="teamAnswerMedia" type="file" accept="image/png, image/jpg, image/jpeg" id="teamAnswerMedia" required>
+                    <input class="form-control" multiple="multiple" name="teamAnswerMedia[]" type="file" accept="image/png, image/jpg, image/jpeg" id="teamAnswerMedia" required>
                 </div>
 
                 <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">

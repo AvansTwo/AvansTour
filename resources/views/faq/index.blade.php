@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12 grey-bg my-5 p-5">
+            <div class="col-12 grey-bg my-5 p-2 p-md-5">
                 <div class="row">
                     <div class="col-12">
                         <h1 class="mb-5"><span class="title-colored">FAQ pagina</span> AvansTour</h1>
@@ -119,15 +119,6 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/Tour_Detail.jpg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-12 col-md-6 mt-5">
-                                                    <h2>Een <span class="title-colored">team</span> aanmaken</h2>
-                                                    <p class="mt-4">Voordat de tour start moet je eerst een team aanmaken, een teamnaam is verplicht en een team bestaat uit minimaal 1 speler en maximaal 8. Je kunt door middel van het (+) en (-) het aantal teamleden aanpassen.</p>
-                                                </div>
-                                                <div class="col-12 col-md-6">
-                                                    <img class="img-thumbnail" src="{{ asset('img/Create_Team.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                             <div class="row">
