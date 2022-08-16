@@ -6,7 +6,7 @@
             <div class="col-12 mt-5">
                 <h1>Welkom op het <span class="title-colored">Dashboard</span></h1>
                 <p>Teams die meedoen aan AvansTour</p>
-            
+
                 <form action="/scoreboard/team" method="post">
                   @csrf
                   <div class="input-group">
@@ -22,10 +22,14 @@
                     @foreach($teams as $team)
                     <div class="accordion-item mb-3">
                       <h2 class="accordion-header" id="header-{!!$team->id!!}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#button-{!!$team->id!!}" aria-expanded="false" aria-controls="button-{!!$team->id!!}">
-                            <div class="d-block">
-                                <p class="d-inline fw-bold">{{$team->name}} | <span class="title-colored">{{$team->name}}</span> ({{count($team->progress)}})</p>
-                            </div>
+                        <button class="accordion-button custom-accordion-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#button-{!!$team->id!!}" aria-expanded="false" aria-controls="button-{!!$team->id!!}">
+                            <p class="fw-bold">{{$team->name}} | <span class="title-colored">{{$team->name}}</span> ({{count($team->progress)}})</p>
+                            @if(empty($team->end_time))
+                                <div class="ring-container d-block ms-auto">
+                                    <div class="ringring"></div>
+                                    <div class="circle"></div>
+                                </div>
+                            @endif
                         </button>
                       </h2>
 
@@ -70,7 +74,7 @@
                                             <button class="btn create-btn delete-btn mt-2">
                                                 <a id="incorrect-answer-url" href="/dashboard/team/{{$team->id}}/vraag/{{$progress->question_id}}/fout">Afkeuren <i class="fa-solid fa-xmark"></i></a>
                                             </button>
-                                        </div>         
+                                        </div>
                                     </div>
                                   </div>
                                 </div>
