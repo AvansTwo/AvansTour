@@ -103,6 +103,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
 
+    Route::post('/dashboard/team', [DashboardController::class, 'filterName'])
+        ->name('dashboardFilterTeams');
+
     Route::get('/dashboard/team/{teamId}/vraag/{questionId}/goed', [DashboardController::class, 'correctAnswer'])
         ->name('dashboardCorrectAnswer');
 

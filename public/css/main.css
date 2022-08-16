@@ -21,11 +21,11 @@ main {
     min-height: 75vh;
 }
 
-.accordion-body{
+.accordion-body {
     padding: 0 !important;
 }
 
-*{
+* {
     word-break: break-word;
 }
 
@@ -58,6 +58,10 @@ textarea {
 a {
     color: black !important;
     text-decoration: none !important;
+}
+
+td {
+    min-width: 110px !important;
 }
 
 /*buttons*/
@@ -232,11 +236,11 @@ footer {
     transition: all 0.3s ease-in-out;
 }
 
-.hidden-tour{
+.hidden-tour {
     opacity: 0.5;
 }
 
-.hidden-tour-icon{
+.hidden-tour-icon {
     font-size: 40px;
     position: absolute;
     bottom: 0;
@@ -404,15 +408,15 @@ footer {
 }
 
 /*FAQ*/
-.Linkedin-link{
+.Linkedin-link {
     color: #0d6efd !important;
 }
 
-#CopyEmailText{
+#CopyEmailText {
     text-decoration: underline;
 }
 
-.copy-text-button{
+.copy-text-button {
     border: none;
     background-color: transparent;
     padding: 0;
@@ -433,24 +437,46 @@ footer {
     position: relative;
 }
 
-.circle {
+.circle-red {
     width: 15px;
     height: 15px;
-    background-color: #62bd19;
+    background-color: #c6002a;
     border-radius: 50%;
     position: relative;
     top: -14px;
     left: 5px;
 }
 
-.ringring {
-    border: 3px solid #62bd19;
-    -webkit-border-radius: 30px;
+.ringring-red {
+    border: 3px solid #c6002a;
+    border-radius: 30px;
     height: 25px;
     width: 25px;
     position: relative;
-    -webkit-animation: pulsate 1s ease-out;
-    -webkit-animation-iteration-count: infinite;
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite;
+    opacity: 0.0;
+    top: 6px;
+}
+
+.circle-green {
+    width: 15px;
+    height: 15px;
+    background-color: #8f9d39;
+    border-radius: 50%;
+    position: relative;
+    top: -14px;
+    left: 5px;
+}
+
+.ringring-green {
+    border: 3px solid #8f9d39;
+    border-radius: 30px;
+    height: 25px;
+    width: 25px;
+    position: relative;
+    animation: pulsate 1s ease-out;
+    animation-iteration-count: infinite;
     opacity: 0.0;
     top: 6px;
 }
@@ -460,19 +486,30 @@ footer {
 }
 
 @-webkit-keyframes pulsate {
-    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
-    50% {opacity: 1.0;}
-    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+    0% {
+        -webkit-transform: scale(0.1, 0.1);
+        opacity: 0.0;
+    }
+
+    50% {
+        opacity: 1.0;
+    }
+
+    100% {
+        -webkit-transform: scale(1.2, 1.2);
+        opacity: 0.0;
+    }
 }
 
 /*dashboard*/
-.dashboard-link{
+.dashboard-link {
     color: black;
 }
 
-.custom-table-responsive{
+.custom-table-responsive {
     min-width: 750px;
 }
+
 /*Spinner*/
 .ctrl {
     -webkit-box-flex: 0;

@@ -4,31 +4,37 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mt-5">
-                <h1>Welkom op het <span class="title-colored">Dashboard</span></h1>
-                <p>Teams die meedoen aan AvansTour</p>
+              <h1>Welkom op het <span class="title-colored">Dashboard</span></h1>
+              <p>Teams die meedoen met AvansTour</p>
 
-                <form action="/scoreboard/team" method="post">
-                  @csrf
-                  <div class="input-group">
-                      <input type="text" class="form-control rounded-0" placeholder="Zoek op teamnaam"
-                             aria-label="Team name" aria-describedby="button-addon2" name="teamString">
-                      <button class="btn btn-outline-danger px-5 rounded-0" type="submit" id="button-addon2">Zoek
-                      </button>
-                  </div>
+              <form action="/dashboard/team" method="post">
+                @csrf
+                <div class="input-group">
+                    <input type="text" class="form-control rounded-0" placeholder="Zoek op teamnaam"
+                            aria-label="Team name" aria-describedby="button-addon2" name="teamString">
+                    <button class="btn btn-outline-danger px-5 rounded-0" type="submit" id="button-addon2">Zoek
+                    </button>
+                </div>
               </form>
             </div>
             <div class="col-12 grey-bg my-5 p-5">
                 <div class="accordion accordion-flush">
+                    @if(count($teams) > 0)
                     @foreach($teams as $team)
                     <div class="accordion-item mb-3">
                       <h2 class="accordion-header" id="header-{!!$team->id!!}">
                         <button class="accordion-button custom-accordion-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#button-{!!$team->id!!}" aria-expanded="false" aria-controls="button-{!!$team->id!!}">
-                            <p class="fw-bold">{{$team->name}} | <span class="title-colored">{{$team->name}}</span> ({{count($team->progress)}})</p>
-                            @if(empty($team->end_time))
-                                <div class="ring-container d-block ms-auto">
-                                    <div class="ringring"></div>
-                                    <div class="circle"></div>
-                                </div>
+                            <p class="fw-bold">{{$team->team_name}} | <span class="title-colored">{{$team->name}}</span> ({{count($team->progress)}})</p>
+                            @if($team->end_time == null)
+                              <div class="ring-container d-block ms-auto">
+                                  <div class="ringring-red"></div>
+                                  <div class="circle-red"></div>
+                              </div>
+                            @else
+                              <div class="ring-container d-block ms-auto">
+                                <div class="ringring-green"></div>
+                                <div class="circle-green"></div>
+                              </div>
                             @endif
                         </button>
                       </h2>
@@ -41,7 +47,11 @@
                           <div class="card mb-3">
                             <div class="row g-0">
                               <div class="col-md-4">
-                                <img src="{{$progress->question->image_url}}" class="img-fluid">
+                                @if($progress->question->image_url != null)
+                                  <img src="{{$progress->question->image_url}}" class="img-fluid">
+                                @else
+                                  <img src="{{asset('/img/landing_img.png')}}" class="img-fluid">
+                                @endif
                               </div>
                               <div class="col-md-8">
                                 <div class="card-body">
@@ -58,7 +68,7 @@
                                   </h2>
                                   <div id="progress-{{$progress->question_id}}-{{$progress->team_id}}" class="accordion-collapse collapse" aria-labelledby="progress-{{$progress->question_id}}-{{$progress->team_id}}" data-bs-parent="#progress-{{$progress->question_id}}-{{$progress->team_id}}">
                                     <div class="accordion-body p-3">
-                                        <h5 class="fw-bold">Team <span class="title-colored">{{$team->name}}</span> heeft geantwoord:</h5>
+                                        <h5 class="fw-bold">Team <span class="title-colored">{{$team->team_name}}</span> heeft geantwoord:</h5>
 
                                         @if($progress->question->type == 'Media')
                                             <img class="img-fluid" src="{{$progress->answer->answer}}" height="400" width="300" />
@@ -86,6 +96,10 @@
                       </div>
                     </div>
                     @endforeach
+                    @else
+                      <h2>Er zijn geen teams bezig.</h2>
+                      <p>Zitten ze niet stiekem op het terras?? 🤨</p>
+                    @endif
                   </div>
             </div>
             <div class="col-12">
