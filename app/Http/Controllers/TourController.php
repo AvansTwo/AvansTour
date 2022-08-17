@@ -9,6 +9,7 @@ use App\Models\TeamAnswer;
 use App\Models\TeamProgress;
 use App\Models\Tour;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -190,29 +191,11 @@ class TourController extends Controller
             }
 
             $filename = null;
-        } 
+        }
 
         $active = 0;
-        
         if(!empty($request->active)){
             $active = 1;
-        } else{
-            $teams = Team::where("tour_id", $id);
-            foreach($teams as $team){
-                $teamProgresses = TeamProgress::all()->where('team_id', $team->id);
-
-                foreach($teamProgresses as $teamProgress){
-                    $answer = TeamAnswer::find($teamProgress->team_answer_id);
-
-                    if($answer->is_file){
-                        StorageController::delete($answer->answer);
-                    }
-
-                    $answer->delete();
-                }
-
-                $team->delete();
-            }
         }
 
         $tour->update([
@@ -253,6 +236,17 @@ class TourController extends Controller
 
         Session::flash('Checkmark', 'Tour is succesvol gekopieerd');
         return Redirect::to('/tour/' . $copyTour->id);
+    }
+
+    public function endTour ($id)
+    {
+        Team::where('tour_id', $id)
+            ->update([
+                'end_time' => Carbon::now()
+            ]);
+
+        Session::flash('Checkmark', 'Tour is succesvol beëindigd');
+        return Redirect::to('/tour/' . $id);
     }
 
     /**
