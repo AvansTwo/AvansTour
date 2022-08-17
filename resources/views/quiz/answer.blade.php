@@ -6,7 +6,7 @@
         <h1 class="my-5"><span class="title-colored">Beantwoord</span> de volgende vraag</h1>
     </div>
     <div class="row grey-bg my-5">
-        <div class="col-12 col-lg-6 order-1 order-lg-6 p-5">
+        <div class="col-12 col-lg-6 order-1 order-lg-6 p-3 p-md-5">
             <h1>{{$question->title}}</h1>
             <p>{{$question->description}}</p>
             <form class="needs-validation py-3 grey-bg" novalidate action="/quiz/spelen/{{$teamHash}}/vraag/{{$question->id}}/beantwoorden" method="post" enctype="multipart/form-data">
@@ -34,7 +34,10 @@
                     <input class="form-control" multiple="multiple" name="teamAnswerMedia[]" type="file" accept="image/png, image/jpg, image/jpeg" id="teamAnswerMedia" required>
                 </div>
 
-                <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
+                    <small class="w-100 pt-3 d-block fst-italic">Zijn de antwoorden niet helemaal leesbaar? Sleep ze naar links om het gehele antwoord te zien.</small>
+
+
+                    <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">
                     <a class="btn primary-btn mt-3" href="/quiz/spelen/{{$teamHash}}"><i class="fa-solid fa-chevron-left"></i> Ga terug</a>
                     <button class="btn primary-btn secondary-btn mt-3" type="submit">Versturen <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
