@@ -54,6 +54,10 @@
                                             <a id="delete-tour-url" style="pointer-events: none"
                                                href="/tour/verwijderen/{{$tour->id}}" class="fa-solid fa-trash"></a>
                                         </button>
+                                        <button type="button"
+                                                onclick="location.href='/tour/{{$tour->id}}/eindigen';"
+                                                class="btn create-btn finish-btn mt-2 ms-4"><i class="mr-5 fa-solid fa-flag-checkered"></i>
+                                        </button>
                                     </div>
                                 @endif
                             </div>

@@ -43,6 +43,9 @@ Route::get('/tours/categorie/{id}', [TourController::class, 'categoryFilter']);
 Route::post('/tour/aanmaken', [TourController::class, 'store'])->middleware('auth');
 Route::get('/tour/aanmaken', [TourController::class, 'create'])->middleware('auth');
 
+//Tour end
+Route::get('/tour/{id}/eindigen', [TourController::class, 'endTour'])->middleware('auth');
+
 //Tour copy
 Route::post('/tour/{id}/kopie', [TourController::class, 'copyTour'])->middleware('auth');
 
