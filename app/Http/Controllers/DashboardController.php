@@ -30,7 +30,7 @@ class DashboardController extends Controller
                     ->where('team_progress.status', '=', "Afwachting")
                     ->whereNotNull('team_progress.team_id')
                     ->groupBy('team.team_name', 'team.id', 'tour.name')
-                    ->paginate(3);
+                    ->paginate(10);
 
 
         foreach($teams as $team) {
