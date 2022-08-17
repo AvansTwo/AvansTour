@@ -95,7 +95,6 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Titel</th>
-                                    <th scope="col">Omschrijving</th>
                                     <th scope="col">Type vraag</th>
                                     <th scope="col">Punten</th>
                                     <th scope="col">Aanpassen</th>
@@ -106,9 +105,8 @@
                                 <tbody>
                                 @foreach($tour->tourQuestion as $tourQuestion)
                                     <tr>
-                                        <th scope="row">{{ $loop->index+1 }}</th>
+                                        <td>{{ $loop->index+1 }}</td>
                                         <td>{{$tourQuestion->question->title}}</td>
-                                        <td>{{$tourQuestion->question->description}}</td>
                                         <td>{{$tourQuestion->question->type}}</td>
                                         <td>{{$tourQuestion->question->points}}</td>
                                         <td>
