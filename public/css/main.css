@@ -110,6 +110,14 @@ td {
     background-color: #5c6524 !important;
 }
 
+.finish-btn {
+    background-color: #FF7236 !important;
+}
+
+.finish-btn:hover {
+    background-color: #FF4D00 !important;
+}
+
 .copy-btn {
     background-color: #3B5998 !important;
 }
