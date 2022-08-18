@@ -87,7 +87,7 @@
             <div class="col-12 grey-bg p-5 mb-5">
                 <div class="row">
                     <div class="col-12 fw-bold">
-                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-trophy tour-icon-bold"></i> Top 5 teams vandaag:</h2>
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-trophy tour-icon-bold"></i> Top 5 teams van vandaag:</h2>
                     </div>
                     <div class="col-12 table-responsive">
                         @if(!empty($topTeams[0]))
@@ -132,7 +132,7 @@
             <div class="col-12 grey-bg p-5 mt-3 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-clipboard-list tour-icon-bold"></i> Vragen:</h2>
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-clipboard-list tour-icon-bold"></i> Tour vragen:</h2>
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table text-center table-striped custom-table-responsive">
