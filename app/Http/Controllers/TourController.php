@@ -136,7 +136,7 @@ class TourController extends Controller
                 "gps_location" => $tour->location
             ]);
 
-            $results = DB::table('team_progress')
+            $topTeams = DB::table('team_progress')
                     ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
                     ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
                     ->select(DB::raw('team.team_name, SUM(team_progress.points) AS totalPoints, TIMEDIFF(team.end_time, team.start_time) AS timeDiff'))
@@ -148,9 +148,7 @@ class TourController extends Controller
                     ->limit(5)
                     ->get();
 
-            dd($results);
-
-            return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
+            return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints)->with('topTeams', $topTeams);
         } else{
             return Redirect::to('/tours');
         }
