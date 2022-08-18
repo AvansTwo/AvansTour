@@ -24,6 +24,9 @@
                     <h2 class="quiz-info">Tijd over gedaan: <span class="quiz-colored">{{$difference}}</span></h2>
                 </div>
                 <div class="col-12">
+                    <small class="w-100 pt-3 d-block fst-italic">Jij of de leerkracht heeft de tour beëindigd, <strong>ga samen met je team naar het voorplein van de Lovensdijkstraat.</strong> Hier wordt een afsluitende borrel gehouden.</small>
+                </div>
+                <div class="col-12">
                     <a class="btn primary-btn mt-5" href="/scoreboard">Scoreboard <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </div>

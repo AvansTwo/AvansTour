@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12 grey-bg my-5 p-2 p-md-5">
+            <div class="col-12 grey-bg my-5 p-3 p-md-5">
                 <div class="row">
                     <div class="col-12">
                         <h1 class="mb-5"><span class="title-colored">FAQ pagina</span> AvansTour</h1>
@@ -23,7 +23,12 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Website <span class="title-colored">toegang</span> geven tot je locatie</h2>
-                                                    <p class="mt-4">Als je een tour bent gestart kom je op de tour map uit, op deze pagina word gevraagd of je toestemming wilt geven dat de website je locatie gebruikt. Als je hier op accepteren/allow drukt word jouw locatie pin op de map geüpdate en gedurende dat je de tocht loopt bijgehouden.</p>
+                                                    <p class="mt-4">
+                                                        Zodra je op jouw tour klikt vraagt de website om toestemming voor het gebruik van je locatie.
+                                                        Jouw locatie wordt daarbij enkel tijdens de tour gebruikt. Druk bij het starten van een tour altijd op
+                                                        accepteren/allow als het om het delen van je locatie gaat. Enkel dan wordt de kaart
+                                                        gedurende de tocht geüpdatet en verschijnen er op elke locatie pinnen als je in de buurt bent van een vraag.
+                                                    </p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/android_website_permission.jpg') }}" alt="">
@@ -32,7 +37,10 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2><span class="title-colored">Toegang</span> geven tot je locatie door middel van slotje</h2>
-                                                    <p>Het kan voorkomen dat de pop-up niet word getoond op jouw telefoon, je kunt door middel van op het slotje te klikken in de URL balk kijken of de website toegang heeft tot jouw locatie. Zorg dat de slider voor locatie permissie aanstaat. </p>
+                                                    <p>
+                                                        Het kan voorkomen dat de pop-up niet wordt getoond op jouw telefoon. Als je op het slotje in de URL-balk klikt
+                                                        kun je zien of de website toegang heeft tot jouw locatie. Zorg dat de slider voor locatie permissie aanstaat.
+                                                    </p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/android_website_lock_permission.jpg') }}" alt="">
@@ -41,7 +49,11 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Webbrowser <span class="title-colored">toegang</span> geven tot je locatie door middel van instellingen</h2>
-                                                    <p>Mocht je hebben ingesteld dat jouw webbrowser helemaal geen toegang heeft tot jouw locatie zal de website hier niet naar vragen. Navigeer naar: <strong>Instelligen->Apps->GoogleChrome*->Permissies</strong> en zet hier "locatie-toegang" op "Alleen wanneer ik de app gebruik".</p>
+                                                    <p>
+                                                        Mocht je hebben ingesteld dat jouw webbrowser helemaal geen toegang heeft tot jouw locatie zal de website hier niet naar vragen.
+                                                        Navigeer naar: <strong>Instellingen->Apps->Google Chrome*->Permissies</strong>
+                                                        en zet hier "locatie-toegang" op "Alleen wanneer ik de app gebruik".
+                                                    </p>
                                                     <small class="w-100 d-block my-2 fst-italic">*Google Chrome is in dit geval een voorbeeld, dit moet jouw desbetreffende browser zijn zoals bijv. FireFox of Opera</small>
                                                 </div>
                                                 <div class="col-12 col-md-6">
@@ -142,7 +154,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Het <span class="title-colored">beantwoorden</span> van een vraag</h2>
-                                                    <p class="mt-4">Nadat je op een vraag pin hebt gedrukt die binnen jouw radius valt kom je op de antwoord pagina terecht. Hier staat de vraag en de antwoord mogelijkheid. Er zijn 3 soorten vragen, meerkeuze, open en media vragen. In het voorbeeld hiernaast is een mediavraag te zien, je moet een selfie uploaden van je groepje. Beantwoord de vraag en druk op versturen, je wordt hierna terugverwezen naar de pagina met de map.</p>
+                                                    <p class="mt-4">Nadat je op een vraag pin hebt gedrukt die binnen jouw radius valt kom je op de antwoord pagina terecht. Hier staan de vraag en de antwoordmogelijkheden. Er zijn 3 soorten vragen: meerkeuze, open en media vragen. In het voorbeeld hiernaast is een mediavraag te zien, je moet een selfie uploaden van je groepje. Beantwoord de vraag en druk op versturen, je wordt hierna terugverwezen naar de pagina met de map.</p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/Answer_Question.jpg') }}" alt="">
@@ -169,7 +181,7 @@
                                             <div class="row">
                                                 <div class="col-12 col-md-6 mt-5">
                                                     <h2>Scoreboard <span class="title-colored">pagina</span></h2>
-                                                        <p class="mt-4">Na de resultaat pagina word je doorgestuurd naar de scoreboard pagina, hier kun je bekijken hoe klasgenoten het hebben gedaan en kijken op welke plaats je bent geëindigd. Zo heb je meerdere filter opties en kun je sorteren op het aantal punten.</p>
+                                                        <p class="mt-4">Na de resultaatpagina word je doorgestuurd naar de scoreboardpagina. Op deze pagina kan je bekijken op welke plaats je bent geëindigd en wat de eindstand is van andere klasgenoten. Op deze pagina heb je meerdere filter opties en kan je sorteren op het aantal punten.</p>
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <img class="img-thumbnail" src="{{ asset('img/Scoreboard_Page.jpg') }}" alt="">

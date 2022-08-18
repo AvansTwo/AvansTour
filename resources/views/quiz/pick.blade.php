@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-12 grey-bg p-5 my-5">
+        <div class="col-12 grey-bg p-3 p-md-5 my-5">
             <h1>De speurtocht <span class="title-colored"> kaart</span></h1>
             <p>loop naar één van de markers op de map en klik deze aan als je bent aangekomen op de bestemming</p>
             <x-leaflet-map :centerpoint="$tour->location" :markers="$remainingQuestions" markerCallback="markerClick"></x-leaflet-map>
