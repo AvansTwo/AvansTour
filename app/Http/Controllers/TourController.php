@@ -136,6 +136,20 @@ class TourController extends Controller
                 "gps_location" => $tour->location
             ]);
 
+            $results = DB::table('team_progress')
+                    ->leftJoin('team', 'team_progress.team_id', '=', 'team.id')
+                    ->leftJoin('tour', 'team.tour_id', '=', 'tour.id')
+                    ->select(DB::raw('team.team_name, SUM(team_progress.points) AS totalPoints, TIMEDIFF(team.end_time, team.start_time) AS timeDiff'))
+                    ->where('tour.id', '=', $tour->id)
+                    ->where(DB::raw('DATE(team.start_time)'), '=', Carbon::now()->format('Y-m-d'))
+                    ->groupBy('team.team_name')
+                    ->orderBy('totalPoints', 'DESC')
+                    ->orderBy('timeDiff', 'ASC')
+                    ->limit(5)
+                    ->get();
+
+            dd($results);
+
             return view('tour.detail')->with('tour', $tour)->with('startLocation', $startLocation)->with('totalPoints', $totalPoints);
         } else{
             return Redirect::to('/tours');
