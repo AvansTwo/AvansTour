@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamProgress\StoreTeamProgressRequest;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\Settings;
@@ -15,7 +16,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
-
 
 class QuizController extends Controller
 {
@@ -69,7 +69,7 @@ class QuizController extends Controller
 
         return Redirect::to('/quiz/spelen/' . $team->team_identifier);
     }
-    public function storeTeamProgress(Request $request, $teamHash, $questionId)
+    public function storeTeamProgress(StoreTeamProgressRequest $request, $teamHash, $questionId)
     {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
         $is_file = 0;
@@ -87,16 +87,10 @@ class QuizController extends Controller
                 $filename = $question->teamAnswerMedia;
                 $file = $request->file('teamAnswerMedia');
                 if (!empty($file)) {
-                    if (\File::exists(public_path('teamimg/' . $filename))) {
-                        \File::delete(public_path('teamimg/' . $filename));
-                    }
-                    $filename = date('YmdHis') . $file->getClientOriginalName();
-                }
-
-                if (!empty($file)) {
-                    $file->move(public_path('teamimg'), $filename);
+                    $filename = StorageController::upload($file, 'Team-images');
                     $is_file = 1;
                 }
+
                 $team_answer->answer = $filename;
                 $team_answer->is_file = $is_file;
                 break;
@@ -136,9 +130,23 @@ class QuizController extends Controller
      */
     public function getQuestion($teamHash, $questionId)
     {
-        $question = Question::where('id', $questionId)->first();
-        return view('quiz.answer')->with('question', $question)->with('teamHash', $teamHash);
+        $team = DB::table('team')->where('team_identifier', $teamHash)->first();
+
+        if($team->end_time == null){
+            $question = Question::where('id', $questionId)->first();
+            if($question->image_url != null){
+                $question->image_url = StorageController::get($question->image_url);
+            }
+            return view('quiz.answer')->with('question', $question)->with('teamHash', $teamHash);
+        }else{
+            $points = TeamProgress::where('team_id', $team->id)->sum('points');
+            $answeredQuestionCount = TeamProgress::where('team_id', $team->id)->count('question_id');
+            $difference = Carbon::parse($team->start_time)->diff(Carbon::parse($team->end_time))->format('%H:%I:%S');
+            return view('quiz.end')->with('team', $team)->with('teamQuestion', $answeredQuestionCount)->with('points', $points)->with('difference', $difference);
+        }    
     }
+
+
     public function quizEnding($teamHash)
     {
         Team::where('team_identifier', $teamHash)
@@ -159,26 +167,46 @@ class QuizController extends Controller
     public function getRemainingQuestions($teamHash)
     {
         $team = DB::table('team')->where('team_identifier', $teamHash)->first();
-        $tour = Tour::find($team->tour_id);
 
-        $tour_id = $tour->id;
-        $team_id = $team->id;
+        if($team->end_time == null) {
+            $tour = Tour::find($team->tour_id);
 
-        $tour = Tour::find($tour_id);
-        $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, :team_hash AS team_hash FROM question AS q WHERE tour_id = :tourid AND q.id NOT IN ( SELECT question_id FROM team_progress AS tp INNER JOIN question ON tp.question_id = question.id WHERE question.tour_id = :tour_id AND team_id = :team_id)'), array(
-            'team_hash' => $teamHash,
-            'tourid' => $tour_id,
-            'tour_id' => $tour_id,
-            'team_id' => $team_id
-        ));
-        $radius = Settings::find(1);
-        if (empty($radius)) {
-            $setting = new Settings();
-            $setting->save();
+            $tour_id = $tour->id;
+            $team_id = $team->id;
+    
+            $tour = Tour::find($tour_id);
+            $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, q.points, :team_hash AS team_hash
+            FROM tour_question AS tq
+            INNER JOIN question AS q ON tq.question_id = q.id
+            INNER JOIN tour AS t ON tq.tour_id = t.id
+            WHERE t.id = :tourid
+            AND q.id NOT IN (
+                SELECT tp.question_id
+                FROM team_progress AS tp
+                INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
+                WHERE tp.team_id = :team_id
+                AND tq.tour_id = :tour_id
+            );'), array(
+                'team_hash' => $teamHash,
+                'tourid' => $tour_id,
+                'tour_id' => $tour_id,
+                'team_id' => $team_id
+            ));
             $radius = Settings::find(1);
+            if (empty($radius)) {
+                $setting = new Settings();
+                $setting->save();
+                $radius = Settings::find(1);
+            }
+            $amount = count($questions);
+            return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount)->with('radius', $radius->radius);
+        }else{
+            $points = TeamProgress::where('team_id', $team->id)->sum('points');
+            $answeredQuestionCount = TeamProgress::where('team_id', $team->id)->count('question_id');
+            $difference = Carbon::parse($team->start_time)->diff(Carbon::parse($team->end_time))->format('%H:%I:%S');
+            return view('quiz.end')->with('team', $team)->with('teamQuestion', $answeredQuestionCount)->with('points', $points)->with('difference', $difference);
         }
-        $amount = count($questions);
-        return view('quiz.pick')->with('tour', $tour)->with('remainingQuestions', $questions)->with('teamHash', $teamHash)->with('amount', $amount)->with('radius', $radius->radius);
+        
     }
 
     /**

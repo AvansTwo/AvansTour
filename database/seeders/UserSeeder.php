@@ -19,40 +19,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Simon Nuijten',
-            'email' => 'st.nuijten@student.avans.nl',
-            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('Test123'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('users')->insert([
             'name' => 'Tristan Goossens',
             'email' => 'tt.goossens@student.avans.nl',
-            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('Test123'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Quincy van Deursen',
-            'email' => 'q.vandeursen@student.avans.nl',
-            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('Test123'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Thimo Luijsterburg',
-            'email' => 'tb.luijsterburg@student.avans.nl',
-            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('Test123'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Jelmer  Verhoeven',
-            'email' => 'jjp.verhoeven@student.avans.nl',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'password' => Hash::make('Test123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -62,14 +30,6 @@ class UserSeeder extends Seeder
             'name' => 'Sybrand Bos',
             'email' => 'snjw.bos@student.avans.nl',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('Welkom01'),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-        DB::table('users')->insert([
-            'name' => 'Joost van Dam',
-            'email' => 'ja.vandam3@student.avans.nl',
-            'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'password' => Hash::make('Test123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -78,15 +38,15 @@ class UserSeeder extends Seeder
             'name' => 'Marjolein Gerdes',
             'email' => 'mjg.gerdes@avans.nl',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('AvansTourDemo'),
+            'password' => Hash::make('Test123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
         DB::table('users')->insert([
-            'name' => 'Rinotha Senathirajah',
-            'email' => 'r.senathirajah@avans.nl',
+            'name' => 'Anouk van Berkel',
+            'email' => 'ama.vanberkel@avans.nl',
             'email_verified_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'password' => Hash::make('AvansTourDemo'),
+            'password' => Hash::make('Test123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

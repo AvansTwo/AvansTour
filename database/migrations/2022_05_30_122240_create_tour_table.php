@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->string('location');
             $table->foreignId('category_id')->nullable()->constrained('category')->restrictOnDelete();
+            $table->boolean('active')->default(0);
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });

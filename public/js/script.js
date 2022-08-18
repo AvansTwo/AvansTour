@@ -1,5 +1,5 @@
 // Alertify javascript voor bevestiging tour afronden
-function JSalertEndTour() {
+function JSalert() {
     alertify
         .confirm(
             "Weet je het zeker?",
@@ -10,45 +10,43 @@ function JSalertEndTour() {
                 window.location.href =
                     document.getElementById("exit-tour-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
 }
 
-function JSalertDeleteUser(userId) {
+function JSalertDeleteUser(id) {
     alertify
         .confirm(
             "Weet je het zeker?",
-            "Wil je deze gebruiker echt verwijderen?",
+            "Wil je deze gebruiker echt verwijderen?<strong class='d-block mt-3'>!! Als je deze verwijderd worden alle bijbehorende tours ook verwijderd !!</strong>",
             function () {
-                document.getElementById(
-                    "delete-user-url_" + userId
-                ).style.pointerEvents = "";
-                window.location.href = document.getElementById(
-                    "delete-user-url_" + userId
-                ).href;
+                document.getElementById("delete-user-url_" + id).style.pointerEvents =
+                    "";
+                window.location.href =
+                    document.getElementById("delete-user-url_" + id).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
 }
 
-function JSalertDeleteCategorie(categorieId) {
+function JSalertDeleteCategorie() {
     alertify
         .confirm(
             "Weet je het zeker?",
             "Wil je deze categorie echt verwijderen?",
             function () {
                 document.getElementById(
-                    "delete-categorie-url_" + categorieId
+                    "delete-categorie-url"
                 ).style.pointerEvents = "";
                 window.location.href = document.getElementById(
-                    "delete-categorie-url_" + categorieId
+                    "delete-categorie-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -62,7 +60,7 @@ function JSalertDeleteTeamProgress() {
             function () {
                 document.getElementById("deleteTeamsForm").submit();
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -80,7 +78,7 @@ function JSalertDeleteTour() {
                 window.location.href =
                     document.getElementById("delete-tour-url").href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -100,7 +98,7 @@ function JSalertDeleteQuestion() {
                     "delete-question-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -120,7 +118,7 @@ function JSalertCorrectAnswer() {
                     "incorrect-answer-url"
                 ).href;
             },
-            function () { }
+            function () {}
         )
         .set("movable", false)
         .set("closable", false);
@@ -164,12 +162,14 @@ $("input[type=radio][name=type]").change(function () {
             disabled: false,
             required: true,
         });
+        $("#multiple-choice-fields").removeClass("d-none");
     } else {
         $("#multiple-choice-fields").hide();
         $("#multiple-choice-fields :input").attr({
             disabled: true,
             required: false,
         });
+        $("#multiple-choice-fields").addClass("d-none");
     }
 });
 
@@ -183,19 +183,7 @@ function removeQuestionImage() {
 
 
 function checkType(type) {
-    if (type == "Meerkeuze") {
-        $("#mediaQuestionAnswer").removeClass("d-none");
-
-        $("#openvraagFields :input").attr({
-            disabled: true,
-            required: false,
-        });
-
-        $("#multipleChoiceFields :input").attr({
-            disabled: true,
-            required: false,
-        });
-    } else {
+    if (type === "Open") {
         $("#openvraagFields").removeClass("d-none");
 
         $("#multipleChoiceFields :input").attr({
@@ -204,6 +192,20 @@ function checkType(type) {
         });
 
         $("#mediaQuestionAnswer :input").attr({
+            disabled: true,
+            required: false,
+        });
+    }
+
+    if (type === "Media") {
+        $("#mediaQuestionAnswer").removeClass("d-none");
+
+        $("#openvraagFields :input").attr({
+            disabled: true,
+            required: false,
+        });
+
+        $("#multipleChoiceFields :input").attr({
             disabled: true,
             required: false,
         });
@@ -267,4 +269,20 @@ function removeTourImage() {
     document.getElementById("tour-img-input").disabled = false;
     document.getElementById("tour-img-wrapper").classList.add("d-none");
     document.getElementById("removeTourImageBool").value = 1;
+}
+
+// FAQ page
+function copyEmailText(){
+    let copy_icon = document.getElementById("copy-text-icon");
+    let copy_text = document.getElementById("CopyEmailText")
+
+    navigator.clipboard.writeText(copy_text.innerText);
+
+    copy_icon.classList.remove("fa-copy");
+    copy_icon.classList.add("fa-check");
+
+    setTimeout(function(){
+        copy_icon.classList.remove("fa-check");
+        copy_icon.classList.add("fa-copy");
+    }, 2000);
 }

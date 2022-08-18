@@ -65,23 +65,22 @@
                 <li class="nav-item custom-link">
                     <a class="nav-link {{ request()->is('scoreboard*') ? 'active' : '' }}" href="/scoreboard">Scoreboard</a>
                 </li>
+                <li class="nav-item custom-link">
+                    <a class="nav-link {{ request()->is('FAQ*') ? 'active' : '' }}" href="/FAQ">FAQ</a>
+                </li>
             </ul>
             @if(Auth::check())
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{{route('settings')}}">Instellingen</a></li>
+                    <button class="dropbtn"><i class="fa-solid fa-user mx-1"></i>{{ Auth::user()->name }}</button>
+                    <div class="dropdown-content text-center">
+                        <a href="{{route('dashboard')}}">Dashboard</a>
+                        <a href="{{route('settings')}}">Instellingen</a>
                         <div class="dropdown-divider"></div>
-                        <li>
-                            <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <button id="logout-btn" class="dropdown-item" type="submit">Uitloggen</button>
-                            </form>
-                        </li>
-                    </ul>
+                        <form action="{{ route('logout') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <button id="logout-btn" class="btn w-100" type="submit">Uitloggen</button>
+                        </form>
+                    </div>
                 </div>
             @endif
         </div>
@@ -109,6 +108,13 @@
         'Gelukt!',
         '{{Session('Checkmark')}}',
         'success'
+    )
+    @endif
+    @if(Session::has('Error'))
+    Swal.fire(
+        'Ho, foutje!',
+        '{{Session('Error')}}',
+        'error'
     )
     @endif
 </script>

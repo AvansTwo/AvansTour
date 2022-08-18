@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\StorageController;
 use App\Http\Requests\Question\StoreQuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Tour;
+use App\Models\TourQuestion;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Contracts\View\Factory;
@@ -38,29 +40,48 @@ class QuestionController extends Controller
         return view('question.create')->with('tour', $tour);
     }
 
+    public function copy($tourId, $questionId)
+    {
+        $currentTour = Tour::find($tourId);
+        $tours = Tour::all();
+        $question = Question::find($questionId);
+        return view('question.copy')->with('question', $question)->with('currentTour', $currentTour)->with('tours', $tours);
+    }
+
+    public function storeCopy(Request $request, $tourId, $questionId)
+    {
+        $data = $request->except('_token');
+        foreach ($data as $key) {
+            $tourQuestion = new TourQuestion();
+            $tourQuestion->tour_id = $key;
+            $tourQuestion->question_id = $questionId;
+            $tourQuestion->save();
+        }
+
+        Session::flash('Checkmark','Vraag is succesvol gekopieerd');
+        return Redirect::to('/tour/' . $tourId);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param StoreQuestionRequest $request
      * @return RedirectResponse
      */
-    public function store(StoreQuestionRequest $request)
+    public function store($id, StoreQuestionRequest $request)
     {
         $validated = $request->validated();
-
         $file = $validated['image_url'] ?? $request->file('image_url');
+
         if (!empty($file)) {
-            $filename = date('YmdHis') . $file->getClientOriginalName();
+           $do_filepath = StorageController::upload($file, 'Question-images');
         }
-        $validated['image_url'] = $filename ?? null;
+        $validated['image_url'] = $do_filepath ?? null;
 
         $question = new Question($validated);
 
         $question->save();
 
-        if (!empty($file)) {
-            $file->move(public_path('tourimg'), $filename);
-        }
 
         $questionID = $question->id;
 
@@ -78,6 +99,11 @@ class QuestionController extends Controller
             }
         }
 
+        $tourQuestion = new TourQuestion();
+        $tourQuestion->tour_id = $id;
+        $tourQuestion->question_id = $questionID;
+        $tourQuestion->save();
+
         Session::flash('Checkmark','Vraag is succesvol toegevoegd');
         return back();
     }
@@ -92,6 +118,10 @@ class QuestionController extends Controller
     {
         $question = Question::find($id);
 
+        if($question->image_url != null){
+            $question->image_url = StorageController::get($question->image_url);
+        }
+
         $questionLocation = array((object) [
             "gps_location" => $question->gps_location
         ]);
@@ -105,15 +135,20 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit($tourId, $questionId)
     {
-        $question = Question::find($id);
+        $question = Question::find($questionId);
+        $tour = Tour::find($tourId);
+
+        if($question->image_url != null){
+            $question->image_url = StorageController::get($question->image_url);
+        }
 
         $questionLocation = array((object) [
             "gps_location" => $question->gps_location
         ]);
 
-        return view('question.edit')->with('question', $question)->with('questionLocation', $questionLocation);
+        return view('question.edit')->with('question', $question)->with('questionLocation', $questionLocation)->with('tour', $tour);
     }
 
     /**
@@ -123,56 +158,77 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(StoreQuestionRequest $request, $tourId, $questionId)
     {
-        $question = Question::find($id);
+        $validated = $request->validated();
+
+        $question = Question::find($questionId);
+        $tour = Tour::find($tourId);
 
         $filename = $question->image_url;
         $file = $request->file('image_url');
         if (!empty($file)) {
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
+            if($question->image_url != null){
+                StorageController::delete($question->image_url);
             }
-            $filename = date('YmdHis') . $file->getClientOriginalName();
-        } else if(empty($file) && $request->removeImage == 1){
-            $filename = $question->image_url;
-            if (\File::exists(public_path('tourimg/' . $filename))) {
-                \File::delete(public_path('tourimg/' . $filename));
+           
+            $filename = StorageController::upload($file, 'Question-images');
+        } else {
+            if($request->removeImage == 1){
+                StorageController::delete($question->image_url);
             }
+
             $filename = null;
         }
 
         $question->update([
-            'title'         => $request->questionTitle,
-            'description'   => $request->questionDesc,
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'type'          => $request->type,
             'image_url'     => $filename,
-            'gps_location'  => $request->questionLocation,
-            'points'        => $request->questionPoints,
+            'gps_location'  => $request->gps_location,
+            'points'        => $request->points,
         ]);
-
-        if (!empty($file)) {
-            $file->move(public_path('tourimg'), $filename);
-        }
 
         $answers = DB::table('answer')->where('question_id', $question->id)->get();
 
-        foreach ($answers as $answer) {
-            $newAnswer = Answer::find($answer->id);
-            $correct = 0;
-            if ($request->questionCorrectAnswer == $answer->id) {
-                $correct = 1;
+        if($request->type == 'Meerkeuze' && $answers->isEmpty()){
+            for($i = 1; $i <= 4; $i++){
+                $answer = new Answer();
+                $answer->answer = $request->$i;
+                if($request->questionCorrectAnswer == $i){
+                    $answer->correct_answer = 1;
+                } else{
+                    $answer->correct_answer = 0;
+                }
+                $answer->question_id = $questionId;
+                $answer->save();
             }
+        } else if ($request->type != "Meerkeuze" && $answers->isNotEmpty()){
+            foreach ($answers as $answer) {
+                $deleteAnswer = Answer::find($answer->id);
+                $deleteAnswer->delete();
+            }
+        }
+        else{
+            foreach ($answers as $answer) {
+                $newAnswer = Answer::find($answer->id);
+                $correct = 0;
+                if ($request->questionCorrectAnswer == $answer->id) {
+                    $correct = 1;
+                }
 
-            $questionAnswer = request()->get($answer->id);
+                $questionAnswer = request()->get($answer->id);
 
-            $newAnswer->update([
-                'answer'            => $questionAnswer,
-                'correct_answer'    => $correct,
-            ]);
+                $newAnswer->update([
+                    'answer'            => $questionAnswer,
+                    'correct_answer'    => $correct,
+                ]);
+            }
         }
 
         Session::flash('Checkmark','Vraag is succesvol aangepast');
-        return Redirect::to('/vragen/' . $question->id);
+        return Redirect::to('/tour/' . $tour->id);
     }
 
     /**
@@ -181,15 +237,15 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($tourId, $tourQuestion)
     {
-        $question = Question::find($id);
-        $tour = Tour::find($question->tour_id);
+        $question = TourQuestion::find($tourQuestion);
+        $tour = Tour::find($tourId);
 
-        if (\File::exists(public_path('tourimg/' . $question->image_url))) {
-            \File::delete(public_path('tourimg/' . $question->image_url));
+        if($question->image_url != null) {
+            StorageController::delete($question->image_url);
         }
-
+       
         $question->delete();
 
         Session::flash('Checkmark','Vraag is succesvol verwijderd');

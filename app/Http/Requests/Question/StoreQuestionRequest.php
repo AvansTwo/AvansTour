@@ -26,18 +26,12 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'                 => ['required', 'min:3', 'max:40'],
-            'description'           => ['required', 'min:3', 'max:100'],
-            'image_url'             => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:8192', 'dimensions:min_width=600,min_height=350'],
-            'gps_location'          => ['required', 'between:-180,180', 'regex:/([0-9]{1,3}.[0-9]*,[0-9]{1,3}.[0-9]*)/'],
-            'points'                => ['required', 'integer'],
-            'type'                  => ['required', 'string'],
-            'tour_id'               => ['required', 'integer'],
-            'questionCorrectAnswer' => ['nullable', 'integer'],
-            1                       => ['nullable', 'string'],
-            2                       => ['nullable', 'string'],
-            3                       => ['nullable', 'string'],
-            4                       => ['nullable', 'string'],
+            'title'         => ['required', 'min:3', 'max:40'],
+            'description'   => ['required', 'min:3', 'max:200'],
+            'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
+            'gps_location'  => ['required', 'between:-180,180', 'regex:/^(-?\d+(.\d+)?),\s*(-?\d+(.\d+)?)$/'],
+            'points'        => ['required', 'integer'],
+            'type'          => ['required']
         ];
     }
 
@@ -55,17 +49,12 @@ class StoreQuestionRequest extends FormRequest
     public function attributes()
     {
         return [
-            'title'                 => 'Titel vraag',
-            'description'           => 'Omschrijving vraag',
-            'image_url'             => 'Foto vraag',
-            'gps_location'          => 'Locatie vraag',
-            'points'                => 'Punten vraag',
-            'type'                  => 'Type vraag',
-            'questionCorrectAnswer' => 'Correcte antwoord',
-            1                       => 'Antwoord 1',
-            2                       => 'Antwoord 2',
-            3                       => 'Antwoord 3',
-            4                       => 'Antwoord 4',
+            'title'         => 'Titel vraag',
+            'description'   => 'Omschrijving vraag',
+            'image_url'     => 'Foto vraag',
+            'gps_location'  => 'Locatie vraag',
+            'points'        => 'Punten vraag',
+            'type'          => 'type vraag'
         ];
     }
 

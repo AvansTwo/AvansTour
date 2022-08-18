@@ -26,45 +26,5 @@ class TeamSeeder extends Seeder
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
-
-        DB::table('team')->insert([
-            'team_name' => 'Team B',
-            'tour_id' => 2,
-            'team_identifier' => 'RAXY4XmI3feeff4wBggjbeKfzwD',
-            'start_time' => '2022-06-21 12:47:53',
-            'end_time' => '2022-06-21 15:52:50',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('team')->insert([
-            'team_name' => 'Team C',
-            'tour_id' => 3,
-            'team_identifier' => 'RAXY4Xm5rf4f4eggjbeKfzwD',
-            'start_time' => '2022-06-21 13:12:23',
-            'end_time' => '2022-06-21 16:34:46',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('team')->insert([
-            'team_name' => 'Team D',
-            'tour_id' => 4,
-            'team_identifier' => 'RAXY4XmI3feeff4wBggjbeKfzwD',
-            'start_time' => '2022-06-21 13:30:33',
-            'end_time' => '2022-06-21 14:52:21',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('team')->insert([
-            'team_name' => 'Team E',
-            'tour_id' => 5,
-            'team_identifier' => 'RAXY4XmI9iwdjicjewBggjbeKfzwD',
-            'start_time' => '2022-06-21 12:37:33',
-            'end_time' => '2022-06-21 16:12:43',
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
     }
 }

@@ -23,6 +23,22 @@
                     <input id="removeTourImageBool" type="hidden" name="removeImage" value="0"/>
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" name="active" @if($tour->active == 1 ) checked @endif type="checkbox" id="activeSwitch">
+                                <label class="form-check-label" for="activeSwitch">Speelbare tour</label>
+                            </div>
+                        </div>
+                        <div class="col-10 mx-auto mb-3">
+                            <label for="tourCreator" class="mb-1 fw-bold">Maker tour:</label>
+                            <select class="form-select" id="tourCreator" name="user_id" required>
+                                <option value="" disabled selected hidden>Selecteer maker tour</option>
+                                @foreach($users as $user)
+                                    <option @if($user->id == $tour->user_id) selected
+                                            @endif value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-10 mx-auto mb-3">
                             <label for="tourName" class="mb-1 fw-bold">Naam tocht</label>
                             <input type="text" value="{{ old('name', $tour->name ?? '') }}" name="name" class="form-control @error('name') is-invalid @enderror" id="tourName" placeholder="Informatica tour" required>
                         </div>
@@ -41,7 +57,8 @@
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend" onclick="showMap()">
-                                    <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
+                                    <span class="input-group-text" id="inputGroupPrepend"><i
+                                            class="fa-solid fa-location-dot"></i></span>
                                 </div>
                                 <input type="text" class="form-control @error('location') is-invalid @enderror" value="{{ old('location') == null ? $tour->location : old('location') }}" name="location" id="tourStartLocation" aria-describedby="inputGroupPrepend" readonly>
                             </div>
@@ -49,8 +66,9 @@
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourimg" class="mb-1 fw-bold">Tour foto</label>
                             <input class="form-control @if(!empty($tour->image_url)) d-none @endif @error('image_url') is-invalid @enderror" name="image_url" @if(!empty($tour->image_url)) disabled @endif  accept="image/png, image/jpg, image/jpeg" type="file" id="tour-img-input">
+                            <small class="w-100 d-block">Bestandstypen: jpeg,png,jpg | Max grootte: 8MB | Minimale afmetingen: 600x350</small>
                             <div id="tour-img-wrapper" class="wrapper @if(empty($tour->image_url)) d-none @endif">
-                                <img class="img-fluid img-thumbnail" src="{{ asset('tourimg/'. $tour->image_url) }}" alt="tour-img">
+                                <img class="img-fluid img-thumbnail" src="{{ $tour->image_url }}" alt="tour-img">
                                 <button onclick="removeTourImage()" type="button" id="tour-img-btn" class="btn create-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('gps_location')->nullable();
             $table->integer('points')->default(0);
             $table->enum('type', ['Meerkeuze', 'Open', 'Media']);
-            $table->foreignId('tour_id')->constrained('tour')->cascadeOnDelete();
             $table->timestamps();
         });
     }

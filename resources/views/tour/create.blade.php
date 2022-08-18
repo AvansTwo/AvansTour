@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1 class="mt-5 text-center">Een <span class="title-colored">Tour</span> Aanmaken</h1>
+                <h1 class="mt-5 text-center">Een <span class="title-colored">tour</span> aanmaken</h1>
             </div>
             <div class="col-12 my-5">
                 @if ($errors->any())
@@ -21,18 +21,18 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="form-row">
                         <div class="col-10 mx-auto mb-3">
-                            <label for="tourName" class="mb-1 fw-bold">Tournaam</label>
-                            <input type="text" value="{{ old('name') }}" name="name" class="form-control @error('name') is-invalid @enderror" id="tourName" placeholder="Informatica tour" required>
-                            <div class="invalid-feedback">
-                                Tournaam is verplicht.
-                            </div>
+                            <label for="tourName" class="mb-1 fw-bold">Naam tocht</label>
+                            <input type="text" value="{{ old('name') }}" name="name" class="form-control" id="tourName" placeholder="Informatica tour" required>
+                            @error('name')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="validationCustom02" class="mb-1 fw-bold">Beschrijving tour</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="descriptionTour" placeholder="Tour voor eerste jaars informatica studenten" rows="5" required>{{ old('description') }}</textarea>
-                            <div class="invalid-feedback">
-                                Omschrijving is verplicht.
-                            </div>
+                            <textarea class="form-control" name="description" id="descriptionTour" placeholder="Tour voor eerste jaars informatica studenten" rows="5" required>{{ old('description') }}</textarea>
+                            @error('description')
+                                <div class="alert alert-danger mt-1">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourStartLocation" class="mb-1 fw-bold">Start locatie</label>
@@ -46,10 +46,10 @@
                                 <div class="input-group-prepend" onclick="showMap()">
                                     <span class="input-group-text" id="inputGroupPrepend"><i class="fa-solid fa-location-dot"></i></span>
                                 </div>
-                                <input type="text" value="{{ old('location') }}" class="form-control @error('location') is-invalid @enderror" name="location" id="tourStartLocation" required data-readonly>
-                                <div class="invalid-feedback">
-                                    Selecteer een locatie.
-                                </div>
+                                <input type="text" value="{{ old('location') }}" class="form-control" name="location" id="tourStartLocation" value="51.583683,4.798869" aria-describedby="inputGroupPrepend" readonly>
+                                @error('location')
+                                    <div class="alert alert-danger mt-1">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-10 mx-auto mb-3">
@@ -62,15 +62,15 @@
                         </div>
                         <div class="col-10 mx-auto mb-3">
                             <label for="tourCategory" class="mb-1 fw-bold">Categorie</label>
-                            <select class="form-select @error('category_id') is-invalid @enderror" id="tourCategory" name="category_id" required>
-                                <option value="" disabled selected>Selecteer opleidings categorie</option>
+                            <select class="form-select" id="tourCategory" name="category_id" required>
+                                <option disabled selected hidden>Selecteer opleidings categorie</option>
                                 @foreach($categories as $category)
-                                    <option @if(old('category_id') == $category->id) selected @endif value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
-                            <div class="invalid-feedback">
-                                Selecteer een categorie.
-                            </div>
+                            @error('category_id')
+                                <div class="alert alert-danger mt-1">Je dient een catgorie te selectere.</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-10 mx-auto mb-3 flex-xl-row flex-column d-flex justify-content-between">

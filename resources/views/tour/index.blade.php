@@ -20,7 +20,8 @@
             <div class="col-12 grey-bg p-5 my-5">
                 <div class="row">
                     <div class="col-7 col-lg-10">
-                        <h2>@isset($filteredCategory) Tours zijn gefiltered op {{$filteredCategory->category_name}} @else Op dit moment beschikbaar @endisset</h2>
+                        <h2>@isset($filteredCategory) Tours zijn gefiltered op "{{$filteredCategory->category_name}}" @elseif(empty($tours[0])) Oh, er zijn geen tours beschikbaar 🤨 @else Op dit moment beschikbaar @endisset</h2>
+                        @isset($filteredCategory) @elseif(empty($tours[0])) <p class="fst-italic">Vraag een leerkracht om hulp.</p> @endif
                     </div>
                     <div class="col-5 col-lg-2">
                         <div class="float-end">
@@ -42,10 +43,10 @@
                         <div class="row">
                             @foreach($tours as $tour)
                                 <div class="col-12 col-lg-4">
-                                    <div class="tour-card mb-5">
-                                        <a class="text-decoration-none" href="/tour/{{$tour->id}}"><img class="img-fluid tour-img" src="@if(!empty($tour->image_url)){{ asset('tourimg/'. $tour->image_url) }}@else {{ asset('img/landing_img.png') }} @endif" alt="tour_card">
+                                    <div class="tour-card mb-5 @if($tour->active == 0) hidden-tour @endif">
+                                        <a class="text-decoration-none" href="/tour/{{$tour->id}}"><img class="img-fluid tour-img" src="@if(!empty($tour->image_url)){{ $tour->image_url }}@else {{ asset('img/landing_img.png') }} @endif" alt="tour_card">
                                             <div class="tour-desc text-dark">
-                                                <p class="tour-text">{{$tour->name}}</p>
+                                                <p class="tour-text">{{$tour->name}} @if($tour->active == 0) <i class="fa-solid fa-eye-slash"></i> @endif</p>
                                                 <p id="tour-year" class="tour-text ml-5">{{date('Y', strtotime($tour->created_at))}} </p>
                                             </div>
                                         </a>

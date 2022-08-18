@@ -73,33 +73,25 @@
                         <th scope="col">Totale tijd</th>
                         <th scope="col">Punten</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    @if (count($results) === 0)
-                        <tr>
-                            <td colspan="4" class="text-center"> No results found!</td>
-                        </tr>
-                    @endif
-                    @foreach($results as $result)
-                        @php
-                            $startDate = new \Nette\Utils\DateTime($result->start_time);
-                        @endphp
-                        <tr>
-                            <td>{{ $result->name }}</td>
-                            <td>{{ $result->team_name }}</td>
-                            @if (isset($result->end_time))
-                                <td>{{ $result->timeDiff }}</td>
-                            @else
-                                <td>Team heeft geen eindtijd.</td>
-                            @endif
-                            <td>
-                                {{ $result->points }}
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+                @foreach($results as $result)
+                    @php
+                        $startDate = new \Nette\Utils\DateTime($result->start_time);
+                    @endphp
+                    <tr>
+                        <td>{{ $result->name }}</td>
+                        <td>{{ $result->team_name }}</td>
+                        @if (isset($result->end_time))
+                            <td>{{ $result->timeDiff }}</td>
+                        @else
+                            <td>Team heeft geen eindtijd.</td>
+                        @endif
+                        <td>
+                            {{ $result->points }}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
             <div class="d-flex justify-content-center">
                 {{$results->links()}}
             </div>

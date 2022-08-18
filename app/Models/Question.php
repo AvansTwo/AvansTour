@@ -19,6 +19,7 @@ class Question extends Model
         'title',
         'description',
         'image_url',
+        'video_url',
         'gps_location',
         'points',
         'type',
@@ -36,5 +37,10 @@ class Question extends Model
     public function teamProgress(): HasMany
     {
         return $this->hasMany(teamProgress::class, 'question_id');
+    }
+
+    public function tourQuestion(): HasMany
+    {
+        return $this->hasMany(TourQuestion::class, 'question_id');
     }
 }

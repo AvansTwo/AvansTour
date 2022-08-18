@@ -20,6 +20,7 @@ class Tour extends Model
         'image_url',
         'location',
         'category_id',
+        'active',
         'user_id'
     ];
 
@@ -33,13 +34,13 @@ class Tour extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function question(): HasMany
-    {
-        return $this->hasMany(Question::class);
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tourQuestion(): HasMany
+    {
+        return $this->hasMany(TourQuestion::class, 'tour_id');
     }
 }

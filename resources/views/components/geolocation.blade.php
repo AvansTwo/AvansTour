@@ -29,9 +29,16 @@
 
     if(markers){
         markers.forEach((marker) => {    
-            let markerMap = L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
-                eval(markerCallback)(personCircle, marker, markerMap, isAdmin);
-            });
+            if(marker.special) {
+                let markerMap = L.marker([marker.lat, marker.long], {icon: goldIcon}).addTo(map).on('click', function(e) {
+                    eval(markerCallback)(personCircle, marker, markerMap, isAdmin);
+                });
+            }else{
+                let markerMap = L.marker([marker.lat, marker.long], {icon: icon}).addTo(map).on('click', function(e) {
+                    eval(markerCallback)(personCircle, marker, markerMap, isAdmin);
+                });
+            }
+            
         })
     }
     // Locate listener that updates marker location

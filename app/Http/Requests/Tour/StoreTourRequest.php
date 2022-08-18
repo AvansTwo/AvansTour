@@ -5,6 +5,7 @@ namespace App\Http\Requests\Tour;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 
 class StoreTourRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class StoreTourRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['required', 'min:3', 'max:40', "unique:tour,name"],
+            'name'          => ['required', 'min:3', 'max:40', Rule::unique('tour')->ignore($this->id)],
             'description'   => ['required', 'min:3', 'max:100'],
             'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:8192', 'dimensions:min_width=600,min_height=350'],
             'location'      => ['required', 'between:-180,180', 'regex:/([0-9]{1,3}.[0-9]*,[0-9]{1,3}.[0-9]*)/'],
@@ -48,7 +49,7 @@ class StoreTourRequest extends FormRequest
 
     public function attributes()
     {
-         return [
+        return [
             'name'          => 'TourNaam',
             'description'   => 'Omschrijving',
             'image_url'     => 'Foto',

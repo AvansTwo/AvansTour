@@ -29,18 +29,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/FAQ', function () {
+    return view('faq.index');
+});
+
 //Tour index
 Route::get('/tours', [TourController::class, 'index']);
 
 //Tour Filter
 Route::get('/tours/categorie/{id}', [TourController::class, 'categoryFilter']);
 
-//TODO: Waarvoor deze route?
-Route::get('/answerMap/{id}', [QuestionController::class, 'answerMap']);
-
 //Tour create
 Route::post('/tour/aanmaken', [TourController::class, 'store'])->middleware('auth');
 Route::get('/tour/aanmaken', [TourController::class, 'create'])->middleware('auth');
+
+//Tour end
+Route::get('/tour/{id}/eindigen', [TourController::class, 'endTour'])->middleware('auth');
+
+//Tour copy
+Route::post('/tour/{id}/kopie', [TourController::class, 'copyTour'])->middleware('auth');
 
 //Tour edit
 Route::post('/tour/aanpassen/{id}', [TourController::class, 'update'])->middleware('auth')->name('tour.update');
@@ -56,15 +63,16 @@ Route::get('/tour/{id}', [TourController::class, 'show']);
 Route::post('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'store'])->middleware('auth');
 Route::get('/tour/{id}/vragen/aanmaken', [QuestionController::class, 'create'])->middleware('auth');
 
-//Question show
-Route::get('/vragen/{id}', [QuestionController::class, 'show']);
-
 //Question edit
-Route::post('/vragen/aanpassen/{id}', [QuestionController::class, 'update'])->middleware('auth');
-Route::get('/vragen/aanpassen/{id}', [QuestionController::class, 'edit'])->middleware('auth');
+Route::post('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController::class, 'update'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController::class, 'edit'])->middleware('auth');
 
 //Question delete
-Route::get('/vragen/verwijderen/{id}', [QuestionController::class, 'destroy'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/verwijderen/{questionId}', [QuestionController::class, 'destroy'])->middleware('auth');
+
+//Question copy
+Route::post('/tour/{tourId}/vragen/kopie/{questionId}', [QuestionController::class, 'storeCopy'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/kopie/{questionId}', [QuestionController::class, 'copy'])->middleware('auth');
 
 //Quiz create team
 Route::post('/quiz/aanmaken', [QuizController::class, 'store']);
@@ -72,7 +80,6 @@ Route::get('/tour/{id}/quiz', [QuizController::class, 'create']);
 
 //Quiz play mapselect page
 Route::get('/quiz/spelen/{teamHash}', [QuizController::class, 'getRemainingQuestions']);
-
 
 //Quiz play get question
 Route::get('/quiz/spelen/{teamHash}/vraag/{questionId}', [QuizController::class, 'getQuestion']);
@@ -98,6 +105,9 @@ Route::get('/scoreboard/tijd/{sortId}', [ScoreboardController::class, 'sortTime'
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    Route::post('/dashboard/team', [DashboardController::class, 'filterName'])
+        ->name('dashboardFilterTeams');
 
     Route::get('/dashboard/team/{teamId}/vraag/{questionId}/goed', [DashboardController::class, 'correctAnswer'])
         ->name('dashboardCorrectAnswer');

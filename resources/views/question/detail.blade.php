@@ -35,7 +35,7 @@
                     <div class="col-12 col-lg-6 order-6 order-lg-1">
                         <div class="row">
                             <div class="col-12">
-                                <img class="img-fluid question-img mb-5 mb-lg-0" @if(empty($question->image_url)) src="{{ asset('img/landing_img.png') }}" @else src="{{ asset('tourimg/'. $question->image_url) }}" @endif alt="tour-detail-img">
+                                <img class="img-fluid question-img mb-5 mb-lg-0" @if(empty($question->image_url)) src="{{ asset('img/landing_img.png') }}" @else src="{{ $question->image_url }}" @endif alt="tour-detail-img">
                             </div>
                         </div>
                     </div>
