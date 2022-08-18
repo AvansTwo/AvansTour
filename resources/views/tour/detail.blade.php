@@ -85,8 +85,8 @@
             </div>
             <div class="col-12 grey-bg p-5 mb-5">
                 <div class="row">
-                    <div class="col-12">
-                        <h2 class="mb-3">Top 5 winaars van vandaag:</h2>
+                    <div class="col-12 fw-bold">
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-trophy tour-icon-bold"></i> Top 5 teams vandaag:</h2>
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table text-center table-striped custom-table-responsive">
@@ -99,45 +99,25 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><i class="fas fa-medal my-auto d-inline mr-2 medal gold"></i></td>
-                                <td>Bati Boys</td>
-                                <td>01:13:46</td>
-                                <td>140</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-medal my-auto d-inline mr-2 medal silver"></i></td>
-                                <td>Database Dummy's</td>
-                                <td>01:06:45</td>
-                                <td>100</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fas fa-medal my-auto d-inline mr-2 medal bronze"></i></td>
-                                <td>Script Serpents</td>
-                                <td>01:00:30</td>
-                                <td>180</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Team Tequilla</td>
-                                <td>01:00:30</td>
-                                <td>180</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Toppers met een B</td>
-                                <td>01:00:30</td>
-                                <td>180</td>
-                            </tr>
-
-{{--                            @foreach($teams as $team)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{ $loop->index+1 }}</td>--}}
-{{--                                    <td>{{$team->team_name}}</td>--}}
-{{--                                    <td>{{$tourQuestion->question->type}}</td>--}}
-{{--                                    <td>{{$tourQuestion->question->points}}</td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
+                                @foreach ($topTeams as $key => $topTeam)
+                                    <tr>
+                                        
+                                        <td> 
+                                            @if($key == 0)
+                                                <i class="fas fa-medal my-auto d-inline mr-2 medal gold"></i>
+                                            @elseif($key == 1)
+                                                <i class="fas fa-medal my-auto d-inline mr-2 medal silver"></i>
+                                            @elseif($key == 2)
+                                                <i class="fas fa-medal my-auto d-inline mr-2 medal bronze"></i>
+                                            @else
+                                                {{$key}}
+                                            @endif
+                                        </td>
+                                        <td>{{$topTeam->team_name}}</td>
+                                        <td>{{$topTeam->timeDiff}}</td>
+                                        <td>{{$topTeam->totalPoints}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -147,7 +127,7 @@
             <div class="col-12 grey-bg p-5 mt-3 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="mb-3">Tour vragen</h2>
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-clipboard-list tour-icon-bold"></i> Vragen:</h2>
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table text-center table-striped custom-table-responsive">
