@@ -50,6 +50,6 @@
         alert("Avanstour heeft geen toegang tot je locatie!! Verleen toegang om verder te gaan met de tour");
     });
     setTimeout(() => {
-        map.setView(liveMarker._latlng, 15);
+        map.setView(liveMarker._latlng, 17);
     }, 500);
 </script>
