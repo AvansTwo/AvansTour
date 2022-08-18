@@ -83,12 +83,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 grey-bg p-5 mb-5">
                 <div class="row">
                     <div class="col-12 fw-bold">
                         <h2 class="mb-3 fw-bold"><i class="fa-solid fa-trophy tour-icon-bold"></i> Top 5 teams vandaag:</h2>
                     </div>
                     <div class="col-12 table-responsive">
+                        @if(!empty($topTeams[0]))
                         <table class="table text-center table-striped custom-table-responsive">
                             <thead>
                             <tr>
@@ -101,8 +103,8 @@
                             <tbody>
                                 @foreach ($topTeams as $key => $topTeam)
                                     <tr>
-                                        
-                                        <td> 
+
+                                        <td>
                                             @if($key == 0)
                                                 <i class="fas fa-medal my-auto d-inline mr-2 medal gold"></i>
                                             @elseif($key == 1)
@@ -120,6 +122,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @else
+                        <h3>Deze tour is vandaag nog niet gelopen😮</h3>
+                        @endif
                     </div>
                 </div>
             </div>
