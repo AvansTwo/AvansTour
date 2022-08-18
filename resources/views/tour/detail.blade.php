@@ -83,50 +83,110 @@
                     </div>
                 </div>
             </div>
-            @if(Auth::check())
-                <div class="col-12 grey-bg p-5 mt-3 mb-5">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2 class="mb-3">Tour vragen</h2>
-                        </div>
-                        <div class="col-12 table-responsive">
-                            <table class="table text-center table-striped custom-table-responsive">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Titel</th>
-                                    <th scope="col">Type vraag</th>
-                                    <th scope="col">Punten</th>
-                                    <th scope="col">Aanpassen</th>
-                                    <th scope="col">Kopiëren</th>
-                                    <th scope="col">Verwijderen</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($tour->tourQuestion as $tourQuestion)
-                                    <tr>
-                                        <td>{{ $loop->index+1 }}</td>
-                                        <td>{{$tourQuestion->question->title}}</td>
-                                        <td>{{$tourQuestion->question->type}}</td>
-                                        <td>{{$tourQuestion->question->points}}</td>
-                                        <td>
-                                            <button onclick="location.href='/tour/{{$tour->id}}/vragen/aanpassen/{{$tourQuestion->question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        </td>
-                                        <td>
-                                            <button onclick="location.href='/tour/{{$tour->id}}/vragen/kopie/{{$tourQuestion->question->id}}';" class="btn create-btn copy-btn"><i class="fa-solid fa-copy"></i></button>
-                                        </td>
-                                        <td>
-                                            <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
-                                                <a id="delete-question-url" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+            <div class="col-12 grey-bg p-5 mb-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="mb-3">Top 5 winaars van vandaag:</h2>
+                    </div>
+                    <div class="col-12 table-responsive">
+                        <table class="table text-center table-striped custom-table-responsive">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Teamnaam</th>
+                                <th scope="col">Totale tijd</th>
+                                <th scope="col">Punten</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><i class="fas fa-medal my-auto d-inline mr-2 medal gold"></i></td>
+                                <td>Bati Boys</td>
+                                <td>01:13:46</td>
+                                <td>140</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-medal my-auto d-inline mr-2 medal silver"></i></td>
+                                <td>Database Dummy's</td>
+                                <td>01:06:45</td>
+                                <td>100</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-medal my-auto d-inline mr-2 medal bronze"></i></td>
+                                <td>Script Serpents</td>
+                                <td>01:00:30</td>
+                                <td>180</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Team Tequilla</td>
+                                <td>01:00:30</td>
+                                <td>180</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Toppers met een B</td>
+                                <td>01:00:30</td>
+                                <td>180</td>
+                            </tr>
+
+{{--                            @foreach($teams as $team)--}}
+{{--                                <tr>--}}
+{{--                                    <td>{{ $loop->index+1 }}</td>--}}
+{{--                                    <td>{{$team->team_name}}</td>--}}
+{{--                                    <td>{{$tourQuestion->question->type}}</td>--}}
+{{--                                    <td>{{$tourQuestion->question->points}}</td>--}}
+{{--                                </tr>--}}
+{{--                            @endforeach--}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+            @if(Auth::check())
+            <div class="col-12 grey-bg p-5 mt-3 mb-5">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="mb-3">Tour vragen</h2>
+                    </div>
+                    <div class="col-12 table-responsive">
+                        <table class="table text-center table-striped custom-table-responsive">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Titel</th>
+                                <th scope="col">Type vraag</th>
+                                <th scope="col">Punten</th>
+                                <th scope="col">Aanpassen</th>
+                                <th scope="col">Kopiëren</th>
+                                <th scope="col">Verwijderen</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($tour->tourQuestion as $tourQuestion)
+                                <tr>
+                                    <td>{{ $loop->index+1 }}</td>
+                                    <td>{{$tourQuestion->question->title}}</td>
+                                    <td>{{$tourQuestion->question->type}}</td>
+                                    <td>{{$tourQuestion->question->points}}</td>
+                                    <td>
+                                        <button onclick="location.href='/tour/{{$tour->id}}/vragen/aanpassen/{{$tourQuestion->question->id}}';" class="btn create-btn edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    </td>
+                                    <td>
+                                        <button onclick="location.href='/tour/{{$tour->id}}/vragen/kopie/{{$tourQuestion->question->id}}';" class="btn create-btn copy-btn"><i class="fa-solid fa-copy"></i></button>
+                                    </td>
+                                    <td>
+                                        <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
+                                            <a id="delete-question-url" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             @endif
             <!-- Copy Tour Data Modal -->
             <div class="modal fade" id="copyTourDataModel" tabindex="-1" aria-hidden="true">

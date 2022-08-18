@@ -270,6 +270,22 @@ footer {
     font-size: 40px;
 }
 
+.medal{
+    font-size: 30px;
+}
+
+.gold {
+    color: #C99529;
+}
+
+.silver{
+    color: #888888;
+}
+
+.bronze{
+    color: #C77B30;
+}
+
 .question-icon-mark {
     margin-right: 28px;
     padding-left: 10px;
