@@ -171,14 +171,12 @@ class QuestionController extends Controller
             if($question->image_url != null){
                 StorageController::delete($question->image_url);
             }
-           
             $filename = StorageController::upload($file, 'Question-images');
         } else {
             if($request->removeImage == 1){
                 StorageController::delete($question->image_url);
+                $filename = null;
             }
-
-            $filename = null;
         }
 
         $question->update([
@@ -245,7 +243,7 @@ class QuestionController extends Controller
         if($question->image_url != null) {
             StorageController::delete($question->image_url);
         }
-       
+
         $question->delete();
 
         Session::flash('Checkmark','Vraag is succesvol verwijderd');

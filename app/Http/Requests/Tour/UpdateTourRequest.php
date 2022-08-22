@@ -27,7 +27,7 @@ class UpdateTourRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => ['required', 'min:3', 'max:40', Rule::unique('tour')->ignore($this->id)],
+            'name'          => ['required', 'min:3', 'max:60', Rule::unique('tour')->ignore($this->id)],
             'description'   => ['required', 'min:3', 'max:100'],
             'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:8192', 'dimensions:min_width=600,min_height=350'],
             'location'      => ['required', 'between:-180,180', 'regex:/([0-9]{1,3}.[0-9]*,[0-9]{1,3}.[0-9]*)/'],
