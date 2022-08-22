@@ -26,7 +26,7 @@ class StoreQuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'         => ['required', 'min:3', 'max:40'],
+            'title'         => ['required', 'min:3', 'max:60'],
             'description'   => ['required', 'min:3', 'max:200'],
             'image_url'     => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048', 'dimensions:min_width=600,min_height=350'],
             'gps_location'  => ['required', 'between:-180,180', 'regex:/^(-?\d+(.\d+)?),\s*(-?\d+(.\d+)?)$/'],

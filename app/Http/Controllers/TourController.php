@@ -192,16 +192,12 @@ class TourController extends Controller
         $filename = $tour->image_url;
         $file = $validated['image_url'] ?? $request->file('image_url');
         if (!empty($file)) {
-            if($tour->image_url != null) {
+            if(!empty($tour->image_url)){
                 StorageController::delete($tour->image_url);
             }
-
             $filename = StorageController::upload($file, 'Tour-images');
-        }else {
-            if($request->removeImage == 1) {
-                StorageController::delete($tour->image_url);
-            }
-
+        } else if(empty($file) && $request->removeImage == 1){
+            StorageController::delete($tour->image_url);
             $filename = null;
         }
 
