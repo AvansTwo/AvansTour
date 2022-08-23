@@ -235,9 +235,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($tourId, $tourQuestion)
+    public function destroy($tourId, $tourQuestionId)
     {
-        $question = TourQuestion::find($tourQuestion);
+        dd($tourQuestionId);
+        $question = TourQuestion::find($tourQuestionId);
+        dd($question);
         $tour = Tour::find($tourId);
 
         if($question->image_url != null) {
