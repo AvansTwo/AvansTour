@@ -148,6 +148,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            
                             @foreach($tour->tourQuestion as $tourQuestion)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
@@ -161,8 +162,8 @@
                                         <button onclick="location.href='/tour/{{$tour->id}}/vragen/kopie/{{$tourQuestion->question->id}}';" class="btn create-btn copy-btn"><i class="fa-solid fa-copy"></i></button>
                                     </td>
                                     <td>
-                                        <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
-                                            <a id="delete-question-url" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
+                                        <button type="button" onclick="JSalertDeleteQuestion({{$tourQuestion->id}})" class="btn create-btn delete-btn">
+                                            <a id="delete-question-url-{{$tourQuestion->id}}" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
                                         </button>
                                     </td>
                                 </tr>
