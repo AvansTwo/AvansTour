@@ -237,16 +237,9 @@ class QuestionController extends Controller
      */
     public function destroy($tourId, $tourQuestionId)
     {
-        dd($tourQuestionId);
-        $question = TourQuestion::find($tourQuestionId);
-        dd($question);
+        $tourQuestion = TourQuestion::find($tourQuestionId);
         $tour = Tour::find($tourId);
-
-        if($question->image_url != null) {
-            StorageController::delete($question->image_url);
-        }
-
-        $question->delete();
+        $tourQuestion->delete();
 
         Session::flash('Checkmark','Vraag is succesvol verwijderd');
         return Redirect::to('/tour/' . $tour->id);
