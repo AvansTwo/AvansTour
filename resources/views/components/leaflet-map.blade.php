@@ -83,21 +83,16 @@
     }
 
     if((mapCallback == mapPickLocation) || (mapCallback == mapRePickStartLocation)) {
-        map.setZoom(16)
-        var circle = L.circle([51.588376,4.776478], {
-            color: 'red',
-            fillOpacity: 0.0,
-            radius: 6000
-        }).addTo(map);
+        map.setZoom(9)
         if (mapCallback == mapRePickStartLocation){ 
          marker = L.marker([markers[0].lat, markers[0].long], {icon: startIcon}).addTo(map);
          map.on('click', function(e) {
-            eval(mapPickLocation)(map, marker, e, circle);
+            eval(mapPickLocation)(map, marker, e);
         })
         } else {
          marker = L.marker([1, 1], {icon: icon}).addTo(map);
          map.on('click', function(e) {
-            eval(mapCallback)(map, marker, e, circle);
+            eval(mapCallback)(map, marker, e);
         })
         }
     }
