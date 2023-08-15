@@ -34,7 +34,10 @@ class StoreTeamProgressRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'teamAnswerMedia.image'                       => 'Bestandstype dient een afbeelding te zijn.',
+            'teamAnswerMedia.mimes:jpeg,png,jpg,gif,svg'  => 'Het foto type dient een: jpeg,png,jpg,gif of svg te zijn.',
+            'teamAnswerMedia.max'                         => 'Een foto dient maximaal 2mb te zijn.',
+            'teamAnswerMedia.dimensions'                  => 'Een foto dient minimaal 600px breedt te zijn en 350px hoog.',
         ];
     }
 
