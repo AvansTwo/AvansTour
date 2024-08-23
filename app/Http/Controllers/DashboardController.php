@@ -34,7 +34,7 @@ class DashboardController extends Controller
 
 
         foreach($teams as $team) {
-            $teamProgress = DB::select(DB::raw("SELECT * 
+            $teamProgress = DB::select("SELECT * 
             FROM team_progress AS tp
             INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
             INNER JOIN question AS q ON tq.question_id = q.id
@@ -42,7 +42,7 @@ class DashboardController extends Controller
             WHERE tp.status = 'Afwachting'
             AND tp.team_id = :team_id
             AND t.name = :tour_name;"
-            ), array(
+            , array(
                 'team_id' => $team->id,
                 'tour_name' => $team->name,
             ));
@@ -62,7 +62,6 @@ class DashboardController extends Controller
             }
         }
 
-        
 
         return view('dashboard.index')->with('teams', $teams);
     }
@@ -85,7 +84,7 @@ class DashboardController extends Controller
                     ->paginate(3);
 
         foreach($teams as $team) {
-            $teamProgress = DB::select(DB::raw("SELECT * 
+            $teamProgress = DB::select("SELECT * 
             FROM team_progress AS tp
             INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
             INNER JOIN question AS q ON tq.question_id = q.id
@@ -93,7 +92,7 @@ class DashboardController extends Controller
             WHERE tp.status = 'Afwachting'
             AND tp.team_id = :team_id
             AND t.name = :tour_name;"
-            ), array(
+            , array(
                 'team_id' => $team->id,
                 'tour_name' => $team->name,
             ));
