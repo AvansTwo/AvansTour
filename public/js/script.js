@@ -10,7 +10,7 @@ function JSalert() {
                 window.location.href =
                     document.getElementById("exit-tour-url").href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -27,7 +27,7 @@ function JSalertDeleteUser(id) {
                 window.location.href =
                     document.getElementById("delete-user-url_" + id).href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -46,7 +46,7 @@ function JSalertDeleteCategorie() {
                     "delete-categorie-url"
                 ).href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -60,7 +60,7 @@ function JSalertDeleteTeamProgress() {
             function () {
                 document.getElementById("deleteTeamsForm").submit();
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -78,27 +78,27 @@ function JSalertDeleteTour() {
                 window.location.href =
                     document.getElementById("delete-tour-url").href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
 }
 
 // Alertify javascript voor bevestiging vraag verwijderen
-function JSalertDeleteQuestion() {
+function JSalertDeleteQuestion(id) {
     alertify
         .confirm(
             "Weet je het zeker?",
             "Wil je deze vraag verwijderen? Een verwijderde vraag is echt weg!",
             function () {
                 document.getElementById(
-                    "delete-question-url"
+                    `delete-question-url-${id}`
                 ).style.pointerEvents = "";
                 window.location.href = document.getElementById(
-                    "delete-question-url"
+                    `delete-question-url-${id}`
                 ).href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -118,7 +118,7 @@ function JSalertCorrectAnswer() {
                     "incorrect-answer-url"
                 ).href;
             },
-            function () {}
+            function () { }
         )
         .set("movable", false)
         .set("closable", false);
@@ -272,7 +272,7 @@ function removeTourImage() {
 }
 
 // FAQ page
-function copyEmailText(){
+function copyEmailText() {
     let copy_icon = document.getElementById("copy-text-icon");
     let copy_text = document.getElementById("CopyEmailText")
 
@@ -281,7 +281,7 @@ function copyEmailText(){
     copy_icon.classList.remove("fa-copy");
     copy_icon.classList.add("fa-check");
 
-    setTimeout(function(){
+    setTimeout(function () {
         copy_icon.classList.remove("fa-check");
         copy_icon.classList.add("fa-copy");
     }, 2000);

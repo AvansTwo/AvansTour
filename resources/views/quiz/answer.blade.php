@@ -4,6 +4,15 @@
 <div class="container">
     <div class="col-12">
         <h1 class="my-5"><span class="title-colored">Beantwoord</span> de volgende vraag</h1>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
     <div class="row grey-bg my-5">
         <div class="col-12 col-lg-6 order-1 order-lg-6 p-3 p-md-5">

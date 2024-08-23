@@ -83,12 +83,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 grey-bg p-5 mb-5">
                 <div class="row">
                     <div class="col-12 fw-bold">
-                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-trophy tour-icon-bold"></i> Top 5 teams vandaag:</h2>
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-trophy tour-icon-bold"></i> Top 5 teams van vandaag:</h2>
                     </div>
                     <div class="col-12 table-responsive">
+                        @if(!empty($topTeams[0]))
                         <table class="table text-center table-striped custom-table-responsive">
                             <thead>
                             <tr>
@@ -101,8 +103,8 @@
                             <tbody>
                                 @foreach ($topTeams as $key => $topTeam)
                                     <tr>
-                                        
-                                        <td> 
+
+                                        <td>
                                             @if($key == 0)
                                                 <i class="fas fa-medal my-auto d-inline mr-2 medal gold"></i>
                                             @elseif($key == 1)
@@ -120,6 +122,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @else
+                        <h3>Deze tour is vandaag nog niet gelopen😮</h3>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -127,7 +132,7 @@
             <div class="col-12 grey-bg p-5 mt-3 mb-5">
                 <div class="row">
                     <div class="col-12">
-                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-clipboard-list tour-icon-bold"></i> Vragen:</h2>
+                        <h2 class="mb-3 fw-bold"><i class="fa-solid fa-clipboard-list tour-icon-bold"></i> Tour vragen:</h2>
                     </div>
                     <div class="col-12 table-responsive">
                         <table class="table text-center table-striped custom-table-responsive">
@@ -143,6 +148,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            
                             @foreach($tour->tourQuestion as $tourQuestion)
                                 <tr>
                                     <td>{{ $loop->index+1 }}</td>
@@ -156,8 +162,8 @@
                                         <button onclick="location.href='/tour/{{$tour->id}}/vragen/kopie/{{$tourQuestion->question->id}}';" class="btn create-btn copy-btn"><i class="fa-solid fa-copy"></i></button>
                                     </td>
                                     <td>
-                                        <button type="button" onclick="JSalertDeleteQuestion()" class="btn create-btn delete-btn">
-                                            <a id="delete-question-url" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
+                                        <button type="button" onclick="JSalertDeleteQuestion({{$tourQuestion->id}})" class="btn create-btn delete-btn">
+                                            <a id="delete-question-url-{{$tourQuestion->id}}" style="pointer-events: none" href="/tour/{{$tour->id}}/vragen/verwijderen/{{$tourQuestion->id}}" class="fa-solid fa-trash"></a>
                                         </button>
                                     </td>
                                 </tr>

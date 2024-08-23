@@ -68,7 +68,7 @@ Route::post('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController:
 Route::get('/tour/{tourId}/vragen/aanpassen/{questionId}', [QuestionController::class, 'edit'])->middleware('auth');
 
 //Question delete
-Route::get('/tour/{tourId}/vragen/verwijderen/{questionId}', [QuestionController::class, 'destroy'])->middleware('auth');
+Route::get('/tour/{tourId}/vragen/verwijderen/{tourQuestionId}', [QuestionController::class, 'destroy'])->middleware('auth');
 
 //Question copy
 Route::post('/tour/{tourId}/vragen/kopie/{questionId}', [QuestionController::class, 'storeCopy'])->middleware('auth');

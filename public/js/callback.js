@@ -15,34 +15,25 @@ function relocateQuestion() {
     console.log('redefined question')
 }
 
-function mapPickLocation(map, marker, event, circle) {
-    var d = map.distance(event.latlng, circle.getLatLng());
-    if (d < circle.getRadius()) {
-        marker.setLatLng(new L.LatLng(event.latlng.lat, event.latlng.lng));
+function mapPickLocation(map, marker, event) {
+    marker.setLatLng(new L.LatLng(event.latlng.lat, event.latlng.lng));
 
-        let location = event.latlng;
-        let locationText = document.getElementById('tourStartLocation');
+    let location = event.latlng;
+    let locationText = document.getElementById('tourStartLocation');
 
-        if (locationText == null) {
-            locationText = document.getElementById('gps_location');
-        }
+    if (locationText == null) {
+        locationText = document.getElementById('gps_location');
+    }
 
-        if (locationText) {
-            let format = location.toString().slice(7, -1)
-            let strings = format.split(',')
-            let formatted = strings[0] + "," + strings[1].slice(1, strings[1].length);
-            locationText.value = formatted;
-            document.getElementById("locationChanged").classList.remove("d-none");
-            setTimeout(function () {
-                document.getElementById("locationChanged").classList.add("d-none");
-            }, 3000);
-        }
-    } else {
-        Swal.fire(
-            'Hey, dat is niet mogelijk!',
-            'Je kunt geen locaties buiten de cirkel selecteren',
-            'warning'
-        )
+    if (locationText) {
+        let format = location.toString().slice(7, -1)
+        let strings = format.split(',')
+        let formatted = strings[0] + "," + strings[1].slice(1, strings[1].length);
+        locationText.value = formatted;
+        document.getElementById("locationChanged").classList.remove("d-none");
+        setTimeout(function () {
+            document.getElementById("locationChanged").classList.add("d-none");
+        }, 3000);
     }
 }
 
@@ -83,6 +74,7 @@ function showMap() {
 function mapOpen(map, radius) {
     map.invalidateSize();
 }
+
 // Default callbacks
 function noMarkerCallback() {
     console.log('No marker callback specified');

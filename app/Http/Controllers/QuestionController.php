@@ -171,14 +171,12 @@ class QuestionController extends Controller
             if($question->image_url != null){
                 StorageController::delete($question->image_url);
             }
-           
             $filename = StorageController::upload($file, 'Question-images');
         } else {
             if($request->removeImage == 1){
                 StorageController::delete($question->image_url);
+                $filename = null;
             }
-
-            $filename = null;
         }
 
         $question->update([
@@ -237,16 +235,11 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($tourId, $tourQuestion)
+    public function destroy($tourId, $tourQuestionId)
     {
-        $question = TourQuestion::find($tourQuestion);
+        $tourQuestion = TourQuestion::find($tourQuestionId);
         $tour = Tour::find($tourId);
-
-        if($question->image_url != null) {
-            StorageController::delete($question->image_url);
-        }
-       
-        $question->delete();
+        $tourQuestion->delete();
 
         Session::flash('Checkmark','Vraag is succesvol verwijderd');
         return Redirect::to('/tour/' . $tour->id);

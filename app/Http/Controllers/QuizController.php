@@ -84,14 +84,20 @@ class QuizController extends Controller
                 $team_answer->answer = $request->teamAnswerOpen;
                 break;
             case "Media":
-                $filename = $question->teamAnswerMedia;
-                $file = $request->file('teamAnswerMedia');
+
+                $filename = "";
+
+                $validated = $request->validated();
+
+                $file = $validated['teamAnswerMedia'] ?? $request->file('teamAnswerMedia');
                 if (!empty($file)) {
-                    $filename = StorageController::upload($file, 'Team-images');
+                    $do_filepath = StorageController::upload($file[0], 'Team-images');
                     $is_file = 1;
                 }
 
-                $team_answer->answer = $filename;
+                $validated['teamAnswerMedia'] = $do_filepath ?? null;
+
+                $team_answer->answer =  $validated['teamAnswerMedia'];
                 $team_answer->is_file = $is_file;
                 break;
         }
@@ -143,7 +149,7 @@ class QuizController extends Controller
             $answeredQuestionCount = TeamProgress::where('team_id', $team->id)->count('question_id');
             $difference = Carbon::parse($team->start_time)->diff(Carbon::parse($team->end_time))->format('%H:%I:%S');
             return view('quiz.end')->with('team', $team)->with('teamQuestion', $answeredQuestionCount)->with('points', $points)->with('difference', $difference);
-        }    
+        }
     }
 
 
@@ -173,9 +179,9 @@ class QuizController extends Controller
 
             $tour_id = $tour->id;
             $team_id = $team->id;
-    
+
             $tour = Tour::find($tour_id);
-            $questions = DB::select(DB::raw('SELECT q.id, q.gps_location, q.points, :team_hash AS team_hash
+            $questions = DB::select('SELECT q.id, q.gps_location, q.points, :team_hash AS team_hash
             FROM tour_question AS tq
             INNER JOIN question AS q ON tq.question_id = q.id
             INNER JOIN tour AS t ON tq.tour_id = t.id
@@ -186,7 +192,7 @@ class QuizController extends Controller
                 INNER JOIN tour_question AS tq ON tp.question_id = tq.question_id
                 WHERE tp.team_id = :team_id
                 AND tq.tour_id = :tour_id
-            );'), array(
+            );', array(
                 'team_hash' => $teamHash,
                 'tourid' => $tour_id,
                 'tour_id' => $tour_id,
@@ -206,7 +212,7 @@ class QuizController extends Controller
             $difference = Carbon::parse($team->start_time)->diff(Carbon::parse($team->end_time))->format('%H:%I:%S');
             return view('quiz.end')->with('team', $team)->with('teamQuestion', $answeredQuestionCount)->with('points', $points)->with('difference', $difference);
         }
-        
+
     }
 
     /**
