@@ -211,7 +211,7 @@
                                                         Tijdens de ontwikkeling van de applicatie is nauw samengewerkt met <a target="_blank" title="Linkedin" class="Linkedin-link" href="https://www.linkedin.com/in/anouk-van-berkel-a3412790/">Anouk van Berkel</a>, Senior medewerker bedrijfsvoering Avans. Zij heeft
                                                         gefungeerd als producteigenaar en heeft haar eisen en wensen kenbaar gemaakt met betrekking tot de applicatie.
                                                     </p>
-                                                    <p class="mt-4 px-md-5">Wil je graag in contact komen met ons? Stuur ons een persoonlijk bericht via Linkedin <i>(Link in tekst hierboven)</i> of stuur een mail naar het AvansTour ontwikkelteam: <span class="CopyMeClass" id="CopyEmailText">info@avanstour.website</span> <button onclick="copyEmailText()" type="button" class="copy-text-button"><i id="copy-text-icon" class="fa-solid fa-copy"></i></button></p>
+                                                    <p class="mt-4 px-md-5">Wil je graag in contact komen met ons? Stuur ons een persoonlijk bericht via Linkedin <i>(Link in tekst hierboven)</i> of stuur een mail naar het AvansTour ontwikkelteam: <span class="CopyMeClass" id="CopyEmailText">info@avanstour.nl</span> <button onclick="copyEmailText()" type="button" class="copy-text-button"><i id="copy-text-icon" class="fa-solid fa-copy"></i></button></p>
                                                 </div>
                                             </div>
                                         </div>
