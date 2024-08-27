@@ -83,7 +83,7 @@
     }
 
     if((mapCallback == mapPickLocation) || (mapCallback == mapRePickStartLocation)) {
-        map.setZoom(9)
+        map.setZoom(13)
         if (mapCallback == mapRePickStartLocation){ 
          marker = L.marker([markers[0].lat, markers[0].long], {icon: startIcon}).addTo(map);
          map.on('click', function(e) {
